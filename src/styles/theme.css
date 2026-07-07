@@ -1,0 +1,126 @@
+/* =========================================================
+   GANUS
+   SISTEMA GLOBAL DE TEMA
+   ========================================================= */
+
+:root {
+  --ganus-page-bg: #f4f7fb;
+
+  --ganus-surface: #ffffff;
+  --ganus-surface-soft: #f8fafc;
+  --ganus-surface-raised: #ffffff;
+  --ganus-surface-hover: #f1f5f9;
+
+  --ganus-border: #dce5ef;
+  --ganus-border-soft: #e7edf3;
+
+  --ganus-title: #102a43;
+  --ganus-text: #52667a;
+  --ganus-muted: #8290a3;
+
+  --ganus-input-bg: #ffffff;
+
+  --ganus-shadow:
+    0 8px 24px rgba(15, 42, 67, 0.05);
+}
+
+/* =========================================================
+   MODO OSCURO
+   MISMA PALETA VISUAL DE CONFIGURACIÓN
+   ========================================================= */
+
+html[data-ganus-theme="oscuro"] {
+  color-scheme: dark;
+
+  --ganus-page-bg: #08111f;
+
+  --ganus-surface: #111f31;
+  --ganus-surface-soft: #15263a;
+  --ganus-surface-raised: #17283d;
+  --ganus-surface-hover: #192b40;
+
+  --ganus-border: #293b50;
+  --ganus-border-soft: #203247;
+
+  --ganus-title: #f4f7fb;
+  --ganus-text: #9db1c8;
+  --ganus-muted: #71869d;
+
+  --ganus-input-bg: #0d1a2a;
+
+  --ganus-shadow: none;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ganus-page-bg);
+  color: var(--ganus-text);
+}
+
+.app-shell,
+.app-main {
+  background: var(--ganus-page-bg);
+}
+
+/* =========================================================
+   PÁGINAS
+   SOLO FONDO GENERAL
+   NO PINTAR COMPONENTES INTERNOS
+   ========================================================= */
+
+.dashboard,
+.organizacion-page,
+.inventario-page,
+.actividades-page,
+.tareas-page,
+.alertas-page,
+.indicadores-page,
+.knowledge-page,
+.advisory-page,
+.reportes-page,
+.configuracion-page {
+  background: var(--ganus-page-bg);
+  color: var(--ganus-text);
+}
+
+/* =========================================================
+   FORMULARIOS NATIVOS
+   ========================================================= */
+
+.app-main main input,
+.app-main main textarea,
+.app-main main select {
+  color-scheme: inherit;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+html[data-ganus-theme="oscuro"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html[data-ganus-theme="oscuro"] ::-webkit-scrollbar-track {
+  background: #08111f;
+}
+
+html[data-ganus-theme="oscuro"] ::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #31465e;
+}
+
+html[data-ganus-theme="oscuro"] ::-webkit-scrollbar-thumb:hover {
+  background: #405a75;
+}

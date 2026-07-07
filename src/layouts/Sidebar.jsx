@@ -7,9 +7,14 @@ import {
   LayoutDashboard,
   Building2,
   Boxes,
-  Workflow,
-  ClipboardList,
-  MapPinned,
+  Activity,
+  ListTodo,
+  Bell,
+  ChartNoAxesCombined,
+  BookOpen,
+  BrainCircuit,
+  FileText,
+  Settings,
   LogOut,
 } from "lucide-react";
 
@@ -26,37 +31,62 @@ export default function Sidebar() {
   };
 
   const menuItems = [
-    {
-      nombre: "Dashboard",
-      ruta: "/",
-      icono: LayoutDashboard,
-    },
-    {
-      nombre: "Organización",
-      ruta: "/organizacion",
-      icono: Building2,
-    },
-    {
-      nombre: "Inventario",
-      ruta: "/inventario",
-      icono: Boxes,
-    },
-    {
-      nombre: "Field Engine",
-      ruta: "/field-engine",
-      icono: Workflow,
-    },
-    {
-      nombre: "MAKE",
-      ruta: "/make",
-      icono: ClipboardList,
-    },
-    {
-      nombre: "Operación",
-      ruta: "/operacion",
-      icono: MapPinned,
-    },
-  ];
+  {
+    nombre: "Inicio",
+    ruta: "/",
+    icono: LayoutDashboard,
+  },
+  {
+    nombre: "Organización",
+    ruta: "/organizacion",
+    icono: Building2,
+  },
+  {
+    nombre: "Inventario",
+    ruta: "/inventario",
+    icono: Boxes,
+  },
+  {
+    nombre: "Actividades",
+    ruta: "/actividades",
+    icono: Activity,
+  },
+  {
+    nombre: "Tareas",
+    ruta: "/tareas",
+    icono: ListTodo,
+  },
+  {
+    nombre: "Alertas",
+    ruta: "/alertas",
+    icono: Bell,
+  },
+  {
+    nombre: "Indicadores",
+    ruta: "/indicadores",
+    icono: ChartNoAxesCombined,
+  },
+  {
+    nombre: "Knowledge",
+    ruta: "/knowledge",
+    icono: BookOpen,
+  },
+  {
+    nombre: "Advisory",
+    ruta: "/advisory",
+    icono: BrainCircuit,
+  },
+  {
+    nombre: "Reportes",
+    ruta: "/reportes",
+    icono: FileText,
+  },
+  {
+    nombre: "Configuración",
+    ruta: "/configuracion",
+    icono: Settings,
+  },
+];
 
   return (
     <>

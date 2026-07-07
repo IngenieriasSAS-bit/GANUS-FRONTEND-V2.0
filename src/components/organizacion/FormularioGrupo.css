@@ -1,0 +1,118 @@
+/* ==========================================================
+   CONTENEDOR PRINCIPAL DEL FORMULARIO
+   ========================================================== */
+
+.formulario-grupo {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+/* ==========================================================
+   AGRUPACIÓN DE CADA CAMPO
+   ========================================================== */
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================
+   ETIQUETAS
+   ========================================================== */
+
+.campo label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3b4b62;
+}
+
+/* ==========================================================
+   INPUTS
+   ========================================================== */
+
+.campo input,
+.campo textarea,
+.campo select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d7dde5;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: 0.25s;
+  outline: none;
+  background: #fff;
+}
+
+/* ==========================================================
+   EFECTO AL SELECCIONAR UN CAMPO
+   ========================================================== */
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+  border-color: #7ac70c;
+  box-shadow: 0 0 0 3px rgba(122, 199, 12, .15);
+}
+
+/* ==========================================================
+   TEXTAREA
+   ========================================================== */
+
+.campo textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* ==========================================================
+   CONTENEDOR DE BOTONES
+   ========================================================== */
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* ==========================================================
+   BOTÓN CANCELAR
+   ========================================================== */
+
+.btn-cancelar {
+  background: #ffffff;
+  color: #16325c;
+  border: 1px solid #d7dde5;
+  padding: 11px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.btn-cancelar:hover {
+  background: #f5f7fa;
+}
+
+/* ==========================================================
+   BOTÓN GUARDAR
+   ========================================================== */
+
+.btn-guardar {
+  background: #7ac70c;
+  color: white;
+  border: none;
+  padding: 11px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.btn-guardar:hover {
+  background: #69b109;
+}

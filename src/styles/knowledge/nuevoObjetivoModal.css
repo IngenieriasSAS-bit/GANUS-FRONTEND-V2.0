@@ -1,0 +1,300 @@
+.knowledge-objective-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 2000;
+
+  padding: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(8, 25, 49, 0.56);
+
+  backdrop-filter: blur(3px);
+}
+
+.knowledge-objective-modal {
+  width: 100%;
+  max-width: 720px;
+
+  max-height: calc(100vh - 48px);
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border: 1px solid #dfe7f1;
+  border-radius: 16px;
+
+  box-shadow:
+    0 24px 60px rgba(8, 25, 49, 0.22);
+}
+
+.knowledge-objective-modal-header {
+  padding: 22px 24px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-bottom: 1px solid #edf1f6;
+}
+
+.knowledge-objective-modal-heading {
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 13px;
+}
+
+.knowledge-objective-modal-icon {
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+  background: #eaf2ff;
+
+  border-radius: 11px;
+}
+
+.knowledge-objective-modal-heading h2 {
+  margin: 0 0 5px;
+
+  color: #173a67;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.knowledge-objective-modal-heading p {
+  max-width: 520px;
+
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.knowledge-objective-modal-close {
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 36px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #718096;
+  background: transparent;
+
+  border: 0;
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.knowledge-objective-modal-close:hover {
+  color: #173a67;
+  background: #eef3f8;
+}
+
+.knowledge-objective-form {
+  padding: 24px;
+}
+
+.knowledge-objective-form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.knowledge-objective-form-group {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.knowledge-objective-form-group--full {
+  margin-bottom: 18px;
+}
+
+.knowledge-objective-form-group label {
+  color: #334e6f;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.knowledge-objective-form-group input,
+.knowledge-objective-form-group textarea,
+.knowledge-objective-form-group select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  color: #173a67;
+  background: #ffffff;
+
+  border: 1px solid #dfe7f1;
+  border-radius: 9px;
+
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.knowledge-objective-form-group input,
+.knowledge-objective-form-group select {
+  height: 42px;
+
+  padding: 0 12px;
+}
+
+.knowledge-objective-form-group textarea {
+  min-height: 105px;
+
+  padding: 12px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+.knowledge-objective-form-group input:focus,
+.knowledge-objective-form-group textarea:focus,
+.knowledge-objective-form-group select:focus {
+  border-color: #7ba4dc;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.knowledge-objective-form-group input::placeholder,
+.knowledge-objective-form-group textarea::placeholder {
+  color: #9aa7b7;
+}
+
+.knowledge-objective-form-error {
+  color: #c24141;
+
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.knowledge-objective-form-actions {
+  margin-top: 26px;
+  padding-top: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  border-top: 1px solid #edf1f6;
+}
+
+.knowledge-objective-form-cancel,
+.knowledge-objective-form-save {
+  min-height: 40px;
+
+  padding: 0 16px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.knowledge-objective-form-cancel {
+  color: #526276;
+  background: #ffffff;
+
+  border: 1px solid #dfe7f1;
+}
+
+.knowledge-objective-form-cancel:hover {
+  color: #173a67;
+  background: #f8fafc;
+}
+
+.knowledge-objective-form-save {
+  color: #ffffff;
+  background: #173a67;
+
+  border: 1px solid #173a67;
+}
+
+.knowledge-objective-form-save:hover {
+  background: #214d82;
+  border-color: #214d82;
+}
+
+@media (max-width: 720px) {
+  .knowledge-objective-modal-overlay {
+    padding: 14px;
+  }
+
+  .knowledge-objective-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .knowledge-objective-modal-header {
+    padding: 18px;
+  }
+
+  .knowledge-objective-form {
+    padding: 18px;
+  }
+
+  .knowledge-objective-form-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .knowledge-objective-form-cancel,
+  .knowledge-objective-form-save {
+    width: 100%;
+  }
+}

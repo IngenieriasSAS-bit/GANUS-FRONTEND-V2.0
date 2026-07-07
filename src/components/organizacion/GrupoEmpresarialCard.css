@@ -1,0 +1,365 @@
+.grupo-card{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:24px;
+
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+
+}
+
+.grupo-header h2{
+
+    margin:0;
+
+    color:#173A67;
+
+}
+
+.grupo-header p{
+
+    margin-top:6px;
+
+    color:#6B7280;
+
+}
+
+.grupo-toolbar{
+
+    margin-top:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin-bottom:24px;
+
+}
+
+/* ======================================================
+   Sin resultados
+====================================================== */
+
+.sin-resultados {
+
+    margin-top: 25px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.sin-resultados h3{
+
+    color:#173B6C;
+
+    margin-bottom:10px;
+
+}
+
+.sin-resultados p{
+
+    color:#6B7280;
+
+}
+
+/* ==========================================================
+   Permisos
+========================================================== */
+
+.tabla-permisos {
+
+    margin-top: 24px;
+
+    overflow-x: auto;
+
+}
+
+.tabla-permisos table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+.tabla-permisos th {
+
+    background: #16355C;
+
+    color: white;
+
+    padding: 14px;
+
+    text-align: center;
+
+}
+
+.tabla-permisos td {
+
+    padding: 14px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #E9ECEF;
+
+}
+
+.tabla-permisos td:first-child,
+
+.tabla-permisos th:first-child {
+
+    text-align: left;
+
+    padding-left: 18px;
+
+}
+
+/* ==========================================================
+   Acciones
+========================================================== */
+
+.acciones-permisos {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-top: 24px;
+
+}
+
+/* ==========================================================
+   Información del Rol
+========================================================== */
+
+.card-informacion-rol{
+
+    display:flex;
+
+    gap:24px;
+
+    margin-top:24px;
+
+    margin-bottom:24px;
+
+    padding:22px;
+
+    background:#F8FAFC;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:12px;
+
+    flex-wrap:wrap;
+
+}
+
+.info-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:180px;
+
+}
+
+.info-item span{
+
+    font-size:13px;
+
+    color:#64748B;
+
+    margin-bottom:6px;
+
+}
+
+.info-item strong{
+
+    font-size:16px;
+
+    color:#16355C;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   GANUS - MODO OSCURO ORGANIZACIÓN
+   Paleta visual alineada con Configuración
+========================================================== */
+
+[data-ganus-theme="dark"] .grupo-card {
+    background: #111f31;
+    border: 1px solid #293b50;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* ==========================================================
+   ENCABEZADOS
+========================================================== */
+
+[data-ganus-theme="dark"] .grupo-header h2 {
+    color: #f8fafc;
+}
+
+[data-ganus-theme="dark"] .grupo-header p {
+    color: #8da7c4;
+}
+
+/* ==========================================================
+   TOOLBAR
+========================================================== */
+
+[data-ganus-theme="dark"] .grupo-toolbar input,
+[data-ganus-theme="dark"] .grupo-toolbar select {
+    background: #0d1a29;
+    border-color: #293b50;
+    color: #f8fafc;
+}
+
+[data-ganus-theme="dark"] .grupo-toolbar input::placeholder {
+    color: #7189a3;
+}
+
+/* ==========================================================
+   TABLAS DE ORGANIZACIÓN
+========================================================== */
+
+[data-ganus-theme="dark"] .grupo-card table {
+    background: #111f31;
+    color: #f8fafc;
+}
+
+[data-ganus-theme="dark"] .grupo-card thead,
+[data-ganus-theme="dark"] .grupo-card thead tr {
+    background: #0d1a29;
+}
+
+[data-ganus-theme="dark"] .grupo-card th {
+    background: #0d1a29;
+    color: #f8fafc;
+    border-color: #293b50;
+}
+
+[data-ganus-theme="dark"] .grupo-card td {
+    background: #111f31;
+    color: #c5d3e3;
+    border-color: #293b50;
+}
+
+[data-ganus-theme="dark"] .grupo-card tbody tr {
+    background: #111f31;
+}
+
+[data-ganus-theme="dark"] .grupo-card tbody tr:hover {
+    background: #15263a;
+}
+
+[data-ganus-theme="dark"] .grupo-card tbody tr:hover td {
+    background: #15263a;
+}
+
+/* ==========================================================
+   SIN RESULTADOS
+========================================================== */
+
+[data-ganus-theme="dark"] .sin-resultados {
+    background: #111f31;
+    border: 1px solid #293b50;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="dark"] .sin-resultados h3 {
+    color: #f8fafc;
+}
+
+[data-ganus-theme="dark"] .sin-resultados p {
+    color: #8da7c4;
+}
+
+/* ==========================================================
+   TABLA DE PERMISOS
+========================================================== */
+
+[data-ganus-theme="dark"] .tabla-permisos table {
+    background: #111f31;
+}
+
+[data-ganus-theme="dark"] .tabla-permisos th {
+    background: #0d1a29;
+    color: #f8fafc;
+    border-bottom: 1px solid #293b50;
+}
+
+[data-ganus-theme="dark"] .tabla-permisos td {
+    background: #111f31;
+    color: #c5d3e3;
+    border-bottom: 1px solid #293b50;
+}
+
+[data-ganus-theme="dark"] .tabla-permisos tbody tr:hover td {
+    background: #15263a;
+}
+
+/* ==========================================================
+   INFORMACIÓN DEL ROL
+========================================================== */
+
+[data-ganus-theme="dark"] .card-informacion-rol {
+    background: #0d1a29;
+    border-color: #293b50;
+}
+
+[data-ganus-theme="dark"] .info-item span {
+    color: #8da7c4;
+}
+
+[data-ganus-theme="dark"] .info-item strong {
+    color: #f8fafc;
+}
+
+/* ==========================================================
+   BOTONES DE ACCIÓN
+========================================================== */
+
+[data-ganus-theme="dark"] .grupo-card button {
+    border-color: #33485f;
+}
+
+[data-ganus-theme="dark"] .grupo-card button:not(.btn-primary):not(.btn-success) {
+    color: #c5d3e3;
+}
+
+/* ==========================================================
+   TRANSICIÓN VISUAL
+========================================================== */
+
+.grupo-card,
+.sin-resultados,
+.card-informacion-rol,
+.grupo-card th,
+.grupo-card td,
+.tabla-permisos th,
+.tabla-permisos td {
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}

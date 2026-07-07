@@ -1,0 +1,754 @@
+.indicadores{
+
+    margin-left:305px;
+
+    margin-top:52px;
+
+    padding:32px 38px 40px;
+
+    min-height:calc(100vh - 52px);
+
+    background:#f4f7fb;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+    box-sizing:border-box;
+
+}
+
+.indicadores-dashboard{
+
+    width:98%;
+
+    max-width:1780px;
+
+    margin:0 auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+/*=========================
+    CARDS SUPERIORES
+=========================*/
+
+.indicadores-cards{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+
+}
+
+.indicador-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    box-shadow:0 12px 28px rgba(15,23,42,.08);
+    border:1px solid #edf2f7;
+
+    transition:.25s;
+
+}
+
+.indicador-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.indicador-icon{
+
+    width:58px;
+    height:58px;
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.indicador-icon.success{
+
+    background:#eaf8ef;
+    color:#3ba755;
+
+}
+
+.indicador-icon.primary{
+
+    background:#eaf2ff;
+    color:#2563eb;
+
+}
+
+.indicador-icon.warning{
+
+    background:#fff7e6;
+    color:#f59e0b;
+
+}
+
+.indicador-card h4{
+
+    margin:0;
+    font-size:15px;
+    color:#64748b;
+    font-weight:600;
+
+}
+
+.indicador-card h2{
+
+    margin:4px 0;
+    color:#12376a;
+    font-size:22px;
+    font-weight:700;
+
+}
+
+.indicador-card span{
+
+    color:#94a3b8;
+    font-size:14px;
+
+}
+
+/*=========================
+      GRID CENTRAL
+=========================*/
+
+.indicadores-grid{
+
+    display:grid;
+    grid-template-columns:1.3fr .9fr;
+    gap:20px;
+    align-items:start;
+
+}
+
+.indicadores-panel{
+
+    background:#fff;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 12px 28px rgba(15,23,42,.08);
+    border:1px solid #edf2f7;
+
+}
+
+/*=========================
+      HEADER PANEL
+=========================*/
+
+.panel-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+
+}
+
+.panel-header h3{
+
+    margin:0;
+    color:#173d70;
+
+}
+
+.panel-header span{
+
+    color:#94a3b8;
+    font-size:14px;
+
+}
+
+/*=========================
+      MINI CHART
+=========================*/
+
+.mini-chart{
+
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-around;
+
+    height:180px;
+
+    padding:10px 8px 0;
+
+}
+
+.chart-item{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+
+}
+
+.chart-bar{
+
+    width:28px;
+
+    background:linear-gradient(
+        180deg,
+        #2f80ed,
+        #12376a
+    );
+
+    border-radius:12px 12px 4px 4px;
+
+    transition:.3s;
+
+}
+
+.chart-bar:hover{
+
+    opacity:.85;
+
+}
+
+.chart-item span{
+
+    color:#64748b;
+    font-size:13px;
+
+}
+
+/*=========================
+      ESTADO
+=========================*/
+
+.estado-lista{
+
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+
+}
+
+.estado-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.estado-item:last-child{
+
+    border:none;
+
+}
+
+.estado-item strong{
+
+    display:block;
+    color:#173d70;
+
+}
+
+.estado-item span{
+
+    color:#94a3b8;
+    font-size:13px;
+
+}
+
+.estado-ok{
+
+    color:#3ba755;
+
+}
+
+.estado-warning{
+
+    color:#f59e0b;
+
+}
+
+/*=========================
+      TABLA
+=========================*/
+
+.tabla-indicadores{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.tabla-indicadores thead{
+
+    background:#12376a;
+
+}
+
+.tabla-indicadores th{
+
+    color:#fff;
+    text-align:left;
+    padding:16px;
+
+    font-size:14px;
+    font-weight:600;
+
+}
+
+.tabla-indicadores td{
+
+    padding:16px;
+    border-bottom:1px solid #edf2f7;
+
+    color:#334155;
+
+}
+
+.tabla-indicadores tbody tr{
+
+    transition:.25s;
+
+}
+
+.tabla-indicadores tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+/*=========================
+      RESPONSIVE
+=========================*/
+
+@media(max-width:1200px){
+
+    .indicadores-cards{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .indicadores-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .indicadores{
+
+    margin-left:230px;
+    margin-top:82px;
+    padding:28px;
+    background:#f5f7fb;
+    min-height:calc(100vh - 82px);
+
+}
+
+    .indicadores-cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*======================================================
+=            LAYOUT GENERAL DEL DASHBOARD
+======================================================*/
+
+.indicadores-dashboard{
+
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+
+}
+
+.indicadores-contenido{
+
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:24px;
+    align-items:start;
+
+}
+
+.indicadores-izquierda{
+
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+
+}
+
+.indicadores-derecha{
+
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+
+}
+
+/*======================================================
+=            TARJETAS
+======================================================*/
+
+.indicadores-chart,
+.estado-sistema,
+.actividad-reciente{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    border:1px solid #edf2f7;
+
+    box-shadow:
+
+        0 12px 35px rgba(15,23,42,.05);
+
+    transition:.25s;
+
+}
+
+.indicadores-chart:hover,
+.estado-sistema:hover,
+.actividad-reciente:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 22px 45px rgba(15,23,42,.10);
+
+}
+
+/*======================================================
+=            HEADER TARJETAS
+======================================================*/
+
+.indicadores-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+
+}
+
+.indicadores-card-header h3{
+
+    margin:0;
+
+    color:#123c74;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.indicadores-card-header span{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#7b8794;
+
+    font-size:14px;
+
+}
+
+/*======================================================
+=            GRAFICA
+======================================================*/
+
+.grafica-falsa{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.linea-grafica{
+
+    height:240px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:space-between;
+
+}
+
+.linea-grafica span{
+
+    width:48px;
+
+    border-radius:14px 14px 0 0;
+
+    background:linear-gradient(
+
+        to top,
+
+        #1f4b87,
+
+        #64b5ff
+
+    );
+
+    transition:.30s;
+
+}
+
+.linea-grafica span:hover{
+
+    transform:scaleY(1.08);
+
+}
+
+.dias-grafica{
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+.dias-grafica label{
+
+    color:#7d8b9f;
+
+    font-size:14px;
+
+}
+
+/*======================================================
+=            ESTADO SISTEMA
+======================================================*/
+
+.estado-lista{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.estado-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    transition:.25s;
+
+}
+
+.estado-item:hover{
+
+    background:#f7f9fc;
+
+}
+
+.estado-item strong{
+
+    display:block;
+
+    color:#123c74;
+
+    margin-bottom:4px;
+
+}
+
+.estado-item span{
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+}
+
+.estado-icono{
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+}
+
+.estado-icono.ok{
+
+    background:#e9f8ef;
+
+    color:#2e9b4d;
+
+}
+
+.estado-icono.warning{
+
+    background:#fff3df;
+
+    color:#ff9800;
+
+}
+
+.estado-icono.info{
+
+    background:#e8f1ff;
+
+    color:#2563eb;
+
+}
+
+/*======================================================
+=            ACTIVIDAD
+======================================================*/
+
+.actividad-lista{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.actividad-item{
+
+    display:grid;
+
+    grid-template-columns:50px 1fr auto;
+
+    gap:18px;
+
+    align-items:center;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    transition:.25s;
+
+}
+
+.actividad-item:hover{
+
+    background:#f8fafc;
+
+}
+
+.actividad-icono{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+}
+
+.actividad-icono.success{
+
+    background:#eaf9ef;
+
+    color:#30a14e;
+
+}
+
+.actividad-icono.warning{
+
+    background:#fff4e5;
+
+    color:#ff9800;
+
+}
+
+.actividad-icono.primary{
+
+    background:#e8f1ff;
+
+    color:#2563eb;
+
+}
+
+.actividad-info strong{
+
+    display:block;
+
+    color:#123c74;
+
+    margin-bottom:4px;
+
+}
+
+.actividad-info span{
+
+    color:#7b8794;
+
+    font-size:14px;
+
+}
+
+.actividad-item small{
+
+    color:#94a3b8;
+
+}

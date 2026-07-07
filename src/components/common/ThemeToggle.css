@@ -1,0 +1,32 @@
+.themeToggle{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--color-navbar-button);
+
+    color:var(--color-text);
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+}
+
+.themeToggle:hover{
+
+    transform:translateY(-2px);
+
+    background:var(--color-primary);
+
+    color:#fff;
+
+}

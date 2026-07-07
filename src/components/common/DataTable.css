@@ -1,0 +1,53 @@
+.data-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:40px;
+
+}
+
+.data-table thead{
+
+    background:#F5F7FA;
+
+}
+
+.data-table th{
+
+    padding:16px;
+
+    text-align:left;
+
+    color:#173A67;
+
+    font-size:.95rem;
+
+}
+
+.data-table td{
+
+    padding:19px;
+
+    border-top:1px solid #E8ECF3;
+
+    color:#4B5563;
+
+}
+
+.data-table tbody tr:hover{
+
+    background:#FAFBFD;
+
+}
+
+.empty{
+
+    text-align:center;
+
+    color:#9CA3AF;
+
+    padding:30px;
+
+}

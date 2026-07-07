@@ -1,7 +1,7 @@
 import {
-HashRouter,
-Routes,
-Route
+  HashRouter,
+  Routes,
+  Route,
 } from "react-router-dom";
 
 import Login from "./pages/Login";
@@ -11,120 +11,204 @@ import Inventario from "./pages/Inventario";
 import Pesaje from "./pages/Pesaje";
 import Vacunaciones from "./pages/Vacunaciones";
 import EventoSanitario from "./pages/EventoSanitario";
-import ProtectedRoute from "./components/ProtectedRoute";
-import "./styles/responsive.css";
 import Organizacion from "./pages/Organizacion";
+import Actividades from "./pages/Actividades";
+import Tareas from "./pages/Tareas";
+import Alertas from "./pages/Alertas";
+import Indicadores from "./pages/Indicadores";
 import FieldEngine from "./pages/FieldEngine";
 import Make from "./pages/Make";
 import Operacion from "./pages/Operacion";
+import Knowledge from "./pages/Knowledge";
+import Advisory from "./pages/Advisory";
+import Reportes from "./pages/Reportes";
+import Configuracion from "./pages/Configuracion";
 
-export default function App(){
+import ProtectedRoute from "./routes/ProtectedRoute";
 
-  return(
+import "./styles/responsive.css";
+import "./styles/theme.css";
 
-<HashRouter>
+export default function App() {
+  const temaGuardado =
+    localStorage.getItem("ganus-tema") || "claro";
 
-<Routes>
+  document.documentElement.setAttribute(
+    "data-ganus-theme",
+    temaGuardado
+  );
 
-<Route
+  document.body.setAttribute(
+    "data-ganus-theme",
+    temaGuardado
+  );
 
-path="/login"
+  return (
+    <HashRouter>
+      <Routes>
+        <Route
+          path="/login"
+          element={<Login />}
+        />
 
-element={<Login/>}
+        <Route
+          path="/registro"
+          element={<Registro />}
+        />
 
-/>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
+        <Route
+          path="/organizacion"
+          element={
+            <ProtectedRoute>
+              <Organizacion />
+            </ProtectedRoute>
+          }
+        />
 
-path="/registro"
+        <Route
+          path="/actividades"
+          element={
+            <ProtectedRoute>
+              <Actividades />
+            </ProtectedRoute>
+          }
+        />
 
-element={<Registro/>}
+        <Route
+          path="/tareas"
+          element={
+            <ProtectedRoute>
+              <Tareas />
+            </ProtectedRoute>
+          }
+        />
 
-/>
+        <Route
+          path="/alertas"
+          element={
+            <ProtectedRoute>
+              <Alertas />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-path="/"
-element={
-  <ProtectedRoute>
-    <Dashboard/>
-  </ProtectedRoute>
-}
-/>
+        <Route
+          path="/indicadores"
+          element={
+            <ProtectedRoute>
+              <Indicadores />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-  path="/organizacion"
+        <Route
+          path="/knowledge"
+          element={
+            <ProtectedRoute>
+              <Knowledge />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+  path="/advisory"
   element={
     <ProtectedRoute>
-      <Organizacion />
+      <Advisory />
     </ProtectedRoute>
   }
 />
 
 <Route
-  path="/field-engine"
+  path="/reportes"
   element={
     <ProtectedRoute>
-      <FieldEngine />
+      <Reportes />
     </ProtectedRoute>
   }
 />
 
 <Route
-  path="/make"
+  path="/configuracion"
   element={
     <ProtectedRoute>
-      <Make />
+      <Configuracion />
     </ProtectedRoute>
   }
 />
 
-<Route
-  path="/operacion"
-  element={
-    <ProtectedRoute>
-      <Operacion />
-    </ProtectedRoute>
-  }
-/>
+        <Route
+          path="/field-engine"
+          element={
+            <ProtectedRoute>
+              <FieldEngine />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-path="/inventario"
-element={
-  <ProtectedRoute>
-    <Inventario/>
-  </ProtectedRoute>
-}
-/>
+        <Route
+          path="/make"
+          element={
+            <ProtectedRoute>
+              <Make />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-path="/pesaje"
-element={
-  <ProtectedRoute>
-    <Pesaje/>
-  </ProtectedRoute>
-}
-/>
+        <Route
+          path="/operacion"
+          element={
+            <ProtectedRoute>
+              <Operacion />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-path="/vacunaciones"
-element={
-  <ProtectedRoute>
-    <Vacunaciones/>
-  </ProtectedRoute>
-}
-/>
+        <Route
+          path="/inventario"
+          element={
+            <ProtectedRoute>
+              <Inventario />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-path="/evento"
-element={
-  <ProtectedRoute>
-    <EventoSanitario/>
-  </ProtectedRoute>
-}
-/>
+        <Route
+          path="/pesaje"
+          element={
+            <ProtectedRoute>
+              <Pesaje />
+            </ProtectedRoute>
+          }
+        />
 
-</Routes>
+        <Route
+          path="/vacunaciones"
+          element={
+            <ProtectedRoute>
+              <Vacunaciones />
+            </ProtectedRoute>
+          }
+        />
 
-</HashRouter> );
-
+        <Route
+          path="/evento"
+          element={
+            <ProtectedRoute>
+              <EventoSanitario />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </HashRouter>
+  );
 }

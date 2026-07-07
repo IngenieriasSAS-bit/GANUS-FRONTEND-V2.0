@@ -1,0 +1,755 @@
+.knowledge-principios {
+  width: 100%;
+}
+
+.knowledge-principios-header {
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+.knowledge-principios-heading {
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 14px;
+}
+
+.knowledge-principios-back {
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #173a67;
+  background: #ffffff;
+
+  border: 1px solid #dfe7f1;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.knowledge-principios-back:hover {
+  color: #e9950a;
+  background: #fffaf0;
+  border-color: #f0d49d;
+}
+
+.knowledge-principios-heading h1 {
+  margin: 0 0 6px;
+
+  color: #173a67;
+
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.knowledge-principios-heading p {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.knowledge-principios-create {
+  min-height: 42px;
+
+  padding: 0 17px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  color: #ffffff;
+  background: #173a67;
+
+  border: 0;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.knowledge-principios-create:hover {
+  background: #214d82;
+  transform: translateY(-1px);
+}
+
+.knowledge-principios-summary {
+  margin-bottom: 24px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.knowledge-principios-summary-card {
+  min-width: 0;
+
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #e4ebf3;
+  border-radius: 12px;
+
+  box-shadow:
+    0 3px 10px rgba(15, 23, 42, 0.04);
+}
+
+.knowledge-principios-summary-icon {
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 44px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+}
+
+.knowledge-principios-summary-icon--orange {
+  color: #e9950a;
+  background: #fff5df;
+}
+
+.knowledge-principios-summary-icon--green {
+  color: #25a85a;
+  background: #e8f7ee;
+}
+
+.knowledge-principios-summary-icon--blue {
+  color: #2563eb;
+  background: #eaf2ff;
+}
+
+.knowledge-principios-summary-card > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.knowledge-principios-summary-card span {
+  color: #526276;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.knowledge-principios-summary-card strong {
+  margin: 2px 0;
+
+  color: #173a67;
+
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.knowledge-principios-summary-card small {
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+.knowledge-principios-panel {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e4ebf3;
+  border-radius: 14px;
+
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.knowledge-principios-panel-header {
+  padding: 22px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  border-bottom: 1px solid #edf1f6;
+}
+
+.knowledge-principios-panel-header h2 {
+  margin: 0 0 5px;
+
+  color: #173a67;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.knowledge-principios-panel-header p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+.knowledge-principios-tools {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.knowledge-principios-search {
+  width: 270px;
+  height: 40px;
+
+  padding: 0 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: #8a98aa;
+  background: #f8fafc;
+
+  border: 1px solid #dfe7f1;
+  border-radius: 9px;
+}
+
+.knowledge-principios-search:focus-within {
+  color: #e9950a;
+
+  background: #ffffff;
+  border-color: #edc778;
+}
+
+.knowledge-principios-search input {
+  width: 100%;
+
+  color: #173a67;
+  background: transparent;
+
+  border: 0;
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.knowledge-principios-search input::placeholder {
+  color: #9aa7b7;
+}
+
+.knowledge-principios-filter {
+  width: 40px;
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #526276;
+  background: #ffffff;
+
+  border: 1px solid #dfe7f1;
+  border-radius: 9px;
+
+  cursor: pointer;
+}
+
+.knowledge-principios-filter:hover {
+  color: #e9950a;
+  background: #fffaf0;
+  border-color: #f0d49d;
+}
+
+.knowledge-principios-filter-wrapper {
+  position: relative;
+
+  display: inline-flex;
+}
+
+.knowledge-principios-filter-menu {
+  position: absolute;
+  top: 48px;
+  right: 0;
+
+  z-index: 40;
+
+  width: 180px;
+
+  padding: 7px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  background: #ffffff;
+
+  border: 1px solid #dfe7f1;
+  border-radius: 10px;
+
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.14);
+}
+
+.knowledge-principios-filter-menu button {
+  width: 100%;
+  min-height: 38px;
+
+  padding: 0 11px;
+
+  color: #526276;
+  background: transparent;
+
+  border: 0;
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  text-align: left;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.knowledge-principios-filter-menu button:hover {
+  color: #173a67;
+  background: #f8fafc;
+}
+
+.knowledge-principios-filter-menu button.active {
+  color: #b87509;
+  background: #fff5df;
+}
+
+.knowledge-principios-empty {
+  grid-column: 1 / -1;
+
+  min-height: 190px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 8px;
+
+  color: #94a3b8;
+
+  border: 1px dashed #dfe7f1;
+  border-radius: 12px;
+}
+
+.knowledge-principios-empty svg {
+  color: #e9950a;
+}
+
+.knowledge-principios-empty strong {
+  color: #173a67;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.knowledge-principios-empty span {
+  font-size: 12px;
+}
+
+.knowledge-principios-list {
+  padding: 20px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.knowledge-principio-card {
+  min-width: 0;
+
+  padding: 18px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.knowledge-principio-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(15, 23, 42, 0.06);
+}
+
+.knowledge-principio-icon {
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #e9950a;
+  background: #fff5df;
+
+  border-radius: 11px;
+}
+
+.knowledge-principio-content {
+  min-width: 0;
+
+  width: 100%;
+}
+
+.knowledge-principio-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.knowledge-principio-title > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.knowledge-principio-title strong {
+  color: #173a67;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.knowledge-principio-title span {
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+.knowledge-principio-actions {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #718096;
+  background: transparent;
+
+  border: 0;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.knowledge-principio-actions:hover {
+  color: #173a67;
+  background: #eef3f8;
+}
+
+.knowledge-principio-content > p {
+  min-height: 42px;
+
+  margin: 12px 0 16px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.knowledge-principio-meta {
+  padding-top: 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+
+  border-top: 1px solid #edf1f6;
+}
+
+.knowledge-principio-meta > span:not(.knowledge-principio-status) {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  color: #94a3b8;
+
+  font-size: 10px;
+}
+
+.knowledge-principio-meta > span strong {
+  color: #526276;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.knowledge-principio-status {
+  margin-left: auto;
+
+  padding: 6px 9px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.knowledge-principio-status--vigente {
+  color: #27844b;
+  background: #eaf8ef;
+}
+
+.knowledge-principio-status--borrador {
+  color: #b36b00;
+  background: #fff4dc;
+}
+
+@media (max-width: 1100px) {
+  .knowledge-principios-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-principios-list {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-principios-panel-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .knowledge-principios-tools {
+    width: 100%;
+  }
+
+  .knowledge-principios-search {
+    width: 100%;
+  }
+}
+
+@media (max-width: 820px) {
+  .knowledge-principios-header {
+    flex-direction: column;
+  }
+
+  .knowledge-principios-create {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .knowledge-principios-heading h1 {
+    font-size: 24px;
+  }
+
+  .knowledge-principios-summary-card {
+    padding: 17px;
+  }
+
+  .knowledge-principios-panel-header {
+    padding: 18px;
+  }
+
+  .knowledge-principios-list {
+    padding: 14px;
+  }
+
+  .knowledge-principio-meta {
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    gap: 14px;
+  }
+
+  .knowledge-principio-status {
+    margin-left: 0;
+  }
+}
+
+.knowledge-principio-menu-wrapper {
+  position: relative;
+}
+
+.knowledge-principio-menu {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  z-index: 30;
+
+  width: 178px;
+
+  padding: 6px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border: 1px solid #dfe7f1;
+  border-radius: 10px;
+
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.knowledge-principio-menu button {
+  width: 100%;
+  min-height: 38px;
+
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: #385473;
+  background: transparent;
+
+  border: 0;
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+
+  text-align: left;
+}
+
+.knowledge-principio-menu button:hover {
+  color: #173a67;
+  background: #f1f5f9;
+}
+
+.knowledge-principio-menu
+  .knowledge-principio-menu-delete {
+  color: #dc2626;
+}
+
+.knowledge-principio-menu
+  .knowledge-principio-menu-delete:hover {
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+.knowledge-principios-filter--active {
+  color: #e9950a;
+  background: #fff5df;
+  border-color: #edc778;
+}
+
+.knowledge-principios-empty {
+  min-height: 170px;
+
+  margin: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 8px;
+
+  color: #e9950a;
+  background: #ffffff;
+
+  border: 1px dashed #dce6f0;
+  border-radius: 12px;
+}
+
+.knowledge-principios-empty strong {
+  color: #173a67;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.knowledge-principios-empty span {
+  color: #94a3b8;
+
+  font-size: 12px;
+}

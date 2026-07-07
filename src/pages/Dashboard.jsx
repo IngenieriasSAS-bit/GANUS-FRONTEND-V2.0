@@ -1,702 +1,517 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../layouts/Sidebar";
+import Navbar from "../layouts/Navbar";
+
+import StatCard from "../components/common/StatCard";
+
+import {
+  Activity,
+  AlertTriangle,
+  CalendarCheck,
+  ClipboardList,
+  Milk,
+  Weight,
+  HeartPulse,
+  TrendingDown,
+  Bot,
+  Syringe,
+  Wrench,
+  Thermometer,
+  ArrowRight,
+  Send,
+} from "lucide-react";
 
 import "../styles/dashboard.css";
 
-import Navbar from "../components/Navbar";
-
-import GraficaVacunas from "../components/GraficaVacunas";
-
-import GraficaPesajes from "../components/GraficaPesajes";
-
-import GraficaDistribucion from "../components/GraficaDistribucion";
-
-import { FaWeightHanging } from "react-icons/fa";
-
-import { FaSyringe } from "react-icons/fa";
-
-import { FaTools } from "react-icons/fa";
-
-import { GiMilkCarton } from "react-icons/gi";
-
-import { GiCow } from "react-icons/gi";
-
-import { FaHeartBroken } from "react-icons/fa";
-
-import { FaExclamationTriangle } from "react-icons/fa";
-
-import { FaTemperatureHigh } from "react-icons/fa";
-
-import { FaHeartbeat } from "react-icons/fa";
-
-export default function Dashboard(){
-
-const [pregunta,setPregunta]=useState("");
-
-const [respuestaAI,setRespuestaAI]=useState("");
-
-const [estadisticas,setEstadisticas]=useState({
-
-activos:0,
-
-pesajes:0,
-
-vacunaciones:0,
-
-eventos:0
-
-});
-
-const [actividades,setActividades]=useState([]);
-
-
-useEffect(() => {
-
-const animales =
-JSON.parse(localStorage.getItem("animales")) || [];
-
-const pesajes =
-JSON.parse(localStorage.getItem("pesajes")) || [];
-
-const vacunaciones =
-JSON.parse(localStorage.getItem("vacunas")) || [];
-
-const eventos =
-JSON.parse(localStorage.getItem("eventos")) || [];
-
-
-// eslint-disable-next-line react-hooks/set-state-in-effect
-setEstadisticas({
-
-activos: animales.length,
-
-pesajes: pesajes.length,
-
-vacunaciones: vacunaciones.length,
-
-eventos: eventos.length
-
-});
-
-
-const actividadesRecientes = [
-
-...pesajes.map((item)=>({
-
-tipo:"Pesaje",
-
-descripcion:
-
-`${item.nombre || item.animal}
- - ${item.peso} Kg`
-
-})),
-
-...vacunaciones.map((item)=>({
-
-tipo:"Vacunación",
-
-descripcion:
-
-`${item.nombre || item.animal}
- - ${item.vacuna}`
-
-})),
-
-...eventos.map((item)=>({
-
-tipo:"Evento",
-
-descripcion:
-
-`${item.nombre || item.animal}
- - ${item.tipo}`
-
-}))
-
-];
-
-
-setActividades(
-
-actividadesRecientes
-
-.reverse()
-
-.slice(0,10)
-
-);
-
-},[]);
-
-const consultarAI=()=>{
-
-const texto=pregunta.toLowerCase();
-
-if(
-
-texto.includes("animal")
-
-){
-
-setRespuestaAI(
-
-`Actualmente tienes ${estadisticas.activos} animales registrados.`
-
-);
-
-}
-
-else if(
-
-texto.includes("pesaje")
-
-){
-
-setRespuestaAI(
-
-`Se han realizado ${estadisticas.pesajes} pesajes.`
-
-);
-
-}
-
-else if(
-
-texto.includes("vacuna")
-
-){
-
-setRespuestaAI(
-
-`Hay ${estadisticas.vacunaciones} vacunaciones registradas.`
-
-);
-
-}
-
-else if(
-
-texto.includes("evento")
-
-||
-
-texto.includes("sanitario")
-
-){
-
-setRespuestaAI(
-
-`Se registraron ${estadisticas.eventos} eventos sanitarios.`
-
-);
-
-}
-
-else{
-
-setRespuestaAI(
-
-"Lo siento, aún no entiendo esa consulta."
-
-);
-
-}
-
-}
-
-
-
-return(
-
-<>
-
-<Sidebar/>
-
-<Navbar/>
-
-<div className="dashboard">
-
-<h1>
-
-Dashboard GANUS
-
-</h1>
-
-
-<div className="dashboard-top">
-
-
-<div className="cards">
-
-
-<div className="card">
-
-<h3>Activos Totales</h3>
-
-<h2>{estadisticas.activos}</h2>
-
-<p>+12% vs mes anterior</p>
-
-</div>
-
-
-<div className="card">
-
-<h3>Pesajes</h3>
-
-<h2>{estadisticas.pesajes}</h2>
-
-<div>
-
-<p>Registros realizados</p>
-
-<p>+8% vs ayer</p>
-
-</div>
-
-</div>
-
-
-<div className="card alerta">
-
-<h3>
-
-Vacunaciones
-
-</h3>
-
-<h2>
-
-{estadisticas.vacunaciones}
-
-</h2>
-
-<p>
-
-Aplicadas
-
-</p>
-
-<p>3 críticas</p>
-
-</div>
-
-
-<div className="card">
-
-<h3>
-
-Eventos Sanitarios
-
-</h3>
-
-<h2>
-
-{estadisticas.eventos}
-
-</h2>
-
-<p>
-
-Registrados
-
-</p>
-
-<p>6 próximas</p>
-
-</div>
-
-</div>
-
-
-<div className="advisory">
-
-<h2>
-
-ADVISORY GANUS
-
-</h2>
-
-<div className="advisoryIcon">
-
-<img
-
-src="public/images/robot-ai.png"
-
-alt="AI GANUS"
-
-/>
-
-</div>
-
-<p className="saludoAI">
-
-Hola {localStorage.getItem("usuario") || "Invitado"}
-
-</p>
-
-{/*
-<button
-
-className="btnAdvisory"
-
-onClick={()=>setMostrarAI(!mostrarAI)}
-
->
-
-{
-
-mostrarAI
-
-?
-
-"Ocultar Advisory"
-
-:
-
-"Consultar Advisory"
-
-}
-
-</button> */}
-
-<>
-
-<p>
-
-Actualmente tienes
-
-<b>
-
- {" "}
-
-{estadisticas.activos}
-
-{" "}
-
-</b>
-
-animales registrados.
-
-</p>
-
-<p>
-
-Se han realizado
-
-<b>
-
- {" "}
-
-{estadisticas.pesajes}
-
-{" "}
-
-</b>
-
-pesajes.
-
-</p>
-
-<p>
-
-Hay
-
-<b>
-
- {" "}
-
-{estadisticas.vacunaciones}
-
-{" "}
-
-</b>
-
-vacunaciones registradas.
-
-</p>
-
-<p>
-
-Se detectaron
-
-<b>
-
- {" "}
-
-{estadisticas.eventos}
-
-{" "}
-
-</b>
-
-eventos sanitarios.
-
-</p>
-
-<div className="mensajeAI">
-
-{
-
-estadisticas.eventos>0
-
-?
-
-"⚠️ Existen eventos sanitarios pendientes."
-
-:
-
-"✅ Todos los animales se encuentran sin novedades."
-
-}
-
-</div>
-
-</>
-
-<>
-
-<input
-
-placeholder="Escribe tu consulta..."
-
-value={pregunta}
-
-onChange={(e)=>
-
-setPregunta(e.target.value)
-
-}
-
-/>
-
-<button
-
-className="btnAdvisory"
-
-onClick={consultarAI}
-
->
-
-Preguntar
-
-</button>
-
-{
-
-respuestaAI && (
-
-<div className="mensajeAI">
-
-🤖 {respuestaAI}
-
-</div>
-
-)
-
-}
-
-</>
-
-</div>
-
-</div>
-
-<div className="lineaSeparadora"></div>
-
-<h2 className="subtitulo">
-
-INDICADORES CLAVE
-
-</h2>
-
-<div className="kpi-grid">
-
-    <div className="kpi-card">
-
-        <div className="kpi-header">
-
-            <h4>Producción de leche</h4>
-
-            <GiMilkCarton className="kpi-icon"/>
-
+/**
+ * ==========================================================
+ * Página: Inicio
+ *
+ * Responsabilidad:
+ * Mostrar el resumen ejecutivo y operativo de GANUS.
+ *
+ * Esta vista funciona actualmente con datos locales.
+ *
+ * Advisory GANUS se presenta únicamente como demostración
+ * visual. La integración inteligente será implementada
+ * posteriormente.
+ * ==========================================================
+ */
+
+export default function Dashboard() {
+  // ========================================================
+  // Resumen ejecutivo
+  // ========================================================
+
+  const [resumen, setResumen] = useState({
+    activos: 0,
+    actividadesHoy: 0,
+    alertasActivas: 3,
+    tareasPendientes: 6,
+  });
+
+  // ========================================================
+  // Actividades recientes
+  // ========================================================
+
+  const [actividadesRecientes, setActividadesRecientes] =
+    useState([]);
+
+  // ========================================================
+  // Cargar información local
+  // ========================================================
+
+  useEffect(() => {
+    const activos =
+      JSON.parse(localStorage.getItem("activos")) ||
+      JSON.parse(localStorage.getItem("animales")) ||
+      [];
+
+    const pesajes =
+      JSON.parse(localStorage.getItem("pesajes")) || [];
+
+    const vacunaciones =
+      JSON.parse(localStorage.getItem("vacunas")) || [];
+
+    const eventos =
+      JSON.parse(localStorage.getItem("eventos")) || [];
+
+    const actividadesLocales = [
+      ...pesajes.map((item) => ({
+        id: `pesaje-${item.id || Math.random()}`,
+        tipo: "Pesaje",
+        descripcion: `${item.nombre || item.animal || "Activo"} - ${
+          item.peso
+        } Kg`,
+        responsable: "Operación",
+        momento: "Registro reciente",
+      })),
+
+      ...vacunaciones.map((item) => ({
+        id: `vacunacion-${item.id || Math.random()}`,
+        tipo: "Vacunación",
+        descripcion: `${
+          item.nombre || item.animal || "Activo"
+        } - ${item.vacuna || "Vacunación registrada"}`,
+        responsable: "Operación",
+        momento: "Registro reciente",
+      })),
+
+      ...eventos.map((item) => ({
+        id: `evento-${item.id || Math.random()}`,
+        tipo: "Evento",
+        descripcion: `${
+          item.nombre || item.animal || "Activo"
+        } - ${item.tipo || "Evento operativo"}`,
+        responsable: "Operación",
+        momento: "Registro reciente",
+      })),
+    ];
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setResumen({
+      activos: activos.length,
+      actividadesHoy: actividadesLocales.length,
+      alertasActivas: 3,
+      tareasPendientes: 6,
+    });
+
+    setActividadesRecientes(
+      actividadesLocales.reverse().slice(0, 4)
+    );
+  }, []);
+
+  // ========================================================
+  // Indicadores de demostración
+  // ========================================================
+
+  const indicadores = [
+    {
+      titulo: "Producción de leche",
+      valor: "2.450 L",
+      variacion: "+15% vs mes anterior",
+      icono: Milk,
+    },
+    {
+      titulo: "Peso promedio",
+      valor: "412 Kg",
+      variacion: "+9% vs mes anterior",
+      icono: Weight,
+    },
+    {
+      titulo: "Tasa de preñez",
+      valor: "68%",
+      variacion: "+6% vs mes anterior",
+      icono: HeartPulse,
+    },
+    {
+      titulo: "Mortalidad",
+      valor: "1,2%",
+      variacion: "-0,5% vs mes anterior",
+      icono: TrendingDown,
+    },
+  ];
+
+  // ========================================================
+  // Alertas de demostración
+  // ========================================================
+
+  const alertasRecientes = [
+    {
+      id: 1,
+      titulo: "Bajo consumo de alimento en lote 4",
+      prioridad: "Crítica",
+      momento: "Hoy 07:15 a. m.",
+      icono: AlertTriangle,
+    },
+    {
+      id: 2,
+      titulo: "Temperatura alta en corral 3",
+      prioridad: "Media",
+      momento: "Hoy 06:40 a. m.",
+      icono: Thermometer,
+    },
+    {
+      id: 3,
+      titulo: "Revisión sanitaria pendiente lote 11",
+      prioridad: "Media",
+      momento: "Ayer 09:30 a. m.",
+      icono: HeartPulse,
+    },
+  ];
+
+  return (
+    <>
+      <Sidebar />
+
+      <Navbar />
+
+      <main className="dashboard">
+        {/* ==================================================
+            Encabezado
+        ================================================== */}
+
+        <header className="inicio-encabezado">
+          <div>
+            <h1>Inicio</h1>
+
+            <p>
+              Resumen general de la operación y estado actual
+              de GANUS.
+            </p>
+          </div>
+        </header>
+
+        {/* ==================================================
+            Contenido principal
+        ================================================== */}
+
+        <div className="inicio-layout">
+          <div className="inicio-contenido">
+            {/* ==============================================
+                Resumen ejecutivo
+            ============================================== */}
+
+            <section className="inicio-seccion">
+              <div className="inicio-seccion-titulo">
+                <div>
+                  <h2>Resumen Ejecutivo</h2>
+
+                  <p>
+                    Estado general de la operación registrada.
+                  </p>
+                </div>
+              </div>
+
+              <div className="resumen-grid">
+                <StatCard
+                  title="Activos Totales"
+                  value={resumen.activos}
+                  subtitle="+12% vs mes anterior"
+                />
+
+                <StatCard
+                  title="Actividades Hoy"
+                  value={resumen.actividadesHoy}
+                  subtitle="+6% vs ayer"
+                />
+
+                <StatCard
+                  title="Alertas Activas"
+                  value={resumen.alertasActivas}
+                  subtitle="1 crítica · 2 medias"
+                />
+
+                <StatCard
+                  title="Tareas Pendientes"
+                  value={resumen.tareasPendientes}
+                  subtitle="3 hoy · 3 próximas"
+                />
+              </div>
+            </section>
+
+            {/* ==============================================
+                Indicadores clave
+            ============================================== */}
+
+            <section className="inicio-seccion">
+              <div className="inicio-seccion-titulo">
+                <div>
+                  <h2>Indicadores Clave</h2>
+
+                  <p>
+                    Indicadores operativos principales del
+                    negocio.
+                  </p>
+                </div>
+              </div>
+
+              <div className="indicadores-grid">
+                {indicadores.map((indicador) => {
+                  const Icono = indicador.icono;
+
+                  return (
+                    <article
+                      key={indicador.titulo}
+                      className="indicador-card"
+                    >
+                      <div className="indicador-card-header">
+                        <h3>{indicador.titulo}</h3>
+
+                        <Icono size={24} />
+                      </div>
+
+                      <strong>{indicador.valor}</strong>
+
+                      <p>{indicador.variacion}</p>
+
+                      <div className="indicador-linea">
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+
+            {/* ==============================================
+                Operación reciente
+            ============================================== */}
+
+            <section className="inicio-operacion-grid">
+              {/* ============================================
+                  Actividades recientes
+              ============================================ */}
+
+              <article className="inicio-panel">
+                <div className="inicio-panel-header">
+                  <div>
+                    <h2>Actividades Recientes</h2>
+
+                    <p>
+                      Últimos registros operativos realizados.
+                    </p>
+                  </div>
+
+                  <Activity size={22} />
+                </div>
+
+                <div className="actividad-lista">
+                  {actividadesRecientes.length > 0 ? (
+                    actividadesRecientes.map((actividad) => {
+                      let Icono = Wrench;
+
+                      if (actividad.tipo === "Pesaje") {
+                        Icono = Weight;
+                      }
+
+                      if (actividad.tipo === "Vacunación") {
+                        Icono = Syringe;
+                      }
+
+                      return (
+                        <div
+                          key={actividad.id}
+                          className="actividad-item"
+                        >
+                          <div className="actividad-icono">
+                            <Icono size={19} />
+                          </div>
+
+                          <div className="actividad-informacion">
+                            <strong>{actividad.tipo}</strong>
+
+                            <span>
+                              {actividad.descripcion}
+                            </span>
+                          </div>
+
+                          <div className="actividad-meta">
+                            <span>
+                              {actividad.responsable}
+                            </span>
+
+                            <small>{actividad.momento}</small>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="inicio-vacio">
+                      <CalendarCheck size={30} />
+
+                      <strong>
+                        No existen actividades recientes.
+                      </strong>
+
+                      <span>
+                        Los nuevos registros operativos
+                        aparecerán en esta sección.
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </article>
+
+              {/* ============================================
+                  Alertas recientes
+              ============================================ */}
+
+              <article className="inicio-panel">
+                <div className="inicio-panel-header">
+                  <div>
+                    <h2>Alertas Recientes</h2>
+
+                    <p>
+                      Eventos que requieren seguimiento.
+                    </p>
+                  </div>
+
+                  <AlertTriangle size={22} />
+                </div>
+
+                <div className="alertas-lista">
+                  {alertasRecientes.map((alerta) => {
+                    const Icono = alerta.icono;
+
+                    return (
+                      <div
+                        key={alerta.id}
+                        className="alerta-item"
+                      >
+                        <div className="alerta-icono">
+                          <Icono size={19} />
+                        </div>
+
+                        <div className="alerta-informacion">
+                          <strong>{alerta.titulo}</strong>
+
+                          <div>
+                            <span>{alerta.prioridad}</span>
+
+                            <small>{alerta.momento}</small>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <button
+                  type="button"
+                  className="inicio-ver-mas"
+                >
+                  Ver todas las alertas
+
+                  <ArrowRight size={17} />
+                </button>
+              </article>
+            </section>
+          </div>
+
+          {/* =================================================
+              Advisory GANUS
+          ================================================= */}
+
+          <aside className="advisory-demo">
+            <div className="advisory-demo-header">
+              <div>
+                <span className="advisory-demo-etiqueta">
+                  Demo
+                </span>
+
+                <h2>Advisory GANUS</h2>
+              </div>
+
+              <Bot size={25} />
+            </div>
+
+            <div className="advisory-demo-identidad">
+              <div className="advisory-demo-avatar">
+                <Bot size={32} />
+              </div>
+
+              <div>
+                <strong>Hola, soy GANUS</strong>
+
+                <p>
+                  Tu asistente inteligente para el negocio.
+                </p>
+              </div>
+            </div>
+
+            <div className="advisory-demo-mensaje">
+              <p>¿En qué puedo ayudarte hoy?</p>
+            </div>
+
+            <div className="advisory-demo-opciones">
+              <button type="button">
+                Estado de la finca
+              </button>
+
+              <button type="button">
+                Producción del mes
+              </button>
+
+              <button type="button">
+                Alertas críticas
+              </button>
+
+              <button type="button">
+                Recomendaciones
+              </button>
+            </div>
+
+            <div className="advisory-demo-input">
+              <input
+                type="text"
+                placeholder="Escribe tu consulta..."
+                disabled
+              />
+
+              <button
+                type="button"
+                disabled
+                aria-label="Enviar consulta"
+              >
+                <Send size={18} />
+              </button>
+            </div>
+
+            <p className="advisory-demo-nota">
+              Vista demostrativa. Integración inteligente
+              pendiente.
+            </p>
+          </aside>
         </div>
-
-        <h2>2450 L</h2>
-
-        <p>+15% vs mes anterior</p>
-
-    </div>
-
-
-<div className="kpi-card">
-
-        <div className="kpi-header">
-
-            <h4>Peso promedio</h4>
-
-            <FaWeightHanging className="kpi-icon"/>
-
-        </div>
-
-        <h2>412 Kg</h2>
-
-        <p>+9%</p>
-
-    </div>
-
-
-  <div className="kpi-card">
-
-        <div className="kpi-header">
-
-            <h4>Tasa de preñez</h4>
-
-            <GiCow className="kpi-icon"/>
-
-        </div>
-
-        <h2>68%</h2>
-
-        <p>+6%</p>
-
-    </div>
-
-
-<div className="kpi-card">
-
-        <div className="kpi-header">
-
-            <h4>Mortalidad</h4>
-
-            <FaHeartBroken className="kpi-icon"/>
-
-        </div>
-
-        <h2>1.2%</h2>
-
-        <p>-0.5%</p>
-
-    </div>
-
-</div>
-
-<div className="graficas">
-
-<GraficaVacunas/>
-
-<GraficaPesajes/>
-
-</div>
-
-<div className="bottom">
-
-<GraficaDistribucion/>
-
-<div className="listas">
-
-<div className="actividad">
-
-<h2>
-
-Actividades recientes
-
-</h2>
-
-<ul>
-
-{
-
-actividades.map((item,index)=>(
-
-<li key={index}>
-
-{
-
-item.tipo==="Vacunación"
-
-?
-
-<FaSyringe className="itemIcon verde"/>
-
-:
-
-item.tipo==="Pesaje"
-
-?
-
-<FaWeightHanging className="itemIcon verde"/>
-
-:
-
-<FaTools className="itemIcon naranja"/>
-
-}
-
-<span>
-
-{item.tipo}: {item.descripcion}
-
-</span>
-
-</li>
-
-))
-
-}
-
-</ul>
-
-</div>
-
-<div className="alertas">
-
-<h2>
-
-Alertas recientes
-
-</h2>
-
-<ul>
-
-<li>
-
-<FaExclamationTriangle className="itemIcon rojo"/>
-
-<span>Bajo consumo alimento lote 4</span>
-
-</li>
-
-<li>
-
-<FaTemperatureHigh className="itemIcon naranja"/>
-
-<span>Temperatura alta corral 3</span>
-
-</li>
-
-<li>
-
-<FaHeartbeat className="itemIcon rojo"/>
-
-<span>Revisión sanitaria lote 11</span>
-
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</>
-
-) 
-
-}            
+      </main>
+    </>
+  );
+}      

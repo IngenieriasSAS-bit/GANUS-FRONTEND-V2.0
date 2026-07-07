@@ -1,641 +1,975 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../layouts/Sidebar";
+import Navbar from "../layouts/Navbar";
+import FormularioActivo from "../components/inventario/FormularioActivo";
+import ConfirmModal from "../components/common/ConfirmModal";
+import RelacionesActivo from "../components/inventario/RelacionesActivo";
+import ActividadesActivo from "../components/inventario/ActividadesActivo";
 
-import NuevoAnimal from "../components/NuevoAnimal";
 
 import {
+  Boxes,
+  Search,
+  Plus,
+  Eye,
+  Pencil,
+  Ban,
+  Filter,
+  Database,
+} from "lucide-react";
 
-FaSearch,
-
-FaPlus,
-
-FaEye,
-
-FaEdit
-
-}
-
-from "react-icons/fa";
+import {
+  obtenerActivos,
+  desactivarActivo,
+} from "../services/activosService";
 
 import "../styles/inventario.css";
 
 
 export default function Inventario() {
 
-    const [activos] = useState(() => {
-        return JSON.parse(localStorage.getItem("animales")) || [];
+  const [activos, setActivos] = useState(() => obtenerActivos());
+
+  const [busqueda, setBusqueda] = useState("");
+
+  const [dominio, setDominio] = useState("Todos");
+
+  const [estado, setEstado] = useState("Todos");
+
+  const [activoSeleccionado, setActivoSeleccionado] =
+    useState(null);
+
+  const [modo, setModo] = useState("");
+
+  const [mostrarFormulario, setMostrarFormulario] =
+  useState(false);
+
+  const [activoADesactivar, setActivoADesactivar] =
+  useState(null);
+
+
+const cargarActivos = () => {
+
+  const datos = obtenerActivos();
+
+  setActivos(datos);
+
+};
+
+
+  const dominios = useMemo(() => {
+
+    const valores = activos
+      .map((activo) => activo.dominio)
+      .filter(Boolean);
+
+    return [
+      "Todos",
+      ...new Set(valores),
+    ];
+
+  }, [activos]);
+
+
+  const activosFiltrados = useMemo(() => {
+
+    const termino = busqueda
+      .toLowerCase()
+      .trim();
+
+    return activos.filter((activo) => {
+
+      const coincideBusqueda =
+
+        !termino
+
+        ||
+
+        activo.nombre
+          ?.toLowerCase()
+          .includes(termino)
+
+        ||
+
+        activo.codigo
+          ?.toLowerCase()
+          .includes(termino)
+
+        ||
+
+        activo.identificador
+          ?.toLowerCase()
+          .includes(termino)
+
+        ||
+
+        activo.categoria
+          ?.toLowerCase()
+          .includes(termino);
+
+
+      const coincideDominio =
+
+        dominio === "Todos"
+
+        ||
+
+        activo.dominio === dominio;
+
+
+      const coincideEstado =
+
+        estado === "Todos"
+
+        ||
+
+        activo.estado === estado;
+
+
+      return (
+
+        coincideBusqueda
+
+        &&
+
+        coincideDominio
+
+        &&
+
+        coincideEstado
+
+      );
+
     });
 
-    const [busqueda, setBusqueda] = useState("");
-
-    const [mostrarModal, setMostrarModal] = useState(false);
-
-    const [animalSeleccionado,setAnimalSeleccionado]=useState(null);
-
-    const [modo,setModo]=useState("");
-    
-
-    const activosFiltrados = activos.filter((animal) =>
-
-        animal.rfid
-
-            .toString()
-
-            .toLowerCase()
-
-            .includes(
-
-                busqueda.toLowerCase()
-
-            )
-
-    );
+  }, [
+    activos,
+    busqueda,
+    dominio,
+    estado,
+  ]);
 
 
-    return (
+  const abrirDetalle = (activo) => {
 
-        <>
+    setActivoSeleccionado(activo);
 
-            <Sidebar />
+    setModo("ver");
 
-            <div className="inventario">
-
-                <h1>
-
-                    Inventario GANUS
-
-                </h1>
-
-                <p>
-
-                    Fuente única de verdad del negocio.
-
-                </p>
+  };
 
 
-                <div className="accionesInventario">
+const abrirEdicion = (activo) => {
+
+  setActivoSeleccionado(activo);
+
+  setModo("editar");
+
+  setMostrarFormulario(true);
+
+};
 
 
-                    <div className="buscador">
+  const cerrarDetalle = () => {
 
-                        <FaSearch />
+    setActivoSeleccionado(null);
 
-                        <input
+    setModo("");
 
-                            type="text"
+  };
 
-                            placeholder="Buscar por RFID"
+const cerrarFormulario = () => {
 
-                            value={busqueda}
+  setMostrarFormulario(false);
 
-                            onChange={(e) =>
+  setActivoSeleccionado(null);
 
-                                setBusqueda(e.target.value)
+  setModo("");
 
-                            }
-
-                        />
-
-                    </div>
+};  
 
 
-                    <button
+  const solicitarDesactivacion = (activo) => {
 
-className="btnNuevo"
+  setActivoADesactivar(activo);
 
-onClick={() => setMostrarModal(true)}
+};
 
+
+const confirmarDesactivacion = () => {
+
+  if (!activoADesactivar) {
+
+    return;
+
+  }
+
+  desactivarActivo(activoADesactivar.id);
+
+  cargarActivos();
+
+  setActivoADesactivar(null);
+
+};
+
+
+const cancelarDesactivacion = () => {
+
+  setActivoADesactivar(null);
+
+};
+
+
+  return (
+
+    <>
+
+      <Sidebar />
+
+      <Navbar />
+
+
+      <main className="inventario">
+
+
+        <header className="inventarioHeader">
+
+          <div>
+
+            <h1>Inventario</h1>
+
+            <p>
+
+              Inventario y fuente única
+              de los activos de GANUS.
+
+            </p>
+
+          </div>
+
+
+          <button
+  className="btnNuevoActivo"
+  type="button"
+  onClick={() => {
+
+    setActivoSeleccionado(null);
+
+    setModo("crear");
+
+    setMostrarFormulario(true);
+
+  }}
 >
 
-<FaPlus />
+            <Plus size={18} />
 
-Nuevo Animal
+            Nuevo Activo
 
-</button>
+          </button>
 
-{
+        </header>
 
-mostrarModal && (
 
-<NuevoAnimal
+        <section className="inventarioResumen">
 
-cerrar={() =>
 
-setMostrarModal(false)
+          <article className="inventarioResumenCard">
 
+            <div className="inventarioResumenIcon">
+
+              <Database size={22} />
+
+            </div>
+
+            <div>
+
+              <span>Activos registrados</span>
+
+              <strong>
+
+                {activos.length}
+
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <article className="inventarioResumenCard">
+
+            <div className="inventarioResumenIcon">
+
+              <Boxes size={22} />
+
+            </div>
+
+            <div>
+
+              <span>Activos operativos</span>
+
+              <strong>
+
+                {
+                  activos.filter(
+                    (activo) =>
+                      activo.estado === "Activo"
+                  ).length
+                }
+
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <article className="inventarioResumenCard">
+
+            <div className="inventarioResumenIcon">
+
+              <Filter size={22} />
+
+            </div>
+
+            <div>
+
+              <span>Dominios registrados</span>
+
+              <strong>
+
+                {
+                  dominios.filter(
+                    (item) =>
+                      item !== "Todos"
+                  ).length
+                }
+
+              </strong>
+
+            </div>
+
+          </article>
+
+
+        </section>
+
+
+        <section className="inventarioPanel">
+
+
+          <div className="inventarioPanelHeader">
+
+            <div>
+
+              <h2>
+
+                Inventario de Activos
+
+              </h2>
+
+              <p>
+
+                Consulte, clasifique y administre
+                los activos operativos registrados.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div className="inventarioFiltros">
+
+
+            <div className="inventarioBuscador">
+
+              <Search size={18} />
+
+              <input
+                type="text"
+                placeholder="Buscar por nombre, código, identificador o categoría"
+                value={busqueda}
+                onChange={(event) =>
+                  setBusqueda(event.target.value)
+                }
+              />
+
+            </div>
+
+
+            <select
+              value={dominio}
+              onChange={(event) =>
+                setDominio(event.target.value)
+              }
+            >
+
+              {
+                dominios.map((item) => (
+
+                  <option
+                    key={item}
+                    value={item}
+                  >
+
+                    {item}
+
+                  </option>
+
+                ))
+              }
+
+            </select>
+
+
+            <select
+              value={estado}
+              onChange={(event) =>
+                setEstado(event.target.value)
+              }
+            >
+
+              <option value="Todos">
+
+                Todos los estados
+
+              </option>
+
+              <option value="Activo">
+
+                Activo
+
+              </option>
+
+              <option value="Inactivo">
+
+                Inactivo
+
+              </option>
+
+            </select>
+
+
+          </div>
+
+
+          <div className="inventarioTablaContainer">
+
+
+            <table className="inventarioTabla">
+
+
+              <thead>
+
+                <tr>
+
+                  <th>Código</th>
+
+                  <th>Activo</th>
+
+                  <th>Dominio</th>
+
+                  <th>Clasificación</th>
+
+                  <th>Identificador</th>
+
+                  <th>Finca</th>
+
+                  <th>Ubicación</th>
+
+                  <th>Estado</th>
+
+                  <th>Acciones</th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody>
+
+
+                {
+                  activosFiltrados.length > 0
+
+                  ?
+
+                  activosFiltrados.map(
+                    (activo) => (
+
+                      <tr key={activo.id}>
+
+
+                        <td>
+
+                          {activo.codigo}
+
+                        </td>
+
+
+                        <td>
+
+                          <div className="activoNombre">
+
+                            <strong>
+
+                              {activo.nombre}
+
+                            </strong>
+
+                            <span>
+
+                              {activo.tipo}
+
+                            </span>
+
+                          </div>
+
+                        </td>
+
+
+                        <td>
+
+                          {activo.dominio}
+
+                        </td>
+
+
+                        <td>
+
+                          <div className="activoClasificacion">
+
+                            <span>
+
+                              {activo.categoria}
+
+                            </span>
+
+                            <small>
+
+                              {activo.subtipo}
+
+                            </small>
+
+                          </div>
+
+                        </td>
+
+
+                        <td>
+
+                          <div className="activoIdentificador">
+
+                            <strong>
+
+                              {activo.identificador}
+
+                            </strong>
+
+                            <span>
+
+                              {activo.tipoIdentificador}
+
+                            </span>
+
+                          </div>
+
+                        </td>
+
+
+                        <td>
+
+                          {activo.finca}
+
+                        </td>
+
+
+                        <td>
+
+                          {activo.ubicacion}
+
+                        </td>
+
+
+                        <td>
+
+                          <span
+                            className={
+                              activo.estado === "Activo"
+
+                              ?
+
+                              "estadoActivo"
+
+                              :
+
+                              "estadoInactivo"
+                            }
+                          >
+
+                            {activo.estado}
+
+                          </span>
+
+                        </td>
+
+
+                        <td>
+
+
+                          <div className="inventarioAcciones">
+
+
+                            <button
+                              type="button"
+                              className="accionVer"
+                              title="Consultar activo"
+                              onClick={() =>
+                                abrirDetalle(activo)
+                              }
+                            >
+
+                              <Eye size={17} />
+
+                            </button>
+
+
+                            <button
+                              type="button"
+                              className="accionEditar"
+                              title="Editar activo"
+                              onClick={() =>
+                                abrirEdicion(activo)
+                              }
+                            >
+
+                              <Pencil size={17} />
+
+                            </button>
+
+
+                            <button
+                              type="button"
+                              className="accionDesactivar"
+                              title="Desactivar activo"
+                              disabled={
+                                activo.estado === "Inactivo"
+                              }
+                              onClick={() =>
+  solicitarDesactivacion(activo)
 }
+                            >
 
-actualizar={() =>
+                              <Ban size={17} />
 
-window.location.reload()
+                            </button>
 
-}
 
-/>
+                          </div>
 
-)
 
-}
+                        </td>
+
+
+                      </tr>
+
+                    )
+                  )
+
+                  :
+
+                  (
+
+                    <tr>
+
+                      <td
+                        colSpan="9"
+                        className="inventarioVacio"
+                      >
+
+                        No se encontraron activos
+                        con los filtros seleccionados.
+
+                      </td>
+
+                    </tr>
+
+                  )
+                }
+
+
+              </tbody>
+
+
+            </table>
+
+
+          </div>
+
+
+        </section>
+
+
+        {
+  activoSeleccionado && modo === "ver" && (
+
+            <div className="detalleActivoOverlay">
+
+
+              <section className="detalleActivo">
+
+
+                <div className="detalleActivoHeader">
+
+
+                  <div>
+
+                    <span>
+
+                      {
+                        modo === "editar"
+
+                        ?
+
+                        "Actualización maestra"
+
+                        :
+
+                        "Ficha maestra de activo"
+                      }
+
+                    </span>
+
+                    <h2>
+
+                      {activoSeleccionado.nombre}
+
+                    </h2>
+
+                  </div>
+
+
+                  <button
+                    type="button"
+                    onClick={cerrarDetalle}
+                  >
+
+                    ×
+
+                  </button>
+
 
                 </div>
 
 
-                <div className="tablaContainer">
+                <div className="detalleActivoContenido">
 
-               <table>
+
+                  <div>
+
+                    <span>Código</span>
+
+                    <strong>
+
+                      {activoSeleccionado.codigo}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Dominio</span>
+
+                    <strong>
+
+                      {activoSeleccionado.dominio}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Categoría</span>
+
+                    <strong>
+
+                      {activoSeleccionado.categoria}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Tipo</span>
+
+                    <strong>
+
+                      {activoSeleccionado.tipo}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Subtipo</span>
+
+                    <strong>
+
+                      {activoSeleccionado.subtipo}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Identificador</span>
+
+                    <strong>
+
+                      {activoSeleccionado.identificador}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Tipo de identificador</span>
+
+                    <strong>
+
+                      {
+                        activoSeleccionado
+                          .tipoIdentificador
+                      }
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Finca</span>
+
+                    <strong>
+
+                      {activoSeleccionado.finca}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Ubicación</span>
+
+                    <strong>
+
+                      {activoSeleccionado.ubicacion}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span>Estado administrativo</span>
+
+                    <strong>
+
+                      {activoSeleccionado.estado}
+
+                    </strong>
+
+                  </div>
                
-                    <thead>
 
-                        <tr>
+                </div>
 
-                            <th>Código</th>
+                <RelacionesActivo
+                  activo={activoSeleccionado}
+                  activos={activos}
+                />
 
-                            <th>Nombre</th>
+              <ActividadesActivo
+                 activo={activoSeleccionado}
+              />
 
-                            <th>RFID</th>
+              </section>
 
-                            <th>Sexo</th>
-
-                            <th>Raza</th>
-
-                            <th>Peso</th>
-
-                            <th>Estado</th>
-
-                            <th>Acciones</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody>
-
-                        {
-
-                            activosFiltrados.map((animal) => (
-
-                                <tr key={animal.id}>
-
-
-                                    <td>
-
-                                        {animal.codigo}
-
-                                    </td>
-
-
-                                    <td>
-
-                                        {animal.nombre}
-
-                                    </td>
-
-
-                                    <td>
-
-                                        {animal.rfid}
-
-                                    </td>
-
-
-                                    <td>
-
-                                        {animal.sexo}
-
-                                    </td>
-
-
-                                    <td>
-
-                                        {animal.raza}
-
-                                    </td>
-
-
-                                    <td>
-
-                                        {animal.peso} Kg
-
-                                    </td>
-
-
-                                    <td>
-
-                                        <span className="estado">
-
-                                            {animal.estado}
-
-                                        </span>
-
-                                    </td>
-
-
-                                    <td>
-
-
-                                        <button
-
-className="icono"
-
-onClick={()=>{
-
-setAnimalSeleccionado(animal);
-
-setModo("ver");
-
-}}
-
->
-
-<FaEye/>
-
-</button>
-
-
-                                        <button
-
-className="icono editar"
-
-onClick={()=>{
-
-setAnimalSeleccionado(animal);
-
-setModo("editar");
-
-}}
-
->
-
-<FaEdit/>
-
-</button>
-
-
-                                    </td>
-
-
-                                </tr>
-
-                            ))
-
-                        }
-
-                    </tbody>
-
-                </table>
 
             </div>
 
-            {
+          )
+        }
 
-animalSeleccionado && (
+        {
+          mostrarFormulario && (
 
-<div className="detalleAnimal">
+            <FormularioActivo
 
-<h2>
+              key={
+                activoSeleccionado?.id
+                || "nuevo-activo"
+              }
 
-{
+              activo={
+                modo === "editar"
+                  ? activoSeleccionado
+                  : null
+              }
 
-modo==="ver"
+              cerrar={cerrarFormulario}
 
-?
+              actualizar={cargarActivos}
 
-"Información del Animal"
+            />
 
-:
+          )
+        }
 
-"Editar Animal"
+        <ConfirmModal
 
-}
+          isOpen={Boolean(activoADesactivar)}
 
-</h2>
+          titulo="Desactivar activo"
 
-<p>
+          mensaje={
+            activoADesactivar
+              ? `¿Desea desactivar el activo "${activoADesactivar.nombre}"?`
+              : ""
+          }
 
-<b>Código:</b>
+          onConfirm={confirmarDesactivacion}
 
-{animalSeleccionado.codigo}
+          onCancel={cancelarDesactivacion}
 
-</p>
+          textoBoton="Desactivar"
 
-{
+        />
 
-modo==="editar"
+      </main>
 
-?
-
-<>
-
-<label>
-
-RFID
-
-</label>
-
-<input
-
-type="text"
-
-placeholder="Ingrese el RFID"
-
-value={animalSeleccionado.rfid}
-
-onChange={(e)=>
-
-setAnimalSeleccionado({
-
-...animalSeleccionado,
-
-rfid:e.target.value
-
-})
-
-}
-
-/>
-
-<label>
-
-Nombre
-
-</label>
-
-<input
-
-type="text"
-
-value={animalSeleccionado.nombre}
-
-onChange={(e)=>
-
-setAnimalSeleccionado({
-
-...animalSeleccionado,
-
-nombre:e.target.value
-
-})
-
-}
-
-/>
-
-<label>
-
-Sexo
-
-</label>
-
-<select
-
-value={animalSeleccionado.sexo}
-
-onChange={(e)=>
-
-setAnimalSeleccionado({
-
-...animalSeleccionado,
-
-sexo:e.target.value
-
-})
-
-}
-
->
-
-<option>
-
-Macho
-
-</option>
-
-<option>
-
-Hembra
-
-</option>
-
-</select>
-
-<label>
-
-Raza
-
-</label>
-
-<input
-
-type="text"
-
-value={animalSeleccionado.raza}
-
-onChange={(e)=>
-
-setAnimalSeleccionado({
-
-...animalSeleccionado,
-
-raza:e.target.value
-
-})
-
-}
-
-/>
-
-<label>
-
-Peso (Kg)
-
-</label>
-
-<input
-
-type="number"
-
-value={animalSeleccionado.peso}
-
-onChange={(e)=>
-
-setAnimalSeleccionado({
-
-...animalSeleccionado,
-
-peso:e.target.value
-
-})
-
-}
-
-/>
-
-<label>
-
-Estado 
-
-</label>
-
-<select
-
-value={animalSeleccionado.estado}
-
-onChange={(e)=>
-
-setAnimalSeleccionado({
-
-...animalSeleccionado,
-
-estado:e.target.value
-
-})
-
-}
-
->
-
-<option>
-
-Activo
-
-</option>
-
-<option>
-
-Enfermo
-
-</option>
-
-<option>
-
-Vendido
-
-</option>
-
-</select>
-
-<button
-
-className="btnGuardarCambios"
-
-onClick={()=>{
-
-const animales =
-
-JSON.parse(
-
-localStorage.getItem("animales")
-
-) || [];
-
-const nuevos =
-
-animales.map(a=>
-
-a.id===animalSeleccionado.id
-
-?
-
-animalSeleccionado
-
-:
-
-a
-
-);
-
-localStorage.setItem(
-
-"animales",
-
-JSON.stringify(nuevos)
-
-);
-
-alert(
-
-"Animal actualizado correctamente"
-
-);
-
-window.location.reload();
-
-}}
-
->
-
-Guardar cambios
-
-</button>
-
-</>
-
-:
-
-<>
-    
-
-<p>
-
-<b>Nombre:</b>
-
-{animalSeleccionado.nombre}
-
-</p>
-
-<p>
-
-<b>RFID:</b>
-
-{animalSeleccionado.rfid}
-
-</p>
-
-<p>
-
-<b>Sexo:</b>
-
-{animalSeleccionado.sexo}
-
-</p>
-
-<p>
-
-<b>Raza:</b>
-
-{animalSeleccionado.raza}
-
-</p>
-
-<p>
-
-<b>Peso:</b>
-
-{animalSeleccionado.peso} Kg
-
-</p>
-
-<p>
-
-<b>Estado:</b>
-
-{animalSeleccionado.estado}
-
-</p>
-
-</>
-
-}
-
-</div>
-
-)
-
-}
-
-        </div>
     </>
-    )       
-    }
+
+  );
+
+}
