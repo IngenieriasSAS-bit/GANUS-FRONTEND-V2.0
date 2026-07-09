@@ -764,3 +764,365 @@
     align-items: stretch;
   }
 }
+
+/* ==========================================================
+   KNOWLEDGE STUDIO - INDICADORES - MODO OSCURO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-heading h1 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-heading p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-back {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-back:hover {
+  color: #ffffff;
+  background: #203750;
+  border-color: #3d6083;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-create {
+  background: #1f4b82;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-create:hover {
+  background: #285d9d;
+}
+
+
+/* ==========================================================
+   RESUMEN
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-summary-card {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-summary-card span {
+  color: #dcecff;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-summary-card strong {
+  color: #70d400;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-summary-card small {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   PANEL CATÁLOGO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-panel {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-panel-header {
+  border-bottom-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-panel-header h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-panel-header p {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   BUSCADOR Y FILTRO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-search {
+  color: #8eb8e5;
+  background: #0b1929;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-search:focus-within {
+  color: #78aef0;
+  background: #102238;
+  border-color: #527daf;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-search input {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-search input::placeholder {
+  color: #6f91b6;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-filter {
+  color: #8eb8e5;
+  background: #0b1929;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-filter:hover {
+  color: #ffffff;
+  background: #172b42;
+  border-color: #3d6083;
+}
+
+
+/* ==========================================================
+   TABLA
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-table th {
+  color: #9bc8f5;
+  background: #0b1929;
+  border-bottom-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-table td {
+  color: #b9d7f5;
+  border-bottom-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicadores-table tbody tr:hover {
+  background: #14283f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-name strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-name span {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-value {
+  color: #f8fafc;
+}
+
+
+/* ==========================================================
+   ESTADOS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-status--publicado {
+  color: #5ee28d;
+  background: rgba(37, 168, 90, 0.16);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-status--borrador {
+  color: #ffbf52;
+  background: rgba(233, 149, 10, 0.16);
+}
+
+
+/* ==========================================================
+   ACCIONES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-actions {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-actions:hover {
+  color: #ffffff;
+  background: #172b42;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-actions-menu {
+  background: #102238;
+  border-color: #29445f;
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-actions-menu button {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-actions-menu button:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-indicador-actions-menu
+.knowledge-indicador-actions-delete {
+  color: #ff858f;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-indicador-actions-menu
+.knowledge-indicador-actions-delete:hover {
+  color: #ffadb4;
+  background: #3a1f29;
+}
+
+
+/* ==========================================================
+   MODAL CREAR / EDITAR INDICADOR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-overlay {
+  background: rgba(2, 10, 20, 0.76);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal {
+  background: #0f1f33;
+  border-color: #29445f;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-header {
+  border-bottom-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-heading h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-heading p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-close {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-close:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-group label {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-group input,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-group select {
+  color: #f8fafc;
+  background: #0b1929;
+
+  border-color: #29445f;
+
+  color-scheme: dark;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-indicador-form-group input::placeholder {
+  color: #6f91b6;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-indicador-form-group input:focus,
+[data-ganus-theme="oscuro"]
+.knowledge-indicador-form-group select:focus {
+  border-color: #6f9fd7;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-error {
+  color: #ff858f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-actions {
+  border-top-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-cancel {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-cancel:hover {
+  color: #ffffff;
+  background: #203750;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-save {
+  color: #ffffff;
+  background: #1f4b82;
+  border-color: #1f4b82;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-save:hover {
+  background: #285d9d;
+  border-color: #285d9d;
+}
+
+
+/* ==========================================================
+   MODAL ELIMINAR INDICADOR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-overlay {
+  background: rgba(2, 10, 20, 0.76);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-modal {
+  background: #0f1f33;
+  border-color: #29445f;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-modal h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-modal p {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-modal p strong {
+  color: #dcecff;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-actions {
+  border-top-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-cancel {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-cancel:hover {
+  background: #203750;
+  border-color: #3d6083;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-confirm {
+  color: #ffffff;
+  background: #c33f4d;
+  border-color: #c33f4d;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicador-delete-confirm:hover {
+  background: #dc4c5a;
+  border-color: #dc4c5a;
+}

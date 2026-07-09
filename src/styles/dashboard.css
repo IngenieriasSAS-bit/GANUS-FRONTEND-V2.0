@@ -1033,3 +1033,243 @@ html[data-ganus-theme="oscuro"] .advisory-demo-input button {
 html[data-ganus-theme="oscuro"] .advisory-demo-nota {
   color: #6f89a5;
 }
+
+/* ==========================================================
+   ADVISORY GANUS - CHAT DEMOSTRATIVO FUNCIONAL
+========================================================== */
+
+.advisory-demo-conversacion {
+  min-height: 110px;
+  max-height: 250px;
+
+  margin-top: 18px;
+  padding-right: 4px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+}
+
+.advisory-demo-chat {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 8px;
+}
+
+.advisory-demo-chat--usuario {
+  justify-content: flex-end;
+}
+
+.advisory-demo-chat-icono {
+  width: 30px;
+  height: 30px;
+
+  flex: 0 0 30px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #173f70;
+  background: #eef3f8;
+
+  border-radius: 9px;
+}
+
+.advisory-demo-chat-burbuja {
+  max-width: 84%;
+
+  padding: 12px 14px;
+
+  background: #f5f7f8;
+
+  border: 1px solid #edf0f2;
+  border-radius: 13px;
+
+  box-sizing: border-box;
+}
+
+.advisory-demo-chat-burbuja p {
+  margin: 0;
+
+  color: #52667a;
+
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.advisory-demo-chat--usuario
+  .advisory-demo-chat-burbuja {
+  background: #082c54;
+  border-color: #082c54;
+
+  border-bottom-right-radius: 4px;
+}
+
+.advisory-demo-chat--usuario
+  .advisory-demo-chat-burbuja p {
+  color: #ffffff;
+}
+
+.advisory-demo-chat--asistente
+  .advisory-demo-chat-burbuja {
+  border-top-left-radius: 4px;
+}
+
+.advisory-demo-escribiendo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #6b7c93;
+
+  font-size: 10px;
+}
+
+.advisory-demo-escribiendo svg,
+.advisory-demo-loader {
+  animation: advisory-demo-spin 0.9s linear infinite;
+}
+
+@keyframes advisory-demo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.advisory-demo-opciones button {
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.advisory-demo-opciones button:hover {
+  color: #4b9e28;
+  background: rgba(118, 184, 42, 0.06);
+  border-color: rgba(118, 184, 42, 0.55);
+
+  transform: translateY(-1px);
+}
+
+.advisory-demo-input {
+  margin-top: auto;
+}
+
+.advisory-demo-input button {
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.advisory-demo-input button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.advisory-demo-input button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.5;
+}
+
+/* ==========================================================
+   MODO OSCURO - CHAT ADVISORY
+========================================================== */
+
+html[data-ganus-theme="oscuro"]
+  .advisory-demo-chat-icono {
+  color: #7eb8f3;
+  background: #182b40;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-demo-chat-burbuja {
+  background: #18283a;
+  border-color: #293d54;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-demo-chat-burbuja p {
+  color: #dbe7f3;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-demo-chat--usuario
+  .advisory-demo-chat-burbuja {
+  background: #183f69;
+  border-color: #28547f;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-demo-chat--usuario
+  .advisory-demo-chat-burbuja p {
+  color: #ffffff;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-demo-escribiendo {
+  color: #8da7c4;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-demo-opciones button:hover {
+  color: #9bdc59;
+  background: rgba(132, 204, 63, 0.08);
+  border-color: rgba(132, 204, 63, 0.45);
+}
+
+/* ==========================================================
+   RESPONSIVE CHAT ADVISORY
+========================================================== */
+
+@media (max-width: 1250px) {
+  .advisory-demo-conversacion {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .advisory-demo {
+    min-height: 700px;
+    height: auto;
+
+    padding: 22px;
+  }
+
+  .advisory-demo-identidad {
+    padding: 22px 0;
+  }
+
+  .advisory-demo-conversacion {
+    min-height: 130px;
+    max-height: 320px;
+  }
+
+  .advisory-demo-chat-burbuja {
+    max-width: 88%;
+  }
+
+  .advisory-demo-opciones {
+    gap: 9px;
+
+    margin-top: 18px;
+  }
+
+  .advisory-demo-opciones button {
+    padding: 12px 14px;
+  }
+}

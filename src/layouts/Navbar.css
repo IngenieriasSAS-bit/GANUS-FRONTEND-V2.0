@@ -1,165 +1,216 @@
-.navbar{
+/* ==========================================================
+   GANUS - NAVBAR PRINCIPAL
+========================================================== */
 
-position:fixed;
+.navbar {
+  position: fixed;
 
-top:0;
+  top: 0;
+  left: 300px;
+  right: 0;
 
-left:300px;
+  height: 68px;
 
-right:0;
+  display: flex;
+  align-items: center;
 
-height:68px;
+  gap: 28px;
 
-background:#082B55;
+  padding: 0 40px;
 
-display:flex;
+  box-sizing: border-box;
 
-justify-content:space-between;
+  background: #082b55;
 
-align-items:center;
+  box-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.15);
 
-padding:0 40px;
-
-z-index:999;
-
-box-shadow:
-
-0 2px 20px
-
-rgba(0,0,0,.15);
-
-}
-
-.navbarLogo{
-
-font-size:34px;
-
-font-weight:800;
-
-color:#79BE24;
-
-}
-
-.navbarBusqueda input{
-
-width:400px;
-
-padding:14px 20px;
-
-border:none;
-
-border-radius:30px;
-
-outline:none;
-
-font-size:15px;
-
-}
-
-.navbarDerecha{
-
-display:flex;
-
-align-items:center;
-
-gap:20px;
-
-color:white;
-
-}
-
-.icono{
-
-width:45px;
-
-height:45px;
-
-border:none;
-
-border-radius:50%;
-
-background:
-
-rgba(255,255,255,.12);
-
-font-size:22px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.icono:hover{
-
-transform:scale(1.1);
-
-background:
-
-rgba(255,255,255,.25);
-
-}
-
-.usuario{
-
-width:45px;
-
-height:45px;
-
-border-radius:50%;
-
-background:#79BE24;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-weight:700;
-
-font-size:20px;
-
-color:white;
-
-}
-
-.iconoNav{
-
-width:42px;
-
-height:42px;
-
-border-radius:50%;
-
-background:#173865;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-color:white;
-
-cursor:pointer;
-
-transition:.3s;
-
+  z-index: 999;
 }
 
 
-.iconoNav:hover{
+/* ==========================================================
+   LOGO
+========================================================== */
 
-background:#79BE24;
+.navbarLogo {
+  flex-shrink: 0;
 
-transform:translateY(-2px);
+  color: #79be24;
 
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
 }
 
-/* =========================================
+
+/* ==========================================================
+   BUSCADOR PRINCIPAL
+========================================================== */
+
+.navbarBusqueda {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.navbarBusqueda input {
+  width: min(400px, 100%);
+
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 30px;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  font-family: inherit;
+  font-size: 15px;
+}
+
+
+/* ==========================================================
+   ZONA DERECHA
+========================================================== */
+
+.navbarDerecha {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  min-width: 0;
+
+  color: #ffffff;
+}
+
+
+/* ==========================================================
+   ICONOS
+========================================================== */
+
+.icono {
+  width: 45px;
+  height: 45px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.icono:hover {
+  transform: scale(1.1);
+
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.iconoNav {
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #173865;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.iconoNav:hover {
+  background: #79be24;
+
+  transform: translateY(-2px);
+}
+
+
+/* ==========================================================
+   PERFIL
+========================================================== */
+
+.contenedorPerfil {
+  position: relative;
+
+  min-width: 0;
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+
+  cursor: pointer;
+}
+
+.usuario {
+  flex-shrink: 0;
+
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #79be24;
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.perfil > span {
+  display: block;
+
+  max-width: 150px;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ==========================================================
    PANEL DE ALERTAS OPERATIVAS
-========================================= */
+========================================================== */
+
+.contenedorNotificaciones {
+  position: relative;
+}
 
 .campanaNav {
   position: relative;
@@ -167,6 +218,7 @@ transform:translateY(-2px);
 
 .contadorAlertas {
   position: absolute;
+
   top: -4px;
   right: -4px;
 
@@ -176,6 +228,7 @@ transform:translateY(-2px);
 
   min-width: 18px;
   height: 18px;
+
   padding: 0 5px;
 
   border: 2px solid #082b55;
@@ -184,6 +237,8 @@ transform:translateY(-2px);
   background: #76b82a;
   color: #ffffff;
 
+  box-sizing: border-box;
+
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
@@ -191,8 +246,9 @@ transform:translateY(-2px);
 
 .panelNotificaciones {
   position: absolute;
+
   top: 60px;
-  right: 80px;
+  right: 0;
 
   width: 390px;
   max-height: calc(100vh - 90px);
@@ -214,6 +270,7 @@ transform:translateY(-2px);
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 16px;
 
   padding: 18px 20px;
@@ -242,6 +299,7 @@ transform:translateY(-2px);
 
 .listaAlertasNavbar {
   max-height: 470px;
+
   overflow-y: auto;
 }
 
@@ -251,12 +309,14 @@ transform:translateY(-2px);
 
 .listaAlertasNavbar::-webkit-scrollbar-thumb {
   border-radius: 999px;
+
   background: #cbd5e1;
 }
 
 .alertaNavbarItem {
   display: flex;
   flex-direction: column;
+
   gap: 12px;
 
   padding: 16px 20px;
@@ -284,6 +344,7 @@ transform:translateY(-2px);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
   gap: 14px;
 }
 
@@ -304,6 +365,7 @@ transform:translateY(-2px);
 
   min-width: 48px;
   min-height: 23px;
+
   padding: 0 8px;
 
   border-radius: 999px;
@@ -351,10 +413,21 @@ transform:translateY(-2px);
   font-weight: 500;
 }
 
+.alertaNavbarFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 10px;
+}
+
 .alertaNavbarItem button {
   align-self: flex-end;
 
   min-height: 32px;
+
   padding: 0 12px;
 
   border: 1px solid #d5dde5;
@@ -387,9 +460,11 @@ transform:translateY(-2px);
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   gap: 10px;
 
   min-height: 180px;
+
   padding: 24px;
 
   color: #94a3b8;
@@ -410,105 +485,69 @@ transform:translateY(-2px);
   font-size: 13px;
 }
 
-.perfil{
 
-display:flex;
+/* ==========================================================
+   MENÚ PERFIL
+========================================================== */
 
-align-items:center;
+.menuPerfil {
+  position: absolute;
 
-gap:12px;
+  top: 58px;
+  right: 0;
 
-cursor:pointer;
+  width: 240px;
 
+  padding: 10px;
+
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.18);
+
+  box-sizing: border-box;
+
+  z-index: 1100;
 }
 
-.menuPerfil{
+.menuPerfil button {
+  display: flex;
+  align-items: center;
 
-position:absolute;
+  gap: 15px;
 
-top:75px;
+  width: 100%;
 
-right:20px;
+  margin: 4px 0;
+  padding: 14px;
 
-width:240px;
+  border: none;
+  border-radius: 12px;
 
-background:white;
+  background: transparent;
+  color: #082b55;
 
-border-radius:18px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
 
-padding:10px;
+  text-align: left;
 
-box-shadow:
+  cursor: pointer;
 
-0 15px 40px rgba(0,0,0,.18);
-
-z-index:999;
-
+  transition: 0.2s;
 }
 
-.menuPerfil button{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-padding:14px;
-
-margin:4px 0;
-
-font-size:15px;
-
-font-weight:600;
-
-color:#082B55;
-
-border-radius:12px;
-
-cursor:pointer;
-
-transition:.2s;
-
-width: 100%;
-border: none;
-background: transparent;
-font-family: inherit;
-text-align: left;
+.menuPerfil button:hover {
+  background: #f3f6f9;
 }
 
-.menuPerfil button:hover{
 
-background:#F3F6F9;
-
-}
-
-/* =========================================
-   NAVBAR RESPONSIVE
-========================================= */
-
-@media (max-width: 768px) {
-
-  .panelNotificaciones {
-    position: fixed;
-
-    top: 76px;
-    left: 16px;
-    right: 16px;
-
-    width: auto;
-    max-height: calc(100vh - 96px);
-  }
-
-  .listaAlertasNavbar {
-    max-height: calc(100vh - 190px);
-  }
-
-}
-
-/* =========================================
+/* ==========================================================
    DETALLE DE ALERTA
-========================================= */
+========================================================== */
 
 .detalleAlertaNavbar {
   display: flex;
@@ -522,6 +561,7 @@ background:#F3F6F9;
 .detalleAlertaHeader {
   display: flex;
   align-items: center;
+
   gap: 12px;
 
   padding: 18px 20px;
@@ -565,6 +605,7 @@ background:#F3F6F9;
 .detalleAlertaHeader div {
   display: flex;
   flex-direction: column;
+
   gap: 3px;
 
   min-width: 0;
@@ -587,6 +628,7 @@ background:#F3F6F9;
 .detalleAlertaContenido {
   display: flex;
   flex-direction: column;
+
   gap: 14px;
 
   padding: 20px;
@@ -596,6 +638,7 @@ background:#F3F6F9;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
   gap: 16px;
 
   padding-bottom: 16px;
@@ -615,9 +658,11 @@ background:#F3F6F9;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 20px;
 
   min-height: 42px;
+
   padding: 10px 12px;
 
   border: 1px solid #e2e8f0;
@@ -693,9 +738,11 @@ background:#F3F6F9;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   gap: 8px;
 
   min-height: 36px;
+
   padding: 0 14px;
 
   border: none;
@@ -725,7 +772,115 @@ background:#F3F6F9;
     0 8px 18px rgba(118, 184, 42, 0.22);
 }
 
-@media (max-width: 768px) {
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1100px) {
+
+  .navbar {
+    gap: 20px;
+
+    padding: 0 24px;
+  }
+
+  .navbarLogo {
+    font-size: 30px;
+  }
+
+  .navbarBusqueda input {
+    width: min(320px, 100%);
+  }
+
+  .navbarDerecha {
+    gap: 10px;
+  }
+
+  .perfil > span {
+    max-width: 100px;
+  }
+
+}
+
+
+/* ==========================================================
+   CELULAR GANUS
+========================================================== */
+
+@media (max-width: 900px) {
+
+  .navbar {
+    left: 0;
+
+    height: 64px;
+
+    gap: 12px;
+
+    padding: 0 14px 0 72px;
+  }
+
+  .navbarLogo {
+    flex: 1;
+
+    min-width: 0;
+
+    font-size: 29px;
+  }
+
+  .navbarBusqueda {
+    display: none;
+  }
+
+  .navbarDerecha {
+    flex-shrink: 0;
+
+    gap: 8px;
+  }
+
+  .iconoNav {
+    width: 38px;
+    height: 38px;
+  }
+
+  .usuario {
+    width: 40px;
+    height: 40px;
+
+    font-size: 18px;
+  }
+
+  .perfil {
+    gap: 0;
+  }
+
+  .perfil > span {
+    display: none;
+  }
+
+  .panelNotificaciones {
+    position: fixed;
+
+    top: 76px;
+    left: 16px;
+    right: 16px;
+
+    width: auto;
+    max-height: calc(100vh - 96px);
+  }
+
+  .listaAlertasNavbar {
+    max-height: calc(100vh - 190px);
+  }
+
+  .menuPerfil {
+    position: fixed;
+
+    top: 76px;
+    right: 16px;
+
+    width: min(240px, calc(100vw - 32px));
+  }
 
   .detalleAlertaContenido {
     padding: 16px;
@@ -734,6 +889,7 @@ background:#F3F6F9;
   .detalleAlertaCampo {
     align-items: flex-start;
     flex-direction: column;
+
     gap: 5px;
   }
 
@@ -749,4 +905,109 @@ background:#F3F6F9;
     width: 100%;
   }
 
+}
+
+
+/* ==========================================================
+   CELULARES PEQUEÑOS
+========================================================== */
+
+@media (max-width: 430px) {
+
+  .navbar {
+    gap: 8px;
+
+    padding-right: 10px;
+    padding-left: 62px;
+  }
+
+  .navbarLogo {
+    font-size: 27px;
+  }
+
+  .navbarDerecha {
+    gap: 6px;
+  }
+
+  .iconoNav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .iconoNav svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .usuario {
+    width: 38px;
+    height: 38px;
+
+    font-size: 17px;
+  }
+
+}
+
+
+/* ==========================================================
+   MODO OSCURO GANUS - PANELES NAVBAR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .panelNotificaciones,
+[data-ganus-theme="oscuro"] .detalleAlertaNavbar,
+[data-ganus-theme="oscuro"] .menuPerfil {
+  background: #111f31;
+
+  border-color: #293b50;
+}
+
+[data-ganus-theme="oscuro"] .panelNotificacionesHeader,
+[data-ganus-theme="oscuro"] .detalleAlertaHeader {
+  border-color: #293b50;
+}
+
+[data-ganus-theme="oscuro"] .panelNotificacionesHeader strong,
+[data-ganus-theme="oscuro"] .detalleAlertaHeader strong,
+[data-ganus-theme="oscuro"] .detalleAlertaTitulo strong,
+[data-ganus-theme="oscuro"] .detalleAlertaCampo strong,
+[data-ganus-theme="oscuro"] .alertaNavbarTitulo strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .alertaNavbarItem {
+  background: #111f31;
+
+  border-color: #293b50;
+}
+
+[data-ganus-theme="oscuro"] .alertaNavbarItem:hover {
+  background: #15263a;
+}
+
+[data-ganus-theme="oscuro"] .alertaNavbarContenido p,
+[data-ganus-theme="oscuro"] .detalleAlertaDescripcion p,
+[data-ganus-theme="oscuro"] .alertasNavbarVacio p {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"] .detalleAlertaCampo {
+  background: #0d1a29;
+
+  border-color: #293b50;
+}
+
+[data-ganus-theme="oscuro"] .detalleAlertaFooter {
+  background: #0d1a29;
+
+  border-color: #293b50;
+}
+
+[data-ganus-theme="oscuro"] .menuPerfil button {
+  color: #c5d3e3;
+}
+
+[data-ganus-theme="oscuro"] .menuPerfil button:hover {
+  background: #15263a;
+
+  color: #ffffff;
 }

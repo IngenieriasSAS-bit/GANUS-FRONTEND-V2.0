@@ -1,1241 +1,1404 @@
-.actividades{
-
-    margin-left:304px;
-
-    margin-top:74px;
-
-    padding:32px;
-
-    min-height:100vh;
-
-    background:#F5F7FA;
-
-    /* ==========================================================
-   Resumen de Actividades
+/* ==========================================================
+   GANUS - MÓDULO ACTIVIDADES
+   CONTENEDOR PRINCIPAL
 ========================================================== */
 
-.resumen-actividades{
+.actividades {
+  width: auto;
+  min-width: 0;
+  min-height: 100vh;
 
-    display:grid;
+  margin-left: 300px;
 
-    grid-template-columns:repeat(4, minmax(0, 1fr));
+  padding: 100px 32px 46px;
 
-    gap:20px;
+  box-sizing: border-box;
 
-    margin-top:28px;
-
-}
-
-.resumen-actividad-card{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    min-height:128px;
-
-    padding:22px;
-
-    background:#FFFFFF;
-
-    border:1px solid #E7EBF0;
-
-    border-radius:14px;
-
-    box-shadow:0 6px 18px rgba(15, 42, 77, 0.06);
-
-}
-
-.resumen-actividad-icono{
-
-    width:46px;
-
-    height:46px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-shrink:0;
-
-    border-radius:12px;
-
-}
-
-.resumen-actividad-icono.total{
-
-    color:#0F4C81;
-
-    background:#EAF3FB;
-
-}
-
-.resumen-actividad-icono.completadas{
-
-    color:#65B814;
-
-    background:#EFF8E7;
-
-}
-
-.resumen-actividad-icono.pendientes{
-
-    color:#C58A14;
-
-    background:#FFF6DF;
-
-}
-
-.resumen-actividad-icono.activos{
-
-    color:#4D5F73;
-
-    background:#EEF1F5;
-
-}
-
-.resumen-actividad-contenido{
-
-    display:flex;
-
-    flex-direction:column;
-
-    min-width:0;
-
-}
-
-.resumen-actividad-titulo{
-
-    color:#183A63;
-
-    font-size:14px;
-
-    font-weight:600;
-
-}
-
-.resumen-actividad-valor{
-
-    margin-top:5px;
-
-    color:#69BE15;
-
-    font-size:26px;
-
-    line-height:1;
-
-    font-weight:700;
-
-}
-
-.resumen-actividad-descripcion{
-
-    margin-top:8px;
-
-    color:#7A8796;
-
-    font-size:13px;
-
+  background: #f5f7fa;
+  color: #172033;
 }
 
 
 /* ==========================================================
-   Responsive Resumen de Actividades
+   RESUMEN DE ACTIVIDADES
 ========================================================== */
 
-@media (max-width:1200px){
+.resumen-actividades {
+  display: grid;
 
-    .resumen-actividades{
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
 
-        grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap: 20px;
 
-    }
+  width: 100%;
+  min-width: 0;
 
+  margin-top: 28px;
 }
 
-@media (max-width:700px){
+.resumen-actividad-card {
+  display: flex;
+  align-items: center;
 
-    .resumen-actividades{
+  gap: 18px;
 
-        grid-template-columns:1fr;
+  min-width: 0;
+  min-height: 128px;
 
-    }
+  padding: 22px;
 
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e7ebf0;
+  border-radius: 14px;
+
+  box-shadow:
+    0 6px 18px rgba(15, 42, 77, 0.06);
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
-/* ==========================================================
-   Registro Operativo de Actividades
-========================================================== */
+.resumen-actividad-icono {
+  flex-shrink: 0;
 
-.registro-actividades{
+  width: 46px;
+  height: 46px;
 
-    margin-top:32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background:#FFFFFF;
-
-    border:1px solid #E7EBF0;
-
-    border-radius:14px;
-
-    box-shadow:0 6px 18px rgba(15, 42, 77, 0.06);
-
-    overflow:hidden;
-
+  border-radius: 12px;
 }
 
-.registro-actividades-encabezado{
-
-    display:flex;
-
-    align-items:flex-start;
-
-    justify-content:space-between;
-
-    gap:24px;
-
-    padding:24px 26px;
-
-    border-bottom:1px solid #E9EDF2;
-
+.resumen-actividad-icono.total {
+  color: #0f4c81;
+  background: #eaf3fb;
 }
 
-.registro-actividades-encabezado h2{
-
-    margin:0;
-
-    color:#12345B;
-
-    font-size:20px;
-
-    font-weight:700;
-
+.resumen-actividad-icono.completadas {
+  color: #65b814;
+  background: #eff8e7;
 }
 
-.registro-actividades-encabezado p{
-
-    margin:6px 0 0;
-
-    color:#7A8796;
-
-    font-size:14px;
-
-    line-height:1.5;
-
+.resumen-actividad-icono.pendientes {
+  color: #c58a14;
+  background: #fff6df;
 }
 
-.registro-actividades-total{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    flex-shrink:0;
-
-    padding:9px 12px;
-
-    color:#31516F;
-
-    background:#F1F5F8;
-
-    border-radius:9px;
-
-    font-size:13px;
-
-    font-weight:600;
-
+.resumen-actividad-icono.activos {
+  color: #4d5f73;
+  background: #eef1f5;
 }
 
+.resumen-actividad-contenido {
+  display: flex;
+  flex-direction: column;
 
-/* ==========================================================
-   Filtros
-========================================================== */
-
-.filtros-actividades{
-
-    display:grid;
-
-    grid-template-columns:minmax(280px, 1fr) 240px 210px;
-
-    gap:14px;
-
-    padding:20px 26px;
-
-    background:#FBFCFD;
-
-    border-bottom:1px solid #E9EDF2;
-
+  min-width: 0;
 }
 
-.buscador-actividades,
-.filtro-select-actividades{
+.resumen-actividad-titulo {
+  color: #183a63;
 
-    min-height:42px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:0 13px;
-
-    background:#FFFFFF;
-
-    border:1px solid #DCE3EA;
-
-    border-radius:9px;
-
-    color:#728195;
-
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.buscador-actividades:focus-within,
-.filtro-select-actividades:focus-within{
+.resumen-actividad-valor {
+  margin-top: 5px;
 
-    border-color:#6DBE17;
+  color: #69be15;
 
-    box-shadow:0 0 0 3px rgba(109, 190, 23, 0.10);
-
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
 }
 
-.buscador-actividades input,
-.filtro-select-actividades select{
+.resumen-actividad-descripcion {
+  margin-top: 8px;
 
-    width:100%;
+  color: #7a8796;
 
-    border:none;
-
-    outline:none;
-
-    background:transparent;
-
-    color:#253C55;
-
-    font-family:inherit;
-
-    font-size:13px;
-
-}
-
-.buscador-actividades input::placeholder{
-
-    color:#98A3AF;
-
-}
-
-.filtro-select-actividades select{
-
-    cursor:pointer;
-
+  font-size: 13px;
 }
 
 
 /* ==========================================================
-   Tabla de Actividades
+   REGISTRO OPERATIVO DE ACTIVIDADES
 ========================================================== */
 
-.tabla-actividades-contenedor{
+.registro-actividades {
+  width: 100%;
+  min-width: 0;
 
-    width:100%;
+  margin-top: 32px;
 
-    overflow-x:auto;
+  overflow: hidden;
 
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e7ebf0;
+  border-radius: 14px;
+
+  box-shadow:
+    0 6px 18px rgba(15, 42, 77, 0.06);
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
-.tabla-actividades{
+.registro-actividades-encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 
-    width:100%;
+  gap: 24px;
 
-    border-collapse:collapse;
+  padding: 24px 26px;
 
-    min-width:1050px;
-
+  border-bottom: 1px solid #e9edf2;
 }
 
-.tabla-actividades thead{
-
-    background:#F4F7FA;
-
+.registro-actividades-encabezado > div:first-child {
+  min-width: 0;
 }
 
-.tabla-actividades th{
+.registro-actividades-encabezado h2 {
+  margin: 0;
 
-    padding:14px 18px;
+  color: #12345b;
 
-    color:#173B64;
-
-    font-size:12px;
-
-    font-weight:700;
-
-    text-align:left;
-
-    white-space:nowrap;
-
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.tabla-actividades td{
+.registro-actividades-encabezado p {
+  margin: 6px 0 0;
 
-    padding:16px 18px;
+  color: #7a8796;
 
-    color:#5E6C7B;
-
-    font-size:13px;
-
-    border-top:1px solid #EDF0F3;
-
-    vertical-align:middle;
-
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.tabla-actividades tbody tr{
+.registro-actividades-total {
+  flex-shrink: 0;
 
-    transition:background 0.2s ease;
+  display: flex;
+  align-items: center;
 
+  gap: 8px;
+
+  padding: 9px 12px;
+
+  border-radius: 9px;
+
+  background: #f1f5f8;
+  color: #31516f;
+
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.tabla-actividades tbody tr:hover{
-
-    background:#FAFCFD;
-
-}
-
-.fecha-actividad{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:#53677C;
-
-    white-space:nowrap;
-
-}
-
-.fecha-actividad svg{
-
-    color:#7C8FA2;
-
-}
-
-.activo-actividad{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:4px;
-
-}
-
-.activo-actividad strong{
-
-    color:#183A63;
-
-    font-size:13px;
-
-    font-weight:600;
-
-}
-
-.activo-actividad span{
-
-    color:#8A96A3;
-
-    font-size:12px;
-
-}
-
-.codigo-actividad{
-
-    color:#34536F;
-
-    font-weight:600;
-
-    white-space:nowrap;
-
-}
-
-.tipo-actividad{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    padding:6px 9px;
-
-    color:#315C82;
-
-    background:#EDF5FB;
-
-    border-radius:7px;
-
-    font-size:12px;
-
-    font-weight:600;
-
-    white-space:nowrap;
-
-}
-
-.resultado-actividad{
-
-    display:block;
-
-    max-width:220px;
-
-    color:#536272;
-
-    line-height:1.4;
-
-}
-
-.estado-actividad{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    padding:6px 10px;
-
-    border-radius:999px;
-
-    font-size:12px;
-
-    font-weight:600;
-
-    white-space:nowrap;
-
-}
-
-.estado-actividad.completada{
-
-    color:#4D9510;
-
-    background:#EEF8E6;
-
-}
-
-.estado-actividad.pendiente{
-
-    color:#B47808;
-
-    background:#FFF4D8;
-
-}
-
-.accion-ver-actividad{
-
-    width:34px;
-
-    height:34px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border:none;
-
-    border-radius:8px;
-
-    color:#2469A6;
-
-    background:#EAF3FB;
-
-    cursor:pointer;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-
-}
-
-.accion-ver-actividad:hover{
-
-    background:#DCECF9;
-
-    transform:translateY(-1px);
-
-}
-
-.sin-actividades{
-
-    padding:40px 20px !important;
-
-    color:#83909D !important;
-
-    text-align:center;
-
-}
-
-
-/* ==========================================================
-   Detalle de Actividad
-========================================================== */
-
-.detalle-actividad-overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:2000;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:24px;
-
-    background:rgba(5, 19, 38, 0.58);
-
-    backdrop-filter:blur(3px);
-
-}
-
-.detalle-actividad-panel{
-
-    width:min(720px, 100%);
-
-    max-height:90vh;
-
-    overflow-y:auto;
-
-    background:#FFFFFF;
-
-    border-radius:16px;
-
-    box-shadow:0 24px 70px rgba(5, 22, 44, 0.28);
-
-}
-
-.detalle-actividad-header{
-
-    display:flex;
-
-    align-items:flex-start;
-
-    justify-content:space-between;
-
-    gap:24px;
-
-    padding:26px 28px;
-
-    border-bottom:1px solid #E8EDF2;
-
-}
-
-.detalle-actividad-etiqueta{
-
-    color:#69B817;
-
-    font-size:11px;
-
-    font-weight:700;
-
-    letter-spacing:0.08em;
-
-    text-transform:uppercase;
-
-}
-
-.detalle-actividad-header h2{
-
-    margin:6px 0 0;
-
-    color:#12345B;
-
-    font-size:23px;
-
-}
-
-.detalle-actividad-header p{
-
-    margin:7px 0 0;
-
-    color:#7C8997;
-
-    font-size:13px;
-
-}
-
-.detalle-actividad-cerrar{
-
-    width:36px;
-
-    height:36px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-shrink:0;
-
-    border:none;
-
-    border-radius:9px;
-
-    color:#607184;
-
-    background:#F1F4F7;
-
-    cursor:pointer;
-
-}
-
-.detalle-actividad-activo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:16px;
-
-    margin:24px 28px 0;
-
-    padding:18px;
-
-    background:#F5F9FC;
-
-    border:1px solid #E3EBF2;
-
-    border-radius:12px;
-
-}
-
-.detalle-actividad-activo-icono{
-
-    width:46px;
-
-    height:46px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-shrink:0;
-
-    color:#1F659F;
-
-    background:#E4F0F9;
-
-    border-radius:11px;
-
-}
-
-.detalle-actividad-activo span{
-
-    color:#7D8A98;
-
-    font-size:12px;
-
-}
-
-.detalle-actividad-activo strong{
-
-    display:block;
-
-    margin-top:3px;
-
-    color:#173B64;
-
-    font-size:16px;
-
-}
-
-.detalle-actividad-activo p{
-
-    margin:4px 0 0;
-
-    color:#6E7E8E;
-
-    font-size:12px;
-
-}
-
-.detalle-actividad-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-
-    gap:14px;
-
-    padding:22px 28px 0;
-
-}
-
-.detalle-actividad-campo{
-
-    padding:16px;
-
-    border:1px solid #E5EAF0;
-
-    border-radius:10px;
-
-}
-
-.detalle-actividad-campo div{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:#7A8998;
-
-}
-
-.detalle-actividad-campo span{
-
-    font-size:12px;
-
-}
-
-.detalle-actividad-campo strong{
-
-    display:block;
-
-    margin-top:9px;
-
-    color:#24445F;
-
-    font-size:14px;
-
-    font-weight:600;
-
-}
-
-.detalle-actividad-observacion{
-
-    margin:22px 28px 0;
-
-    padding:18px;
-
-    background:#FBFCFD;
-
-    border-left:3px solid #6DBE17;
-
-    border-radius:0 10px 10px 0;
-
-}
-
-.detalle-actividad-observacion div{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-    color:#183A63;
-
-}
-
-.detalle-actividad-observacion h3{
-
-    margin:0;
-
-    font-size:14px;
-
-}
-
-.detalle-actividad-observacion p{
-
-    margin:10px 0 0;
-
-    color:#657586;
-
-    font-size:13px;
-
-    line-height:1.6;
-
-}
-
-.detalle-actividad-ubicacion{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-    margin:20px 28px 28px;
-
-    padding-top:18px;
-
-    color:#718191;
-
-    border-top:1px solid #E8EDF2;
-
-    font-size:13px;
-
-}
-
-
-/* ==========================================================
-   Responsive Registro de Actividades
-========================================================== */
-
-@media (max-width:1100px){
-
-    .filtros-actividades{
-
-        grid-template-columns:1fr 1fr;
-
-    }
-
-    .buscador-actividades{
-
-        grid-column:1 / -1;
-
-    }
-
-}
-
-@media (max-width:700px){
-
-    .registro-actividades-encabezado{
-
-        flex-direction:column;
-
-    }
-
-    .filtros-actividades{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .buscador-actividades{
-
-        grid-column:auto;
-
-    }
-
-    .detalle-actividad-overlay{
-
-        padding:12px;
-
-    }
-
-    .detalle-actividad-header{
-
-        padding:22px 20px;
-
-    }
-
-    .detalle-actividad-activo{
-
-        margin:20px 20px 0;
-
-    }
-
-    .detalle-actividad-grid{
-
-        grid-template-columns:1fr;
-
-        padding:18px 20px 0;
-
-    }
-
-    .detalle-actividad-observacion{
-
-        margin:18px 20px 0;
-
-    }
-
-    .detalle-actividad-ubicacion{
-
-        margin:18px 20px 24px;
-
-    }
-
-}
-
-}
-
-/* ==========================================================
-   MODO OSCURO GANUS - ACTIVIDADES
-   Paleta visual unificada con Configuración
-========================================================== */
-
-[data-ganus-theme="dark"] .actividades {
-  background: #07111f;
-  color: #f8fafc;
-}
-
-/* ==========================================================
-   RESUMEN
-========================================================== */
-
-[data-ganus-theme="dark"] .resumen-actividad-card {
-  background: #111f31;
-  border-color: #293d54;
-  box-shadow: none;
-}
-
-[data-ganus-theme="dark"] .resumen-actividad-titulo {
-  color: #f8fafc;
-}
-
-[data-ganus-theme="dark"] .resumen-actividad-valor {
-  color: #84cc3f;
-}
-
-[data-ganus-theme="dark"] .resumen-actividad-descripcion {
-  color: #8da7c4;
-}
-
-[data-ganus-theme="dark"] .resumen-actividad-icono.total,
-[data-ganus-theme="dark"] .resumen-actividad-icono.completadas,
-[data-ganus-theme="dark"] .resumen-actividad-icono.pendientes,
-[data-ganus-theme="dark"] .resumen-actividad-icono.activos {
-  background: #18283a;
-}
-
-[data-ganus-theme="dark"] .resumen-actividad-icono.total {
-  color: #8db8e8;
-}
-
-[data-ganus-theme="dark"] .resumen-actividad-icono.completadas {
-  color: #84cc3f;
-}
-
-[data-ganus-theme="dark"] .resumen-actividad-icono.pendientes {
-  color: #e9b949;
-}
-
-[data-ganus-theme="dark"] .resumen-actividad-icono.activos {
-  color: #8da7c4;
-}
-
-/* ==========================================================
-   REGISTRO OPERATIVO
-========================================================== */
-
-[data-ganus-theme="dark"] .registro-actividades {
-  background: #111f31;
-  border-color: #293d54;
-  box-shadow: none;
-}
-
-[data-ganus-theme="dark"] .registro-actividades-encabezado {
-  border-bottom-color: #293d54;
-}
-
-[data-ganus-theme="dark"] .registro-actividades-encabezado h2 {
-  color: #f8fafc;
-}
-
-[data-ganus-theme="dark"] .registro-actividades-encabezado p {
-  color: #8da7c4;
-}
-
-[data-ganus-theme="dark"] .registro-actividades-total {
-  background: #18283a;
-  color: #dce8f5;
-}
 
 /* ==========================================================
    FILTROS
 ========================================================== */
 
-[data-ganus-theme="dark"] .filtros-actividades {
-  background: #0d1a2a;
-  border-bottom-color: #293d54;
+.filtros-actividades {
+  display: grid;
+
+  grid-template-columns:
+    minmax(280px, 1fr)
+    240px
+    210px;
+
+  gap: 14px;
+
+  padding: 20px 26px;
+
+  background: #fbfcfd;
+
+  border-bottom: 1px solid #e9edf2;
 }
 
-[data-ganus-theme="dark"] .buscador-actividades,
-[data-ganus-theme="dark"] .filtro-select-actividades {
-  background: #18283a;
-  border-color: #293d54;
-  color: #8da7c4;
+.buscador-actividades,
+.filtro-select-actividades {
+  min-width: 0;
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #dce3ea;
+  border-radius: 9px;
+
+  color: #728195;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.25s ease;
 }
 
-[data-ganus-theme="dark"] .buscador-actividades input,
-[data-ganus-theme="dark"] .filtro-select-actividades select {
-  color: #f8fafc;
+.buscador-actividades:focus-within,
+.filtro-select-actividades:focus-within {
+  border-color: #6dbe17;
+
+  box-shadow:
+    0 0 0 3px rgba(109, 190, 23, 0.1);
 }
 
-[data-ganus-theme="dark"] .buscador-actividades input::placeholder {
-  color: #6f89a5;
+.buscador-actividades input,
+.filtro-select-actividades select {
+  width: 100%;
+  min-width: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: #253c55;
+
+  font-family: inherit;
+  font-size: 13px;
 }
 
-[data-ganus-theme="dark"] .filtro-select-actividades select option {
-  background: #111f31;
-  color: #f8fafc;
+.buscador-actividades input::placeholder {
+  color: #98a3af;
 }
+
+.filtro-select-actividades select {
+  cursor: pointer;
+}
+
 
 /* ==========================================================
-   TABLA
+   TABLA DE ACTIVIDADES
 ========================================================== */
 
-[data-ganus-theme="dark"] .tabla-actividades {
-  background: #111f31;
+.tabla-actividades-contenedor {
+  width: 100%;
+  max-width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #8fa2b5 #edf1f5;
 }
 
-[data-ganus-theme="dark"] .tabla-actividades thead {
-  background: #18283a;
+.tabla-actividades-contenedor::-webkit-scrollbar {
+  height: 8px;
 }
 
-[data-ganus-theme="dark"] .tabla-actividades th {
-  color: #f8fafc;
+.tabla-actividades-contenedor::-webkit-scrollbar-track {
+  background: #edf1f5;
 }
 
-[data-ganus-theme="dark"] .tabla-actividades td {
-  color: #8da7c4;
-  border-top-color: #293d54;
+.tabla-actividades-contenedor::-webkit-scrollbar-thumb {
+  background: #8fa2b5;
+
+  border-radius: 999px;
 }
 
-[data-ganus-theme="dark"] .tabla-actividades tbody tr:hover {
-  background: #18283a;
+.tabla-actividades {
+  width: 100%;
+  min-width: 1050px;
+
+  border-collapse: collapse;
+
+  background: #ffffff;
 }
 
-[data-ganus-theme="dark"] .fecha-actividad {
-  color: #8da7c4;
+.tabla-actividades thead {
+  background: #f4f7fa;
 }
 
-[data-ganus-theme="dark"] .fecha-actividad svg {
-  color: #6f89a5;
+.tabla-actividades th {
+  padding: 14px 18px;
+
+  color: #173b64;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-align: left;
+
+  white-space: nowrap;
 }
 
-[data-ganus-theme="dark"] .activo-actividad strong {
-  color: #f8fafc;
+.tabla-actividades td {
+  padding: 16px 18px;
+
+  color: #5e6c7b;
+
+  font-size: 13px;
+
+  border-top: 1px solid #edf0f3;
+
+  vertical-align: middle;
 }
 
-[data-ganus-theme="dark"] .activo-actividad span {
-  color: #8da7c4;
+.tabla-actividades tbody tr {
+  transition: background 0.2s ease;
 }
 
-[data-ganus-theme="dark"] .codigo-actividad {
-  color: #dce8f5;
+.tabla-actividades tbody tr:hover {
+  background: #fafcfd;
 }
 
-[data-ganus-theme="dark"] .tipo-actividad {
-  color: #9cc7ef;
-  background: rgba(68, 133, 194, 0.14);
+.fecha-actividad {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #53677c;
+
+  white-space: nowrap;
 }
 
-[data-ganus-theme="dark"] .resultado-actividad {
-  color: #b5c7da;
+.fecha-actividad svg {
+  color: #7c8fa2;
 }
 
-[data-ganus-theme="dark"] .estado-actividad.completada {
-  color: #9bdd5d;
-  background: rgba(132, 204, 63, 0.14);
+.activo-actividad {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
 }
 
-[data-ganus-theme="dark"] .estado-actividad.pendiente {
-  color: #f0c55b;
-  background: rgba(233, 185, 73, 0.14);
+.activo-actividad strong {
+  color: #183a63;
+
+  font-size: 13px;
+  font-weight: 600;
 }
 
-[data-ganus-theme="dark"] .accion-ver-actividad {
-  color: #9cc7ef;
-  background: #18283a;
+.activo-actividad span {
+  color: #8a96a3;
+
+  font-size: 12px;
 }
 
-[data-ganus-theme="dark"] .accion-ver-actividad:hover {
-  background: #20344a;
+.codigo-actividad {
+  color: #34536f;
+
+  font-weight: 600;
+
+  white-space: nowrap;
 }
 
-[data-ganus-theme="dark"] .sin-actividades {
-  color: #8da7c4 !important;
+.tipo-actividad {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 9px;
+
+  border-radius: 7px;
+
+  background: #edf5fb;
+  color: #315c82;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  white-space: nowrap;
 }
+
+.resultado-actividad {
+  display: block;
+
+  max-width: 220px;
+
+  color: #536272;
+
+  line-height: 1.4;
+}
+
+.estado-actividad {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.estado-actividad.completada {
+  color: #4d9510;
+  background: #eef8e6;
+}
+
+.estado-actividad.pendiente {
+  color: #b47808;
+  background: #fff4d8;
+}
+
+.accion-ver-actividad {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #eaf3fb;
+  color: #2469a6;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.accion-ver-actividad:hover {
+  background: #dcecf9;
+
+  transform: translateY(-1px);
+}
+
+.sin-actividades {
+  padding: 40px 20px !important;
+
+  color: #83909d !important;
+
+  text-align: center;
+}
+
 
 /* ==========================================================
    DETALLE DE ACTIVIDAD
 ========================================================== */
 
-[data-ganus-theme="dark"] .detalle-actividad-panel {
-  background: #111f31;
-  border: 1px solid #293d54;
+.detalle-actividad-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  background: rgba(5, 19, 38, 0.58);
+
+  backdrop-filter: blur(3px);
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-header {
+.detalle-actividad-panel {
+  width: min(720px, 100%);
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 24px 70px rgba(5, 22, 44, 0.28);
+
+  scrollbar-width: thin;
+  scrollbar-color: #8fa2b5 transparent;
+}
+
+.detalle-actividad-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.detalle-actividad-panel::-webkit-scrollbar-thumb {
+  background: #8fa2b5;
+
+  border-radius: 999px;
+}
+
+.detalle-actividad-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  padding: 26px 28px;
+
+  border-bottom: 1px solid #e8edf2;
+}
+
+.detalle-actividad-header > div {
+  min-width: 0;
+}
+
+.detalle-actividad-etiqueta {
+  color: #69b817;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.detalle-actividad-header h2 {
+  margin: 6px 0 0;
+
+  color: #12345b;
+
+  font-size: 23px;
+}
+
+.detalle-actividad-header p {
+  margin: 7px 0 0;
+
+  color: #7c8997;
+
+  font-size: 13px;
+}
+
+.detalle-actividad-cerrar {
+  flex-shrink: 0;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #f1f4f7;
+  color: #607184;
+
+  cursor: pointer;
+}
+
+.detalle-actividad-activo {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  margin: 24px 28px 0;
+  padding: 18px;
+
+  background: #f5f9fc;
+
+  border: 1px solid #e3ebf2;
+  border-radius: 12px;
+}
+
+.detalle-actividad-activo-icono {
+  flex-shrink: 0;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #e4f0f9;
+  color: #1f659f;
+}
+
+.detalle-actividad-activo span {
+  color: #7d8a98;
+
+  font-size: 12px;
+}
+
+.detalle-actividad-activo strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #173b64;
+
+  font-size: 16px;
+}
+
+.detalle-actividad-activo p {
+  margin: 4px 0 0;
+
+  color: #6e7e8e;
+
+  font-size: 12px;
+}
+
+.detalle-actividad-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+
+  padding: 22px 28px 0;
+}
+
+.detalle-actividad-campo {
+  min-width: 0;
+
+  padding: 16px;
+
+  border: 1px solid #e5eaf0;
+  border-radius: 10px;
+}
+
+.detalle-actividad-campo div {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #7a8998;
+}
+
+.detalle-actividad-campo span {
+  font-size: 12px;
+}
+
+.detalle-actividad-campo strong {
+  display: block;
+
+  margin-top: 9px;
+
+  color: #24445f;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+}
+
+.detalle-actividad-observacion {
+  margin: 22px 28px 0;
+  padding: 18px;
+
+  background: #fbfcfd;
+
+  border-left: 3px solid #6dbe17;
+  border-radius: 0 10px 10px 0;
+}
+
+.detalle-actividad-observacion div {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: #183a63;
+}
+
+.detalle-actividad-observacion h3 {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+.detalle-actividad-observacion p {
+  margin: 10px 0 0;
+
+  color: #657586;
+
+  font-size: 13px;
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+}
+
+.detalle-actividad-ubicacion {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin: 20px 28px 28px;
+  padding-top: 18px;
+
+  color: #718191;
+
+  border-top: 1px solid #e8edf2;
+
+  font-size: 13px;
+}
+
+
+/* ==========================================================
+   MODO OSCURO GANUS - ACTIVIDADES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .actividades {
+  background: #07111f;
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .actividades h1,
+[data-ganus-theme="oscuro"] .actividades h2,
+[data-ganus-theme="oscuro"] .actividades h3,
+[data-ganus-theme="oscuro"] .actividades h4,
+[data-ganus-theme="oscuro"] .actividades strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .resumen-actividad-card {
+  background: #111f31;
+
+  border-color: #293d54;
+
+  box-shadow: none;
+}
+
+[data-ganus-theme="oscuro"] .resumen-actividad-titulo {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .resumen-actividad-valor {
+  color: #84cc3f;
+}
+
+[data-ganus-theme="oscuro"] .resumen-actividad-descripcion {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"]
+.resumen-actividad-icono.total,
+[data-ganus-theme="oscuro"]
+.resumen-actividad-icono.completadas,
+[data-ganus-theme="oscuro"]
+.resumen-actividad-icono.pendientes,
+[data-ganus-theme="oscuro"]
+.resumen-actividad-icono.activos {
+  background: #18283a;
+}
+
+[data-ganus-theme="oscuro"]
+.resumen-actividad-icono.total {
+  color: #8db8e8;
+}
+
+[data-ganus-theme="oscuro"]
+.resumen-actividad-icono.completadas {
+  color: #84cc3f;
+}
+
+[data-ganus-theme="oscuro"]
+.resumen-actividad-icono.pendientes {
+  color: #e9b949;
+}
+
+[data-ganus-theme="oscuro"]
+.resumen-actividad-icono.activos {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"]
+.registro-actividades {
+  background: #111f31;
+
+  border-color: #293d54;
+
+  box-shadow: none;
+}
+
+[data-ganus-theme="oscuro"]
+.registro-actividades-encabezado {
   border-bottom-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-header h2 {
+[data-ganus-theme="oscuro"]
+.registro-actividades-encabezado h2 {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-header p {
+[data-ganus-theme="oscuro"]
+.registro-actividades-encabezado p {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-cerrar {
+[data-ganus-theme="oscuro"]
+.registro-actividades-total {
+  background: #18283a;
   color: #dce8f5;
+}
+
+[data-ganus-theme="oscuro"]
+.filtros-actividades {
+  background: #0d1a2a;
+
+  border-bottom-color: #293d54;
+}
+
+[data-ganus-theme="oscuro"]
+.buscador-actividades,
+[data-ganus-theme="oscuro"]
+.filtro-select-actividades {
+  background: #18283a;
+
+  border-color: #293d54;
+
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"]
+.buscador-actividades input,
+[data-ganus-theme="oscuro"]
+.filtro-select-actividades select {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"]
+.buscador-actividades input::placeholder {
+  color: #6f89a5;
+}
+
+[data-ganus-theme="oscuro"]
+.filtro-select-actividades select option {
+  background: #111f31;
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"]
+.tabla-actividades-contenedor {
+  scrollbar-color: #5d7690 #0d1a2a;
+}
+
+[data-ganus-theme="oscuro"]
+.tabla-actividades-contenedor::-webkit-scrollbar-track {
+  background: #0d1a2a;
+}
+
+[data-ganus-theme="oscuro"]
+.tabla-actividades-contenedor::-webkit-scrollbar-thumb {
+  background: #5d7690;
+}
+
+[data-ganus-theme="oscuro"]
+.tabla-actividades {
+  background: #111f31;
+}
+
+[data-ganus-theme="oscuro"]
+.tabla-actividades thead {
   background: #18283a;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-activo {
+[data-ganus-theme="oscuro"]
+.tabla-actividades th {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"]
+.tabla-actividades td {
+  color: #8da7c4;
+
+  border-top-color: #293d54;
+}
+
+[data-ganus-theme="oscuro"]
+.tabla-actividades tbody tr:hover {
   background: #18283a;
+}
+
+[data-ganus-theme="oscuro"]
+.fecha-actividad {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"]
+.fecha-actividad svg {
+  color: #6f89a5;
+}
+
+[data-ganus-theme="oscuro"]
+.activo-actividad strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"]
+.activo-actividad span {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"]
+.codigo-actividad {
+  color: #dce8f5;
+}
+
+[data-ganus-theme="oscuro"]
+.tipo-actividad {
+  color: #9cc7ef;
+
+  background: rgba(68, 133, 194, 0.14);
+}
+
+[data-ganus-theme="oscuro"]
+.resultado-actividad {
+  color: #b5c7da;
+}
+
+[data-ganus-theme="oscuro"]
+.estado-actividad.completada {
+  color: #9bdd5d;
+
+  background: rgba(132, 204, 63, 0.14);
+}
+
+[data-ganus-theme="oscuro"]
+.estado-actividad.pendiente {
+  color: #f0c55b;
+
+  background: rgba(233, 185, 73, 0.14);
+}
+
+[data-ganus-theme="oscuro"]
+.accion-ver-actividad {
+  color: #9cc7ef;
+
+  background: #18283a;
+}
+
+[data-ganus-theme="oscuro"]
+.accion-ver-actividad:hover {
+  background: #20344a;
+}
+
+[data-ganus-theme="oscuro"]
+.sin-actividades {
+  color: #8da7c4 !important;
+}
+
+[data-ganus-theme="oscuro"]
+.detalle-actividad-panel {
+  background: #111f31;
+
+  border: 1px solid #293d54;
+}
+
+[data-ganus-theme="oscuro"]
+.detalle-actividad-panel {
+  scrollbar-color: #5d7690 transparent;
+}
+
+[data-ganus-theme="oscuro"]
+.detalle-actividad-panel::-webkit-scrollbar-thumb {
+  background: #5d7690;
+}
+
+[data-ganus-theme="oscuro"]
+.detalle-actividad-header {
+  border-bottom-color: #293d54;
+}
+
+[data-ganus-theme="oscuro"]
+.detalle-actividad-header h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"]
+.detalle-actividad-header p {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"]
+.detalle-actividad-cerrar {
+  background: #18283a;
+  color: #dce8f5;
+}
+
+[data-ganus-theme="oscuro"]
+.detalle-actividad-activo {
+  background: #18283a;
+
   border-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-activo-icono {
-  color: #84cc3f;
+[data-ganus-theme="oscuro"]
+.detalle-actividad-activo-icono {
   background: rgba(132, 204, 63, 0.12);
+  color: #84cc3f;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-activo span {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-activo span {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-activo strong {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-activo strong {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-activo p {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-activo p {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-campo {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-campo {
   background: #18283a;
+
   border-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-campo div {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-campo div {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-campo strong {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-campo strong {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-observacion {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-observacion {
   background: #18283a;
+
   border-left-color: #84cc3f;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-observacion div {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-observacion div {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-observacion p {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-observacion p {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .detalle-actividad-ubicacion {
+[data-ganus-theme="oscuro"]
+.detalle-actividad-ubicacion {
   color: #8da7c4;
+
   border-top-color: #293d54;
+}
+
+
+/* ==========================================================
+   RESPONSIVE - TABLET
+========================================================== */
+
+@media (max-width: 1200px) {
+
+  .resumen-actividades {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 1100px) {
+
+  .filtros-actividades {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .buscador-actividades {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE - SIDEBAR COLAPSADO
+========================================================== */
+
+@media (max-width: 900px) {
+
+  .actividades {
+    width: 100%;
+
+    margin-left: 0;
+
+    padding: 94px 20px 36px;
+  }
+
+  .resumen-actividades {
+    margin-top: 24px;
+  }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE - CELULAR
+========================================================== */
+
+@media (max-width: 650px) {
+
+  .actividades {
+    width: 100%;
+    max-width: 100%;
+
+    margin-left: 0;
+
+    padding: 88px 15px 28px;
+
+    overflow-x: hidden;
+  }
+
+  .resumen-actividades {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+
+    margin-top: 22px;
+  }
+
+  .resumen-actividad-card {
+    width: 100%;
+
+    min-height: 112px;
+
+    gap: 15px;
+
+    padding: 18px;
+  }
+
+  .resumen-actividad-icono {
+    width: 44px;
+    height: 44px;
+  }
+
+  .resumen-actividad-titulo {
+    font-size: 14px;
+  }
+
+  .resumen-actividad-valor {
+    font-size: 25px;
+  }
+
+  .resumen-actividad-descripcion {
+    font-size: 12px;
+  }
+
+  .registro-actividades {
+    margin-top: 24px;
+
+    border-radius: 14px;
+  }
+
+  .registro-actividades-encabezado {
+    align-items: stretch;
+    flex-direction: column;
+
+    gap: 16px;
+
+    padding: 20px 18px;
+  }
+
+  .registro-actividades-encabezado h2 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+
+  .registro-actividades-encabezado p {
+    font-size: 13px;
+  }
+
+  .registro-actividades-total {
+    width: fit-content;
+
+    box-sizing: border-box;
+  }
+
+  .filtros-actividades {
+    grid-template-columns: 1fr;
+
+    gap: 11px;
+
+    padding: 16px 18px;
+  }
+
+  .buscador-actividades {
+    grid-column: auto;
+  }
+
+  .buscador-actividades,
+  .filtro-select-actividades {
+    width: 100%;
+
+    min-height: 46px;
+  }
+
+  .buscador-actividades input,
+  .filtro-select-actividades select {
+    font-size: 16px;
+  }
+
+  .tabla-actividades-contenedor {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .tabla-actividades {
+    width: max-content;
+    min-width: 1050px;
+  }
+
+  .tabla-actividades th,
+  .tabla-actividades td {
+    white-space: nowrap;
+  }
+
+  .resultado-actividad {
+    min-width: 180px;
+
+    white-space: normal;
+  }
+
+  .detalle-actividad-overlay {
+    align-items: flex-start;
+
+    padding: 12px;
+
+    overflow-y: auto;
+  }
+
+  .detalle-actividad-panel {
+    width: 100%;
+    max-height: calc(100dvh - 24px);
+
+    margin: auto 0;
+
+    border-radius: 14px;
+  }
+
+  .detalle-actividad-header {
+    gap: 14px;
+
+    padding: 20px 18px;
+  }
+
+  .detalle-actividad-header h2 {
+    font-size: 21px;
+  }
+
+  .detalle-actividad-header p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .detalle-actividad-activo {
+    align-items: flex-start;
+
+    gap: 13px;
+
+    margin: 18px 18px 0;
+    padding: 15px;
+  }
+
+  .detalle-actividad-activo > div:last-child {
+    min-width: 0;
+  }
+
+  .detalle-actividad-activo strong,
+  .detalle-actividad-activo p {
+    overflow-wrap: anywhere;
+  }
+
+  .detalle-actividad-grid {
+    grid-template-columns: 1fr;
+
+    gap: 11px;
+
+    padding: 16px 18px 0;
+  }
+
+  .detalle-actividad-campo {
+    padding: 14px;
+  }
+
+  .detalle-actividad-observacion {
+    margin: 16px 18px 0;
+    padding: 15px;
+  }
+
+  .detalle-actividad-ubicacion {
+    align-items: flex-start;
+
+    margin: 16px 18px 22px;
+  }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE - CELULARES PEQUEÑOS
+========================================================== */
+
+@media (max-width: 430px) {
+
+  .actividades {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .resumen-actividad-card {
+    padding: 16px;
+  }
+
+  .registro-actividades-encabezado {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .filtros-actividades {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
 }

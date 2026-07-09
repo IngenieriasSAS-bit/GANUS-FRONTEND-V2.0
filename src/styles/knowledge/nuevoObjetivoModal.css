@@ -298,3 +298,341 @@
     width: 100%;
   }
 }
+
+/* ==========================================================
+   KNOWLEDGE STUDIO - OBJETIVOS ESTRATÉGICOS - MODO OSCURO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-title h1 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-title p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-back-button {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-back-button:hover {
+  color: #ffffff;
+  background: #203750;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-primary-button {
+  color: #ffffff;
+  background: #1f4b82;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-primary-button:hover {
+  background: #285d9d;
+}
+
+
+/* ==========================================================
+   RESUMEN DE OBJETIVOS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-summary article {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-summary span {
+  color: #dcecff;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-summary strong {
+  color: #70d400;
+}
+
+
+/* ==========================================================
+   PANEL DE GESTIÓN
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-panel {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-panel-header {
+  border-bottom-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-panel-header h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-panel-header p {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   TOOLBAR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-toolbar {
+  border-bottom-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-search {
+  background: #0b1929;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-search svg {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-search input {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-search input::placeholder {
+  color: #6f91b6;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-toolbar select {
+  color: #dcecff;
+  background: #0b1929;
+  border-color: #29445f;
+
+  color-scheme: dark;
+}
+
+
+/* ==========================================================
+   LISTA DE OBJETIVOS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objective-item {
+  border-bottom-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-name h3 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-info > p {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-meta {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-progress {
+  background: #1d334b;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-actions {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-actions:hover {
+  color: #ffffff;
+  background: #172b42;
+}
+
+
+/* ==========================================================
+   MENÚ DE ACCIONES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objective-actions-menu {
+  background: #102238;
+  border-color: #29445f;
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-actions-menu button {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-actions-menu button:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-objective-actions-menu
+.knowledge-objective-actions-delete {
+  color: #ff8b8b;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-objective-actions-menu
+.knowledge-objective-actions-delete:hover {
+  color: #ffb0b0;
+  background: #3a1f29;
+}
+
+
+/* ==========================================================
+   MODAL CREAR / EDITAR OBJETIVO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-overlay {
+  background: rgba(2, 10, 20, 0.76);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-modal {
+  background: #0f1f33;
+  border-color: #29445f;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-header {
+  border-bottom-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-heading h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-heading p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-close {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-close:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group label {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group input,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group textarea,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group select {
+  color: #f8fafc;
+  background: #0b1929;
+
+  border-color: #29445f;
+
+  color-scheme: dark;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-objective-form-group input::placeholder,
+[data-ganus-theme="oscuro"]
+.knowledge-objective-form-group textarea::placeholder {
+  color: #6f91b6;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-objective-form-group input:focus,
+[data-ganus-theme="oscuro"]
+.knowledge-objective-form-group textarea:focus,
+[data-ganus-theme="oscuro"]
+.knowledge-objective-form-group select:focus {
+  border-color: #6f9fd7;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-form-error {
+  color: #ff8b8b;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-form-actions {
+  border-top-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-form-cancel {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-form-cancel:hover {
+  color: #ffffff;
+  background: #203750;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-form-save {
+  color: #ffffff;
+  background: #1f4b82;
+  border-color: #1f4b82;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-form-save:hover {
+  background: #285d9d;
+  border-color: #285d9d;
+}
+
+
+/* ==========================================================
+   MODAL ELIMINAR OBJETIVO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-overlay {
+  background: rgba(2, 10, 20, 0.76);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-modal {
+  background: #0f1f33;
+  border-color: #29445f;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-modal h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-modal p {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-modal p strong {
+  color: #dcecff;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-actions {
+  border-top-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-cancel {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-cancel:hover {
+  color: #ffffff;
+  background: #203750;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-confirm {
+  color: #ffffff;
+  background: #b93d3d;
+  border-color: #b93d3d;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-delete-confirm:hover {
+  background: #d04a4a;
+  border-color: #d04a4a;
+}

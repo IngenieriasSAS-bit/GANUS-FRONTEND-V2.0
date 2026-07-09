@@ -261,3 +261,368 @@
     width: 100%;
   }
 }
+
+/* ==========================================================
+   KNOWLEDGE STUDIO - REGLAS - MODO OSCURO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-heading h1 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-heading p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-back {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-back:hover {
+  color: #a78bfa;
+  background: #203750;
+  border-color: #6d4cc7;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-create {
+  color: #ffffff;
+  background: #1f4b82;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-create:hover {
+  background: #285d9d;
+}
+
+
+/* ==========================================================
+   RESUMEN
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-summary-card {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-summary-card span {
+  color: #dcecff;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-summary-card strong {
+  color: #70d400;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-summary-card small {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   PANEL
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-panel {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-panel-header {
+  border-bottom-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-panel-header h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-panel-header p {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   BUSCADOR Y FILTRO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-search {
+  color: #7fa9d8;
+  background: #0b1929;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-search:focus-within {
+  color: #a78bfa;
+  background: #102238;
+  border-color: #7655c8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-search input {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-search input::placeholder {
+  color: #6f91b6;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-filter {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-filter:hover,
+[data-ganus-theme="oscuro"] .knowledge-reglas-filter--active {
+  color: #a78bfa;
+  background: #203750;
+  border-color: #7655c8;
+}
+
+
+/* ==========================================================
+   CARDS DE REGLAS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-regla-card {
+  background: #0b1929;
+  border-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-card:hover {
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-identity strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-identity span {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-description {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-flow {
+  border-top-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-flow-item span {
+  color: #6f91b6;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-flow-item strong {
+  color: #dcecff;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-flow-arrow {
+  color: #55728f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-actions {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-actions:hover {
+  color: #ffffff;
+  background: #172b42;
+}
+
+
+/* ==========================================================
+   MENÚ DE ACCIONES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-regla-menu {
+  background: #102238;
+  border-color: #29445f;
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-menu button {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-regla-menu button:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-regla-menu
+.knowledge-regla-menu-delete {
+  color: #ff8b8b;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-regla-menu
+.knowledge-regla-menu-delete:hover {
+  color: #ffb0b0;
+  background: #3a1f29;
+}
+
+
+/* ==========================================================
+   MENÚ DE FILTROS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-filter-menu {
+  background: #102238;
+  border-color: #29445f;
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-filter-title {
+  color: #7fa9d8;
+  border-bottom-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-filter-menu button {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-filter-menu button:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-reglas-filter-menu
+.knowledge-reglas-filter-option--active {
+  color: #c4a7ff;
+  background: #2a2042;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-filter-menu small {
+  color: #b9d7f5;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-reglas-filter-menu
+.knowledge-reglas-filter-option--active
+small {
+  color: #d8c7ff;
+  background: #453369;
+}
+
+
+/* ==========================================================
+   ESTADO VACÍO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-empty {
+  color: #a78bfa;
+  border-color: #604a8f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-empty strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-reglas-empty span {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   MODAL NUEVA REGLA
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-overlay {
+  background: rgba(2, 10, 20, 0.76);
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-modal {
+  background: #0f1f33;
+  border-color: #29445f;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-header {
+  border-bottom-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-heading h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-heading p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-close {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-close:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-form label span {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-form input,
+[data-ganus-theme="oscuro"] .nueva-regla-form textarea,
+[data-ganus-theme="oscuro"] .nueva-regla-form select {
+  color: #f8fafc;
+  background: #0b1929;
+
+  border-color: #29445f;
+
+  color-scheme: dark;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-form input::placeholder,
+[data-ganus-theme="oscuro"] .nueva-regla-form textarea::placeholder {
+  color: #6f91b6;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-form input:focus,
+[data-ganus-theme="oscuro"] .nueva-regla-form textarea:focus,
+[data-ganus-theme="oscuro"] .nueva-regla-form select:focus {
+  border-color: #a77be8;
+
+  box-shadow:
+    0 0 0 3px rgba(167, 123, 232, 0.16);
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-footer {
+  border-top-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-cancel {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-cancel:hover {
+  background: #203750;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-save {
+  color: #ffffff;
+  background: #1f4b82;
+  border-color: #1f4b82;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-save:hover {
+  background: #285d9d;
+  border-color: #285d9d;
+}

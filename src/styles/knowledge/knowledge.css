@@ -25,14 +25,666 @@
   }
 }
 
-@media (max-width: 820px) {
+@media (max-width: 900px) {
   .knowledge {
-    padding: 90px 18px 36px;
+    width: 100%;
+    max-width: 100%;
+
+    margin-left: 0;
+    margin-top: 0;
+
+    padding: 94px 20px 36px;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
   }
 }
 
 @media (max-width: 560px) {
   .knowledge {
-    padding: 82px 14px 30px;
+    width: 100%;
+    max-width: 100%;
+
+    margin-left: 0;
+    margin-top: 0;
+
+    padding: 88px 14px 30px;
+
+    overflow-x: hidden;
   }
+
+  .knowledge-bottom-grid {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+
+    margin-top: 18px;
+  }
+}
+
+/* ==========================================================
+   KNOWLEDGE STUDIO - MODO OSCURO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge {
+  background: #07111f;
+  color: #f8fafc;
+}
+
+
+/* ==========================================================
+   RESUMEN SUPERIOR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-summary-card {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-summary-info span {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-summary-info strong {
+  color: #70d400;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-summary-info small {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   MODELO DE CONOCIMIENTO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-model {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-header h2,
+[data-ganus-theme="oscuro"] .knowledge-model-title h3 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-header p,
+[data-ganus-theme="oscuro"] .knowledge-model-content > p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-card {
+  background: #0b1929;
+  border-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-card:hover {
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.24);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-title span {
+  color: #dcecff;
+  background: #172b42;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-footer {
+  border-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-footer small {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-footer button {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-model-footer button:hover {
+  color: #70d400;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-engine-status {
+  color: #7fe0a6;
+  background: #123225;
+}
+
+
+/* ==========================================================
+   ACTIVIDAD RECIENTE
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-activity {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-activity-header h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-activity-header p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-activity-header > svg {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-activity-item {
+  border-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-activity-info strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-activity-info span {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-activity-item > small {
+  color: #6f91b6;
+}
+
+
+/* ==========================================================
+   ESTADO DEL MOTOR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-motor {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-motor-header h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-motor-header p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-motor-header > svg {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-motor-item {
+  border-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-motor-item strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-motor-item span {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   MODALES GENERALES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-modal,
+[data-ganus-theme="oscuro"] .nuevo-principio-modal,
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal,
+[data-ganus-theme="oscuro"] .knowledge-objective-modal {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+
+/* ==========================================================
+   HEADERS MODALES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-header,
+[data-ganus-theme="oscuro"] .nuevo-principio-header,
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-header,
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-header {
+  border-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-heading h2,
+[data-ganus-theme="oscuro"] .nuevo-principio-heading h2,
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-heading h2,
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-heading h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-heading p,
+[data-ganus-theme="oscuro"] .nuevo-principio-heading p,
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-heading p,
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-heading p {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   BOTONES CERRAR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-close,
+[data-ganus-theme="oscuro"] .nuevo-principio-close,
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-close,
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-close {
+  color: #9bb7d4;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-close:hover,
+[data-ganus-theme="oscuro"] .nuevo-principio-close:hover,
+[data-ganus-theme="oscuro"] .knowledge-indicador-modal-close:hover,
+[data-ganus-theme="oscuro"] .knowledge-objective-modal-close:hover {
+  color: #ffffff;
+  background: #172b42;
+}
+
+
+/* ==========================================================
+   LABELS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-form label span,
+[data-ganus-theme="oscuro"] .nuevo-principio-form label span,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-group label,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group label {
+  color: #dcecff;
+}
+
+
+/* ==========================================================
+   INPUTS - SELECTS - TEXTAREAS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-form input,
+[data-ganus-theme="oscuro"] .nueva-regla-form textarea,
+[data-ganus-theme="oscuro"] .nueva-regla-form select,
+[data-ganus-theme="oscuro"] .nuevo-principio-form input,
+[data-ganus-theme="oscuro"] .nuevo-principio-form textarea,
+[data-ganus-theme="oscuro"] .nuevo-principio-form select,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-group input,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-group select,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group input,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group textarea,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group select {
+  color: #f8fafc;
+  background: #0b1929;
+  border-color: #29445f;
+
+  color-scheme: dark;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-form input::placeholder,
+[data-ganus-theme="oscuro"] .nueva-regla-form textarea::placeholder,
+[data-ganus-theme="oscuro"] .nuevo-principio-form input::placeholder,
+[data-ganus-theme="oscuro"] .nuevo-principio-form textarea::placeholder,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-group input::placeholder,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group input::placeholder,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-group textarea::placeholder {
+  color: #6f91b6;
+}
+
+
+/* ==========================================================
+   FOOTERS MODALES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-footer,
+[data-ganus-theme="oscuro"] .nuevo-principio-footer,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-actions,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-actions {
+  border-color: #233b55;
+}
+
+
+/* ==========================================================
+   BOTONES CANCELAR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-cancel,
+[data-ganus-theme="oscuro"] .nuevo-principio-cancel,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-cancel,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-cancel {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-cancel:hover,
+[data-ganus-theme="oscuro"] .nuevo-principio-cancel:hover,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-cancel:hover,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-cancel:hover {
+  color: #ffffff;
+  background: #203750;
+}
+
+
+/* ==========================================================
+   BOTONES GUARDAR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nueva-regla-save,
+[data-ganus-theme="oscuro"] .nuevo-principio-save,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-save,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-save {
+  color: #ffffff;
+  background: #69be15;
+  border-color: #69be15;
+}
+
+[data-ganus-theme="oscuro"] .nueva-regla-save:hover,
+[data-ganus-theme="oscuro"] .nuevo-principio-save:hover,
+[data-ganus-theme="oscuro"] .knowledge-indicador-form-save:hover,
+[data-ganus-theme="oscuro"] .knowledge-objective-form-save:hover {
+  background: #76cf1a;
+  border-color: #76cf1a;
+}
+
+/* ==========================================================
+   KNOWLEDGE STUDIO
+   VISTAS INTERNAS DE GESTIÓN - MODO OSCURO
+========================================================== */
+
+
+/* ==========================================================
+   FONDOS GENERALES DE LAS VISTAS INTERNAS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives,
+[data-ganus-theme="oscuro"] .knowledge-indicators,
+[data-ganus-theme="oscuro"] .knowledge-principles,
+[data-ganus-theme="oscuro"] .knowledge-rules {
+  background: #07111f;
+  color: #f8fafc;
+}
+
+
+/* ==========================================================
+   ENCABEZADOS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives h1,
+[data-ganus-theme="oscuro"] .knowledge-indicators h1,
+[data-ganus-theme="oscuro"] .knowledge-principles h1,
+[data-ganus-theme="oscuro"] .knowledge-rules h1 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-header p,
+[data-ganus-theme="oscuro"] .knowledge-indicators-header p,
+[data-ganus-theme="oscuro"] .knowledge-principles-header p,
+[data-ganus-theme="oscuro"] .knowledge-rules-header p {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   CARDS DE RESUMEN
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objective-summary-card,
+[data-ganus-theme="oscuro"] .knowledge-indicator-summary-card,
+[data-ganus-theme="oscuro"] .knowledge-principle-summary-card,
+[data-ganus-theme="oscuro"] .knowledge-rule-summary-card {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-summary-card span,
+[data-ganus-theme="oscuro"] .knowledge-indicator-summary-card span,
+[data-ganus-theme="oscuro"] .knowledge-principle-summary-card span,
+[data-ganus-theme="oscuro"] .knowledge-rule-summary-card span {
+  color: #dcecff;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-summary-card strong,
+[data-ganus-theme="oscuro"] .knowledge-indicator-summary-card strong,
+[data-ganus-theme="oscuro"] .knowledge-principle-summary-card strong,
+[data-ganus-theme="oscuro"] .knowledge-rule-summary-card strong {
+  color: #70d400;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-summary-card small,
+[data-ganus-theme="oscuro"] .knowledge-indicator-summary-card small,
+[data-ganus-theme="oscuro"] .knowledge-principle-summary-card small,
+[data-ganus-theme="oscuro"] .knowledge-rule-summary-card small {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   PANELES / CATÁLOGOS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-panel,
+[data-ganus-theme="oscuro"] .knowledge-indicators-panel,
+[data-ganus-theme="oscuro"] .knowledge-principles-panel,
+[data-ganus-theme="oscuro"] .knowledge-rules-panel,
+[data-ganus-theme="oscuro"] .knowledge-objectives-catalog,
+[data-ganus-theme="oscuro"] .knowledge-indicators-catalog,
+[data-ganus-theme="oscuro"] .knowledge-principles-catalog,
+[data-ganus-theme="oscuro"] .knowledge-rules-catalog {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ==========================================================
+   TÍTULOS DE PANELES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-panel h2,
+[data-ganus-theme="oscuro"] .knowledge-indicators-panel h2,
+[data-ganus-theme="oscuro"] .knowledge-principles-panel h2,
+[data-ganus-theme="oscuro"] .knowledge-rules-panel h2,
+[data-ganus-theme="oscuro"] .knowledge-objectives-catalog h2,
+[data-ganus-theme="oscuro"] .knowledge-indicators-catalog h2,
+[data-ganus-theme="oscuro"] .knowledge-principles-catalog h2,
+[data-ganus-theme="oscuro"] .knowledge-rules-catalog h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-panel p,
+[data-ganus-theme="oscuro"] .knowledge-indicators-panel p,
+[data-ganus-theme="oscuro"] .knowledge-principles-panel p,
+[data-ganus-theme="oscuro"] .knowledge-rules-panel p,
+[data-ganus-theme="oscuro"] .knowledge-objectives-catalog p,
+[data-ganus-theme="oscuro"] .knowledge-indicators-catalog p,
+[data-ganus-theme="oscuro"] .knowledge-principles-catalog p,
+[data-ganus-theme="oscuro"] .knowledge-rules-catalog p {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   CARDS INTERNAS DE OBJETIVOS / PRINCIPIOS / REGLAS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objective-card,
+[data-ganus-theme="oscuro"] .knowledge-principle-card,
+[data-ganus-theme="oscuro"] .knowledge-rule-card {
+  background: #0b1929;
+  border-color: #233b55;
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-card h3,
+[data-ganus-theme="oscuro"] .knowledge-principle-card h3,
+[data-ganus-theme="oscuro"] .knowledge-rule-card h3 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-card p,
+[data-ganus-theme="oscuro"] .knowledge-principle-card p,
+[data-ganus-theme="oscuro"] .knowledge-rule-card p {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objective-card span,
+[data-ganus-theme="oscuro"] .knowledge-principle-card span,
+[data-ganus-theme="oscuro"] .knowledge-rule-card span,
+[data-ganus-theme="oscuro"] .knowledge-objective-card small,
+[data-ganus-theme="oscuro"] .knowledge-principle-card small,
+[data-ganus-theme="oscuro"] .knowledge-rule-card small {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   BUSCADORES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-search,
+[data-ganus-theme="oscuro"] .knowledge-indicators-search,
+[data-ganus-theme="oscuro"] .knowledge-principles-search,
+[data-ganus-theme="oscuro"] .knowledge-rules-search {
+  color: #9bc8f5;
+  background: #0b1929;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-search input,
+[data-ganus-theme="oscuro"] .knowledge-indicators-search input,
+[data-ganus-theme="oscuro"] .knowledge-principles-search input,
+[data-ganus-theme="oscuro"] .knowledge-rules-search input {
+  color: #f8fafc;
+  background: transparent;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-search input::placeholder,
+[data-ganus-theme="oscuro"] .knowledge-indicators-search input::placeholder,
+[data-ganus-theme="oscuro"] .knowledge-principles-search input::placeholder,
+[data-ganus-theme="oscuro"] .knowledge-rules-search input::placeholder {
+  color: #6f91b6;
+}
+
+
+/* ==========================================================
+   BOTONES DE FILTRO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-filter,
+[data-ganus-theme="oscuro"] .knowledge-indicators-filter,
+[data-ganus-theme="oscuro"] .knowledge-principles-filter,
+[data-ganus-theme="oscuro"] .knowledge-rules-filter {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-filter:hover,
+[data-ganus-theme="oscuro"] .knowledge-indicators-filter:hover,
+[data-ganus-theme="oscuro"] .knowledge-principles-filter:hover,
+[data-ganus-theme="oscuro"] .knowledge-rules-filter:hover {
+  color: #ffffff;
+  background: #203750;
+}
+
+
+/* ==========================================================
+   TABLA DE INDICADORES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-indicators-table {
+  background: #0f1f33;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicators-table thead {
+  background: #172b42;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicators-table th {
+  color: #dcecff;
+  border-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicators-table td {
+  color: #9bc8f5;
+  border-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicators-table tbody tr {
+  background: #0b1929;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicators-table tbody tr:hover {
+  background: #14283d;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicators-table strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-indicators-table span,
+[data-ganus-theme="oscuro"] .knowledge-indicators-table small {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   CONTENEDORES DE LISTAS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-objectives-list,
+[data-ganus-theme="oscuro"] .knowledge-indicators-list,
+[data-ganus-theme="oscuro"] .knowledge-principles-list,
+[data-ganus-theme="oscuro"] .knowledge-rules-list {
+  background: #0f1f33;
+}
+
+
+/* ==========================================================
+   BOTÓN VOLVER
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-back-button {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-back-button:hover {
+  color: #ffffff;
+  background: #203750;
+}
+
+
+/* ==========================================================
+   BOTONES NUEVO OBJETIVO / INDICADOR / PRINCIPIO / REGLA
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-new-button {
+  color: #ffffff;
+  background: #69be15;
+  border-color: #69be15;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-new-button:hover {
+  background: #76cf1a;
+  border-color: #76cf1a;
 }

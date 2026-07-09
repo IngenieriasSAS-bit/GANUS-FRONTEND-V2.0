@@ -1,754 +1,1181 @@
-.indicadores{
+/* ==========================================================
+   GANUS - MÓDULO INDICADORES
+   CONTENEDOR PRINCIPAL
+========================================================== */
 
-    margin-left:305px;
+.indicadores {
+  width: auto;
+  min-width: 0;
+  min-height: 100vh;
 
-    margin-top:52px;
+  margin-left: 300px;
 
-    padding:32px 38px 40px;
+  padding: 100px 32px 46px;
 
-    min-height:calc(100vh - 52px);
+  box-sizing: border-box;
 
-    background:#f4f7fb;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:28px;
-
-    box-sizing:border-box;
-
+  background: #f5f7fa;
+  color: #172033;
 }
 
-.indicadores-dashboard{
 
-    width:98%;
+/* ==========================================================
+   DASHBOARD
+========================================================== */
 
-    max-width:1780px;
+.indicadores-dashboard {
+  width: 100%;
+  max-width: 1780px;
+  min-width: 0;
 
-    margin:0 auto;
+  margin: 0 auto;
 
-    display:flex;
+  display: flex;
+  flex-direction: column;
 
-    flex-direction:column;
-
-    gap:28px;
-
+  gap: 28px;
 }
 
-/*=========================
-    CARDS SUPERIORES
-=========================*/
 
-.indicadores-cards{
+/* ==========================================================
+   TARJETAS SUPERIORES
+========================================================== */
 
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:22px;
+.indicadores-cards {
+  width: 100%;
+  min-width: 0;
 
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 22px;
 }
 
-.indicador-card{
+.indicador-card {
+  display: flex;
+  align-items: center;
 
-    background:#fff;
-    border-radius:18px;
-    padding:18px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    box-shadow:0 12px 28px rgba(15,23,42,.08);
-    border:1px solid #edf2f7;
+  gap: 14px;
 
-    transition:.25s;
+  min-width: 0;
+  min-height: 128px;
 
+  padding: 18px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #edf2f7;
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
-.indicador-card:hover{
-
-    transform:translateY(-4px);
-
+.indicador-card:hover {
+  transform: translateY(-4px);
 }
 
-.indicador-icon{
+.indicador-icon {
+  flex-shrink: 0;
 
-    width:58px;
-    height:58px;
-    border-radius:16px;
+  width: 58px;
+  height: 58px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  border-radius: 16px;
 }
 
-.indicador-icon.success{
-
-    background:#eaf8ef;
-    color:#3ba755;
-
+.indicador-icon.success {
+  background: #eaf8ef;
+  color: #3ba755;
 }
 
-.indicador-icon.primary{
-
-    background:#eaf2ff;
-    color:#2563eb;
-
+.indicador-icon.primary {
+  background: #eaf2ff;
+  color: #2563eb;
 }
 
-.indicador-icon.warning{
-
-    background:#fff7e6;
-    color:#f59e0b;
-
+.indicador-icon.warning {
+  background: #fff7e6;
+  color: #f59e0b;
 }
 
-.indicador-card h4{
-
-    margin:0;
-    font-size:15px;
-    color:#64748b;
-    font-weight:600;
-
+.indicador-card > div:last-child {
+  min-width: 0;
 }
 
-.indicador-card h2{
+.indicador-card h4 {
+  margin: 0;
 
-    margin:4px 0;
-    color:#12376a;
-    font-size:22px;
-    font-weight:700;
+  color: #64748b;
 
+  font-size: 15px;
+  font-weight: 600;
 }
 
-.indicador-card span{
+.indicador-card h2 {
+  margin: 4px 0;
 
-    color:#94a3b8;
-    font-size:14px;
+  color: #12376a;
 
+  font-size: 22px;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
 }
 
-/*=========================
-      GRID CENTRAL
-=========================*/
+.indicador-card span {
+  color: #94a3b8;
 
-.indicadores-grid{
-
-    display:grid;
-    grid-template-columns:1.3fr .9fr;
-    gap:20px;
-    align-items:start;
-
+  font-size: 14px;
+  line-height: 1.4;
 }
 
-.indicadores-panel{
 
-    background:#fff;
-    border-radius:18px;
-    padding:24px;
-    box-shadow:0 12px 28px rgba(15,23,42,.08);
-    border:1px solid #edf2f7;
+/* ==========================================================
+   CONTENIDO PRINCIPAL
+========================================================== */
 
+.indicadores-contenido {
+  width: 100%;
+  min-width: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(0, 1fr);
+
+  gap: 24px;
+
+  align-items: start;
 }
 
-/*=========================
-      HEADER PANEL
-=========================*/
+.indicadores-izquierda,
+.indicadores-derecha {
+  min-width: 0;
 
-.panel-header{
+  display: flex;
+  flex-direction: column;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:24px;
-
+  gap: 24px;
 }
 
-.panel-header h3{
 
-    margin:0;
-    color:#173d70;
+/* ==========================================================
+   GRID CENTRAL LEGACY
+========================================================== */
 
+.indicadores-grid {
+  width: 100%;
+  min-width: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.3fr)
+    minmax(0, 0.9fr);
+
+  gap: 20px;
+
+  align-items: start;
 }
 
-.panel-header span{
+.indicadores-panel {
+  min-width: 0;
 
-    color:#94a3b8;
-    font-size:14px;
+  padding: 24px;
 
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #edf2f7;
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.08);
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
-/*=========================
-      MINI CHART
-=========================*/
 
-.mini-chart{
-
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-around;
-
-    height:180px;
-
-    padding:10px 8px 0;
-
-}
-
-.chart-item{
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-
-}
-
-.chart-bar{
-
-    width:28px;
-
-    background:linear-gradient(
-        180deg,
-        #2f80ed,
-        #12376a
-    );
-
-    border-radius:12px 12px 4px 4px;
-
-    transition:.3s;
-
-}
-
-.chart-bar:hover{
-
-    opacity:.85;
-
-}
-
-.chart-item span{
-
-    color:#64748b;
-    font-size:13px;
-
-}
-
-/*=========================
-      ESTADO
-=========================*/
-
-.estado-lista{
-
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-
-}
-
-.estado-item{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:14px 0;
-
-    border-bottom:1px solid #edf2f7;
-
-}
-
-.estado-item:last-child{
-
-    border:none;
-
-}
-
-.estado-item strong{
-
-    display:block;
-    color:#173d70;
-
-}
-
-.estado-item span{
-
-    color:#94a3b8;
-    font-size:13px;
-
-}
-
-.estado-ok{
-
-    color:#3ba755;
-
-}
-
-.estado-warning{
-
-    color:#f59e0b;
-
-}
-
-/*=========================
-      TABLA
-=========================*/
-
-.tabla-indicadores{
-
-    width:100%;
-    border-collapse:collapse;
-
-}
-
-.tabla-indicadores thead{
-
-    background:#12376a;
-
-}
-
-.tabla-indicadores th{
-
-    color:#fff;
-    text-align:left;
-    padding:16px;
-
-    font-size:14px;
-    font-weight:600;
-
-}
-
-.tabla-indicadores td{
-
-    padding:16px;
-    border-bottom:1px solid #edf2f7;
-
-    color:#334155;
-
-}
-
-.tabla-indicadores tbody tr{
-
-    transition:.25s;
-
-}
-
-.tabla-indicadores tbody tr:hover{
-
-    background:#f8fafc;
-
-}
-
-/*=========================
-      RESPONSIVE
-=========================*/
-
-@media(max-width:1200px){
-
-    .indicadores-cards{
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-    .indicadores-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-}
-
-@media(max-width:768px){
-
-    .indicadores{
-
-    margin-left:230px;
-    margin-top:82px;
-    padding:28px;
-    background:#f5f7fb;
-    min-height:calc(100vh - 82px);
-
-}
-
-    .indicadores-cards{
-
-        grid-template-columns:1fr;
-
-    }
-
-}
-
-/*======================================================
-=            LAYOUT GENERAL DEL DASHBOARD
-======================================================*/
-
-.indicadores-dashboard{
-
-    display:flex;
-    flex-direction:column;
-    gap:28px;
-
-}
-
-.indicadores-contenido{
-
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:24px;
-    align-items:start;
-
-}
-
-.indicadores-izquierda{
-
-    display:flex;
-    flex-direction:column;
-    gap:24px;
-
-}
-
-.indicadores-derecha{
-
-    display:flex;
-    flex-direction:column;
-    gap:24px;
-
-}
-
-/*======================================================
-=            TARJETAS
-======================================================*/
+/* ==========================================================
+   TARJETAS PRINCIPALES
+========================================================== */
 
 .indicadores-chart,
 .estado-sistema,
-.actividad-reciente{
+.actividad-reciente {
+  width: 100%;
+  min-width: 0;
 
-    background:#fff;
+  padding: 28px;
 
-    border-radius:22px;
+  box-sizing: border-box;
 
-    padding:28px;
+  background: #ffffff;
 
-    border:1px solid #edf2f7;
+  border: 1px solid #edf2f7;
+  border-radius: 22px;
 
-    box-shadow:
+  box-shadow:
+    0 12px 35px rgba(15, 23, 42, 0.05);
 
-        0 12px 35px rgba(15,23,42,.05);
-
-    transition:.25s;
-
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .indicadores-chart:hover,
 .estado-sistema:hover,
-.actividad-reciente:hover{
+.actividad-reciente:hover {
+  transform: translateY(-4px);
 
-    transform:translateY(-4px);
-
-    box-shadow:
-
-        0 22px 45px rgba(15,23,42,.10);
-
+  box-shadow:
+    0 22px 45px rgba(15, 23, 42, 0.1);
 }
 
-/*======================================================
-=            HEADER TARJETAS
-======================================================*/
 
-.indicadores-card-header{
+/* ==========================================================
+   HEADER DE PANELES
+========================================================== */
 
-    display:flex;
+.panel-header,
+.indicadores-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    justify-content:space-between;
+  gap: 18px;
 
-    align-items:center;
+  min-width: 0;
 
-    margin-bottom:24px;
-
+  margin-bottom: 24px;
 }
 
-.indicadores-card-header h3{
-
-    margin:0;
-
-    color:#123c74;
-
-    font-size:22px;
-
-    font-weight:700;
-
+.panel-header > div,
+.indicadores-card-header > div {
+  min-width: 0;
 }
 
-.indicadores-card-header span{
+.panel-header h3,
+.indicadores-card-header h3 {
+  margin: 0;
 
-    display:block;
+  color: #123c74;
 
-    margin-top:6px;
-
-    color:#7b8794;
-
-    font-size:14px;
-
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-/*======================================================
-=            GRAFICA
-======================================================*/
+.panel-header span,
+.indicadores-card-header span {
+  display: block;
 
-.grafica-falsa{
+  margin-top: 6px;
 
-    display:flex;
+  color: #7b8794;
 
-    flex-direction:column;
-
-    gap:20px;
-
+  font-size: 14px;
+  line-height: 1.45;
 }
 
-.linea-grafica{
 
-    height:240px;
+/* ==========================================================
+   MINI CHART
+========================================================== */
 
-    display:flex;
+.mini-chart {
+  height: 180px;
 
-    align-items:flex-end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
 
-    justify-content:space-between;
+  gap: 8px;
 
+  padding: 10px 8px 0;
+
+  box-sizing: border-box;
 }
 
-.linea-grafica span{
+.chart-item {
+  min-width: 0;
 
-    width:48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    border-radius:14px 14px 0 0;
+  gap: 10px;
+}
 
-    background:linear-gradient(
+.chart-bar {
+  width: 28px;
 
-        to top,
+  max-width: 100%;
 
-        #1f4b87,
-
-        #64b5ff
-
+  background:
+    linear-gradient(
+      180deg,
+      #2f80ed,
+      #12376a
     );
 
-    transition:.30s;
+  border-radius: 12px 12px 4px 4px;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.chart-bar:hover {
+  opacity: 0.85;
+
+  transform: scaleY(1.04);
+}
+
+.chart-item span {
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* ==========================================================
+   GRÁFICA PRINCIPAL
+========================================================== */
+
+.grafica-falsa {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.linea-grafica {
+  width: 100%;
+  min-width: 0;
+  height: 240px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.linea-grafica span {
+  flex: 1 1 0;
+
+  width: auto;
+  max-width: 48px;
+  min-width: 12px;
+
+  border-radius: 14px 14px 0 0;
+
+  background:
+    linear-gradient(
+      to top,
+      #1f4b87,
+      #64b5ff
+    );
+
+  transform-origin: bottom;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.linea-grafica span:hover {
+  transform: scaleY(1.08);
+}
+
+.dias-grafica {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.dias-grafica label {
+  flex: 1;
+
+  min-width: 0;
+
+  color: #7d8b9f;
+
+  font-size: 14px;
+  text-align: center;
+}
+
+
+/* ==========================================================
+   ESTADO DEL SISTEMA
+========================================================== */
+
+.estado-lista {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.estado-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 16px;
+
+  min-width: 0;
+
+  padding: 16px;
+
+  border-bottom: 1px solid #edf2f7;
+  border-radius: 14px;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.estado-item:last-child {
+  border-bottom: none;
+}
+
+.estado-item:hover {
+  background: #f7f9fc;
+}
+
+.estado-item > div {
+  min-width: 0;
+}
+
+.estado-item strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #123c74;
+
+  overflow-wrap: anywhere;
+}
+
+.estado-item span {
+  color: #94a3b8;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.estado-icono {
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+}
+
+.estado-icono.ok {
+  background: #e9f8ef;
+  color: #2e9b4d;
+}
+
+.estado-icono.warning {
+  background: #fff3df;
+  color: #ff9800;
+}
+
+.estado-icono.info {
+  background: #e8f1ff;
+  color: #2563eb;
+}
+
+.estado-ok {
+  color: #3ba755;
+}
+
+.estado-warning {
+  color: #f59e0b;
+}
+
+
+/* ==========================================================
+   ACTIVIDAD RECIENTE
+========================================================== */
+
+.actividad-lista {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.actividad-item {
+  display: grid;
+
+  grid-template-columns:
+    50px
+    minmax(0, 1fr)
+    auto;
+
+  gap: 18px;
+
+  align-items: center;
+
+  min-width: 0;
+
+  padding: 14px;
+
+  border-radius: 14px;
+
+  transition: background-color 0.25s ease;
+}
+
+.actividad-item:hover {
+  background: #f8fafc;
+}
+
+.actividad-icono {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+}
+
+.actividad-icono.success {
+  background: #eaf9ef;
+  color: #30a14e;
+}
+
+.actividad-icono.warning {
+  background: #fff4e5;
+  color: #ff9800;
+}
+
+.actividad-icono.primary {
+  background: #e8f1ff;
+  color: #2563eb;
+}
+
+.actividad-info {
+  min-width: 0;
+}
+
+.actividad-info strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #123c74;
+
+  overflow-wrap: anywhere;
+}
+
+.actividad-info span {
+  color: #7b8794;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.actividad-item small {
+  color: #94a3b8;
+
+  white-space: nowrap;
+}
+
+
+/* ==========================================================
+   TABLA DE INDICADORES
+========================================================== */
+
+.indicadores-panel {
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #8fa2b5 transparent;
+}
+
+.indicadores-panel::-webkit-scrollbar {
+  height: 7px;
+}
+
+.indicadores-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.indicadores-panel::-webkit-scrollbar-thumb {
+  background: #8fa2b5;
+
+  border-radius: 999px;
+}
+
+.tabla-indicadores {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.tabla-indicadores thead {
+  background: #12376a;
+}
+
+.tabla-indicadores th {
+  padding: 16px;
+
+  color: #ffffff;
+
+  text-align: left;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.tabla-indicadores td {
+  padding: 16px;
+
+  border-bottom: 1px solid #edf2f7;
+
+  color: #334155;
+}
+
+.tabla-indicadores tbody tr {
+  transition: background-color 0.25s ease;
+}
+
+.tabla-indicadores tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+/* ==========================================================
+   MODO OSCURO GANUS - INDICADORES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .indicadores {
+  background: #07111f;
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .indicadores h1,
+[data-ganus-theme="oscuro"] .indicadores h2,
+[data-ganus-theme="oscuro"] .indicadores h3,
+[data-ganus-theme="oscuro"] .indicadores h4,
+[data-ganus-theme="oscuro"] .indicadores strong {
+  color: #f8fafc;
+}
+
+
+/* ==========================================================
+   MODO OSCURO - TARJETAS SUPERIORES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .indicador-card {
+  background: #111f31;
+
+  border-color: #293d54;
+
+  box-shadow: none;
+}
+
+[data-ganus-theme="oscuro"] .indicador-card h4 {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"] .indicador-card h2 {
+  color: #84cc3f;
+}
+
+[data-ganus-theme="oscuro"] .indicador-card span {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"] .indicador-icon.success,
+[data-ganus-theme="oscuro"] .indicador-icon.primary,
+[data-ganus-theme="oscuro"] .indicador-icon.warning {
+  background: #18283a;
+}
+
+[data-ganus-theme="oscuro"] .indicador-icon.success {
+  color: #84cc3f;
+}
+
+[data-ganus-theme="oscuro"] .indicador-icon.primary {
+  color: #8db8e8;
+}
+
+[data-ganus-theme="oscuro"] .indicador-icon.warning {
+  color: #e9b949;
+}
+
+
+/* ==========================================================
+   MODO OSCURO - PANELES
+========================================================== */
+
+[data-ganus-theme="oscuro"] .indicadores-panel,
+[data-ganus-theme="oscuro"] .indicadores-chart,
+[data-ganus-theme="oscuro"] .estado-sistema,
+[data-ganus-theme="oscuro"] .actividad-reciente {
+  background: #111f31;
+
+  border-color: #293d54;
+
+  box-shadow: none;
+}
+
+[data-ganus-theme="oscuro"] .panel-header h3,
+[data-ganus-theme="oscuro"] .indicadores-card-header h3 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .panel-header span,
+[data-ganus-theme="oscuro"] .indicadores-card-header span {
+  color: #8da7c4;
+}
+
+
+/* ==========================================================
+   MODO OSCURO - GRÁFICAS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .chart-item span,
+[data-ganus-theme="oscuro"] .dias-grafica label {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"] .chart-bar {
+  background:
+    linear-gradient(
+      180deg,
+      #64b5ff,
+      #1f4b87
+    );
+}
+
+[data-ganus-theme="oscuro"] .linea-grafica span {
+  background:
+    linear-gradient(
+      to top,
+      #1f4b87,
+      #64b5ff
+    );
+}
+
+
+/* ==========================================================
+   MODO OSCURO - ESTADO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .estado-item {
+  border-bottom-color: #293d54;
+}
+
+[data-ganus-theme="oscuro"] .estado-item:hover {
+  background: #15263a;
+}
+
+[data-ganus-theme="oscuro"] .estado-item strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .estado-item span {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"] .estado-icono.ok,
+[data-ganus-theme="oscuro"] .estado-icono.warning,
+[data-ganus-theme="oscuro"] .estado-icono.info {
+  background: #18283a;
+}
+
+[data-ganus-theme="oscuro"] .estado-icono.ok {
+  color: #84cc3f;
+}
+
+[data-ganus-theme="oscuro"] .estado-icono.warning {
+  color: #e9b949;
+}
+
+[data-ganus-theme="oscuro"] .estado-icono.info {
+  color: #8db8e8;
+}
+
+
+/* ==========================================================
+   MODO OSCURO - ACTIVIDAD
+========================================================== */
+
+[data-ganus-theme="oscuro"] .actividad-item:hover {
+  background: #15263a;
+}
+
+[data-ganus-theme="oscuro"] .actividad-info strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .actividad-info span,
+[data-ganus-theme="oscuro"] .actividad-item small {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"] .actividad-icono.success,
+[data-ganus-theme="oscuro"] .actividad-icono.warning,
+[data-ganus-theme="oscuro"] .actividad-icono.primary {
+  background: #18283a;
+}
+
+[data-ganus-theme="oscuro"] .actividad-icono.success {
+  color: #84cc3f;
+}
+
+[data-ganus-theme="oscuro"] .actividad-icono.warning {
+  color: #e9b949;
+}
+
+[data-ganus-theme="oscuro"] .actividad-icono.primary {
+  color: #8db8e8;
+}
+
+
+/* ==========================================================
+   MODO OSCURO - TABLA
+========================================================== */
+
+[data-ganus-theme="oscuro"] .indicadores-panel {
+  scrollbar-color: #5d7690 transparent;
+}
+
+[data-ganus-theme="oscuro"]
+.indicadores-panel::-webkit-scrollbar-thumb {
+  background: #5d7690;
+}
+
+[data-ganus-theme="oscuro"] .tabla-indicadores {
+  background: #111f31;
+}
+
+[data-ganus-theme="oscuro"] .tabla-indicadores thead {
+  background: #173b64;
+}
+
+[data-ganus-theme="oscuro"] .tabla-indicadores td {
+  border-bottom-color: #293d54;
+
+  color: #c5d3e3;
+}
+
+[data-ganus-theme="oscuro"]
+.tabla-indicadores tbody tr:hover {
+  background: #15263a;
+}
+
+
+/* ==========================================================
+   RESPONSIVE - TABLET
+========================================================== */
+
+@media (max-width: 1200px) {
+
+  .indicadores-cards {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .indicadores-contenido,
+  .indicadores-grid {
+    grid-template-columns: 1fr;
+  }
 
 }
 
-.linea-grafica span:hover{
 
-    transform:scaleY(1.08);
+/* ==========================================================
+   RESPONSIVE - SIDEBAR COLAPSADO
+========================================================== */
 
-}
+@media (max-width: 900px) {
 
-.dias-grafica{
+  .indicadores {
+    width: 100%;
 
-    display:flex;
+    margin-left: 0;
 
-    justify-content:space-between;
-
-}
-
-.dias-grafica label{
-
-    color:#7d8b9f;
-
-    font-size:14px;
+    padding: 94px 20px 36px;
+  }
 
 }
 
-/*======================================================
-=            ESTADO SISTEMA
-======================================================*/
 
-.estado-lista{
+/* ==========================================================
+   RESPONSIVE - CELULAR
+========================================================== */
 
-    display:flex;
+@media (max-width: 650px) {
 
-    flex-direction:column;
+  .indicadores {
+    width: 100%;
+    max-width: 100%;
 
-    gap:14px;
+    margin-left: 0;
+
+    padding: 88px 15px 28px;
+
+    overflow-x: hidden;
+
+    gap: 22px;
+  }
+
+  .indicadores-dashboard {
+    width: 100%;
+
+    gap: 22px;
+  }
+
+  .indicadores-cards {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .indicador-card {
+    width: 100%;
+
+    min-height: 112px;
+
+    padding: 18px;
+
+    gap: 15px;
+  }
+
+  .indicador-icon {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 12px;
+  }
+
+  .indicador-card h4 {
+    font-size: 14px;
+  }
+
+  .indicador-card h2 {
+    font-size: 24px;
+  }
+
+  .indicador-card span {
+    font-size: 12px;
+  }
+
+  .indicadores-contenido,
+  .indicadores-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .indicadores-izquierda,
+  .indicadores-derecha {
+    gap: 18px;
+  }
+
+  .indicadores-chart,
+  .estado-sistema,
+  .actividad-reciente,
+  .indicadores-panel {
+    width: 100%;
+
+    padding: 18px;
+
+    border-radius: 14px;
+  }
+
+  .panel-header,
+  .indicadores-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+  }
+
+  .panel-header h3,
+  .indicadores-card-header h3 {
+    font-size: 19px;
+  }
+
+  .panel-header span,
+  .indicadores-card-header span {
+    font-size: 13px;
+  }
+
+  .mini-chart {
+    height: 180px;
+
+    gap: 5px;
+
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .chart-bar {
+    width: 20px;
+  }
+
+  .chart-item span {
+    font-size: 11px;
+  }
+
+  .linea-grafica {
+    height: 210px;
+
+    gap: 7px;
+  }
+
+  .linea-grafica span {
+    min-width: 8px;
+  }
+
+  .dias-grafica {
+    gap: 4px;
+  }
+
+  .dias-grafica label {
+    font-size: 11px;
+  }
+
+  .estado-item {
+    padding: 14px 10px;
+
+    gap: 12px;
+  }
+
+  .estado-icono {
+    width: 40px;
+    height: 40px;
+  }
+
+  .actividad-item {
+    grid-template-columns:
+      44px
+      minmax(0, 1fr);
+
+    gap: 12px;
+
+    padding: 12px 8px;
+  }
+
+  .actividad-item small {
+    grid-column: 2;
+
+    white-space: normal;
+  }
+
+  .actividad-icono {
+    width: 40px;
+    height: 40px;
+  }
+
+  .actividad-info strong {
+    font-size: 14px;
+  }
+
+  .actividad-info span,
+  .actividad-item small {
+    font-size: 12px;
+  }
+
+  .indicadores-panel:has(.tabla-indicadores) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .tabla-indicadores {
+    width: max-content;
+    min-width: 760px;
+  }
+
+  .tabla-indicadores th,
+  .tabla-indicadores td {
+    padding: 14px;
+
+    white-space: nowrap;
+  }
 
 }
 
-.estado-item{
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:16px;
-
-    border-radius:14px;
-
-    transition:.25s;
-
-}
-
-.estado-item:hover{
-
-    background:#f7f9fc;
-
-}
-
-.estado-item strong{
-
-    display:block;
-
-    color:#123c74;
-
-    margin-bottom:4px;
-
-}
-
-.estado-item span{
-
-    color:#94a3b8;
-
-    font-size:14px;
-
-}
-
-.estado-icono{
-
-    width:42px;
-
-    height:42px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:50%;
-
-}
-
-.estado-icono.ok{
-
-    background:#e9f8ef;
-
-    color:#2e9b4d;
-
-}
-
-.estado-icono.warning{
-
-    background:#fff3df;
-
-    color:#ff9800;
-
-}
-
-.estado-icono.info{
-
-    background:#e8f1ff;
-
-    color:#2563eb;
-
-}
-
-/*======================================================
-=            ACTIVIDAD
-======================================================*/
-
-.actividad-lista{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:18px;
-
-}
-
-.actividad-item{
-
-    display:grid;
-
-    grid-template-columns:50px 1fr auto;
-
-    gap:18px;
-
-    align-items:center;
-
-    padding:14px;
-
-    border-radius:14px;
-
-    transition:.25s;
-
-}
-
-.actividad-item:hover{
-
-    background:#f8fafc;
-
-}
-
-.actividad-icono{
-
-    width:44px;
-
-    height:44px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:50%;
-
-}
-
-.actividad-icono.success{
-
-    background:#eaf9ef;
-
-    color:#30a14e;
-
-}
-
-.actividad-icono.warning{
-
-    background:#fff4e5;
-
-    color:#ff9800;
-
-}
-
-.actividad-icono.primary{
-
-    background:#e8f1ff;
-
-    color:#2563eb;
-
-}
-
-.actividad-info strong{
-
-    display:block;
-
-    color:#123c74;
-
-    margin-bottom:4px;
-
-}
-
-.actividad-info span{
-
-    color:#7b8794;
-
-    font-size:14px;
-
-}
-
-.actividad-item small{
-
-    color:#94a3b8;
+/* ==========================================================
+   RESPONSIVE - CELULARES PEQUEÑOS
+========================================================== */
+
+@media (max-width: 430px) {
+
+  .indicadores {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .indicador-card {
+    padding: 16px;
+  }
+
+  .indicadores-chart,
+  .estado-sistema,
+  .actividad-reciente,
+  .indicadores-panel {
+    padding: 16px;
+  }
+
+  .linea-grafica {
+    gap: 5px;
+  }
+
+  .dias-grafica label {
+    font-size: 10px;
+  }
 
 }

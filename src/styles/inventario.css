@@ -1281,16 +1281,16 @@
    Paleta visual unificada con Configuración
 ========================================================== */
 
-[data-ganus-theme="dark"] .inventario {
+[data-ganus-theme="oscuro"] .inventario {
   background: #07111f;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .inventarioHeader h1 {
+[data-ganus-theme="oscuro"] .inventarioHeader h1 {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .inventarioHeader p {
+[data-ganus-theme="oscuro"] .inventarioHeader p {
   color: #8da7c4;
 }
 
@@ -1298,22 +1298,22 @@
    RESUMEN
 ========================================================== */
 
-[data-ganus-theme="dark"] .inventarioResumenCard {
+[data-ganus-theme="oscuro"] .inventarioResumenCard {
   background: #111f31;
   border-color: #293d54;
   box-shadow: none;
 }
 
-[data-ganus-theme="dark"] .inventarioResumenIcon {
+[data-ganus-theme="oscuro"] .inventarioResumenIcon {
   background: #18283a;
   color: #84cc3f;
 }
 
-[data-ganus-theme="dark"] .inventarioResumenCard span {
+[data-ganus-theme="oscuro"] .inventarioResumenCard span {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .inventarioResumenCard strong {
+[data-ganus-theme="oscuro"] .inventarioResumenCard strong {
   color: #f8fafc;
 }
 
@@ -1321,17 +1321,17 @@
    PANEL PRINCIPAL
 ========================================================== */
 
-[data-ganus-theme="dark"] .inventarioPanel {
+[data-ganus-theme="oscuro"] .inventarioPanel {
   background: #111f31;
   border-color: #293d54;
   box-shadow: none;
 }
 
-[data-ganus-theme="dark"] .inventarioPanelHeader h2 {
+[data-ganus-theme="oscuro"] .inventarioPanelHeader h2 {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .inventarioPanelHeader p {
+[data-ganus-theme="oscuro"] .inventarioPanelHeader p {
   color: #8da7c4;
 }
 
@@ -1339,27 +1339,27 @@
    FILTROS
 ========================================================== */
 
-[data-ganus-theme="dark"] .inventarioBuscador {
+[data-ganus-theme="oscuro"] .inventarioBuscador {
   background: #18283a;
   border-color: #293d54;
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .inventarioBuscador input {
+[data-ganus-theme="oscuro"] .inventarioBuscador input {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .inventarioBuscador input::placeholder {
+[data-ganus-theme="oscuro"] .inventarioBuscador input::placeholder {
   color: #6f89a5;
 }
 
-[data-ganus-theme="dark"] .inventarioFiltros select {
+[data-ganus-theme="oscuro"] .inventarioFiltros select {
   background: #18283a;
   border-color: #293d54;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .inventarioFiltros select option {
+[data-ganus-theme="oscuro"] .inventarioFiltros select option {
   background: #111f31;
   color: #f8fafc;
 }
@@ -1368,69 +1368,69 @@
    TABLA
 ========================================================== */
 
-[data-ganus-theme="dark"] .inventarioTablaContainer {
+[data-ganus-theme="oscuro"] .inventarioTablaContainer {
   border-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .inventarioTabla {
+[data-ganus-theme="oscuro"] .inventarioTabla {
   background: #111f31;
 }
 
-[data-ganus-theme="dark"] .inventarioTabla thead {
+[data-ganus-theme="oscuro"] .inventarioTabla thead {
   background: #18283a;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .inventarioTabla th {
+[data-ganus-theme="oscuro"] .inventarioTabla th {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .inventarioTabla td {
+[data-ganus-theme="oscuro"] .inventarioTabla td {
   color: #8da7c4;
   border-bottom-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .inventarioTabla tbody tr:hover {
+[data-ganus-theme="oscuro"] .inventarioTabla tbody tr:hover {
   background: #18283a;
 }
 
-[data-ganus-theme="dark"] .activoNombre strong,
-[data-ganus-theme="dark"] .activoIdentificador strong {
+[data-ganus-theme="oscuro"] .activoNombre strong,
+[data-ganus-theme="oscuro"] .activoIdentificador strong {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .activoNombre span,
-[data-ganus-theme="dark"] .activoClasificacion small,
-[data-ganus-theme="dark"] .activoIdentificador span {
+[data-ganus-theme="oscuro"] .activoNombre span,
+[data-ganus-theme="oscuro"] .activoClasificacion small,
+[data-ganus-theme="oscuro"] .activoIdentificador span {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .estadoActivo {
+[data-ganus-theme="oscuro"] .estadoActivo {
   color: #9bdd5d;
   background: rgba(132, 204, 63, 0.14);
 }
 
-[data-ganus-theme="dark"] .estadoInactivo {
+[data-ganus-theme="oscuro"] .estadoInactivo {
   color: #ff7b72;
   background: rgba(231, 76, 60, 0.14);
 }
 
-[data-ganus-theme="dark"] .accionVer {
+[data-ganus-theme="oscuro"] .accionVer {
   background: #18283a;
   color: #8db8e8;
 }
 
-[data-ganus-theme="dark"] .accionEditar {
+[data-ganus-theme="oscuro"] .accionEditar {
   background: rgba(132, 204, 63, 0.14);
   color: #84cc3f;
 }
 
-[data-ganus-theme="dark"] .accionDesactivar {
+[data-ganus-theme="oscuro"] .accionDesactivar {
   background: rgba(231, 76, 60, 0.14);
   color: #ff7b72;
 }
 
-[data-ganus-theme="dark"] .inventarioVacio {
+[data-ganus-theme="oscuro"] .inventarioVacio {
   color: #8da7c4 !important;
 }
 
@@ -1438,39 +1438,39 @@
    DETALLE Y FORMULARIO
 ========================================================== */
 
-[data-ganus-theme="dark"] .detalleActivo,
-[data-ganus-theme="dark"] .formularioActivo {
+[data-ganus-theme="oscuro"] .detalleActivo,
+[data-ganus-theme="oscuro"] .formularioActivo {
   background: #111f31;
   border: 1px solid #293d54;
 }
 
-[data-ganus-theme="dark"] .detalleActivoHeader,
-[data-ganus-theme="dark"] .formularioActivoHeader {
+[data-ganus-theme="oscuro"] .detalleActivoHeader,
+[data-ganus-theme="oscuro"] .formularioActivoHeader {
   background: #111f31;
   border-bottom-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .detalleActivoHeader h2,
-[data-ganus-theme="dark"] .formularioActivoHeader h2 {
+[data-ganus-theme="oscuro"] .detalleActivoHeader h2,
+[data-ganus-theme="oscuro"] .formularioActivoHeader h2 {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .detalleActivoHeader button,
-[data-ganus-theme="dark"] .cerrarFormularioActivo {
+[data-ganus-theme="oscuro"] .detalleActivoHeader button,
+[data-ganus-theme="oscuro"] .cerrarFormularioActivo {
   background: #18283a;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .detalleActivoContenido > div {
+[data-ganus-theme="oscuro"] .detalleActivoContenido > div {
   background: #18283a;
   border-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .detalleActivoContenido span {
+[data-ganus-theme="oscuro"] .detalleActivoContenido span {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .detalleActivoContenido strong {
+[data-ganus-theme="oscuro"] .detalleActivoContenido strong {
   color: #f8fafc;
 }
 
@@ -1478,40 +1478,40 @@
    FORMULARIO
 ========================================================== */
 
-[data-ganus-theme="dark"] .formularioActivoSeccion {
+[data-ganus-theme="oscuro"] .formularioActivoSeccion {
   border-bottom-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .formularioActivoSeccionTitulo > span {
+[data-ganus-theme="oscuro"] .formularioActivoSeccionTitulo > span {
   background: #18283a;
   color: #84cc3f;
 }
 
-[data-ganus-theme="dark"] .formularioActivoSeccionTitulo h3 {
+[data-ganus-theme="oscuro"] .formularioActivoSeccionTitulo h3 {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .formularioActivoSeccionTitulo p {
+[data-ganus-theme="oscuro"] .formularioActivoSeccionTitulo p {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .formularioActivoGrid label {
+[data-ganus-theme="oscuro"] .formularioActivoGrid label {
   color: #dce8f5;
 }
 
-[data-ganus-theme="dark"] .formularioActivoGrid input,
-[data-ganus-theme="dark"] .formularioActivoGrid select {
+[data-ganus-theme="oscuro"] .formularioActivoGrid input,
+[data-ganus-theme="oscuro"] .formularioActivoGrid select {
   background: #18283a;
   border-color: #293d54;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .formularioActivoGrid select option {
+[data-ganus-theme="oscuro"] .formularioActivoGrid select option {
   background: #111f31;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .btnCancelarActivo {
+[data-ganus-theme="oscuro"] .btnCancelarActivo {
   background: #18283a;
   border-color: #293d54;
   color: #f8fafc;
@@ -1521,69 +1521,69 @@
    RELACIONES ENTRE ACTIVOS
 ========================================================== */
 
-[data-ganus-theme="dark"] .relacionesActivo {
+[data-ganus-theme="oscuro"] .relacionesActivo {
   background: #111f31;
   border-top-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .relacionesActivoHeader span {
+[data-ganus-theme="oscuro"] .relacionesActivoHeader span {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .relacionesActivoHeader p {
+[data-ganus-theme="oscuro"] .relacionesActivoHeader p {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .relacionActivoItem {
+[data-ganus-theme="oscuro"] .relacionActivoItem {
   background: #18283a;
   border-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .relacionActivoInformacion span,
-[data-ganus-theme="dark"] .relacionActivoInformacion small {
+[data-ganus-theme="oscuro"] .relacionActivoInformacion span,
+[data-ganus-theme="oscuro"] .relacionActivoInformacion small {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .relacionActivoInformacion strong {
+[data-ganus-theme="oscuro"] .relacionActivoInformacion strong {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .relacionesActivoVacio {
+[data-ganus-theme="oscuro"] .relacionesActivoVacio {
   background: #18283a;
   border-color: #3a516b;
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .formularioRelacionActivo {
+[data-ganus-theme="oscuro"] .formularioRelacionActivo {
   background: #18283a;
   border-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .formularioRelacionHeader strong {
+[data-ganus-theme="oscuro"] .formularioRelacionHeader strong {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .formularioRelacionHeader button {
+[data-ganus-theme="oscuro"] .formularioRelacionHeader button {
   background: #111f31;
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .formularioRelacionGrid label {
+[data-ganus-theme="oscuro"] .formularioRelacionGrid label {
   color: #dce8f5;
 }
 
-[data-ganus-theme="dark"] .formularioRelacionGrid select {
+[data-ganus-theme="oscuro"] .formularioRelacionGrid select {
   background: #111f31;
   border-color: #293d54;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .formularioRelacionGrid select option {
+[data-ganus-theme="oscuro"] .formularioRelacionGrid select option {
   background: #111f31;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .btnCancelarRelacion {
+[data-ganus-theme="oscuro"] .btnCancelarRelacion {
   background: #111f31;
   border-color: #293d54;
   color: #f8fafc;
@@ -1593,81 +1593,81 @@
    ACTIVIDADES DEL ACTIVO
 ========================================================== */
 
-[data-ganus-theme="dark"] .actividadesActivo {
+[data-ganus-theme="oscuro"] .actividadesActivo {
   background: #111f31;
   border-top-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .actividadesActivoHeader span {
+[data-ganus-theme="oscuro"] .actividadesActivoHeader span {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .actividadesActivoHeader p {
+[data-ganus-theme="oscuro"] .actividadesActivoHeader p {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .actividadActivoItem {
+[data-ganus-theme="oscuro"] .actividadActivoItem {
   background: #18283a;
   border-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .actividadActivoTitulo strong {
+[data-ganus-theme="oscuro"] .actividadActivoTitulo strong {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .actividadActivoTitulo span {
+[data-ganus-theme="oscuro"] .actividadActivoTitulo span {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .actividadActivoInformacion p {
+[data-ganus-theme="oscuro"] .actividadActivoInformacion p {
   color: #dce8f5;
 }
 
-[data-ganus-theme="dark"] .actividadActivoInformacion small {
+[data-ganus-theme="oscuro"] .actividadActivoInformacion small {
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .actividadesActivoVacio {
+[data-ganus-theme="oscuro"] .actividadesActivoVacio {
   background: #18283a;
   border-color: #3a516b;
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .formularioActividadActivo {
+[data-ganus-theme="oscuro"] .formularioActividadActivo {
   background: #18283a;
   border-color: #293d54;
 }
 
-[data-ganus-theme="dark"] .formularioActividadHeader strong {
+[data-ganus-theme="oscuro"] .formularioActividadHeader strong {
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .formularioActividadHeader button {
+[data-ganus-theme="oscuro"] .formularioActividadHeader button {
   background: #111f31;
   color: #8da7c4;
 }
 
-[data-ganus-theme="dark"] .formularioActividadGrid label {
+[data-ganus-theme="oscuro"] .formularioActividadGrid label {
   color: #dce8f5;
 }
 
-[data-ganus-theme="dark"] .formularioActividadGrid input,
-[data-ganus-theme="dark"] .formularioActividadGrid select {
+[data-ganus-theme="oscuro"] .formularioActividadGrid input,
+[data-ganus-theme="oscuro"] .formularioActividadGrid select {
   background: #111f31;
   border-color: #293d54;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .formularioActividadGrid input::placeholder {
+[data-ganus-theme="oscuro"] .formularioActividadGrid input::placeholder {
   color: #6f89a5;
 }
 
-[data-ganus-theme="dark"] .formularioActividadGrid select option {
+[data-ganus-theme="oscuro"] .formularioActividadGrid select option {
   background: #111f31;
   color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .btnCancelarActividad {
+[data-ganus-theme="oscuro"] .btnCancelarActividad {
   background: #111f31;
   border-color: #293d54;
   color: #f8fafc;

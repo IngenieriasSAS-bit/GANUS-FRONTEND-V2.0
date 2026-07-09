@@ -251,3 +251,363 @@
     width: 100%;
   }
 }
+
+/* ==========================================================
+   KNOWLEDGE STUDIO - PRINCIPIOS DE NEGOCIO - MODO OSCURO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principios-heading h1 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-heading p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-back {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-back:hover {
+  color: #ffc45e;
+  background: #203750;
+  border-color: #7b6337;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-create {
+  background: #1f4b82;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-create:hover {
+  background: #285d9d;
+}
+
+
+/* ==========================================================
+   RESUMEN
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principios-summary-card {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-summary-card span {
+  color: #dcecff;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-summary-card strong {
+  color: #70d400;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-summary-card small {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   PANEL CATÁLOGO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principios-panel {
+  background: #0f1f33;
+  border-color: #233b55;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-panel-header {
+  border-bottom-color: #233b55;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-panel-header h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-panel-header p {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   BUSCADOR
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principios-search {
+  color: #8eb8e5;
+  background: #0b1929;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-search:focus-within {
+  color: #ffc45e;
+  background: #102238;
+  border-color: #8f713b;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-search input {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-search input::placeholder {
+  color: #6f91b6;
+}
+
+
+/* ==========================================================
+   FILTRO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principios-filter {
+  color: #8eb8e5;
+  background: #0b1929;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-filter:hover,
+[data-ganus-theme="oscuro"] .knowledge-principios-filter--active {
+  color: #ffc45e;
+  background: #2d281c;
+  border-color: #8f713b;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-filter-menu {
+  background: #102238;
+  border-color: #29445f;
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-filter-menu button {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-filter-menu button:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-filter-menu button.active {
+  color: #ffc45e;
+  background: #2d281c;
+}
+
+
+/* ==========================================================
+   LISTA Y TARJETAS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principio-card {
+  background: #0b1929;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-card:hover {
+  background: #102238;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-title strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-title span {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-content > p {
+  color: #9bc8f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-meta {
+  border-top-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-principio-meta > span:not(.knowledge-principio-status) {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-meta > span strong {
+  color: #dcecff;
+}
+
+
+/* ==========================================================
+   ESTADOS
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principio-status--vigente {
+  color: #5ee28d;
+  background: rgba(37, 168, 90, 0.16);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-status--borrador {
+  color: #ffbf52;
+  background: rgba(233, 149, 10, 0.16);
+}
+
+
+/* ==========================================================
+   ACCIONES DE TARJETA
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principio-actions {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-actions:hover {
+  color: #ffffff;
+  background: #172b42;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-menu {
+  background: #102238;
+  border-color: #29445f;
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-menu button {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principio-menu button:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-principio-menu
+.knowledge-principio-menu-delete {
+  color: #ff858f;
+}
+
+[data-ganus-theme="oscuro"]
+.knowledge-principio-menu
+.knowledge-principio-menu-delete:hover {
+  color: #ffadb4;
+  background: #3a1f29;
+}
+
+
+/* ==========================================================
+   ESTADO VACÍO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .knowledge-principios-empty {
+  color: #ffc45e;
+  background: #0b1929;
+  border-color: #3a536d;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-empty strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .knowledge-principios-empty span {
+  color: #7fa9d8;
+}
+
+
+/* ==========================================================
+   MODAL NUEVO / EDITAR PRINCIPIO
+========================================================== */
+
+[data-ganus-theme="oscuro"] .nuevo-principio-overlay {
+  background: rgba(2, 10, 20, 0.76);
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-modal {
+  background: #0f1f33;
+  border-color: #29445f;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-header {
+  border-bottom-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-heading h2 {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-heading p {
+  color: #7fa9d8;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-close {
+  color: #8eb8e5;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-close:hover {
+  color: #ffffff;
+  background: #1a3048;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-form label span {
+  color: #b9d7f5;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-form input,
+[data-ganus-theme="oscuro"] .nuevo-principio-form textarea,
+[data-ganus-theme="oscuro"] .nuevo-principio-form select {
+  color: #f8fafc;
+  background: #0b1929;
+
+  border-color: #29445f;
+
+  color-scheme: dark;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-form input::placeholder,
+[data-ganus-theme="oscuro"] .nuevo-principio-form textarea::placeholder {
+  color: #6f91b6;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-form input:focus,
+[data-ganus-theme="oscuro"] .nuevo-principio-form textarea:focus,
+[data-ganus-theme="oscuro"] .nuevo-principio-form select:focus {
+  border-color: #d09a3b;
+
+  box-shadow:
+    0 0 0 3px rgba(233, 149, 10, 0.16);
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-footer {
+  border-top-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-cancel {
+  color: #dcecff;
+  background: #172b42;
+  border-color: #29445f;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-cancel:hover {
+  color: #ffffff;
+  background: #203750;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-save {
+  color: #ffffff;
+  background: #1f4b82;
+  border-color: #1f4b82;
+}
+
+[data-ganus-theme="oscuro"] .nuevo-principio-save:hover {
+  background: #285d9d;
+  border-color: #285d9d;
+}

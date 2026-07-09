@@ -14,25 +14,25 @@
    GANUS - MODO OSCURO RESUMEN ORGANIZACIÓN
 ========================================================== */
 
-[data-ganus-theme="dark"] .organizacion-resumen {
+[data-ganus-theme="oscuro"] .organizacion-resumen {
     background: transparent;
 }
 
-[data-ganus-theme="dark"] .organizacion-resumen > * {
+[data-ganus-theme="oscuro"] .organizacion-resumen > * {
     background: #111f31;
     border-color: #293b50;
     color: #f8fafc;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
 }
 
-[data-ganus-theme="dark"] .organizacion-resumen h2,
-[data-ganus-theme="dark"] .organizacion-resumen h3,
-[data-ganus-theme="dark"] .organizacion-resumen strong {
+[data-ganus-theme="oscuro"] .organizacion-resumen h2,
+[data-ganus-theme="oscuro"] .organizacion-resumen h3,
+[data-ganus-theme="oscuro"] .organizacion-resumen strong {
     color: #f8fafc;
 }
 
-[data-ganus-theme="dark"] .organizacion-resumen p,
-[data-ganus-theme="dark"] .organizacion-resumen span {
+[data-ganus-theme="oscuro"] .organizacion-resumen p,
+[data-ganus-theme="oscuro"] .organizacion-resumen span {
     color: #8da7c4;
 }
 
@@ -41,4 +41,33 @@
         background-color 0.25s ease,
         border-color 0.25s ease,
         color 0.25s ease;
+}
+
+/* ==========================================================
+   RESPONSIVE RESUMEN ORGANIZACIÓN
+========================================================== */
+
+.organizacion-resumen {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .organizacion-resumen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .organizacion-resumen {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .organizacion-resumen > * {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
 }

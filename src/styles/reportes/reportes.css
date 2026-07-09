@@ -7,7 +7,7 @@
 .reportes-shell__main {
   min-width: 0;
   min-height: 100vh;
-  margin-left: 260px;
+  margin-left: 300px;
   background: #f4f7fb;
 }
 
@@ -407,5 +407,310 @@
   .reportes-resumen,
   .reportes-filtros {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================
+   MODO OSCURO - REPORTES GANUS
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-shell,
+html[data-ganus-theme="oscuro"] .reportes-shell__main,
+html[data-ganus-theme="oscuro"] .reportes-page {
+  background: #071426;
+  color: #ffffff;
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-header h1 {
+  color: #ffffff;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-header p {
+  color: #7fa9dc;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-header__eyebrow {
+  color: #9b65ff;
+}
+
+
+/* ==========================================================
+   ESTADO SUPERIOR
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-header__estado {
+  background: #102238;
+  border-color: #203d5e;
+  box-shadow: none;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-header__estado > span {
+  color: #35c978;
+  background: #123b2c;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-header__estado strong {
+  color: #ffffff;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-header__estado small {
+  color: #72a6df;
+}
+
+
+/* ==========================================================
+   TARJETAS DE RESUMEN
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-resumen__card {
+  background: #102238;
+  border-color: #203d5e;
+  box-shadow: none;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-resumen__card strong {
+  color: #ffffff;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-resumen__card p {
+  color: #7fa9dc;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-resumen__icono {
+  color: #a56cff;
+  background: #26194a;
+}
+
+
+/* ==========================================================
+   PANEL PRINCIPAL
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-panel {
+  background: #102238;
+  border-color: #203d5e;
+  box-shadow: none;
+}
+
+
+/* ==========================================================
+   CABECERA DEL PANEL
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-panel__header {
+  background: #102238;
+  border-color: #203d5e;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-panel__header > svg {
+  color: #a56cff;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-panel__header span {
+  color: #79a6d9;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-panel__header h2 {
+  color: #ffffff;
+}
+
+
+/* ==========================================================
+   FILTROS
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-filtros {
+  background: #0d1d31;
+  border-color: #203d5e;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-filtro label {
+  color: #9bc4ef;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-filtro__input,
+html[data-ganus-theme="oscuro"] .reportes-filtro__select {
+  color: #7fa9dc;
+  background: #102238;
+  border-color: #294766;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-filtro__input input,
+html[data-ganus-theme="oscuro"] .reportes-filtro__select select {
+  color: #ffffff;
+  background: transparent;
+}
+
+html[data-ganus-theme="oscuro"]
+  .reportes-filtro__input
+  input::placeholder {
+  color: #6f97c3;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-filtro > select {
+  color: #ffffff;
+  background: #102238;
+  border-color: #294766;
+
+  color-scheme: dark;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-filtro > select option {
+  color: #ffffff;
+  background: #102238;
+}
+
+
+/* ==========================================================
+   BOTÓN LIMPIAR
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-limpiar {
+  color: #9bc4ef;
+  background: #102238;
+  border-color: #294766;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-limpiar:hover {
+  color: #ffffff;
+  background: #173653;
+  border-color: #37628e;
+}
+
+
+/* ==========================================================
+   TABLA
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-tabla {
+  background: #102238;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-tabla th {
+  color: #79a6d9;
+  background: #0d1d31;
+  border-color: #203d5e;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-tabla td {
+  color: #b5d2ef;
+  border-color: #203d5e;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-tabla tbody tr {
+  background: #102238;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-tabla tbody tr:hover {
+  background: #142a44;
+}
+
+
+/* ==========================================================
+   REPORTE
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-tabla__reporte > span {
+  color: #7eb7ef;
+  background: #162d47;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-tabla__reporte strong {
+  color: #ffffff;
+}
+
+
+/* ==========================================================
+   ESTADO
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-tabla__estado {
+  color: #55dd91;
+  background: #123b2c;
+}
+
+
+/* ==========================================================
+   BOTÓN DESCARGAR
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-descargar {
+  color: #9bc4ef;
+  background: #0d1d31;
+  border-color: #294766;
+}
+
+html[data-ganus-theme="oscuro"] .reportes-descargar:hover {
+  color: #ffffff;
+  background: #174a80;
+  border-color: #245d98;
+}
+
+
+/* ==========================================================
+   ESTADO VACÍO
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .reportes-vacio {
+  color: #7fa9dc;
+}
+
+
+/* ==========================================================
+   SCROLL TABLA
+========================================================== */
+
+html[data-ganus-theme="oscuro"]
+  .reportes-tabla__contenedor::-webkit-scrollbar {
+  height: 7px;
+}
+
+html[data-ganus-theme="oscuro"]
+  .reportes-tabla__contenedor::-webkit-scrollbar-track {
+  background: #09182a;
+}
+
+html[data-ganus-theme="oscuro"]
+  .reportes-tabla__contenedor::-webkit-scrollbar-thumb {
+  background: #294766;
+  border-radius: 10px;
+}
+
+html[data-ganus-theme="oscuro"]
+  .reportes-tabla__contenedor::-webkit-scrollbar-thumb:hover {
+  background: #37628e;
+}
+
+
+/* ==========================================================
+   RESPONSIVE OSCURO
+========================================================== */
+
+@media (max-width: 900px) {
+  html[data-ganus-theme="oscuro"] .reportes-shell,
+  html[data-ganus-theme="oscuro"] .reportes-shell__main,
+  html[data-ganus-theme="oscuro"] .reportes-page {
+    background: #071426;
+  }
+}
+
+@media (max-width: 650px) {
+  html[data-ganus-theme="oscuro"] .reportes-resumen__card {
+    background: #102238;
+    border-color: #203d5e;
+  }
+
+  html[data-ganus-theme="oscuro"] .reportes-panel {
+    background: #102238;
+    border-color: #203d5e;
+  }
+
+  html[data-ganus-theme="oscuro"] .reportes-filtros {
+    background: #0d1d31;
   }
 }
