@@ -17,6 +17,8 @@ import Tareas from "./pages/Tareas";
 import Alertas from "./pages/Alertas";
 import Indicadores from "./pages/Indicadores";
 import FieldEngine from "./pages/FieldEngine";
+import DynamicFormCapture from "./pages/DynamicFormCapture";
+import FieldEngineTemplates from "./pages/FieldEngineTemplates";
 import Make from "./pages/Make";
 import Operacion from "./pages/Operacion";
 import Knowledge from "./pages/Knowledge";
@@ -146,14 +148,32 @@ export default function App() {
   }
 />
 
-        <Route
-          path="/field-engine"
-          element={
-            <ProtectedRoute>
-              <FieldEngine />
-            </ProtectedRoute>
-          }
-        />
+<Route
+  path="/field-engine"
+  element={
+    <ProtectedRoute>
+      <FieldEngineTemplates />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/field-engine/capture/:templateId"
+  element={
+    <ProtectedRoute>
+      <DynamicFormCapture />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/field-engine/:templateId"
+  element={
+    <ProtectedRoute>
+      <FieldEngine />
+    </ProtectedRoute>
+  }
+/>
 
         <Route
           path="/make"

@@ -1,95 +1,115 @@
 import { useRef, useState } from "react";
+
 import {
   ArrowUp,
   BellRing,
-  Bot,
   Boxes,
   ChartNoAxesCombined,
   CheckCircle2,
   ClipboardList,
+  Compass,
+  FileSearch2,
+  Gauge,
   Lightbulb,
-  RotateCcw,
-  Sparkles,
+  RefreshCw,
+  ShieldAlert,
+  Target,
 } from "lucide-react";
 
 import Sidebar from "../layouts/Sidebar";
 import Navbar from "../layouts/Navbar";
 
 import { obtenerRespuestaAdvisory } from "../services/advisoryService";
+
 import "../styles/advisory/advisory.css";
 
-const consultasSugeridas = [
+const areasAnalisis = [
   {
-    id: 1,
+    id: "estado",
     icono: ChartNoAxesCombined,
     titulo: "Estado general",
-    pregunta: "¿Cuál es el estado general de la operación?",
+    descripcion: "Visión consolidada de la operación",
+    consulta: "¿Cuál es el estado general de la operación?",
   },
   {
-    id: 2,
+    id: "alertas",
     icono: BellRing,
     titulo: "Alertas y riesgos",
-    pregunta: "¿Qué alertas o riesgos debo priorizar?",
+    descripcion: "Situaciones que requieren atención",
+    consulta: "¿Qué alertas o riesgos debo priorizar?",
   },
   {
-    id: 3,
+    id: "actividades",
     icono: ClipboardList,
     titulo: "Actividades",
-    pregunta: "¿Qué actividades requieren seguimiento?",
+    descripcion: "Seguimiento de ejecución operativa",
+    consulta: "¿Qué actividades requieren seguimiento?",
   },
   {
-    id: 4,
+    id: "inventario",
     icono: Boxes,
     titulo: "Inventario",
-    pregunta: "¿Qué debo revisar en el inventario?",
+    descripcion: "Control y trazabilidad de activos",
+    consulta: "¿Qué debo revisar en el inventario?",
   },
 ];
 
-const mensajeInicial = {
-  tipo: "advisory",
-  contenido:
-    "Bienvenido a Advisory GANUS. Puedo ayudarte a interpretar el estado operativo y orientar la priorización de actividades, alertas, inventario e indicadores.",
+const orientacionInicial = {
+  categoria: "Estado general",
+  estado: "Operación estable",
+  titulo: "Resumen de la operación",
+
+  analisis:
+    "La operación presenta un comportamiento estable de acuerdo con la información empresarial disponible. Existen asuntos de seguimiento relacionados con actividades pendientes, novedades sobre activos y eventos operativos registrados.",
+
+  criterio:
+    "El control operativo debe concentrarse en situaciones pendientes que puedan afectar la continuidad, la trazabilidad de los activos o el cumplimiento de las actividades programadas.",
+
+  recomendacion:
+    "Mantén seguimiento sobre las actividades pendientes, valida los activos que presentan novedades y revisa las alertas de mayor prioridad antes de realizar nuevas asignaciones operativas.",
 };
 
 function Advisory() {
-  const [mensajes, setMensajes] = useState([mensajeInicial]);
+  const [orientacion, setOrientacion] = useState(
+    orientacionInicial
+  );
+
+  const [areaActiva, setAreaActiva] = useState("estado");
+
   const [consulta, setConsulta] = useState("");
+
   const [procesando, setProcesando] = useState(false);
+
+  const [ultimaConsulta, setUltimaConsulta] = useState(
+    "Análisis general de la operación"
+  );
 
   const inputRef = useRef(null);
 
-  const enviarConsulta = async (textoConsulta = consulta) => {
+  const solicitarOrientacion = async (
+    textoConsulta = consulta,
+    areaId = null
+  ) => {
     const texto = textoConsulta.trim();
 
     if (!texto || procesando) {
       return;
     }
 
-    const mensajeUsuario = {
-      tipo: "usuario",
-      contenido: texto,
-    };
+    setProcesando(true);
 
-    setMensajes((mensajesActuales) => [
-      ...mensajesActuales,
-      mensajeUsuario,
-    ]);
+    setUltimaConsulta(texto);
+
+    if (areaId) {
+      setAreaActiva(areaId);
+    }
 
     setConsulta("");
-    setProcesando(true);
 
     try {
       const respuesta = await obtenerRespuestaAdvisory(texto);
 
-      const mensajeAdvisory = {
-        tipo: "advisory",
-        contenido: respuesta,
-      };
-
-      setMensajes((mensajesActuales) => [
-        ...mensajesActuales,
-        mensajeAdvisory,
-      ]);
+      setOrientacion(respuesta);
     } finally {
       setProcesando(false);
 
@@ -101,12 +121,22 @@ function Advisory() {
 
   const manejarSubmit = (evento) => {
     evento.preventDefault();
-    enviarConsulta();
+
+    solicitarOrientacion();
   };
 
-  const reiniciarConversacion = () => {
-    setMensajes([mensajeInicial]);
+  const seleccionarArea = (area) => {
+    solicitarOrientacion(area.consulta, area.id);
+  };
+
+  const restablecerAnalisis = () => {
+    setOrientacion(orientacionInicial);
+
+    setAreaActiva("estado");
+
     setConsulta("");
+
+    setUltimaConsulta("Análisis general de la operación");
 
     setTimeout(() => {
       inputRef.current?.focus();
@@ -124,27 +154,94 @@ function Advisory() {
           <section className="advisory-header">
             <div className="advisory-header__contenido">
               <div className="advisory-header__eyebrow">
-                <Sparkles size={15} />
-                <span>Asistencia estratégica</span>
+                <Compass size={21} />
+
+                <span>Asesoría operativa</span>
               </div>
 
               <h1>Advisory GANUS</h1>
 
               <p>
-                Consulta el estado de la operación y recibe orientación basada
-                en criterios empresariales definidos para la demostración.
+                Analiza el contexto de la operación y consulta
+                orientaciones basadas en criterios empresariales
+                disponibles en GANUS.
               </p>
             </div>
 
             <div className="advisory-header__estado">
               <span className="advisory-header__estado-icono">
-                <CheckCircle2 size={17} />
+                <CheckCircle2 size={18} />
               </span>
 
               <div>
-                <strong>Servicio disponible</strong>
-                <span>Motor local de demostración</span>
+                <strong>Análisis operativo</strong>
+
+                <span>Información disponible para orientación</span>
               </div>
+            </div>
+          </section>
+
+          <section className="advisory-overview">
+            <div className="advisory-overview__principal">
+              <div className="advisory-overview__icono">
+                <Gauge size={24} />
+              </div>
+
+              <div className="advisory-overview__contenido">
+                <span className="advisory-overview__eyebrow">
+                  Estado de la operación
+                </span>
+
+                <div className="advisory-overview__titulo">
+                  <h2>Operación estable</h2>
+
+                  <span>Seguimiento recomendado</span>
+                </div>
+
+                <p>
+                  La información disponible permite mantener una
+                  visión general de la operación y orientar la
+                  revisión de asuntos que requieren seguimiento.
+                </p>
+              </div>
+            </div>
+
+            <div className="advisory-overview__metricas">
+              <article className="advisory-overview__metrica">
+                <span className="advisory-overview__metrica-icono">
+                  <FileSearch2 size={18} />
+                </span>
+
+                <div>
+                  <strong>3</strong>
+
+                  <span>Áreas de seguimiento</span>
+                </div>
+              </article>
+
+              <article className="advisory-overview__metrica">
+                <span className="advisory-overview__metrica-icono">
+                  <ShieldAlert size={18} />
+                </span>
+
+                <div>
+                  <strong>1</strong>
+
+                  <span>Prioridad operativa</span>
+                </div>
+              </article>
+
+              <article className="advisory-overview__metrica">
+                <span className="advisory-overview__metrica-icono">
+                  <Target size={18} />
+                </span>
+
+                <div>
+                  <strong>Activo</strong>
+
+                  <span>Seguimiento empresarial</span>
+                </div>
+              </article>
             </div>
           </section>
 
@@ -152,25 +249,30 @@ function Advisory() {
             <aside className="advisory-sugerencias">
               <div className="advisory-sugerencias__encabezado">
                 <div>
-                  <span>Consultas rápidas</span>
-                  <h2>¿Qué deseas analizar?</h2>
+                  <span>Áreas de análisis</span>
+
+                  <h2>Enfoque de asesoría</h2>
                 </div>
 
-                <Lightbulb size={20} />
+                <Compass size={20} />
               </div>
 
               <div className="advisory-sugerencias__lista">
-                {consultasSugeridas.map((consultaSugerida) => {
-                  const Icono = consultaSugerida.icono;
+                {areasAnalisis.map((area) => {
+                  const Icono = area.icono;
+
+                  const estaActiva = areaActiva === area.id;
 
                   return (
                     <button
-                      key={consultaSugerida.id}
+                      key={area.id}
                       type="button"
-                      className="advisory-sugerencia"
-                      onClick={() =>
-                        enviarConsulta(consultaSugerida.pregunta)
-                      }
+                      className={`advisory-sugerencia ${
+                        estaActiva
+                          ? "advisory-sugerencia--activa"
+                          : ""
+                      }`}
+                      onClick={() => seleccionarArea(area)}
                       disabled={procesando}
                     >
                       <span className="advisory-sugerencia__icono">
@@ -178,8 +280,9 @@ function Advisory() {
                       </span>
 
                       <span className="advisory-sugerencia__contenido">
-                        <strong>{consultaSugerida.titulo}</strong>
-                        <small>{consultaSugerida.pregunta}</small>
+                        <strong>{area.titulo}</strong>
+
+                        <small>{area.descripcion}</small>
                       </span>
                     </button>
                   );
@@ -187,89 +290,125 @@ function Advisory() {
               </div>
 
               <div className="advisory-sugerencias__nota">
-                <Bot size={18} />
+                <Lightbulb size={18} />
 
                 <p>
-                  Demo local preparada para una futura integración con el motor
-                  inteligente de GANUS.
+                  La orientación considera el contexto operativo y
+                  los criterios empresariales disponibles en GANUS.
                 </p>
               </div>
             </aside>
 
-            <section className="advisory-chat">
-              <header className="advisory-chat__header">
-                <div className="advisory-chat__identidad">
-                  <span className="advisory-chat__avatar">
-                    <Bot size={21} />
-                  </span>
+            <section className="advisory-consultoria">
+              <header className="advisory-consultoria__header">
+                <div className="advisory-consultoria__identidad">
+  <div className="advisory-consultoria__titulo">
+    <Compass size={21} />
+    <span>Orientación del asesor</span>
 
-                  <div>
-                    <h2>Asistente empresarial</h2>
-                    <p>Advisory GANUS</p>
-                  </div>
-                </div>
+    <h2>{orientacion.titulo}</h2>
+  </div>
+</div>
 
                 <button
                   type="button"
-                  className="advisory-chat__reiniciar"
-                  onClick={reiniciarConversacion}
+                  className="advisory-consultoria__reiniciar"
+                  onClick={restablecerAnalisis}
                   disabled={procesando}
                 >
-                  <RotateCcw size={17} />
-                  <span>Reiniciar</span>
+                  <RefreshCw size={17} />
+
+                  <span>Restablecer</span>
                 </button>
               </header>
 
-              <div className="advisory-chat__mensajes">
-                {mensajes.map((mensaje, indice) => (
-                  <div
-                    key={`${mensaje.tipo}-${indice}`}
-                    className={`advisory-mensaje advisory-mensaje--${mensaje.tipo}`}
-                  >
-                    {mensaje.tipo === "advisory" && (
-                      <span className="advisory-mensaje__avatar">
-                        <Bot size={18} />
-                      </span>
-                    )}
+              <div className="advisory-consultoria__body">
+                <div className="advisory-consultoria__contexto">
+                  <div>
+                    <span>Área analizada</span>
 
-                    <div className="advisory-mensaje__contenido">
-                      <span className="advisory-mensaje__autor">
-                        {mensaje.tipo === "advisory"
-                          ? "Advisory GANUS"
-                          : "Tú"}
-                      </span>
-
-                      <p>{mensaje.contenido}</p>
-                    </div>
+                    <strong>{orientacion.categoria}</strong>
                   </div>
-                ))}
 
-                {procesando && (
-                  <div className="advisory-mensaje advisory-mensaje--advisory">
-                    <span className="advisory-mensaje__avatar">
-                      <Bot size={18} />
+                  <div>
+                    <span>Estado de orientación</span>
+
+                    <strong>{orientacion.estado}</strong>
+                  </div>
+                </div>
+
+                <div className="advisory-consultoria__consulta">
+                  <span>Consulta considerada</span>
+
+                  <p>{ultimaConsulta}</p>
+                </div>
+
+                {procesando ? (
+                  <div className="advisory-analizando">
+                    <span className="advisory-analizando__icono">
+                      <RefreshCw size={20} />
                     </span>
 
-                    <div className="advisory-mensaje__contenido">
-                      <span className="advisory-mensaje__autor">
-                        Advisory GANUS
-                      </span>
+                    <div>
+                      <strong>Revisando contexto operativo</strong>
 
-                      <div className="advisory-escribiendo">
-                        <span />
-                        <span />
-                        <span />
-                      </div>
+                      <p>
+                        Advisory está organizando la información
+                        disponible para presentar una orientación.
+                      </p>
                     </div>
+                  </div>
+                ) : (
+                  <div className="advisory-orientacion">
+                    <article className="advisory-orientacion__bloque">
+                      <div className="advisory-orientacion__encabezado">
+                        <ChartNoAxesCombined size={18} />
+
+                        <span>Análisis</span>
+                      </div>
+
+                      <p>{orientacion.analisis}</p>
+                    </article>
+
+                    <article className="advisory-orientacion__bloque">
+                      <div className="advisory-orientacion__encabezado">
+                        <FileSearch2 size={18} />
+
+                        <span>Criterio considerado</span>
+                      </div>
+
+                      <p>{orientacion.criterio}</p>
+                    </article>
+
+                    <article className="advisory-orientacion__bloque advisory-orientacion__bloque--recomendacion">
+                      <div className="advisory-orientacion__encabezado">
+                        <Lightbulb size={18} />
+
+                        <span>Recomendación del asesor</span>
+                      </div>
+
+                      <p>{orientacion.recomendacion}</p>
+                    </article>
                   </div>
                 )}
               </div>
 
               <form
-                className="advisory-chat__composer"
+                className="advisory-consulta"
                 onSubmit={manejarSubmit}
               >
-                <div className="advisory-chat__input">
+                <div className="advisory-consulta__encabezado">
+                  <div>
+                    <strong>Solicitar orientación</strong>
+
+                    <span>
+                      Consulta una situación relacionada con la
+                      operación empresarial.
+                    </span>
+                  </div>
+                </div>
+
+                <div className="advisory-consulta__input">
                   <input
                     ref={inputRef}
                     type="text"
@@ -277,13 +416,14 @@ function Advisory() {
                     onChange={(evento) =>
                       setConsulta(evento.target.value)
                     }
-                    placeholder="Consulta sobre la operación empresarial..."
+                    placeholder="Describe qué aspecto de la operación deseas revisar..."
                     disabled={procesando}
                   />
 
                   <button
                     type="submit"
-                    aria-label="Enviar consulta"
+                    aria-label="Solicitar orientación"
+                    title="Solicitar orientación"
                     disabled={!consulta.trim() || procesando}
                   >
                     <ArrowUp size={19} />
@@ -291,8 +431,8 @@ function Advisory() {
                 </div>
 
                 <p>
-                  Advisory GANUS utiliza un motor local en esta versión de
-                  demostración.
+                  La orientación se presenta según la información y
+                  los criterios disponibles en la operación.
                 </p>
               </form>
             </section>

@@ -4,6 +4,8 @@ import {
   useState,
 } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import {
   ArrowLeft,
   Bell,
@@ -13,13 +15,25 @@ import {
 
 
 import { useAlertas } from "../hooks/useAlertas";
+import { buscarActivos } from "../services/activosService";
 
 import "./Navbar.css";
 
 
 export default function Navbar() {
 
+  const navigate = useNavigate();
+
   const [buscar, setBuscar] =
+    useState("");
+
+  const [resultadosBusqueda, setResultadosBusqueda] =
+    useState([]);
+
+  const [mostrarResultados, setMostrarResultados] =
+    useState(false);
+
+  const [mensajeBusqueda, setMensajeBusqueda] =
     useState("");
 
   const [
@@ -49,6 +63,8 @@ const alertasPendientes =
       "Pendiente"
   );
 
+  const busquedaRef = useRef(null);
+
 
   const notificacionesRef = useRef(null);
 
@@ -57,7 +73,19 @@ const alertasPendientes =
 
   useEffect(() => {
 
+
   const cerrarPaneles = (event) => {
+
+if (
+  busquedaRef.current &&
+  !busquedaRef.current.contains(
+    event.target
+  )
+) {
+
+  setMostrarResultados(false);
+
+}
 
     if (
 
@@ -133,6 +161,60 @@ const alertasPendientes =
 
   };
 
+  const ejecutarBusqueda = () => {
+
+  const termino = buscar.trim();
+
+  if (!termino) {
+
+    setResultadosBusqueda([]);
+
+    setMensajeBusqueda(
+      "Ingresa el nombre, código o identificador de un activo."
+    );
+
+    setMostrarResultados(true);
+
+    return;
+
+  }
+
+  const resultados = buscarActivos(
+    termino
+  );
+
+  setResultadosBusqueda(resultados);
+
+  setMensajeBusqueda(
+    resultados.length === 0
+      ? "No se encontraron activos relacionados con la búsqueda."
+      : ""
+  );
+
+  setMostrarResultados(true);
+
+  setMostrarNotificaciones(false);
+
+  setMostrarPerfil(false);
+
+};
+
+
+const abrirActivoBusqueda = (activo) => {
+
+  setBuscar("");
+
+  setResultadosBusqueda([]);
+
+  setMostrarResultados(false);
+
+  navigate(
+    `/inventario?activo=${encodeURIComponent(
+      activo.id
+    )}`
+  );
+
+};
 
   return (
 
@@ -146,28 +228,178 @@ const alertasPendientes =
       </div>
 
 
-      <div className="navbarBusqueda">
+      <div
+  ref={busquedaRef}
+  className="navbarBusqueda"
+>
 
-        <input
-          type="text"
-          placeholder="Buscar activo, identificador o código"
-          value={buscar}
-          onChange={(event) =>
-            setBuscar(event.target.value)
-          }
-        />
+  <input
+    type="text"
+    placeholder="Buscar activo, identificador o código"
+    value={buscar}
+    onChange={(event) => {
+
+      const valor = event.target.value;
+
+      setBuscar(valor);
+
+      if (!valor.trim()) {
+
+        setResultadosBusqueda([]);
+
+        setMensajeBusqueda("");
+
+        setMostrarResultados(false);
+
+      }
+
+    }}
+    onKeyDown={(event) => {
+
+      if (event.key === "Enter") {
+
+        ejecutarBusqueda();
+
+      }
+
+    }}
+  />
+
+
+  {
+    mostrarResultados && (
+
+      <div className="navbarResultadosBusqueda">
+
+        <div className="navbarResultadosHeader">
+
+          <strong>
+            Resultados de búsqueda
+          </strong>
+
+          <button
+            type="button"
+            onClick={() =>
+              setMostrarResultados(false)
+            }
+          >
+            ×
+          </button>
+
+        </div>
+
+
+        {
+          resultadosBusqueda.length > 0
+
+            ?
+
+            (
+
+              <div className="navbarResultadosLista">
+
+                {
+                  resultadosBusqueda.map(
+                    (activo) => (
+
+                      <button
+                        key={activo.id}
+                        type="button"
+                        className="navbarResultadoActivo"
+                        onClick={() =>
+                          abrirActivoBusqueda(
+                            activo
+                          )
+                        }
+                      >
+
+                        <div className="navbarResultadoIcono">
+
+                          <Search size={16} />
+
+                        </div>
+
+
+                        <div className="navbarResultadoInformacion">
+
+                          <strong>
+
+                            {
+                              activo.nombre ||
+                              "Activo sin nombre"
+                            }
+
+                          </strong>
+
+                          <span>
+
+                            {
+                              activo.codigo ||
+                              activo.identificador ||
+                              activo.id
+                            }
+
+                          </span>
+
+                          <small>
+
+                            {
+                              activo.categoria ||
+                              "Activo GANUS"
+                            }
+
+                          </small>
+
+                        </div>
+
+                      </button>
+
+                    )
+                  )
+                }
+
+              </div>
+
+            )
+
+            :
+
+            (
+
+              <div className="navbarBusquedaVacia">
+
+                <Search size={20} />
+
+                <p>
+                  {mensajeBusqueda}
+                </p>
+
+              </div>
+
+            )
+        }
 
       </div>
+
+    )
+  }
+
+</div>
 
 
       <div className="navbarDerecha">
 
 
-        <div className="iconoNav">
+        <button
+  type="button"
+  className="iconoNav"
+  onClick={ejecutarBusqueda}
+  title="Buscar en GANUS"
+>
 
-          <Search size={22} />
+  <Search size={22} />
 
-        </div>
+</button>
 
 
         <div

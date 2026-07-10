@@ -1672,3 +1672,255 @@
   border-color: #293d54;
   color: #f8fafc;
 }
+
+[data-ganus-theme="oscuro"]
+.formulariosDinamicosActivo {
+  border-top-color: #293d54;
+}
+
+[data-ganus-theme="oscuro"]
+.formulariosDinamicosActivoHeader span,
+[data-ganus-theme="oscuro"]
+.formularioDinamicoActivoTitulo strong {
+  color: #f8fafc;
+}
+
+[data-ganus-theme="oscuro"]
+.formulariosDinamicosActivoHeader p,
+[data-ganus-theme="oscuro"]
+.formularioDinamicoActivoInformacion p,
+[data-ganus-theme="oscuro"]
+.formularioDinamicoActivoInformacion small {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"]
+.formularioDinamicoActivoItem,
+[data-ganus-theme="oscuro"]
+.formulariosDinamicosActivoVacio {
+  background: #18283a;
+
+  border-color: #293d54;
+}
+
+[data-ganus-theme="oscuro"]
+.formularioDinamicoActivoItem:hover {
+  background: #1c3044;
+
+  border-color: rgba(132, 204, 63, 0.3);
+}
+
+[data-ganus-theme="oscuro"]
+.formularioDinamicoActivoIcono {
+  color: #84cc3f;
+
+  background: rgba(132, 204, 63, 0.1);
+}
+
+[data-ganus-theme="oscuro"]
+.formularioDinamicoActivoTitulo span {
+  color: #9bdd5d;
+
+  background: rgba(132, 204, 63, 0.1);
+}
+
+[data-ganus-theme="oscuro"]
+.formulariosDinamicosActivoVacio {
+  color: #8da7c4;
+}
+
+[data-ganus-theme="oscuro"]
+.formulariosDinamicosActivoVacio svg {
+  color: #84cc3f;
+}
+
+.formulariosDinamicosActivo {
+  margin-top: 22px;
+  padding-top: 5px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+.formulariosDinamicosActivoHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 14px;
+}
+
+.formulariosDinamicosActivoHeader span {
+  display: block;
+
+  color: #123c74;
+
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.formulariosDinamicosActivoHeader p {
+  margin: 5px 0 0;
+
+  color: #8291a5;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.formulariosDinamicosActivoLista {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.formularioDinamicoActivoItem {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 14px;
+
+  color: inherit;
+  text-align: left;
+  font: inherit;
+
+  background: #f8fafc;
+
+  border: 1px solid #dce5ef;
+  border-radius: 11px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.formularioDinamicoActivoItem:hover {
+  background: #f1faf6;
+
+  border-color: #bcdcca;
+
+  transform: translateY(-1px);
+}
+
+.formularioDinamicoActivoIcono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  color: #17805b;
+
+  background: #e8f7ef;
+
+  border-radius: 10px;
+}
+
+.formularioDinamicoActivoInformacion {
+  min-width: 0;
+  flex: 1;
+}
+
+.formularioDinamicoActivoTitulo {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.formularioDinamicoActivoTitulo strong {
+  min-width: 0;
+
+  color: #123c74;
+
+  font-size: 12px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.formularioDinamicoActivoTitulo span {
+  flex: 0 0 auto;
+
+  padding: 3px 7px;
+
+  color: #176b4d;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  background: #e8f7ef;
+
+  border-radius: 999px;
+}
+
+.formularioDinamicoActivoInformacion p {
+  margin: 5px 0;
+
+  color: #8291a5;
+
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.formularioDinamicoActivoInformacion small {
+  color: #71849a;
+
+  font-size: 9px;
+}
+
+.formularioDinamicoActivoFlecha {
+  flex: 0 0 auto;
+
+  color: #91a0b2;
+}
+
+.formulariosDinamicosActivoVacio {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 16px;
+
+  color: #8291a5;
+
+  background: #f8fafc;
+
+  border: 1px dashed #ccd8e5;
+  border-radius: 10px;
+}
+
+.formulariosDinamicosActivoVacio svg {
+  flex: 0 0 auto;
+
+  color: #17805b;
+}
+
+.formulariosDinamicosActivoVacio p {
+  margin: 0;
+
+  font-size: 11px;
+}
+
+@media (max-width: 820px) {
+  .formulariosDinamicosActivoLista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

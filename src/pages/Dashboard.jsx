@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../layouts/Sidebar";
 import Navbar from "../layouts/Navbar";
@@ -20,13 +21,22 @@ import {
   ArrowRight,
   Send,
   LoaderCircle,
+  Sparkles,
+  ShieldAlert,
+  ChartNoAxesCombined,
+  ClipboardCheck,
+  CircleCheck,
+  CircleAlert,
 } from "lucide-react";
 
 import "../styles/dashboard.css";
 
 export default function Dashboard() {
-    const obtenerInformacionInicial = () => {
+    const navigate = useNavigate();
+
+  const obtenerInformacionInicial = () => {
     const activos =
+      JSON.parse(localStorage.getItem("ganus_activos")) ||
       JSON.parse(localStorage.getItem("activos")) ||
       JSON.parse(localStorage.getItem("animales")) ||
       [];
@@ -42,7 +52,7 @@ export default function Dashboard() {
 
     const actividadesLocales = [
       ...pesajes.map((item) => ({
-        id: `pesaje-${item.id || Math.random()}`,
+        id: `pesaje-${item.id || crypto.randomUUID()}`,
         tipo: "Pesaje",
         descripcion: `${item.nombre || item.animal || "Activo"} - ${
           item.peso
@@ -52,7 +62,7 @@ export default function Dashboard() {
       })),
 
       ...vacunaciones.map((item) => ({
-        id: `vacunacion-${item.id || Math.random()}`,
+        id: `vacunacion-${item.id || crypto.randomUUID()}`,
         tipo: "Vacunación",
         descripcion: `${
           item.nombre || item.animal || "Activo"
@@ -62,7 +72,7 @@ export default function Dashboard() {
       })),
 
       ...eventos.map((item) => ({
-        id: `evento-${item.id || Math.random()}`,
+        id: `evento-${item.id || crypto.randomUUID()}`,
         tipo: "Evento",
         descripcion: `${
           item.nombre || item.animal || "Activo"
@@ -107,7 +117,17 @@ export default function Dashboard() {
     {
       id: 1,
       tipo: "asistente",
-      texto: "¿En qué puedo ayudarte hoy?",
+      categoria: "resumen",
+      titulo: "Resumen de la operación",
+      texto:
+        "He revisado la información disponible en GANUS. La operación se mantiene estable, aunque existe una alerta crítica que conviene atender con prioridad.",
+      puntos: [
+        "3 alertas activas registradas",
+        "1 evento clasificado como crítico",
+        "6 tareas pendientes de seguimiento",
+      ],
+      recomendacion:
+        "Priorizar la revisión del bajo consumo de alimento en el lote 4.",
     },
   ]);
 
@@ -182,6 +202,7 @@ export default function Dashboard() {
 
   const obtenerDatosLocales = () => {
     const activos =
+      JSON.parse(localStorage.getItem("ganus_activos")) ||
       JSON.parse(localStorage.getItem("activos")) ||
       JSON.parse(localStorage.getItem("animales")) ||
       [];
@@ -219,7 +240,15 @@ export default function Dashboard() {
       texto.includes("buen dia") ||
       texto.includes("buenos dias")
     ) {
-      return `Hola. Soy Advisory GANUS en modo demostración. Actualmente puedo interpretar información operativa local sobre activos, producción, alertas y recomendaciones generales. ¿Qué deseas consultar?`;
+      return {
+        categoria: "conversacion",
+        titulo: "Advisory disponible",
+        texto:
+          "Buenos días. Puedo ayudarte a interpretar el estado operativo registrado en GANUS y orientar la priorización de actividades.",
+        puntos: [],
+        recomendacion:
+          "Puedes solicitar un análisis de operación, producción, alertas o indicadores.",
+      };
     }
 
     if (
@@ -228,7 +257,21 @@ export default function Dashboard() {
       texto.includes("como esta la finca") ||
       texto.includes("operacion")
     ) {
-      return `El estado operativo general se mantiene estable. GANUS registra ${activos.length} activos, ${pesajes.length} pesajes, ${vacunas.length} vacunaciones y ${eventos.length} eventos locales. Actualmente se muestran 3 alertas activas y 6 tareas pendientes. Recomiendo priorizar las alertas críticas y revisar las actividades operativas pendientes.`;
+      return {
+        categoria: "operacion",
+        titulo: "Estado operativo general",
+        texto:
+          "La operación presenta un comportamiento general estable. Los registros actuales muestran actividad operativa y seguimiento pendiente.",
+        puntos: [
+          `${activos.length} activos registrados en inventario`,
+          `${pesajes.length} pesajes disponibles`,
+          `${vacunas.length} registros de vacunación`,
+          `${eventos.length} eventos operativos`,
+          "3 alertas activas y 6 tareas pendientes",
+        ],
+        recomendacion:
+          "Atender primero la alerta crítica del lote 4 y posteriormente validar las tareas programadas para hoy.",
+      };
     }
 
     if (
@@ -236,7 +279,19 @@ export default function Dashboard() {
       texto.includes("leche") ||
       texto.includes("mes")
     ) {
-      return `La producción mensual de demostración se encuentra en 2.450 litros, con una variación positiva del 15 % frente al mes anterior. La tendencia mostrada por GANUS es favorable. Como siguiente acción, conviene validar si el crecimiento se mantiene durante los próximos registros operativos.`;
+      return {
+        categoria: "indicador",
+        titulo: "Análisis de producción",
+        texto:
+          "La producción mensual registrada en el tablero es de 2.450 litros y mantiene una variación positiva frente al periodo anterior.",
+        puntos: [
+          "Producción actual: 2.450 L",
+          "Variación mensual: +15 %",
+          "Tendencia operativa favorable",
+        ],
+        recomendacion:
+          "Mantener seguimiento de los próximos registros para confirmar la continuidad del crecimiento.",
+      };
     }
 
     if (
@@ -244,7 +299,19 @@ export default function Dashboard() {
       texto.includes("riesgo") ||
       texto.includes("critica")
     ) {
-      return `GANUS identifica 3 alertas activas. La prioridad principal es el bajo consumo de alimento en el lote 4, clasificado como crítico. También se registra temperatura alta en el corral 3 y una revisión sanitaria pendiente en el lote 11. Recomiendo atender primero el lote 4 y documentar la acción realizada.`;
+      return {
+        categoria: "alerta",
+        titulo: "Prioridades de atención",
+        texto:
+          "He identificado tres eventos que requieren seguimiento. Uno de ellos tiene prioridad crítica.",
+        puntos: [
+          "Crítica: bajo consumo de alimento en lote 4",
+          "Media: temperatura alta en corral 3",
+          "Media: revisión sanitaria pendiente lote 11",
+        ],
+        recomendacion:
+          "Intervenir primero el lote 4, documentar la acción realizada y verificar posteriormente la temperatura del corral 3.",
+      };
     }
 
     if (
@@ -253,7 +320,19 @@ export default function Dashboard() {
       texto.includes("que debo hacer") ||
       texto.includes("priorizar")
     ) {
-      return `Mi recomendación operativa es priorizar tres acciones: revisar el bajo consumo de alimento del lote 4, verificar la temperatura del corral 3 y completar la revisión sanitaria pendiente del lote 11. Después, conviene actualizar los registros en GANUS para mantener la trazabilidad de la operación.`;
+      return {
+        categoria: "recomendacion",
+        titulo: "Plan de acción recomendado",
+        texto:
+          "Con base en el estado actual de la operación, organizaría el seguimiento en tres niveles de prioridad.",
+        puntos: [
+          "1. Revisar consumo de alimento del lote 4",
+          "2. Verificar temperatura del corral 3",
+          "3. Completar revisión sanitaria del lote 11",
+        ],
+        recomendacion:
+          "Registrar cada intervención en GANUS para conservar la trazabilidad operativa.",
+      };
     }
 
     if (
@@ -262,22 +341,45 @@ export default function Dashboard() {
       texto.includes("ganado") ||
       texto.includes("inventario")
     ) {
-      if (activos.length === 0) {
-        return `No encuentro activos registrados actualmente en el almacenamiento local de GANUS. Puedes registrar información en el módulo correspondiente y Advisory podrá utilizar ese dato dentro de esta demostración.`;
-      }
-
-      return `Actualmente encuentro ${activos.length} activos registrados en GANUS. Esta versión demostrativa utiliza la información almacenada localmente para construir una orientación operativa básica.`;
+      return {
+        categoria: "inventario",
+        titulo: "Estado del inventario",
+        texto:
+          activos.length > 0
+            ? `GANUS registra actualmente ${activos.length} activos disponibles para seguimiento operativo.`
+            : "No encuentro activos registrados actualmente en el inventario local de GANUS.",
+        puntos:
+          activos.length > 0
+            ? [
+                `${activos.length} activos identificados`,
+                "Información disponible para análisis operativo",
+              ]
+            : [],
+        recomendacion:
+          activos.length > 0
+            ? "Continuar asociando actividades y formularios dinámicos a los activos para fortalecer su trazabilidad."
+            : "Registrar activos desde Inventario antes de realizar un análisis operacional.",
+      };
     }
 
     if (
       texto.includes("peso") ||
       texto.includes("pesaje")
     ) {
-      if (pesajes.length === 0) {
-        return `No encuentro registros de pesaje disponibles en este momento. Cuando existan datos locales, podré resumir la cantidad de registros y orientar una revisión general.`;
-      }
-
-      return `GANUS registra ${pesajes.length} pesajes locales. El indicador general de demostración muestra un peso promedio de 412 Kg y una variación positiva del 9 % frente al periodo anterior.`;
+      return {
+        categoria: "indicador",
+        titulo: "Seguimiento de pesajes",
+        texto:
+          pesajes.length > 0
+            ? `Encuentro ${pesajes.length} registros de pesaje disponibles en GANUS.`
+            : "No encuentro registros de pesaje disponibles actualmente.",
+        puntos: [
+          "Peso promedio de referencia: 412 Kg",
+          "Variación mostrada: +9 %",
+        ],
+        recomendacion:
+          "Comparar los próximos pesajes para identificar variaciones atípicas por activo.",
+      };
     }
 
     if (
@@ -285,7 +387,17 @@ export default function Dashboard() {
       texto.includes("vacunacion") ||
       texto.includes("sanidad")
     ) {
-      return `Actualmente encuentro ${vacunas.length} registros locales de vacunación. Además, GANUS mantiene una revisión sanitaria pendiente en el lote 11. Recomiendo validar ese seguimiento antes de cerrar las actividades sanitarias prioritarias.`;
+      return {
+        categoria: "seguimiento",
+        titulo: "Seguimiento sanitario",
+        texto: `Actualmente encuentro ${vacunas.length} registros locales de vacunación.`,
+        puntos: [
+          `${vacunas.length} vacunaciones registradas`,
+          "Revisión sanitaria pendiente en lote 11",
+        ],
+        recomendacion:
+          "Validar el seguimiento del lote 11 antes de cerrar las actividades sanitarias prioritarias.",
+      };
     }
 
     if (
@@ -293,30 +405,80 @@ export default function Dashboard() {
       texto.includes("tarea") ||
       texto.includes("pendiente")
     ) {
-      return `El resumen operativo muestra ${resumen.actividadesHoy} actividades registradas recientemente y ${resumen.tareasPendientes} tareas pendientes. La recomendación es atender primero las actividades relacionadas con alertas críticas y posteriormente continuar con los seguimientos programados.`;
+      return {
+        categoria: "seguimiento",
+        titulo: "Carga operativa pendiente",
+        texto:
+          "El tablero mantiene actividades recientes y tareas que requieren continuidad operacional.",
+        puntos: [
+          `${resumen.actividadesHoy} actividades recientes`,
+          `${resumen.tareasPendientes} tareas pendientes`,
+          "3 tareas previstas para hoy",
+        ],
+        recomendacion:
+          "Resolver primero las tareas vinculadas con alertas activas y continuar con los seguimientos programados.",
+      };
     }
 
-    if (
-      texto.includes("mortalidad")
-    ) {
-      return `El indicador demostrativo de mortalidad se encuentra en 1,2 %, con una reducción del 0,5 % frente al mes anterior. La tendencia es favorable, aunque conviene mantener el seguimiento sanitario y revisar cualquier evento atípico registrado.`;
+    if (texto.includes("mortalidad")) {
+      return {
+        categoria: "indicador",
+        titulo: "Indicador de mortalidad",
+        texto:
+          "La mortalidad se encuentra en 1,2 %, con una reducción del 0,5 % frente al periodo anterior.",
+        puntos: [
+          "Indicador actual: 1,2 %",
+          "Variación: -0,5 %",
+          "Tendencia favorable",
+        ],
+        recomendacion:
+          "Mantener vigilancia sanitaria y revisar eventos atípicos registrados sobre los activos.",
+      };
     }
 
     if (
       texto.includes("prenez") ||
       texto.includes("reproduccion")
     ) {
-      return `La tasa de preñez demostrativa se encuentra en 68 %, con una mejora del 6 % frente al mes anterior. El comportamiento es positivo. Recomiendo mantener el seguimiento de los registros reproductivos para validar la continuidad de esta tendencia.`;
+      return {
+        categoria: "indicador",
+        titulo: "Indicador reproductivo",
+        texto:
+          "La tasa de preñez se encuentra en 68 % y presenta una mejora frente al periodo anterior.",
+        puntos: [
+          "Tasa actual: 68 %",
+          "Variación mensual: +6 %",
+          "Comportamiento positivo",
+        ],
+        recomendacion:
+          "Mantener actualizado el seguimiento reproductivo para validar la continuidad de la tendencia.",
+      };
     }
 
     if (
       texto.includes("gracias") ||
       texto.includes("listo")
     ) {
-      return `Con gusto. Puedo continuar revisando el estado operativo, producción, alertas, actividades, activos o recomendaciones generales de GANUS.`;
+      return {
+        categoria: "conversacion",
+        titulo: "Seguimiento disponible",
+        texto:
+          "Con gusto. Continuaré disponible para revisar la información operativa registrada en GANUS.",
+        puntos: [],
+        recomendacion:
+          "Puedes solicitar otro análisis cuando lo necesites.",
+      };
     }
 
-    return `He interpretado tu consulta, pero esta versión de Advisory GANUS funciona con un motor local de demostración y todavía no utiliza el motor inteligente definitivo. Puedes preguntarme por el estado de la finca, producción del mes, alertas críticas, actividades, activos, pesajes o recomendaciones operativas.`;
+    return {
+      categoria: "analisis",
+      titulo: "Consulta interpretada",
+      texto:
+        "No encuentro una relación operativa suficientemente precisa para emitir una recomendación específica sobre esa consulta.",
+      puntos: [],
+      recomendacion:
+        "Puedes preguntarme por operación, producción, alertas, actividades, inventario, pesajes o seguimiento sanitario.",
+    };
   };
 
   const enviarConsultaAdvisory = (mensajeDirecto = "") => {
@@ -331,7 +493,7 @@ export default function Dashboard() {
     }
 
     const mensajeUsuario = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       tipo: "usuario",
       texto: mensaje,
     };
@@ -350,14 +512,14 @@ export default function Dashboard() {
       setMensajesAdvisory((mensajesActuales) => [
         ...mensajesActuales,
         {
-          id: Date.now() + 1,
+          id: crypto.randomUUID(),
           tipo: "asistente",
-          texto: respuesta,
+          ...respuesta,
         },
       ]);
 
       setProcesandoConsulta(false);
-    }, 850);
+    }, 650);
   };
 
   const manejarSubmitAdvisory = (event) => {
@@ -373,17 +535,6 @@ export default function Dashboard() {
       <Navbar />
 
       <main className="dashboard">
-        <header className="inicio-encabezado">
-          <div>
-            <h1>Inicio</h1>
-
-            <p>
-              Resumen general de la operación y estado actual
-              de GANUS.
-            </p>
-          </div>
-        </header>
-
         <div className="inicio-layout">
           <div className="inicio-contenido">
             <section className="inicio-seccion">
@@ -581,116 +732,197 @@ export default function Dashboard() {
                 </div>
 
                 <button
-                  type="button"
-                  className="inicio-ver-mas"
-                >
-                  Ver todas las alertas
+  type="button"
+  className="inicio-ver-mas"
+  onClick={() => navigate("/alertas")}
+>
+  Ver todas las alertas
 
-                  <ArrowRight size={17} />
-                </button>
+  <ArrowRight size={17} />
+</button>
               </article>
             </section>
           </div>
 
           <aside className="advisory-demo">
             <div className="advisory-demo-header">
-              <div>
-                <span className="advisory-demo-etiqueta">
-                  Demo
+              <div className="advisory-demo-brand">
+                <span className="advisory-demo-brand-icon">
+                  <Sparkles size={17} />
                 </span>
 
-                <h2>Advisory GANUS</h2>
+                <div>
+                  <h2>GANUS Advisory</h2>
+
+                  <span>Asesor operativo</span>
+                </div>
               </div>
 
-              <Bot size={25} />
+              <span className="advisory-demo-estado">
+                <i />
+
+                Disponible
+              </span>
             </div>
 
-            <div className="advisory-demo-identidad">
-              <div className="advisory-demo-avatar">
-                <Bot size={32} />
-              </div>
+            <div className="advisory-demo-contexto">
+              <span>Contexto actual</span>
 
-              <div>
-                <strong>Hola, soy GANUS</strong>
+              <strong>Operación general</strong>
 
-                <p>
-                  Tu asistente inteligente para el negocio.
-                </p>
-              </div>
+              <p>
+                Análisis basado en la información registrada
+                actualmente en GANUS.
+              </p>
             </div>
 
             <div
               ref={advisoryMensajesRef}
               className="advisory-demo-conversacion"
             >
-              {mensajesAdvisory.map((mensaje) => (
-                <div
-                  key={mensaje.id}
-                  className={`advisory-demo-chat advisory-demo-chat--${mensaje.tipo}`}
-                >
-                  {mensaje.tipo === "asistente" && (
-                    <span className="advisory-demo-chat-icono">
-                      <Bot size={15} />
-                    </span>
-                  )}
+              {mensajesAdvisory.map((mensaje) => {
+                if (mensaje.tipo === "usuario") {
+                  return (
+                    <div
+                      key={mensaje.id}
+                      className="advisory-demo-chat advisory-demo-chat--usuario"
+                    >
+                      <div className="advisory-demo-chat-burbuja">
+                        <span className="advisory-demo-chat-autor">
+                          Tú
+                        </span>
 
-                  <div className="advisory-demo-chat-burbuja">
-                    <p>{mensaje.texto}</p>
-                  </div>
-                </div>
-              ))}
+                        <p>{mensaje.texto}</p>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <article
+                    key={mensaje.id}
+                    className="advisory-respuesta"
+                  >
+                    <div className="advisory-respuesta__header">
+                      <span className="advisory-respuesta__icon">
+                        <Bot size={15} />
+                      </span>
+
+                      <div>
+                        <strong>GANUS Advisory</strong>
+
+                        <small>Análisis operativo</small>
+                      </div>
+                    </div>
+
+                    <div className="advisory-respuesta__contenido">
+                      <h3>{mensaje.titulo}</h3>
+
+                      <p>{mensaje.texto}</p>
+
+                      {mensaje.puntos?.length > 0 && (
+                        <div className="advisory-respuesta__puntos">
+                          {mensaje.puntos.map((punto) => (
+                            <div key={punto}>
+                              <CircleCheck size={13} />
+
+                              <span>{punto}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {mensaje.recomendacion && (
+                        <div className="advisory-respuesta__recomendacion">
+                          <span>
+                            <Sparkles size={13} />
+
+                            Recomendación
+                          </span>
+
+                          <p>{mensaje.recomendacion}</p>
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
 
               {procesandoConsulta && (
-                <div className="advisory-demo-chat advisory-demo-chat--asistente">
-                  <span className="advisory-demo-chat-icono">
-                    <Bot size={15} />
-                  </span>
+                <div className="advisory-analizando">
+                  <LoaderCircle size={16} />
 
-                  <div className="advisory-demo-chat-burbuja advisory-demo-escribiendo">
-                    <LoaderCircle size={15} />
+                  <div>
+                    <strong>
+                      GANUS Advisory está analizando
+                    </strong>
 
-                    <span>Analizando operación...</span>
+                    <span>
+                      Revisando el contexto operativo...
+                    </span>
                   </div>
                 </div>
               )}
             </div>
 
             <div className="advisory-demo-opciones">
-              <button
-                type="button"
-                onClick={() =>
-                  enviarConsultaAdvisory("Estado de la finca")
-                }
-              >
-                Estado de la finca
-              </button>
+              <span className="advisory-demo-opciones-titulo">
+                Consultas sugeridas
+              </span>
 
-              <button
-                type="button"
-                onClick={() =>
-                  enviarConsultaAdvisory("Producción del mes")
-                }
-              >
-                Producción del mes
-              </button>
+              <div className="advisory-demo-opciones-grid">
+                <button
+                  type="button"
+                  onClick={() =>
+                    enviarConsultaAdvisory(
+                      "Estado de la operación"
+                    )
+                  }
+                >
+                  <ClipboardCheck size={15} />
 
-              <button
-                type="button"
-                onClick={() =>
-                  enviarConsultaAdvisory("Alertas críticas")
-                }
-              >
-                Alertas críticas
-              </button>
+                  Estado operativo
+                </button>
 
-              <button
-                type="button"
-                onClick={() =>
-                  enviarConsultaAdvisory("Recomendaciones")
-                }
-              >
-                Recomendaciones
-              </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    enviarConsultaAdvisory(
+                      "Analizar producción"
+                    )
+                  }
+                >
+                  <ChartNoAxesCombined size={15} />
+
+                  Producción
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    enviarConsultaAdvisory(
+                      "Alertas críticas"
+                    )
+                  }
+                >
+                  <ShieldAlert size={15} />
+
+                  Riesgos activos
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    enviarConsultaAdvisory(
+                      "Qué debo priorizar"
+                    )
+                  }
+                >
+                  <CircleAlert size={15} />
+
+                  Qué priorizar
+                </button>
+              </div>
             </div>
 
             <form
@@ -703,7 +935,7 @@ export default function Dashboard() {
                 onChange={(event) =>
                   setConsulta(event.target.value)
                 }
-                placeholder="Escribe tu consulta..."
+                placeholder="Consulta a GANUS Advisory..."
                 disabled={procesandoConsulta}
                 autoComplete="off"
               />
@@ -727,7 +959,8 @@ export default function Dashboard() {
             </form>
 
             <p className="advisory-demo-nota">
-              Advisory GANUS · Motor local de demostración
+              Las recomendaciones se generan según el contexto
+              operativo disponible.
             </p>
           </aside>
         </div>

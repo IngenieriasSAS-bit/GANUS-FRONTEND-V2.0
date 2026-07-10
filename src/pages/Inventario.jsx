@@ -6,6 +6,7 @@ import FormularioActivo from "../components/inventario/FormularioActivo";
 import ConfirmModal from "../components/common/ConfirmModal";
 import RelacionesActivo from "../components/inventario/RelacionesActivo";
 import ActividadesActivo from "../components/inventario/ActividadesActivo";
+import FormulariosDinamicosActivo from "../components/inventario/FormulariosDinamicosActivo";
 
 
 import {
@@ -905,13 +906,17 @@ const cancelarDesactivacion = () => {
                 </div>
 
                 <RelacionesActivo
-                  activo={activoSeleccionado}
-                  activos={activos}
-                />
+  activo={activoSeleccionado}
+  activos={activos}
+/>
 
-              <ActividadesActivo
-                 activo={activoSeleccionado}
-              />
+<ActividadesActivo
+  activo={activoSeleccionado}
+/>
+
+<FormulariosDinamicosActivo
+  activo={activoSeleccionado}
+/>
 
               </section>
 
