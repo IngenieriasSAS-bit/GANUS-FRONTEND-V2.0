@@ -1,0 +1,807 @@
+/* ==========================================================
+   OPERATIVO
+========================================================== */
+
+.operativo-page{
+    flex:1;
+    margin-left:284px;
+    margin-top:72px;
+    padding:32px;
+    background:#F4F7FB;
+    min-height:100vh;
+}
+
+.operativo-dashboard{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.ganus-module-header{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    background:#FFFFFF;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 8px 22px rgba(15,23,42,.06);
+    border:1px solid #E8EEF5;
+}
+
+.ganus-module-header__icon{
+    width:62px;
+    height:62px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#EDF7E8;
+    color:#79BE24;
+    flex-shrink:0;
+}
+
+.ganus-module-tag{
+    display:inline-block;
+    margin-bottom:6px;
+    color:#79BE24;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.08em;
+}
+
+.ganus-module-header h1{
+    margin:0;
+    font-size:2rem;
+    font-weight:700;
+    color:#173A70;
+}
+
+.ganus-module-header p{
+    margin-top:10px;
+    color:#64748B;
+    line-height:1.7;
+    max-width:820px;
+}
+
+/* ==========================================================
+   KPIs
+========================================================== */
+
+.execution-metrics{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.execution-metric-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    background:#FFFFFF;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    border:1px solid #E7EDF5;
+
+    box-shadow:0 8px 18px rgba(15,23,42,.05);
+
+    transition:.25s;
+
+}
+
+.execution-metric-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.execution-metric-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:16px;
+
+    background:#EDF7E8;
+
+    color:#79BE24;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.execution-metric-content h2{
+
+    margin:0;
+
+    color:#173A70;
+
+    font-size:1.9rem;
+
+}
+
+.execution-metric-content p{
+
+    margin-top:5px;
+
+    color:#64748B;
+
+}
+
+/* ==========================================================
+   FILTROS
+========================================================== */
+
+.execution-filters{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    background:#FFFFFF;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    border:1px solid #E8EEF5;
+
+}
+
+.execution-search{
+
+    flex:1;
+
+    min-width:280px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 16px;
+
+    border:1px solid #DCE5EF;
+
+    border-radius:12px;
+
+}
+
+.execution-search input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    height:48px;
+
+    background:none;
+
+    font-family:inherit;
+
+}
+
+.execution-select{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:0 14px;
+
+    border:1px solid #DCE5EF;
+
+    border-radius:12px;
+
+}
+
+.execution-select select{
+
+    border:none;
+
+    outline:none;
+
+    height:48px;
+
+    background:none;
+
+    font-family:inherit;
+
+}
+
+.execution-filter-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#173A70;
+
+    color:#FFFFFF;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:0 22px;
+
+    cursor:pointer;
+
+}
+
+
+/*==========================================================
+ORDENES
+==========================================================*/
+
+.operativo-orders{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:32px;
+
+    margin-top:18px;
+
+}
+
+.operativo-orders-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 6px;
+
+    margin-bottom:6px;
+
+}
+
+.operativo-orders-header h2{
+
+    margin:0;
+
+    color:#082B55;
+
+    font-size:2.35rem;
+
+    font-weight:700;
+
+    letter-spacing:-0.5px;
+
+}
+
+.operativo-orders-header span{
+
+    background:#EDF7E8;
+
+    color:#4F7C1C;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    font-weight:700;
+
+    font-size:.9rem;
+
+}
+
+.operativo-orders-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+
+    gap:28px;
+
+    align-items:stretch;
+
+}
+
+/*==========================================================
+ORDER CARD
+==========================================================*/
+
+.operativo-order-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    background:#FFFFFF;
+
+    border-radius:22px;
+
+    padding:24px;
+
+    border:1px solid #E4EAF3;
+
+    box-shadow:0 10px 30px rgba(15,23,42,.06);
+
+    transition:.25s;
+
+    min-height:340px;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.operativo-order-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 45px rgba(15,23,42,.12);
+
+    border-color:#173A70;
+
+}
+
+.operativo-order-header{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    gap:18px;
+
+    padding-bottom:22px;
+
+    border-bottom:1px solid #EEF2F7;
+
+}
+
+.operativo-order-icon{
+
+    width:78px;
+
+    height:78px;
+
+    border-radius:22px;
+
+    background:linear-gradient(
+        135deg,
+        #EDF7E8,
+        #F7FBF3
+    );
+
+    color:#76B82A;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:0 8px 20px rgba(118,184,42,.18);
+
+}
+
+.operativo-order-header-content h3{
+
+    margin:0;
+
+    font-size:1.45rem;
+
+    color:#082B55;
+
+    font-weight:700;
+
+}
+
+.operativo-order-header-content p{
+
+    margin-top:8px;
+
+    color:#94A3B8;
+
+    font-size:.95rem;
+
+}
+
+.operativo-order-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    padding:22px 0;
+
+}
+
+.operativo-info-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#475569;
+
+    font-size:.95rem;
+
+}
+
+.operativo-info-row svg{
+
+    color:#76B82A;
+
+    flex-shrink:0;
+
+}
+
+/*==========================================================
+FOOTER CARD
+==========================================================*/
+
+.operativo-order-footer{
+
+    margin-top:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    padding-top:22px;
+
+    border-top:1px solid #EEF2F7;
+
+}
+
+.operativo-status{
+
+    width:max-content;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    font-size:.82rem;
+
+    font-weight:700;
+
+}
+
+.operativo-status.pending{
+
+    background:#FFF8DB;
+
+    color:#C68A00;
+
+}
+
+.operativo-status.running{
+
+    background:#E7F7EC;
+
+    color:#2E8B57;
+
+}
+
+.operativo-status.completed{
+
+    background:#EAF3FF;
+
+    color:#2457C5;
+
+}
+
+.operativo-order-button{
+
+    width:100%;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        90deg,
+        #082B55,
+        #173A70
+    );
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.operativo-order-button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(8,43,85,.25);
+
+}
+
+/*==========================================================
+RESPONSIVE
+==========================================================*/
+
+@media (max-width:1400px){
+
+    .operativo-orders-grid{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+}
+
+@media (max-width:1100px){
+
+    .operativo-orders-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .operativo-page{
+
+        margin-left:0;
+
+        margin-top:70px;
+
+        padding:20px;
+
+    }
+
+    .execution-metrics{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .execution-filters{
+
+        flex-direction:column;
+
+    }
+
+    .execution-search{
+
+        min-width:100%;
+
+    }
+
+    .execution-select{
+
+        width:100%;
+
+    }
+
+    .execution-filter-button{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .operativo-orders-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:500px){
+
+    .operativo-order-card{
+
+        padding:20px;
+
+    }
+
+    .operativo-order-button{
+
+        font-size:.9rem;
+
+    }
+
+}
+
+/*==========================================================
+TABLET
+==========================================================*/
+
+@media (max-width:1024px){
+
+    .operativo-page{
+
+        margin-left:0;
+
+        padding:22px;
+
+    }
+
+    .execution-metrics{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .operativo-orders-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+/*==========================================================
+MOBILE
+==========================================================*/
+
+@media (max-width:768px){
+
+    .operativo-page{
+
+        margin-left:0;
+
+        margin-top:72px;
+
+        padding:18px;
+
+    }
+
+    .execution-metrics{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .execution-filters{
+
+        flex-direction:column;
+
+        gap:14px;
+
+    }
+
+    .execution-search{
+
+        width:100%;
+
+        min-width:100%;
+
+    }
+
+    .execution-select{
+
+        width:100%;
+
+    }
+
+    .execution-filter-button{
+
+        width:100%;
+
+        justify-content:center;
+
+        height:48px;
+
+    }
+
+    .operativo-orders-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*=========================================================
+NAVEGACIÓN
+=========================================================*/
+
+.operativo-navigation{
+
+    display:flex;
+
+    align-items:center;
+
+    margin:20px 0 24px;
+
+}
+
+.operativo-back-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#FFFFFF;
+
+    color:#082B55;
+
+    font-weight:700;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    box-shadow:0 6px 18px rgba(15,23,42,.08);
+
+    transition:.25s;
+
+}
+
+.operativo-back-button:hover{
+
+    transform:translateY(-2px);
+
+    background:#082B55;
+
+    color:#FFFFFF;
+
+}

@@ -2,16 +2,25 @@
  * ---------------------------------------------------------
  * Componente: ResumenOrganizacion
  * Módulo: Organización
+ *
  * Responsabilidad:
- * Mostrar los indicadores principales del módulo.
+ * Mostrar indicadores calculados desde el servicio.
  * ---------------------------------------------------------
  */
 
 import StatCard from "../common/StatCard";
 
+import {
+
+    obtenerResumenOrganizacion,
+
+} from "../../services/organizationService";
+
 import "./ResumenOrganizacion.css";
 
 export default function ResumenOrganizacion() {
+
+    const resumen = obtenerResumenOrganizacion();
 
     return (
 
@@ -19,25 +28,25 @@ export default function ResumenOrganizacion() {
 
             <StatCard
                 title="Grupos Empresariales"
-                value="1"
-                subtitle="Grupo registrado"
+                value={resumen.grupos}
+                subtitle="Grupos registrados"
             />
 
             <StatCard
                 title="Fincas"
-                value="3"
-                subtitle="Fincas activas"
+                value={resumen.fincas}
+                subtitle="Fincas registradas"
             />
 
             <StatCard
                 title="Usuarios"
-                value="12"
+                value={resumen.usuarios}
                 subtitle="Usuarios registrados"
             />
 
             <StatCard
                 title="Roles"
-                value="5"
+                value={resumen.roles}
                 subtitle="Roles configurados"
             />
 

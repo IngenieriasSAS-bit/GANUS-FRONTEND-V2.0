@@ -1,195 +1,180 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
+
+import { login } from "../services/sessionManager";
 
 import "../styles/login.css";
 
 export default function Login() {
 
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
-const [usuario, setUsuario] = useState("");
+    const [usuario, setUsuario] = useState("");
 
-const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("");
 
-const ingresar = () => {
+    // ======================================================
+    // Iniciar sesión
+    // ======================================================
 
-const usuarioDemo = JSON.parse(
+    const ingresar = () => {
 
-localStorage.getItem("usuarioDemo")
+        const autenticado = login(
 
-);
+            usuario,
 
-if(
+            password
 
-(usuario === "admin" && password === "123456")
+        );
 
-||
+        if (!autenticado) {
 
-(
+            alert(
 
-usuario === usuarioDemo?.usuario
+                "Usuario o contraseña incorrectos."
 
-&&
+            );
 
-password === usuarioDemo?.password
+            return;
 
-)
+        }
 
-){
+        navigate("/");
 
-localStorage.setItem(
+    };
 
-"usuario",
+    return (
 
-usuario
+        <div className="loginContainer">
 
-);
+            <div className="loginOverlay">
 
-navigate("/");
+                <div className="loginCard">
 
-}
+                    <h1 className="logoLogin">
 
-else{
+                        GANUS
 
-alert(
+                    </h1>
 
-"Usuario o contraseña incorrectos"
+                    <p className="subtituloLogin">
 
-);
+                        Gestión Inteligente Ganadera
 
-}
+                    </p>
 
-};
+                    <form
 
-return (
+                        onSubmit={(e) => {
 
-<div className="loginContainer">
+                            e.preventDefault();
 
-<div className="loginOverlay">
+                            ingresar();
 
-<div className="loginCard">
+                        }}
 
-<h1 className="logoLogin">
+                    >
 
-GANUS
+                        <input
 
-</h1>
+                            type="text"
 
-<p className="subtituloLogin">
+                            placeholder="Usuario"
 
-Gestión Inteligente Ganadera
+                            value={usuario}
 
-</p>
+                            onChange={(e) =>
 
-<form
+                                setUsuario(e.target.value)
 
-onSubmit={(e)=>{
+                            }
 
-e.preventDefault();
+                        />
 
-ingresar();
+                        <input
 
-}}
+                            type="password"
 
->
+                            placeholder="Contraseña"
 
-<input
+                            value={password}
 
-type="text"
+                            onChange={(e) =>
 
-placeholder="Usuario"
+                                setPassword(e.target.value)
 
-value={usuario}
+                            }
 
-onChange={(e)=>
+                        />
 
-setUsuario(e.target.value)
+                        <button
 
-}
+                            className="btnLogin"
 
-/>
+                            type="submit"
 
-<input
+                        >
 
-type="password"
+                            Ingresar
 
-placeholder="Contraseña"
+                        </button>
 
-value={password}
+                    </form>
 
-onChange={(e)=>
+                    <p
 
-setPassword(e.target.value)
+                        className="olvidePassword"
 
-}
+                        onClick={() => {
 
-/>
+                            alert(
 
-<button
+                                "Por favor comuníquese con el administrador del sistema."
 
-className="btnLogin"
+                            );
 
-type="submit"
+                        }}
 
->
+                    >
 
-Ingresar
+                        ¿Olvidaste tu contraseña?
 
-</button>
+                    </p>
 
-</form>
+                    <p className="registroTexto">
 
-<p
+                        ¿No tienes cuenta?
 
-className="olvidePassword"
+                        <span
 
-onClick={()=>{
+                            className="btnRegistro"
 
-alert(
+                            onClick={() =>
 
-"Por favor comuníquese con el administrador del sistema."
+                                navigate("/registro")
 
-);
+                            }
 
-}}
+                        >
 
->
+                            Registrarse
 
-¿Olvidaste tu contraseña?
+                        </span>
 
-</p>
+                    </p>
 
-<p className="registroTexto">
+                    <p className="textoInferior">
 
-¿No tienes cuenta?
+                        Controla, registra y optimiza todos los procesos de tu ganado desde un solo lugar.
 
-<span
+                    </p>
 
-className="btnRegistro"
+                </div>
 
-onClick={()=>navigate("/registro")}
+            </div>
 
->
+        </div>
 
-Registrarse
-
-</span>
-
-</p>
-
-<p className="textoInferior">
-
-Controla, registra y optimiza todos los procesos de tu ganado desde un solo lugar.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-);
+    );
 
 }

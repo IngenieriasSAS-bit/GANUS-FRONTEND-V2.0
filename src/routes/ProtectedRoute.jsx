@@ -1,15 +1,25 @@
 import { Navigate } from "react-router-dom";
 
-export default function ProtectedRoute({ children }) {
+import {
 
-  const usuario = localStorage.getItem("usuario");
+    obtenerUsuarioSesion,
 
-  if (!usuario) {
+} from "../services/sessionManager";
 
-    return <Navigate to="/login" replace />;
+export default function ProtectedRoute({
 
-  }
+    children,
 
-  return children;
+}) {
+
+    const usuario = obtenerUsuarioSesion();
+
+    if (!usuario) {
+
+        return <Navigate to="/login" replace />;
+
+    }
+
+    return children;
 
 }

@@ -26,12 +26,18 @@ const readResponses = () => {
 };
 
 const writeResponses = (responses) => {
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(responses)
-  );
 
-  return responses;
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(responses)
+    );
+
+    window.dispatchEvent(
+        new Event("field-engine-updated")
+    );
+
+    return responses;
+
 };
 
 export const getFieldEngineResponses = () =>

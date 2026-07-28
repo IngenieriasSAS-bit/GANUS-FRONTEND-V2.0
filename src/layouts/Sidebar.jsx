@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+
 
 import {
   Menu,
@@ -24,12 +26,21 @@ import "../styles/sidebar.css";
 export default function Sidebar() {
   const navigate = useNavigate();
 
+  const {
+
+    cerrarSesion,
+
+} = useAuth();
+
   const [abierto, setAbierto] = useState(false);
 
   const logout = () => {
-    localStorage.removeItem("usuario");
+
+    cerrarSesion();
+
     navigate("/login");
-  };
+
+};
 
   const menuItems = [
     {

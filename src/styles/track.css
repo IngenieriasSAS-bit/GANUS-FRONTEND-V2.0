@@ -1,0 +1,311 @@
+.track{
+
+    margin-left:290px;
+
+    margin-top:72px;
+
+    padding:2rem;
+
+    min-height:calc(100vh - 72px);
+
+    background:var(--ganus-background);
+
+    overflow-y:auto;
+
+    transition:all .25s ease;
+
+}
+
+.track-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:1.5rem;
+
+    margin-top:1.5rem;
+
+}
+
+.track-stat-card{
+
+    background:var(--ganus-surface);
+
+    border:1px solid var(--ganus-border);
+
+    border-radius:18px;
+
+    padding:1.5rem;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1rem;
+
+}
+
+.track-stat-icon{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(37,99,235,.10);
+
+    color:var(--ganus-primary);
+
+}
+
+.track-stat-card h3{
+
+    margin:0;
+
+    font-size:1.8rem;
+
+    color:var(--ganus-text);
+
+}
+
+.track-stat-card span{
+
+    color:var(--ganus-text-secondary);
+
+}
+
+@media(max-width:1200px){
+
+    .track{
+
+        margin-left:90px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .track{
+
+        margin-left:0;
+
+        margin-top:65px;
+
+        padding:1rem;
+
+    }
+
+}
+
+.track-table-container{
+
+    margin-top:2rem;
+
+    background:var(--ganus-surface);
+
+    border:1px solid var(--ganus-border);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+}
+
+.track-table-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:1.2rem 1.5rem;
+
+    border-bottom:1px solid var(--ganus-border);
+
+}
+
+.track-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.track-table th{
+
+    text-align:left;
+
+    padding:1rem;
+
+    font-weight:600;
+
+}
+
+.track-table td{
+
+    padding:1rem;
+
+    border-top:1px solid var(--ganus-border);
+
+}
+
+.track-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:.45rem;
+
+    padding:.35rem .75rem;
+
+    border-radius:999px;
+
+    font-size:.82rem;
+
+    font-weight:600;
+
+}
+
+.track-status.pending{
+
+    background:#fff4d6;
+
+    color:#9a6700;
+
+}
+
+.track-status.in_progress{
+
+    background:#dff5ff;
+
+    color:#0369a1;
+
+}
+
+.track-status.paused{
+
+    background:#f3e8ff;
+
+    color:#7e22ce;
+
+}
+
+.track-status.completed{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.track-view-button{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:var(--ganus-primary);
+
+    color:#fff;
+
+}
+
+.track-empty{
+
+    text-align:center;
+
+    padding:3rem;
+
+    color:var(--ganus-text-secondary);
+
+}
+
+@media(max-width:900px){
+
+    .track-table-container{
+
+        overflow-x:auto;
+
+    }
+
+    .track-table{
+
+        min-width:900px;
+
+    }
+
+}
+
+.track>*{
+
+    width:100%;
+
+    max-width:1600px;
+
+    margin:auto;
+
+}
+
+.track-table-container{
+
+    width:100%;
+
+}
+
+.track-table-header h2{
+
+    font-size:1.2rem;
+
+    color:var(--ganus-text);
+
+}
+
+.track-table-header span{
+
+    color:var(--ganus-text-secondary);
+
+}
+
+.track-table tbody tr{
+
+    transition:.25s;
+
+}
+
+.track-table tbody tr:hover{
+
+    background:rgba(37,99,235,.05);
+
+}
+
+.track-table th{
+
+    background:var(--ganus-surface-secondary);
+
+}
+
+.track-table td{
+
+    vertical-align:middle;
+
+}

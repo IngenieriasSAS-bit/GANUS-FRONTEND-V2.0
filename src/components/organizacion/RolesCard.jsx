@@ -29,7 +29,11 @@ import ConfirmModal from "../common/ConfirmModal";
 import FormularioRol from "./FormularioRol";
 import VistaRol from "./VistaRol";
 
-import rolesIniciales from "../../data/roles";
+import {
+    obtenerRoles,
+    crearRol,
+    actualizarRol,
+} from "../../services/organizationService";
 
 import "./GrupoEmpresarialCard.css";
 
@@ -39,7 +43,9 @@ export default function RolesCard() {
     // Estado principal
     // ======================================================
 
-    const [roles, setRoles] = useState(rolesIniciales);
+    const [roles, setRoles] = useState(() =>
+    obtenerRoles()
+);
 
     // ======================================================
     // Buscador
@@ -111,62 +117,99 @@ export default function RolesCard() {
     // Guardar rol
     // ======================================================
 
-    const guardarRol = (rol) => {
+    const guardarRol = (rolFormulario) => {
 
-        if (rolEditando) {
+    // ==========================================
+    // EDITAR
+    // ==========================================
 
-            const nuevosRoles = roles.map((item) =>
+    if (rolEditando) {
 
-                item.id === rolEditando.id
+        try {
 
-                    ? {
-                        ...item,
-                        ...rol,
-                    }
+            const rolActualizado = actualizarRol(
 
-                    : item
+                rolEditando.id,
+
+                rolFormulario
 
             );
 
-            setRoles(nuevosRoles);
+            setRoles((prev) =>
 
-        } else {
+                prev.map((item) =>
 
-            const nuevoRol = {
+                    item.id === rolActualizado.id
 
-                id: Date.now(),
+                        ? rolActualizado
 
-                permisos: 0,
+                        : item
 
-                ...rol,
+                )
 
-            };
+            );
 
-            setRoles([
-
-                ...roles,
-
-                nuevoRol,
-
-            ]);
+            cerrarFormulario();
 
         }
 
+        catch (error) {
+
+            console.error(error);
+
+            alert(error.message);
+
+        }
+
+        return;
+
+    }
+
+    // ==========================================
+    // CREAR
+    // ==========================================
+
+    try {
+
+        const nuevoRol = crearRol(
+
+            rolFormulario
+
+        );
+
+        setRoles((prev) => [
+
+            ...prev,
+
+            nuevoRol,
+
+        ]);
+
         cerrarFormulario();
 
-    };
+    }
 
-    // ======================================================
-    // Editar rol
-    // ======================================================
+    catch (error) {
 
-    const editarRol = (rol) => {
+        console.error(error);
 
-        setRolEditando(rol);
+        alert(error.message);
 
-        setMostrarFormulario(true);
+    }
 
-    };
+};
+
+// ======================================================
+// Editar Rol
+// ======================================================
+
+const editarRol = (rol) => {
+
+    setRolEditando(rol);
+
+    setMostrarFormulario(true);
+
+};
 
     // ======================================================
     // Ver rol

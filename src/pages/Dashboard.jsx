@@ -29,65 +29,47 @@ import {
   CircleAlert,
 } from "lucide-react";
 
+import {
+  detectarIntencionFormulario,
+} from "../services/advisoryFormService";
+
+import { obtenerActivos } from "../services/activosService";
+
+import { obtenerActividades } from "../services/actividadesService/actividadesService";
+
+import { obtenerAlertas } from "../services/alertasService";
+
 import "../styles/dashboard.css";
 
 export default function Dashboard() {
     const navigate = useNavigate();
 
   const obtenerInformacionInicial = () => {
-    const activos =
-      JSON.parse(localStorage.getItem("ganus_activos")) ||
-      JSON.parse(localStorage.getItem("activos")) ||
-      JSON.parse(localStorage.getItem("animales")) ||
-      [];
 
-    const pesajes =
-      JSON.parse(localStorage.getItem("pesajes")) || [];
+    const activos = obtenerActivos();
 
-    const vacunaciones =
-      JSON.parse(localStorage.getItem("vacunas")) || [];
+    const actividadesLocales = obtenerActividades();
 
-    const eventos =
-      JSON.parse(localStorage.getItem("eventos")) || [];
+    const alertas = obtenerAlertas();
 
-    const actividadesLocales = [
-      ...pesajes.map((item) => ({
-        id: `pesaje-${item.id || crypto.randomUUID()}`,
-        tipo: "Pesaje",
-        descripcion: `${item.nombre || item.animal || "Activo"} - ${
-          item.peso
-        } Kg`,
-        responsable: "Operación",
-        momento: "Registro reciente",
-      })),
-
-      ...vacunaciones.map((item) => ({
-        id: `vacunacion-${item.id || crypto.randomUUID()}`,
-        tipo: "Vacunación",
-        descripcion: `${
-          item.nombre || item.animal || "Activo"
-        } - ${item.vacuna || "Vacunación registrada"}`,
-        responsable: "Operación",
-        momento: "Registro reciente",
-      })),
-
-      ...eventos.map((item) => ({
-        id: `evento-${item.id || crypto.randomUUID()}`,
-        tipo: "Evento",
-        descripcion: `${
-          item.nombre || item.animal || "Activo"
-        } - ${item.tipo || "Evento operativo"}`,
-        responsable: "Operación",
-        momento: "Registro reciente",
-      })),
-    ];
 
     return {
       resumenInicial: {
         activos: activos.length,
         actividadesHoy: actividadesLocales.length,
-        alertasActivas: 3,
-        tareasPendientes: 6,
+        alertasActivas: alertas.filter(
+
+    alerta => !alerta.atendida
+
+).length,
+
+tareasPendientes: actividadesLocales.filter(
+
+    actividad =>
+
+        actividad.estado !== "Completada"
+
+).length,
       },
 
       actividadesIniciales: actividadesLocales
@@ -145,25 +127,29 @@ export default function Dashboard() {
   const indicadores = [
     {
       titulo: "Producción de leche",
-      valor: "2.450 L",
+      valor: "2.450",
+      unidad: "L",
       variacion: "+15% vs mes anterior",
       icono: Milk,
     },
     {
       titulo: "Peso promedio",
-      valor: "412 Kg",
+      valor: "412",
+      unidad: "Kg",
       variacion: "+9% vs mes anterior",
       icono: Weight,
     },
     {
       titulo: "Tasa de preñez",
       valor: "68%",
+      unidad: "",
       variacion: "+6% vs mes anterior",
       icono: HeartPulse,
     },
     {
       titulo: "Mortalidad",
       valor: "1,2%",
+      unidad: "",
       variacion: "-0,5% vs mes anterior",
       icono: TrendingDown,
     },
@@ -481,7 +467,7 @@ export default function Dashboard() {
     };
   };
 
-  const enviarConsultaAdvisory = (mensajeDirecto = "") => {
+    const enviarConsultaAdvisory = (mensajeDirecto = "") => {
     const mensaje =
       typeof mensajeDirecto === "string" &&
       mensajeDirecto.trim()
@@ -507,7 +493,42 @@ export default function Dashboard() {
     setProcesandoConsulta(true);
 
     window.setTimeout(() => {
-      const respuesta = generarRespuestaAdvisory(mensaje);
+      if (detectarIntencionFormulario(mensaje)) {
+  setMensajesAdvisory((mensajesActuales) => [
+    ...mensajesActuales,
+    {
+      id: crypto.randomUUID(),
+      tipo: "asistente",
+      categoria: "formulario",
+      titulo: "Solicitud de formulario identificada",
+      texto:
+        "He identificado una necesidad de captura estructurada. La consulta será transferida a GANUS Advisory para generar una propuesta de formulario operativo.",
+      puntos: [
+        "Consulta interpretada correctamente",
+        "Contexto operativo identificado",
+        "Preparando propuesta estructurada",
+      ],
+      recomendacion:
+        "GANUS Advisory abrirá el análisis completo de la propuesta.",
+    },
+  ]);
+
+  window.setTimeout(() => {
+    setProcesandoConsulta(false);
+
+    navigate("/advisory", {
+      state: {
+        consultaAdvisory: mensaje,
+        generarFormulario: true,
+      },
+    });
+  }, 900);
+
+  return;
+}
+
+      const respuesta =
+        generarRespuestaAdvisory(mensaje);
 
       setMensajesAdvisory((mensajesActuales) => [
         ...mensajesActuales,
@@ -587,7 +608,7 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div className="indicadores-grid">
+                            <div className="indicadores-grid">
                 {indicadores.map((indicador) => {
                   const Icono = indicador.icono;
 
@@ -596,17 +617,33 @@ export default function Dashboard() {
                       key={indicador.titulo}
                       className="indicador-card"
                     >
-                      <div className="indicador-card-header">
-                        <h3>{indicador.titulo}</h3>
+                      <div className="indicador-contenido">
+                        <div className="indicador-card-header">
+                          <h3>{indicador.titulo}</h3>
 
-                        <Icono size={24} />
+                          <Icono
+                            size={24}
+                            aria-hidden="true"
+                          />
+                        </div>
+
+                        <div className="indicador-valor">
+                          <strong>{indicador.valor}</strong>
+
+                          {indicador.unidad && (
+                            <span>{indicador.unidad}</span>
+                          )}
+                        </div>
+
+                        <p className="indicador-variacion">
+                          {indicador.variacion}
+                        </p>
                       </div>
 
-                      <strong>{indicador.valor}</strong>
-
-                      <p>{indicador.variacion}</p>
-
-                      <div className="indicador-linea">
+                      <div
+                        className="indicador-linea"
+                        aria-hidden="true"
+                      >
                         <span />
                         <span />
                         <span />
@@ -843,6 +880,9 @@ export default function Dashboard() {
                           <p>{mensaje.recomendacion}</p>
                         </div>
                       )}
+
+                                            
+
                     </div>
                   </article>
                 );

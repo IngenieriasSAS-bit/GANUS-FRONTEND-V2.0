@@ -33,46 +33,40 @@ export default function Modal({
 
     return (
 
-        <div className="modal-overlay">
+    <div
+        className="modal-overlay"
+        onClick={onClose}
+    >
 
-            <div className="modal-container">
+        <div
+            className="modal-container"
+            onClick={(e) => e.stopPropagation()}
+        >
 
-                {/* ===========================
-                    Cabecera
-                =========================== */}
+            <div className="modal-header">
 
-                <div className="modal-header">
+                <h2>{titulo}</h2>
 
-                    <h2>{titulo}</h2>
+                <button
+                    className="modal-close"
+                    onClick={onClose}
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
 
-                    <button
+            </div>
 
-                        className="modal-close"
+            <div className="modal-body">
 
-                        onClick={onClose}
-
-                    >
-
-                        ×
-
-                    </button>
-
-                </div>
-
-                {/* ===========================
-                    Contenido
-                =========================== */}
-
-                <div className="modal-body">
-
-                    {children}
-
-                </div>
+                {children}
 
             </div>
 
         </div>
 
-    );
+    </div>
+
+);
 
 }

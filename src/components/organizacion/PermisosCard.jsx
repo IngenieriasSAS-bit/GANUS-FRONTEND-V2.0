@@ -14,8 +14,15 @@
 
 import { useState } from "react";
 
-import permisosIniciales from "../../data/permisos";
-import rolesIniciales from "../../data/roles";
+import { obtenerRoles } from "../../services/organizationService";
+
+import {
+
+    obtenerPermisosRol,
+
+    guardarPermisosRol,
+
+} from "../../services/permissionService";
 
 import "./GrupoEmpresarialCard.css";
 
@@ -25,29 +32,60 @@ export default function PermisosCard() {
     // Estado de la matriz
     // ======================================================
 
-    const [permisos, setPermisos] = useState(permisosIniciales);
-
-    const [permisosOriginales] = useState(
-    structuredClone(permisosIniciales)
-);
-
     // ======================================================
-    // Rol seleccionado
-    // ======================================================
-
-    const [rolSeleccionado, setRolSeleccionado] = useState(
-        rolesIniciales[0]?.nombre || ""
-    );
-
-    // ======================================================
-// Información del rol seleccionado
+// Roles
 // ======================================================
 
-const rolActual = rolesIniciales.find(
+const [roles, setRoles] = useState(
+    () => obtenerRoles()
+);
 
-    (rol) => rol.nombre === rolSeleccionado
+// ======================================================
+// Rol seleccionado
+// ======================================================
+
+const [rolSeleccionado, setRolSeleccionado] = useState(
+    () => roles[0]?.id ?? null
+);
+
+// ======================================================
+// Permisos
+// ======================================================
+
+const [permisos, setPermisos] = useState(
+
+    () => obtenerPermisosRol(
+
+        roles[0]?.id
+
+    )
 
 );
+
+const [permisosOriginales, setPermisosOriginales] = useState(
+
+    () => structuredClone(
+
+        obtenerPermisosRol(
+
+            roles[0]?.id
+
+        )
+
+    )
+
+);
+
+// ======================================================
+// Rol actual
+// ======================================================
+
+const rolActual = roles.find(
+
+    (rol) => rol.id === rolSeleccionado
+
+);
+
 
     // ======================================================
     // Cambiar permiso
@@ -78,12 +116,53 @@ const restablecerPermisos = () => {
 // Guardar permisos
 // ======================================================
 
-const guardarPermisos = () => {
+const guardarCambios = () => {
 
-    console.log("Permisos guardados:", permisos);
+    guardarPermisosRol(
+
+        rolSeleccionado,
+
+        permisos
+
+    );
+
+    const nuevosRoles = obtenerRoles();
+
+    setRoles(nuevosRoles);
+
+    const permisosActualizados = obtenerPermisosRol(
+
+    rolSeleccionado
+
+);
+
+setPermisos(
+
+    structuredClone(
+
+        permisosActualizados
+
+    )
+
+);
+
+setPermisosOriginales(
+
+    structuredClone(
+
+        permisosActualizados
+
+    )
+
+);
+
+    alert(
+
+        "Permisos actualizados correctamente."
+
+    );
 
 };
-
     // ======================================================
     // Render
     // ======================================================
@@ -124,19 +203,33 @@ const guardarPermisos = () => {
 
                     value={rolSeleccionado}
 
-                    onChange={(e) =>
-                        setRolSeleccionado(e.target.value)
-                    }
+onChange={(e) => {
+
+    const id = Number(e.target.value);
+
+    setRolSeleccionado(id);
+
+    const permisosRol = obtenerPermisosRol(id);
+
+    setPermisos(
+        structuredClone(permisosRol)
+    );
+
+    setPermisosOriginales(
+        structuredClone(permisosRol)
+    );
+
+}}
 
                 >
 
                     {
 
-                        rolesIniciales.map((rol) => (
+                        roles.map((rol) => (
 
                             <option
                                 key={rol.id}
-                                value={rol.nombre}
+                                value={rol.id}
                             >
 
                                 {rol.nombre}
@@ -334,7 +427,7 @@ const guardarPermisos = () => {
 
     <button
         className="btn-guardar"
-        onClick={guardarPermisos}
+        onClick={guardarCambios}
     >
 
         Guardar Cambios

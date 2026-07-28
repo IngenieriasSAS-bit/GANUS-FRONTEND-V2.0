@@ -25,6 +25,10 @@ import ActionButtons from "../common/ActionButtons";
 import FormularioGrupo from "./FormularioGrupo";
 import VistaGrupo from "./VistaGrupo";
 import gruposIniciales from "../../data/gruposEmpresariales";
+import {
+  crearGrupoEmpresarial,
+  obtenerDatosOrganizacion,
+} from "../../services/organizationService";
 import Modal from "../common/Modal";
 import ConfirmModal from "../common/ConfirmModal";
 
@@ -36,7 +40,18 @@ export default function GrupoEmpresarialCard() {
     // Estado principal del listado
     // ======================================================
 
-    const [grupos, setGrupos] = useState(gruposIniciales);
+    const [grupos, setGrupos] = useState(() => {
+
+    const gruposGuardados =
+        obtenerDatosOrganizacion();
+
+    return gruposGuardados.length > 0
+        ? gruposGuardados
+        : gruposIniciales;
+
+});
+
+    
 
     // ======================================================
     // Controla la apertura del formulario
@@ -120,59 +135,72 @@ const cerrarVista = () => {
     // Guardar Grupo
     // ======================================================
 
-    const guardarGrupo = (grupo) => {
+    const guardarGrupo = (grupoFormulario) => {
 
-        // ============================
-        // EDITAR
-        // ============================
+    // ============================================
+    // EDITAR
+    // ============================================
 
-        if (grupoEditando) {
+    if (grupoEditando) {
 
-            const nuevosGrupos = grupos.map((item) =>
+        const nuevosGrupos = grupos.map((item) =>
 
-                item.id === grupoEditando.id
+            item.id === grupoEditando.id
 
-                    ? {
-                        ...grupo,
-                        id: grupoEditando.id,
-                        fincas: grupoEditando.fincas,
-                    }
+                ? {
 
-                    : item
+                    ...item,
 
-            );
+                    nombre: grupoFormulario.nombre,
 
-            setGrupos(nuevosGrupos);
+                    descripcion: grupoFormulario.descripcion,
 
-        }
+                    estado: grupoFormulario.estado,
 
-        // ============================
-        // CREAR
-        // ============================
+                }
 
-        else {
+                : item
 
-            const nuevoGrupo = {
+        );
 
-                id: Date.now(),
-
-                nombre: grupo.nombre,
-
-                descripcion: grupo.descripcion,
-
-                estado: grupo.estado,
-
-                fincas: 0,
-
-            };
-
-            setGrupos([...grupos, nuevoGrupo]);
-
-        }
+        setGrupos(nuevosGrupos);
 
         cerrarFormulario();
 
-    };
+        return;
+
+    }
+
+    // ============================================
+    // CREAR
+    // ============================================
+
+    try {
+
+        const nuevoGrupo =
+            crearGrupoEmpresarial(grupoFormulario);
+
+        setGrupos((prev) => [
+
+            ...prev,
+
+            nuevoGrupo,
+
+        ]);
+
+        cerrarFormulario();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
 
     // ======================================================
     // Editar Grupo

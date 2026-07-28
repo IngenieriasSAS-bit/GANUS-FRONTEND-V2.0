@@ -1412,3 +1412,488 @@ html[data-ganus-theme="oscuro"]
     gap: 3px;
   }
 }
+
+/* ==========================================================
+   ADVISORY - PROPUESTA DE FORMULARIO
+========================================================== */
+
+.advisory-form-proposal {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.advisory-form-proposal__header {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 14px;
+
+  min-width: 0;
+
+  padding: 18px;
+
+  background: #f1faf6;
+
+  border: 1px solid #d4ebdf;
+  border-radius: 13px;
+}
+
+.advisory-form-proposal__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 44px;
+
+  color: #176b4d;
+
+  background: #ffffff;
+
+  border: 1px solid #d4ebdf;
+  border-radius: 11px;
+}
+
+.advisory-form-proposal__header > div {
+  min-width: 0;
+}
+
+.advisory-form-proposal__header > div > span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #176b4d;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.advisory-form-proposal__header h3 {
+  margin: 0;
+
+  color: #123c74;
+
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.advisory-form-proposal__header p {
+  margin: 6px 0 0;
+
+  color: #627d70;
+
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.advisory-form-proposal__metadata {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.advisory-form-proposal__metadata > div {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  padding: 12px 14px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e4e9ef;
+  border-radius: 11px;
+}
+
+.advisory-form-proposal__metadata span {
+  color: #8795a8;
+
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.advisory-form-proposal__metadata strong {
+  margin-top: 4px;
+
+  color: #263a55;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+.advisory-form-proposal__sections {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.advisory-form-proposal__section {
+  min-width: 0;
+
+  padding: 15px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e7ee;
+  border-radius: 12px;
+}
+
+.advisory-form-proposal__section-header {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+
+  min-width: 0;
+
+  margin-bottom: 12px;
+}
+
+.advisory-form-proposal__section-header > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  color: #176b4d;
+
+  background: #eaf8f1;
+
+  border-radius: 9px;
+}
+
+.advisory-form-proposal__section-header > div {
+  min-width: 0;
+}
+
+.advisory-form-proposal__section-header strong {
+  color: #263a55;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.advisory-form-proposal__section-header p {
+  margin: 3px 0 0;
+
+  color: #8795a8;
+
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.advisory-form-proposal__fields {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+}
+
+.advisory-form-proposal__field {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  min-width: 0;
+
+  padding: 10px 11px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e7ecf2;
+  border-radius: 9px;
+}
+
+.advisory-form-proposal__field-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  flex: 0 0 28px;
+
+  color: #176b4d;
+
+  background: #eaf8f1;
+
+  border-radius: 8px;
+}
+
+.advisory-form-proposal__field > div {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.advisory-form-proposal__field strong {
+  color: #263a55;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.advisory-form-proposal__field > div > span {
+  margin-top: 2px;
+
+  color: #8a98aa;
+
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.advisory-form-proposal__notice {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+
+  padding: 12px 14px;
+
+  color: #176b4d;
+
+  background: #f1faf6;
+
+  border: 1px solid #d4ebdf;
+  border-radius: 11px;
+}
+
+.advisory-form-proposal__notice svg {
+  flex: 0 0 auto;
+
+  margin-top: 1px;
+}
+
+.advisory-form-proposal__notice p {
+  margin: 0;
+
+  color: #527263;
+
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.advisory-form-proposal__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.advisory-form-proposal__actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 40px;
+
+  padding: 9px 14px;
+
+  border-radius: 10px;
+
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.advisory-form-proposal__actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.advisory-form-proposal__actions button:disabled {
+  cursor: wait;
+
+  opacity: 0.6;
+}
+
+.advisory-form-proposal__discard {
+  color: #526783;
+
+  background: #ffffff;
+
+  border: 1px solid #dce3eb;
+}
+
+.advisory-form-proposal__discard:hover:not(:disabled) {
+  color: #9f3434;
+
+  border-color: rgba(159, 52, 52, 0.35);
+}
+
+.advisory-form-proposal__create {
+  color: #ffffff;
+
+  background: #176b4d;
+
+  border: 1px solid #176b4d;
+}
+
+.advisory-form-proposal__create:hover:not(:disabled) {
+  background: #125a40;
+
+  border-color: #125a40;
+}
+
+.advisory-form-proposal__loading {
+  animation: advisory-rotate 1s linear infinite;
+}
+
+
+/* ==========================================================
+   ADVISORY - PROPUESTA DE FORMULARIO - MODO OSCURO
+========================================================== */
+
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__header,
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__notice,
+.advisory-shell.oscuro
+  .advisory-form-proposal__header,
+.advisory-shell.oscuro
+  .advisory-form-proposal__notice {
+  background: #123126;
+
+  border-color: #27674d;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__icon,
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__section,
+.advisory-shell.oscuro
+  .advisory-form-proposal__icon,
+.advisory-shell.oscuro
+  .advisory-form-proposal__section {
+  background: #0d1d31;
+
+  border-color: #203d5e;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__metadata > div,
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__field,
+.advisory-shell.oscuro
+  .advisory-form-proposal__metadata > div,
+.advisory-shell.oscuro
+  .advisory-form-proposal__field {
+  background: #0b1b2e;
+
+  border-color: #203d5e;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__header h3,
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__metadata strong,
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__section-header strong,
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__field strong,
+.advisory-shell.oscuro
+  .advisory-form-proposal__header h3,
+.advisory-shell.oscuro
+  .advisory-form-proposal__metadata strong,
+.advisory-shell.oscuro
+  .advisory-form-proposal__section-header strong,
+.advisory-shell.oscuro
+  .advisory-form-proposal__field strong {
+  color: #f1f6fc;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__header p,
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__notice p,
+.advisory-shell.oscuro
+  .advisory-form-proposal__header p,
+.advisory-shell.oscuro
+  .advisory-form-proposal__notice p {
+  color: #a9d9c2;
+}
+
+html[data-ganus-theme="oscuro"]
+  .advisory-form-proposal__discard,
+.advisory-shell.oscuro
+  .advisory-form-proposal__discard {
+  color: #c7d5e5;
+
+  background: #0d1d31;
+
+  border-color: #294766;
+}
+
+
+/* ==========================================================
+   ADVISORY - PROPUESTA DE FORMULARIO - RESPONSIVE
+========================================================== */
+
+@media (max-width: 680px) {
+  .advisory-form-proposal__header {
+    padding: 15px;
+  }
+
+  .advisory-form-proposal__metadata {
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+
+  .advisory-form-proposal__fields {
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+
+  .advisory-form-proposal__actions {
+    align-items: stretch;
+
+    flex-direction: column-reverse;
+  }
+
+  .advisory-form-proposal__actions button {
+    width: 100%;
+  }
+}

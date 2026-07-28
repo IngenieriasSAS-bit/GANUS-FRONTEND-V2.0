@@ -17,33 +17,63 @@ import Tareas from "./pages/Tareas";
 import Alertas from "./pages/Alertas";
 import Indicadores from "./pages/Indicadores";
 import FieldEngine from "./pages/FieldEngine";
+import FieldEngineHome from "./pages/FieldEngineHome";
+import FieldEngineResponses from "./pages/FieldEngineResponses";
 import DynamicFormCapture from "./pages/DynamicFormCapture";
 import FieldEngineTemplates from "./pages/FieldEngineTemplates";
 import Make from "./pages/Make";
 import Operacion from "./pages/Operacion";
+import Operativo from "./pages/Operativo";
+import Track from "./pages/Track";
 import Knowledge from "./pages/Knowledge";
 import Advisory from "./pages/Advisory";
 import Reportes from "./pages/Reportes";
 import Configuracion from "./pages/Configuracion";
 
+
 import ProtectedRoute from "./routes/ProtectedRoute";
+
+import { useEffect } from "react";
+
+import {
+
+    iniciarMonitoreoActividad,
+
+    detenerMonitoreoActividad,
+
+} from "./services/activityListenerService";
 
 import "./styles/responsive.css";
 import "./styles/theme.css";
 
 export default function App() {
+
+  useEffect(() => {
+
+    iniciarMonitoreoActividad();
+
+    return () => {
+
+        detenerMonitoreoActividad();
+
+    };
+
+}, []);
+
   const temaGuardado =
-    localStorage.getItem("ganus-tema") || "claro";
+    localStorage.getItem("theme") || "light";
 
-  document.documentElement.setAttribute(
+document.documentElement.setAttribute(
     "data-ganus-theme",
-    temaGuardado
-  );
+    temaGuardado === "dark"
+        ? "oscuro"
+        : "claro"
+);
 
-  document.body.setAttribute(
-    "data-ganus-theme",
+document.body.setAttribute(
+    "data-theme",
     temaGuardado
-  );
+);
 
   return (
     <HashRouter>
@@ -152,7 +182,25 @@ export default function App() {
   path="/field-engine"
   element={
     <ProtectedRoute>
+      <FieldEngineHome />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/field-engine/templates"
+  element={
+    <ProtectedRoute>
       <FieldEngineTemplates />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/field-engine/responses"
+  element={
+    <ProtectedRoute>
+      <FieldEngineResponses />
     </ProtectedRoute>
   }
 />
@@ -192,6 +240,24 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+    path="/operativo"
+    element={
+        <ProtectedRoute>
+            <Operativo />
+        </ProtectedRoute>
+    }
+/>
+
+        <Route
+    path="/track"
+    element={
+        <ProtectedRoute>
+            <Track />
+        </ProtectedRoute>
+    }
+/>
 
         <Route
           path="/inventario"

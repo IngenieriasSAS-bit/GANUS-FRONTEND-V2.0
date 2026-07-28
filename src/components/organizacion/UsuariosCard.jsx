@@ -29,7 +29,11 @@ import ConfirmModal from "../common/ConfirmModal";
 import FormularioUsuario from "./FormularioUsuario";
 import VistaUsuario from "./VistaUsuario";
 
-import usuariosIniciales from "../../data/usuarios";
+import {
+    obtenerUsuarios,
+    crearUsuario,
+    actualizarUsuario,
+} from "../../services/organizationService";
 
 import "./GrupoEmpresarialCard.css";
 
@@ -39,7 +43,9 @@ export default function UsuariosCard() {
     // Estado principal
     // ======================================================
 
-    const [usuarios, setUsuarios] = useState(usuariosIniciales);
+    const [usuarios, setUsuarios] = useState(
+    () => obtenerUsuarios()
+);
 
     // ======================================================
     // Buscador
@@ -111,53 +117,87 @@ export default function UsuariosCard() {
     // Guardar usuario
     // ======================================================
 
-    const guardarUsuario = (usuario) => {
+    const guardarUsuario = (usuarioFormulario) => {
 
-        if (usuarioEditando) {
+    // ==========================================
+    // EDITAR
+    // ==========================================
 
-            const nuevosUsuarios = usuarios.map((item) =>
+    if (usuarioEditando) {
 
-                item.id === usuarioEditando.id
+        try {
 
-                    ? {
+            const usuarioActualizado = actualizarUsuario(
 
-                        ...usuario,
+                usuarioEditando.id,
 
-                        id: usuarioEditando.id,
-
-                    }
-
-                    : item
+                usuarioFormulario
 
             );
 
-            setUsuarios(nuevosUsuarios);
+            setUsuarios((prev) =>
+
+                prev.map((item) =>
+
+                    item.id === usuarioActualizado.id
+
+                        ? usuarioActualizado
+
+                        : item
+
+                )
+
+            );
+
+            cerrarFormulario();
 
         }
 
-        else {
+        catch (error) {
 
-            const nuevoUsuario = {
+            console.error(error);
 
-                id: Date.now(),
-
-                ...usuario,
-
-            };
-
-            setUsuarios([
-
-                ...usuarios,
-
-                nuevoUsuario,
-
-            ]);
+            alert(error.message);
 
         }
+
+        return;
+
+    }
+
+    // ==========================================
+    // CREAR
+    // ==========================================
+
+    try {
+
+        const nuevoUsuario = crearUsuario(
+
+            usuarioFormulario
+
+        );
+
+        setUsuarios((prev) => [
+
+            ...prev,
+
+            nuevoUsuario,
+
+        ]);
 
         cerrarFormulario();
 
-    };
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
 
     // ======================================================
     // Editar usuario

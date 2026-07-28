@@ -9,7 +9,7 @@ import {
 import {
   crearActividad,
   obtenerActividadesPorActivo,
-} from "../../services/actividadesService";
+} from "../../services/actividadesService/actividadesService";
 
 
 const TIPOS_ACTIVIDAD = [

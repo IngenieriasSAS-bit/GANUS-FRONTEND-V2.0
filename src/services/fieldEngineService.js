@@ -76,8 +76,18 @@ const readStorage = (key, fallback) => {
 };
 
 const writeStorage = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
-  return value;
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+
+    window.dispatchEvent(
+        new Event("field-engine-updated")
+    );
+
+    return value;
+
 };
 
 export const getFieldEngineTemplates = () =>

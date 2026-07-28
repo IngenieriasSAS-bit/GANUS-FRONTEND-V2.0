@@ -31,6 +31,10 @@ import VistaFinca from "./VistaFinca";
 
 import fincasIniciales from "../../data/fincas";
 
+import {
+    crearFinca,
+} from "../../services/organizationService";
+
 import "./GrupoEmpresarialCard.css";
 
     export default function FincasCard() {
@@ -39,7 +43,11 @@ import "./GrupoEmpresarialCard.css";
     // Estado principal
     // ======================================================
 
-    const [fincas, setFincas] = useState(fincasIniciales);
+    const [fincas, setFincas] = useState(() => {
+
+    return [...fincasIniciales];
+
+});
 
     // ======================================================
     // Buscador
@@ -111,7 +119,11 @@ const cerrarVista = () => {
 // Guardar finca
 // ======================================================
 
-const guardarFinca = (finca) => {
+const guardarFinca = (fincaFormulario) => {
+
+    // ==========================================
+    // EDITAR
+    // ==========================================
 
     if (fincaEditando) {
 
@@ -121,9 +133,17 @@ const guardarFinca = (finca) => {
 
                 ? {
 
-                    ...finca,
+                    ...item,
 
-                    id: fincaEditando.id
+                    nombre: fincaFormulario.nombre,
+
+                    grupoEmpresarial: fincaFormulario.grupoEmpresarial,
+
+                    municipio: fincaFormulario.municipio,
+
+                    departamento: fincaFormulario.departamento,
+
+                    estado: fincaFormulario.estado,
 
                 }
 
@@ -133,29 +153,39 @@ const guardarFinca = (finca) => {
 
         setFincas(nuevasFincas);
 
+        cerrarFormulario();
+
+        return;
+
     }
 
-    else {
+    // ==========================================
+    // CREAR
+    // ==========================================
 
-        const nuevaFinca = {
+    try {
 
-            id: Date.now(),
+        const nuevaFinca = crearFinca(fincaFormulario);
 
-            ...finca
+        setFincas((prev) => [
 
-        };
+            ...prev,
 
-        setFincas([
-
-            ...fincas,
-
-            nuevaFinca
+            nuevaFinca,
 
         ]);
 
+        cerrarFormulario();
+
     }
 
-    cerrarFormulario();
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 };
 

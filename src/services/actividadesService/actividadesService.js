@@ -1,4 +1,4 @@
-import actividadesIniciales from "../data/actividades";
+import actividadesIniciales from "../../data/actividades";
 
 const CLAVE_ACTIVIDADES = "ganus_actividades";
 
@@ -84,4 +84,28 @@ export const eliminarActividad = (
   guardarActividades(
     actividadesActualizadas
   );
+};
+
+export const obtenerActividadesRecientes = (cantidad = 5) => {
+
+    return obtenerActividades()
+
+        .slice()
+
+        .reverse()
+
+        .slice(0, cantidad);
+
+};
+
+export const obtenerActividadesPendientes = () => {
+
+    return obtenerActividades().filter(
+
+        actividad =>
+
+            actividad.estado !== "Completada"
+
+    );
+
 };

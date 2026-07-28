@@ -2,40 +2,119 @@ import {
   BrainCircuit,
   CheckCircle2,
   Zap,
-  Target,
 } from "lucide-react";
 
 import "../../styles/knowledge/actividadKnowledge.css";
 
-const actividades = [
-  {
-    id: 1,
-    titulo: "Indicador publicado",
+import { getWorkOrders } from "../../services/makeService";
+
+const actividades = getWorkOrders()
+
+  .sort(
+
+    (a, b) =>
+
+      new Date(
+        b.execution?.lastSavedAt ||
+        b.updatedAt ||
+        b.createdAt
+      ) -
+
+      new Date(
+        a.execution?.lastSavedAt ||
+        a.updatedAt ||
+        a.createdAt
+      )
+
+  )
+
+  .slice(0, 5)
+
+  .map((orden) => ({
+
+    id: orden.id,
+
+    titulo:
+
+      orden.status === "completed"
+
+        ? "Orden finalizada"
+
+        : orden.status === "in_progress"
+
+        ? "Orden en ejecución"
+
+        : "Orden registrada",
+
     descripcion:
-      "Peso Comercial Disponible actualizado correctamente.",
-    tiempo: "Hace 5 minutos",
-    icono: CheckCircle2,
-    variante: "green",
-  },
-  {
-    id: 2,
-    titulo: "Regla evaluada",
-    descripcion:
-      "Evaluación automática ejecutada sobre PesoActualizado.",
-    tiempo: "Hace 12 minutos",
-    icono: Zap,
-    variante: "blue",
-  },
-  {
-    id: 3,
-    titulo: "Objetivo actualizado",
-    descripcion:
-      "Se actualizó el seguimiento del objetivo de comercialización.",
-    tiempo: "Hace 28 minutos",
-    icono: Target,
-    variante: "purple",
-  },
-];
+
+      `Orden ${
+
+        orden.code ||
+
+        `OT-${String(
+
+          orden.sequence || 1
+
+        ).padStart(6, "0")}`
+
+      } · ${
+
+        orden.templateName ||
+
+        "Sin plantilla"
+
+      }`,
+
+    tiempo:
+
+      new Intl.DateTimeFormat(
+
+        "es-CO",
+
+        {
+
+          day: "2-digit",
+
+          month: "2-digit",
+
+          hour: "2-digit",
+
+          minute: "2-digit",
+
+        }
+
+      ).format(
+
+        new Date(
+
+          orden.execution?.lastSavedAt ||
+
+          orden.updatedAt ||
+
+          orden.createdAt
+
+        )
+
+      ),
+
+    icono:
+
+      orden.status === "completed"
+
+        ? CheckCircle2
+
+        : Zap,
+
+    variante:
+
+      orden.status === "completed"
+
+        ? "green"
+
+        : "blue",
+
+  }));
 
 export default function ActividadKnowledge() {
   return (

@@ -20,6 +20,10 @@ import {
   getPublishedTemplateById,
 } from "../services/fieldEngineService";
 
+import {
+  createFieldEngineResponse,
+} from "../services/fieldEngineResponseService";
+
 import "../styles/fieldengine/fieldEngineBuilder.css";
 import "../styles/fieldengine/dynamicFormRenderer.css";
 
@@ -58,14 +62,44 @@ export default function FieldEngineBuilder() {
     );
   }, [template]);
 
-  const handleFormSubmit = (formResponse) => {
-    setLastResponse(formResponse);
+  const handleFormSubmit = (values) => {
 
-    console.log(
-      "Registro generado por Field Engine:",
-      formResponse
-    );
-  };
+    try {
+
+        const response = createFieldEngineResponse({
+
+            template,
+
+            values,
+
+            context: {
+
+                primaryAsset: null,
+
+                secondaryAsset: null,
+
+                responsible: null,
+
+                location: null,
+
+            },
+
+        });
+
+        setLastResponse(response);
+
+        console.log(
+            "Registro almacenado:",
+            response
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+};
 
   if (!template) {
     return (

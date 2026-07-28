@@ -8,7 +8,7 @@ import RegistroActividades from "../components/actividades/RegistroActividades";
 
 import {
   obtenerActividades,
-} from "../services/actividadesService";
+} from "../services/actividadesService/actividadesService";
 
 import {
   obtenerActivos,

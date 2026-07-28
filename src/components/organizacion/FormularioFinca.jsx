@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { obtenerDatosOrganizacion } from "../../services/organizationService";
+
 import "./FormularioGrupo.css";
 
 /**
@@ -21,7 +23,7 @@ const FormularioFinca = ({
 }) => {
 
     // ======================================================
-    // Estado inicial
+    // Estado del formulario
     // ======================================================
 
     const [formulario, setFormulario] = useState({
@@ -39,29 +41,47 @@ const FormularioFinca = ({
     });
 
     // ======================================================
-    // Cargar datos al editar
+    // Lista de grupos empresariales
+    // ======================================================
+
+    const [grupos, setGrupos] = useState([]);
+
+    // ======================================================
+    // Cargar grupos registrados
     // ======================================================
 
     useEffect(() => {
 
-    if (finca) {
+    const gruposDisponibles =
+        obtenerDatosOrganizacion();
 
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setFormulario({
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setGrupos(gruposDisponibles);
 
-            nombre: finca.nombre,
+}, []);
 
-            grupoEmpresarial: finca.grupoEmpresarial,
+    // ======================================================
+    // Cargar datos cuando se edita
+    // ======================================================
 
-            municipio: finca.municipio,
+    useEffect(() => {
 
-            departamento: finca.departamento,
+    if (!finca) return;
 
-            estado: finca.estado,
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setFormulario({
 
-        });
+        nombre: finca.nombre,
 
-    }
+        grupoEmpresarial: finca.grupoEmpresarial,
+
+        municipio: finca.municipio,
+
+        departamento: finca.departamento,
+
+        estado: finca.estado,
+
+    });
 
 }, [finca]);
 
@@ -119,13 +139,33 @@ const FormularioFinca = ({
 
                     <label>Grupo Empresarial</label>
 
-                    <input
-                        type="text"
+                    <select
                         name="grupoEmpresarial"
                         value={formulario.grupoEmpresarial}
                         onChange={manejarCambio}
                         required
-                    />
+                    >
+
+                        <option value="">
+
+                            Seleccione un Grupo Empresarial
+
+                        </option>
+
+                        {grupos.map((grupo) => (
+
+                            <option
+                                key={grupo.id}
+                                value={grupo.nombre}
+                            >
+
+                                {grupo.nombre}
+
+                            </option>
+
+                        ))}
+
+                    </select>
 
                 </div>
 

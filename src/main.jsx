@@ -8,21 +8,27 @@ import App from "./App";
 
 import { ThemeProvider } from "./context/ThemeContext";
 import { AlertasProvider } from "./context/AlertasContext";
+import { AuthProvider } from "./core/context/AuthContext.jsx";
+import "./styles/make.css";
 
 createRoot(document.getElementById("root")).render(
 
     <StrictMode>
 
-        <ThemeProvider>
+    <ThemeProvider>
 
-            <AlertasProvider>
+        <AlertasProvider>
+
+            <AuthProvider>
 
                 <App />
 
-            </AlertasProvider>
+            </AuthProvider>
 
-        </ThemeProvider>
+        </AlertasProvider>
 
-    </StrictMode>
+    </ThemeProvider>
+
+</StrictMode>
 
 );

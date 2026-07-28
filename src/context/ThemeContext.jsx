@@ -12,21 +12,36 @@ export function ThemeProvider({ children }) {
 
     useEffect(() => {
 
-        document.body.setAttribute("data-theme", theme);
+    // Sistema antiguo
+    document.body.setAttribute(
+        "data-ganus-theme",
+        theme
+    );
 
-        localStorage.setItem("theme", theme);
+    // Sistema nuevo
+    document.documentElement.setAttribute(
+        "data-ganus-theme",
+        theme === "dark"
+            ? "oscuro"
+            : "claro"
+    );
 
-    }, [theme]);
+    localStorage.setItem(
+        "ganus-tema",
+        theme
+    );
+
+}, [theme]);
 
     function toggleTheme() {
 
         setTheme((prev) =>
 
-            prev === "light"
+            prev === "claro"
 
-                ? "dark"
+                ? "Oscuro"
 
-                : "light"
+                : "claro"
 
         );
 

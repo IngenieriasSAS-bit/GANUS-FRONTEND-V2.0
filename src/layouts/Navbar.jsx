@@ -16,6 +16,7 @@ import {
 
 import { useAlertas } from "../hooks/useAlertas";
 import { buscarActivos } from "../services/activosService";
+import useAuth from "../hooks/useAuth";
 
 import "./Navbar.css";
 
@@ -23,6 +24,12 @@ import "./Navbar.css";
 export default function Navbar() {
 
   const navigate = useNavigate();
+
+  const {
+
+    usuario,
+
+} = useAuth();
 
   const [buscar, setBuscar] =
     useState("");
@@ -777,20 +784,36 @@ const abrirActivoBusqueda = (activo) => {
 
             <div className="usuario">
 
-              S
+    {
 
-            </div>
+        usuario?.nombre
+
+            ?.charAt(0)
+
+            ?.toUpperCase()
+
+            ||
+
+        "?"
+
+    }
+
+</div>
 
 
             <span>
 
-              {
-                localStorage.getItem("usuario")
-                ||
-                "Invitado"
-              }
+    {
 
-            </span>
+        usuario?.nombre
+
+        ||
+
+        "Invitado"
+
+    }
+
+</span>
 
 
           </div>

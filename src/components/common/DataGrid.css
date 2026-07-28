@@ -1,0 +1,257 @@
+.ganus-grid{
+
+    background:var(--ganus-surface);
+    border:1px solid var(--ganus-border);
+    border-radius:18px;
+    overflow:hidden;
+
+}
+
+/*========================*/
+
+.ganus-grid__header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 28px;
+
+    border-bottom:1px solid var(--ganus-border);
+
+    background:var(--ganus-surface-soft);
+
+}
+
+.ganus-grid__header h3{
+
+    margin:0;
+
+    font-size:18px;
+
+    color:var(--ganus-title);
+
+
+    font-weight:700;
+
+}
+
+.ganus-grid__header p{
+
+    margin-top:6px;
+
+    color:var(--ganus-text);
+
+    font-size:14px;
+
+}
+
+.ganus-grid__counter{
+
+    width:82px;
+
+    height:82px;
+
+    border-radius:18px;
+
+    background:var(--ganus-surface-hover);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.ganus-grid__counter span{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:var(--ganus-title);
+
+}
+
+.ganus-grid__counter small{
+
+    font-size:11px;
+
+    color:var(--ganus-muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+}
+
+/*========================*/
+
+.ganus-grid__body{
+
+    overflow:auto;
+
+}
+
+/*========================*/
+
+.ganus-grid table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+}
+
+/*========================*/
+
+.ganus-grid thead{
+
+    background:var(--ganus-surface-soft);
+
+}
+
+.ganus-grid th{
+
+    padding:18px 24px;
+
+    text-align:left;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    color:var(--ganus-muted);
+
+    font-weight:700;
+
+    border-bottom:1px solid var(--ganus-border);
+
+}
+
+/*========================*/
+
+.ganus-grid td{
+
+    padding:18px 24px;
+
+    font-size:14px;
+
+    color:var(--ganus-text);
+
+    border-bottom:1px solid var(--ganus-border-soft);
+
+    vertical-align:middle;
+
+}
+
+/*========================*/
+
+.ganus-grid tbody tr{
+
+    transition:all .22s ease;
+
+}
+
+.ganus-grid tbody tr:hover{
+
+    background:var(--ganus-surface-hover);
+
+    transform:scale(.998);
+
+}
+
+/*========================*/
+
+.ganus-grid tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+/*========================*/
+
+.ganus-grid-empty{
+
+    padding:70px 30px !important;
+
+    text-align:center;
+
+}
+
+.ganus-grid-empty__content h4{
+
+    margin:0;
+
+    font-size:20px;
+
+    color:var(--ganus-title);
+
+}
+
+.ganus-grid-empty__content p{
+
+    margin-top:10px;
+
+    color:var(--ganus-text);
+
+}
+
+/*========================*/
+
+@media(max-width:900px){
+
+    .ganus-grid__header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+}
+
+/*==================================================
+GANUS GRID - MODO OSCURO
+==================================================*/
+
+[data-ganus-theme="oscuro"] .ganus-grid{
+
+    background:var(--ganus-surface);
+    border-color:var(--ganus-border);
+
+}
+
+[data-ganus-theme="oscuro"] .ganus-grid__header{
+
+    background:var(--ganus-surface-soft);
+    border-bottom-color:var(--ganus-border);
+
+}
+
+[data-ganus-theme="oscuro"] .ganus-grid__counter{
+
+    background:linear-gradient(135deg,#0D4D8A,#123B66);
+
+}
+
+[data-ganus-theme="oscuro"] .ganus-grid thead{
+
+    background:var(--ganus-surface-soft);
+
+}
+
+[data-ganus-theme="oscuro"] .ganus-grid tbody tr:hover{
+
+    background:var(--ganus-surface-hover);
+
+}

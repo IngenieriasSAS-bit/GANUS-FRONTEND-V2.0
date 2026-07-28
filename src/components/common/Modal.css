@@ -4,21 +4,25 @@
 
 .modal-overlay{
 
-    position: fixed;
+    position:fixed;
 
-    inset: 0;
+    inset:0;
 
-    background: rgba(0,0,0,.45);
+    background:rgba(0,0,0,.45);
 
     display:flex;
 
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-start;
+
+    overflow-y:auto;
+
+    padding:40px 20px;
 
     z-index:9999;
 
-    backdrop-filter: blur(3px);
+    backdrop-filter:blur(3px);
 
 }
 
@@ -28,17 +32,27 @@
 
 .modal-container{
 
-    width: 700px;
+    width:700px;
 
-    max-width: 95%;
+    max-width:95%;
 
-    background:#fff;
+    max-height:calc(100vh - 80px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    background:var(--ganus-surface);
+
+    border:1px solid var(--ganus-border);
 
     border-radius:18px;
 
-    box-shadow:0 20px 60px rgba(0,0,0,.18);
+    box-shadow:var(--ganus-shadow);
 
-    animation: aparecer .20s ease;
+    animation:aparecer .20s ease;
 
 }
 
@@ -56,13 +70,13 @@
 
     padding:22px 28px;
 
-    border-bottom:1px solid #ececec;
+    border-bottom:1px solid var(--ganus-border);
 
 }
 
 .modal-header h2{
 
-    color:#16325c;
+    color:var(--ganus-title);
 
     font-size:24px;
 
@@ -84,7 +98,7 @@
 
     cursor:pointer;
 
-    color:#6b7280;
+    color:var(--ganus-muted);
 
     transition:.25s;
 
@@ -92,7 +106,7 @@
 
 .modal-close:hover{
 
-    color:#d62828;
+    color:#EF4444;
 
 }
 
@@ -102,7 +116,13 @@
 
 .modal-body{
 
+    flex:1;
+
+    overflow-y:auto;
+
     padding:30px;
+
+    color:var(--ganus-text);
 
 }
 
@@ -127,5 +147,37 @@
         transform:translateY(0);
 
     }
+
+}
+
+/*=========================================
+MODO OSCURO
+=========================================*/
+
+[data-ganus-theme="oscuro"] .modal-overlay{
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(6px);
+
+}
+
+[data-ganus-theme="oscuro"] .modal-container{
+
+    background:var(--ganus-surface);
+
+    border-color:var(--ganus-border);
+
+}
+
+[data-ganus-theme="oscuro"] .modal-header{
+
+    border-bottom-color:var(--ganus-border);
+
+}
+
+[data-ganus-theme="oscuro"] .modal-body{
+
+    color:var(--ganus-text);
 
 }
