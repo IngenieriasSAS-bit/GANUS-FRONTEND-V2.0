@@ -11,7 +11,7 @@ import ScopeStep from "../steps/ScopeStep";
 import OperatorsStep from "../steps/OperatorsStep";
 import ScheduleStep from "../steps/ScheduleStep";
 import SummaryStep from "../steps/SummaryStep";
-import StepIndicator from "../shared/StepIndicator";
+
 
 const STEPS = [
     "Plantilla",
@@ -211,10 +211,7 @@ export default function RoutineBuilder({
 
             </div>
 
-            <StepIndicator
-                steps={STEPS}
-                currentStep={currentStep}
-            />
+            
 
             {currentStep === 0 && (
                 <TemplateStep

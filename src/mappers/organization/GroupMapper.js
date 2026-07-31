@@ -16,7 +16,15 @@ export function toDomain(datosFormulario) {
     name: datosFormulario.nombre.trim(),
     description: datosFormulario.descripcion?.trim() || "",
     active: datosFormulario.estado === "Activo",
-    businessProfile: null,
+    businessProfile: {
+    sector: "",
+    industry: "",
+    businessType: "",
+    productionModel: "",
+    description: "",
+    strategicObjectives: [],
+    active: true,
+},
     farms: [],
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -26,9 +34,27 @@ export function toDomain(datosFormulario) {
 export function toViewModel(grupoDominio) {
   return {
     id: grupoDominio.id,
+
     nombre: grupoDominio.name,
+
     descripcion: grupoDominio.description,
-    estado: grupoDominio.active ? "Activo" : "Inactivo",
-    fincas: grupoDominio.farms?.length ?? 0,
-  };
+
+    sector:
+        grupoDominio.businessProfile?.sector ?? "",
+
+    industria:
+        grupoDominio.businessProfile?.industry ?? "",
+
+    tipoNegocio:
+        grupoDominio.businessProfile?.businessType ?? "",
+
+    modeloProduccion:
+        grupoDominio.businessProfile?.productionModel ?? "",
+
+    estado:
+        grupoDominio.active ? "Activo" : "Inactivo",
+
+    fincas:
+        grupoDominio.farms?.length ?? 0,
+};
 }

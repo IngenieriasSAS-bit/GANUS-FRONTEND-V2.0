@@ -1,6 +1,9 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Search, FilterX } from "lucide-react";
+import {
+    useNavigate,
+    useSearchParams,
+} from "react-router-dom";
 
 import Sidebar from "../layouts/Sidebar";
 import Navbar from "../layouts/Navbar";
@@ -8,9 +11,10 @@ import Navbar from "../layouts/Navbar";
 import FieldEngineResponsesHeader from "../components/fieldengine/FieldEngineResponsesHeader";
 import FieldEngineResponsesStats from "../components/fieldengine/FieldEngineResponsesStats";
 import FieldEngineResponsesTable from "../components/fieldengine/FieldEngineResponsesTable";
+
+import FieldEngineTemplateSelector from "../components/fieldengine/FieldEngineTemplateSelector";
 import Modal from "../components/common/Modal";
 import FieldEngineResponseDetail from "../components/fieldengine/FieldEngineResponseDetail";
-import FieldEngineTemplateSelector from "../components/fieldengine/FieldEngineTemplateSelector";
 
 import {
     getFieldEngineResponses,
@@ -26,13 +30,38 @@ export default function FieldEngineResponses() {
 
     const navigate = useNavigate();
 
+    const [searchParams] = useSearchParams();
+
+    const responseId = searchParams.get("responseId");
+
     const responses = useMemo(() => getFieldEngineResponses(), []);
 
     const templates = useMemo(() => getFieldEngineTemplates(), []);
 
-    const [selectedResponse, setSelectedResponse] = useState(null);
+    const selectedResponse = useMemo(() => {
+
+    if (!responseId) {
+
+        return null;
+
+    }
+
+    return responses.find(
+
+        (response) => response.id === responseId
+
+    ) || null;
+
+}, [responses, responseId]);
 
     const [showTemplateSelector, setShowTemplateSelector] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const [statusFilter, setStatusFilter] = useState("");
+
+    const [templateFilter, setTemplateFilter] = useState("");
+
+    const [dateFilter, setDateFilter] = useState("");
 
     const todayResponses = responses.filter((response) => {
 
@@ -48,8 +77,73 @@ export default function FieldEngineResponses() {
         (response) => response.status === "completed"
     ).length;
 
+    const filteredResponses = responses.filter((response) => {
+
+    const search = searchTerm.toLowerCase();
+
+    const matchesSearch =
+
+        !search ||
+
+        response.context?.recordCode
+            ?.toLowerCase()
+            .includes(search) ||
+
+        response.templateName
+            ?.toLowerCase()
+            .includes(search) ||
+
+        (
+            typeof response.context?.responsible === "string"
+
+                ? response.context.responsible
+
+                : response.context?.responsible?.nombre ||
+
+                  response.context?.responsible?.name ||
+
+                  ""
+        )
+
+        .toLowerCase()
+
+        .includes(search);
+
+    const matchesStatus =
+
+        !statusFilter ||
+
+        response.status === statusFilter;
+
+    const matchesTemplate =
+
+        !templateFilter ||
+
+        response.templateId === templateFilter;
+
+    const matchesDate =
+
+        !dateFilter ||
+
+        response.createdAt?.slice(0, 10) === dateFilter;
+
     return (
 
+        matchesSearch &&
+
+        matchesStatus &&
+
+        matchesTemplate &&
+
+        matchesDate
+
+    );
+
+});
+
+    return (
+
+        
         <div className="field-engine-shell">
 
             <Sidebar />
@@ -60,7 +154,20 @@ export default function FieldEngineResponses() {
 
                 <main className="field-engine-responses">
 
-                    <FieldEngineResponsesHeader
+    <div className="fe-page-top-navigation">
+
+        <button
+            type="button"
+            className="fe-page-top-back"
+            onClick={() => navigate("/field-engine")}
+        >
+            ← Volver a Field Engine
+        </button>
+
+    </div>
+
+    <FieldEngineResponsesHeader
+    
     onNewCapture={() =>
 
         setShowTemplateSelector(true)
@@ -75,7 +182,11 @@ export default function FieldEngineResponses() {
                         completed={completedResponses}
                     />
 
+                   
+
                     <section className="fe-responses-card">
+
+                        
 
                         <div className="fe-card-header">
 
@@ -108,31 +219,68 @@ export default function FieldEngineResponses() {
                                 <Search size={18} />
 
                                 <input
-                                    type="text"
-                                    placeholder="Buscar código, plantilla o responsable..."
-                                />
+    type="text"
+    placeholder="Buscar código, plantilla o responsable..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+/>
 
                             </div>
 
                             <div className="fe-toolbar-actions">
 
-                                <select>
+                                <select
+    value={statusFilter}
+    onChange={(e) => setStatusFilter(e.target.value)}
+>
 
-                                    <option>
-                                        Todos los estados
-                                    </option>
+    <option value="">
+        Todos los estados
+    </option>
 
-                                </select>
+    <option value="completed">
+        Completado
+    </option>
 
-                                <select>
+    <option value="draft">
+        Borrador
+    </option>
 
-                                    <option>
-                                        Todas las plantillas
-                                    </option>
+</select>
 
-                                </select>
+                                <select
+    value={templateFilter}
+    onChange={(e) => setTemplateFilter(e.target.value)}
+>
 
-                                <input type="date" />
+    <option value="">
+        Todas las plantillas
+    </option>
+
+    {
+
+        templates.map((template) => (
+
+            <option
+                key={template.id}
+                value={template.id}
+            >
+
+                {template.name}
+
+            </option>
+
+        ))
+
+    }
+
+</select>
+
+                                <input
+    type="date"
+    value={dateFilter}
+    onChange={(e) => setDateFilter(e.target.value)}
+/>
 
                                 <button
                                     className="fe-clear-btn"
@@ -150,28 +298,20 @@ export default function FieldEngineResponses() {
                         </div>
 
                         <FieldEngineResponsesTable
-    responses={responses}
-    onView={setSelectedResponse}
+    responses={filteredResponses}
+    onView={(response) =>
+
+        navigate(
+
+            `/field-engine/responses?responseId=${response.id}`
+
+        )
+
+    }
 />
                     </section>
 
-                    <Modal
-    isOpen={Boolean(selectedResponse)}
-    titulo="Detalle del registro"
-    onClose={() => setSelectedResponse(null)}
->
-
-    {
-        selectedResponse && (
-
-            <FieldEngineResponseDetail
-                response={selectedResponse}
-            />
-
-        )
-    }
-
-</Modal>
+                    
 
 <FieldEngineTemplateSelector
 
@@ -196,6 +336,24 @@ export default function FieldEngineResponses() {
     }}
 
 />
+
+<Modal
+    isOpen={Boolean(selectedResponse)}
+    titulo="Detalle del registro"
+    onClose={() => navigate("/field-engine/responses")}
+>
+
+    {
+        selectedResponse && (
+
+            <FieldEngineResponseDetail
+                response={selectedResponse}
+            />
+
+        )
+    }
+
+</Modal>
 
                 </main>
 

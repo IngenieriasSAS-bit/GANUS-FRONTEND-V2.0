@@ -3,6 +3,8 @@ import useTrack from "../../hooks/useTrack";
 import TrackStats from "./TrackStats";
 import TrackOrdersTable from "./TrackOrdersTable";
 
+import { useState } from "react";
+import TrackOrderDetail from "./TrackOrderDetail";
 export default function TrackDashboard() {
 
     const {
@@ -12,6 +14,8 @@ export default function TrackDashboard() {
         orders,
 
     } = useTrack();
+
+    const [ordenSeleccionada, setOrdenSeleccionada] = useState(null);
 
     return (
 
@@ -25,9 +29,23 @@ export default function TrackDashboard() {
 
             <TrackOrdersTable
 
-                orders={orders}
+    orders={orders}
 
-            />
+    onView={setOrdenSeleccionada}
+
+/>
+
+<TrackOrderDetail
+
+    order={ordenSeleccionada}
+
+    onClose={() =>
+
+        setOrdenSeleccionada(null)
+
+    }
+
+/>
 
         </>
 

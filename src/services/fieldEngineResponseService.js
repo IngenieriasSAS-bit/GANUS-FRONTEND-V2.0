@@ -1,28 +1,67 @@
 const STORAGE_KEY = "ganus_field_engine_responses";
 
+const RECORD_PREFIX = "FE";
+
+const generateRecordCode = (responses) => {
+
+    const lastNumber = responses.reduce((max, response) => {
+
+        const code = response.context?.recordCode;
+
+        if (!code?.startsWith(`${RECORD_PREFIX}-`)) {
+
+            return max;
+
+        }
+
+        const number = Number(
+            code.replace(`${RECORD_PREFIX}-`, "")
+        );
+
+        return Number.isNaN(number)
+            ? max
+            : Math.max(max, number);
+
+    }, 0);
+
+    return `${RECORD_PREFIX}-${String(lastNumber + 1).padStart(6, "0")}`;
+
+};
+
 const readResponses = () => {
-  try {
-    const storedResponses = localStorage.getItem(STORAGE_KEY);
 
-    if (!storedResponses) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+    try {
 
-      return [];
+        const storedResponses = localStorage.getItem(STORAGE_KEY);
+
+        if (!storedResponses) {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify([])
+            );
+
+            return [];
+
+        }
+
+        const parsedResponses = JSON.parse(storedResponses);
+
+        return Array.isArray(parsedResponses)
+            ? parsedResponses
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Field Engine no pudo leer las respuestas almacenadas:",
+            error
+        );
+
+        return [];
+
     }
 
-    const parsedResponses = JSON.parse(storedResponses);
-
-    return Array.isArray(parsedResponses)
-      ? parsedResponses
-      : [];
-  } catch (error) {
-    console.error(
-      "Field Engine no pudo leer las respuestas almacenadas:",
-      error
-    );
-
-    return [];
-  }
 };
 
 const writeResponses = (responses) => {
@@ -40,8 +79,68 @@ const writeResponses = (responses) => {
 
 };
 
+const migrateRecordCodes = () => {
+
+    const responses = readResponses();
+
+    let changed = false;
+
+    let nextNumber = 1;
+
+    const migrated = responses.map(response => {
+
+        const currentCode = response.context?.recordCode;
+
+        const validCode =
+            typeof currentCode === "string" &&
+            currentCode.startsWith(`${RECORD_PREFIX}-`);
+
+        if (validCode) {
+
+            const value = Number(
+                currentCode.replace(`${RECORD_PREFIX}-`, "")
+            );
+
+            nextNumber = Math.max(
+                nextNumber,
+                value + 1
+            );
+
+            return response;
+
+        }
+
+        changed = true;
+
+        return {
+
+            ...response,
+
+            context: {
+
+                ...response.context,
+
+                recordCode:
+                    `${RECORD_PREFIX}-${String(nextNumber++).padStart(6, "0")}`
+
+            }
+
+        };
+
+    });
+
+    if (changed) {
+
+        writeResponses(migrated);
+
+    }
+
+    return migrated;
+
+};
+
 export const getFieldEngineResponses = () =>
-  readResponses();
+    migrateRecordCodes();
 
 export const getFieldEngineResponseById = (
   responseId
@@ -85,6 +184,7 @@ export const getFieldEngineResponsesByContext = ({
 export const createFieldEngineResponse = ({
   template,
   values,
+  status = "completed",
   context = {},
 }) => {
   if (!template?.id) {
@@ -101,7 +201,7 @@ export const createFieldEngineResponse = ({
 
   const responses = getFieldEngineResponses();
   const createdAt = new Date().toISOString();
-
+  const recordCode = generateRecordCode(responses);
   const response = {
     id: crypto.randomUUID(),
 
@@ -122,11 +222,13 @@ export const createFieldEngineResponse = ({
       location: context.location || null,
       eventDate: context.eventDate || createdAt,
       recordCode:
-        context.recordCode ||
-        `GANUS-${Date.now()}`,
+
+    context.recordCode ||
+
+    recordCode,
     },
 
-    status: "completed",
+    status,
 
     createdAt,
     updatedAt: createdAt,

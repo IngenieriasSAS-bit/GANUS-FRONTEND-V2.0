@@ -85,4 +85,93 @@ export class OrganizationDomainService {
 
     return group;
   }
+
+  /**
+   * Verifica que el código del proceso sea único.
+   * @param {string} code
+   * @param {Array} processes
+   */
+  static validateUniqueProcessCode(code, processes = []) {
+
+    const exists = processes.some(
+      process => process.code === code
+    );
+
+    if (exists) {
+      throw new Error(
+        `Ya existe un Proceso Empresarial con el código '${code}'.`
+      );
+    }
+
+    return true;
+
+  }
+
+  /**
+   * Verifica que el nombre del proceso sea único.
+   * @param {string} name
+   * @param {Array} processes
+   */
+  static validateUniqueProcessName(name, processes = []) {
+
+    const exists = processes.some(
+      process =>
+        process.name.trim().toLowerCase() ===
+        name.trim().toLowerCase()
+    );
+
+    if (exists) {
+      throw new Error(
+        `Ya existe un Proceso Empresarial con el nombre '${name}'.`
+      );
+    }
+
+    return true;
+
+  }
+
+  /**
+   * Verifica que el código del tipo de actividad sea único.
+   * @param {string} code
+   * @param {Array} activityTypes
+   */
+  static validateUniqueActivityTypeCode(code, activityTypes = []) {
+
+    const exists = activityTypes.some(
+      activityType => activityType.code === code
+    );
+
+    if (exists) {
+      throw new Error(
+        `Ya existe un Tipo de Actividad con el código '${code}'.`
+      );
+    }
+
+    return true;
+
+  }
+
+  /**
+   * Verifica que el nombre del tipo de actividad sea único.
+   * @param {string} name
+   * @param {Array} activityTypes
+   */
+  static validateUniqueActivityTypeName(name, activityTypes = []) {
+
+    const exists = activityTypes.some(
+      activityType =>
+        activityType.name.trim().toLowerCase() ===
+        name.trim().toLowerCase()
+    );
+
+    if (exists) {
+      throw new Error(
+        `Ya existe un Tipo de Actividad con el nombre '${name}'.`
+      );
+    }
+
+    return true;
+
+  }
+
 }

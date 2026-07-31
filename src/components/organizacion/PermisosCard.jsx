@@ -82,7 +82,11 @@ const [permisosOriginales, setPermisosOriginales] = useState(
 
 const rolActual = roles.find(
 
-    (rol) => rol.id === rolSeleccionado
+    (rol) =>
+
+        String(rol.id) ===
+
+        String(rolSeleccionado)
 
 );
 
@@ -205,7 +209,7 @@ setPermisosOriginales(
 
 onChange={(e) => {
 
-    const id = Number(e.target.value);
+    const id = e.target.value;
 
     setRolSeleccionado(id);
 

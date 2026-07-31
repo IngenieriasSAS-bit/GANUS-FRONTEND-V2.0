@@ -1,30 +1,67 @@
+import { useEffect, useState } from "react";
+
 import {
     ClipboardCheck,
     FilePlus2,
-    Rocket
+    Rocket,
+    Brain,
+    Package,
+    TriangleAlert,
+    CalendarCheck
 } from "lucide-react";
 
 import useFieldEngineDashboard from "../../../hooks/useFieldEngineDashboard";
-
+import { formatRelativeTime } from "../../../utils/dateUtils";
 
 
 export default function FieldEngineRecentActivity() {
 
     const dashboard = useFieldEngineDashboard();
+    const [, setNow] = useState(() => new Date().getTime());
 
-const activity = dashboard.recentActivity.map(item => ({
+useEffect(() => {
 
-    ...item,
+    const interval = setInterval(() => {
 
-    icon:
+        setNow(Date.now());
 
-        item.type === "template"
+    }, 60000);
 
-            ? <FilePlus2 size={18} />
+    return () => clearInterval(interval);
 
-            : <ClipboardCheck size={18} />
+}, []);
 
-}));
+const activity = dashboard.recentActivity.map(item => {
+
+    const icons = {
+
+        "field-engine": <FilePlus2 size={18} />,
+
+        advisory: <Brain size={18} />,
+
+        make: <ClipboardCheck size={18} />,
+
+        activities: <CalendarCheck size={18} />,
+
+        inventory: <Package size={18} />,
+
+        alerts: <TriangleAlert size={18} />
+
+    };
+
+    return {
+
+        ...item,
+
+        icon:
+
+            icons[item.source] ||
+
+            <ClipboardCheck size={18} />
+
+    };
+
+});
 
     return (
 
@@ -32,11 +69,21 @@ const activity = dashboard.recentActivity.map(item => ({
 
             <div className="fe-home-section__header">
 
-                <h2>
+                <div className="fe-home-section__title">
 
-                    Actividad reciente
+    <h2>
 
-                </h2>
+        Actividad reciente
+
+    </h2>
+
+    <span className="fe-home-counter">
+
+        {activity.length} eventos
+
+    </span>
+
+</div>
 
                 <p>
 
@@ -46,7 +93,7 @@ const activity = dashboard.recentActivity.map(item => ({
 
             </div>
 
-            <div className="fe-home-timeline">
+            <div className="fe-home-timeline fe-home-timeline--scroll">
 
                 {
 
@@ -104,17 +151,9 @@ const activity = dashboard.recentActivity.map(item => ({
 
                                     <small>
 
-                                        {
+    {formatRelativeTime(item.date)}
 
-                                            new Date(
-
-                                                item.date
-
-                                            ).toLocaleString("es-CO")
-
-                                        }
-
-                                    </small>
+</small>
 
                                 </div>
 

@@ -121,16 +121,26 @@ export default function PrincipiosNegocio({
     }
 
     setPrincipios((principiosAnteriores) => {
-      const nuevoPrincipio = crearPrincipioNegocio(
-        principiosAnteriores,
-        datosPrincipio
-      );
 
-      return [
-        ...principiosAnteriores,
-        nuevoPrincipio,
-      ];
-    });
+  const nuevoPrincipio =
+    crearPrincipioNegocio(
+      principiosAnteriores,
+      datosPrincipio
+    );
+
+  const nuevosPrincipios = [
+    ...principiosAnteriores,
+    nuevoPrincipio,
+  ];
+
+  actualizarPrincipioNegocio(
+    nuevosPrincipios,
+    nuevoPrincipio
+  );
+
+  return nuevosPrincipios;
+
+});
 
     cerrarModal();
   };

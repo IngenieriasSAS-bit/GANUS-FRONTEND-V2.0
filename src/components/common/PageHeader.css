@@ -30,3 +30,19 @@
     display: flex;
     gap: 12px;
 }
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .page-header__title{
+
+    color:#F8FAFC;
+
+}
+
+html[data-ganus-theme="oscuro"] .page-header__description{
+
+    color:#CBD5E1;
+
+}

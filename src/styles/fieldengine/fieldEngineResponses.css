@@ -635,3 +635,33 @@ BADGE EN EL MODAL
     width:max-content;
 
 }
+
+.fe-page-top-navigation{
+
+    margin-bottom:20px;
+
+}
+
+.fe-page-top-back{
+
+    background:none;
+
+    border:none;
+
+    padding:0;
+
+    cursor:pointer;
+
+    color:#17375f;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+.fe-page-top-back:hover{
+
+    color:#0f5fa5;
+
+}

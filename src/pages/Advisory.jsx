@@ -37,6 +37,10 @@ import {
   generarPropuestaFormulario,
 } from "../services/advisoryFormService";
 
+import {
+  obtenerResumenAdvisory,
+} from "../services/knowledgeEngineService";
+
 import "../styles/advisory/advisory.css";
 
 const areasAnalisis = [
@@ -166,9 +170,11 @@ function Advisory() {
     useState(propuestaInicial);
 
   const [ultimaConsulta, setUltimaConsulta] = useState(
-    consultaRecibida ||
       "Análisis general de la operación"
   );
+
+  const resumenAdvisory =
+  obtenerResumenAdvisory();
 
   const inputRef = useRef(null);
 
@@ -432,7 +438,7 @@ function Advisory() {
                 </span>
 
                 <div>
-                  <strong>3</strong>
+                  <strong>{resumenAdvisory.areasSeguimiento}</strong>
 
                   <span>Áreas de seguimiento</span>
                 </div>
@@ -444,7 +450,7 @@ function Advisory() {
                 </span>
 
                 <div>
-                  <strong>1</strong>
+                  <strong>{resumenAdvisory.prioridadOperativa}</strong>
 
                   <span>Prioridad operativa</span>
                 </div>
@@ -456,7 +462,7 @@ function Advisory() {
                 </span>
 
                 <div>
-                  <strong>Activo</strong>
+                  <strong>{resumenAdvisory.seguimientoEmpresarial}</strong>
 
                   <span>Seguimiento empresarial</span>
                 </div>

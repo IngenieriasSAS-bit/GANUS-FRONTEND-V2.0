@@ -1123,6 +1123,50 @@
 }
 
 
+/* ==========================================
+   FORMULARIO - MODO OSCURO
+========================================== */
+
+[data-ganus-theme="oscuro"] .campo-formulario label{
+
+    color:#dbe8f5;
+
+}
+
+[data-ganus-theme="oscuro"] .campo-formulario input,
+
+[data-ganus-theme="oscuro"] .campo-formulario select,
+
+[data-ganus-theme="oscuro"] .campo-formulario textarea{
+
+    background:#23364b;
+
+    color:#f8fafc;
+
+    border:1px solid #3b536d;
+
+}
+
+[data-ganus-theme="oscuro"] .campo-formulario input::placeholder,
+
+[data-ganus-theme="oscuro"] .campo-formulario textarea::placeholder{
+
+    color:#9fb2c8;
+
+}
+
+[data-ganus-theme="oscuro"] .campo-formulario input:focus,
+
+[data-ganus-theme="oscuro"] .campo-formulario select:focus,
+
+[data-ganus-theme="oscuro"] .campo-formulario textarea:focus{
+
+    border-color:#79BE24;
+
+    box-shadow:0 0 0 3px rgba(121,190,36,.18);
+
+}
+
 /* ==========================================================
    RESPONSIVE - TABLET
 ========================================================== */
@@ -1402,3 +1446,156 @@
   }
 
 }
+
+/* =======================================
+   FORMULARIO NUEVA ACTIVIDAD
+======================================= */
+
+.formulario-actividad{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+.campo-formulario{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.campo-observaciones{
+
+    grid-column:1 / -1;
+
+}
+
+.campo-formulario label{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+.campo-formulario input,
+
+.campo-formulario select{
+
+    width:100%;
+
+    height:44px;
+
+    border:1px solid #dbe2ea;
+
+    border-radius:10px;
+
+    padding:0 14px;
+
+    font-size:14px;
+
+    background:#fff;
+
+}
+
+.campo-formulario textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    border:1px solid #dbe2ea;
+
+    border-radius:10px;
+
+    padding:12px 14px;
+
+    font-size:14px;
+
+    background:#fff;
+
+    font-family:inherit;
+
+    resize:vertical;
+
+    box-sizing:border-box;
+
+    transition:.25s;
+
+}
+
+.campo-formulario textarea:focus{
+
+    outline:none;
+
+    border-color:#79BE24;
+
+    box-shadow:0 0 0 3px rgba(121,190,36,.15);
+
+}
+
+.acciones-formulario{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:10px;
+
+    padding-top:20px;
+
+    border-top:1px solid #edf2f7;
+
+}
+
+
+.secondary-button{
+
+    min-width:110px;
+
+    height:44px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#eef4f9;
+
+    color:#082B55;
+
+    font-weight:600;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.secondary-button:hover{
+
+    background:#dfeaf5;
+
+    transform:translateY(-1px);
+
+}
+

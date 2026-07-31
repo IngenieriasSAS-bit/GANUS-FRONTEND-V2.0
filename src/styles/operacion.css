@@ -221,13 +221,13 @@
    Dark Mode
    ========================================================== */
 
-[data-theme="dark"] .operacion{
+[data-ganus-theme="oscuro"] .operacion{
 
     background:#0f172a;
 
 }
 
-[data-theme="dark"] .operacion-section{
+[data-ganus-theme="oscuro"] .operacion-section{
 
     background:#172033;
 
@@ -235,7 +235,7 @@
 
 }
 
-[data-theme="dark"] .operacion-card{
+[data-ganus-theme="oscuro"] .operacion-card{
 
     background:#1d2940;
 
@@ -243,19 +243,19 @@
 
 }
 
-[data-theme="dark"] .operacion-card p{
+[data-ganus-theme="oscuro"] .operacion-card p{
 
     color:#c7d2e0;
 
 }
 
-[data-theme="dark"] .operacion-section h2{
+[data-ganus-theme="oscuro"] .operacion-section h2{
 
     color:#f1f5f9;
 
 }
 
-[data-theme="dark"] .operacion-activity-card{
+[data-ganus-theme="oscuro"] .operacion-activity-card{
 
     background:#1d2940;
 
@@ -263,19 +263,19 @@
 
 }
 
-[data-theme="dark"] .operacion-activity-card h4{
+[data-ganus-theme="oscuro"] .operacion-activity-card h4{
 
     color:#ffffff;
 
 }
 
-[data-theme="dark"] .operacion-activity-card p{
+[data-ganus-theme="oscuro"] .operacion-activity-card p{
 
     color:#d5dce6;
 
 }
 
-[data-theme="dark"] .operacion-activity-card small{
+[data-ganus-theme="oscuro"] .operacion-activity-card small{
 
     color:#9fb1c7;
 
@@ -429,13 +429,13 @@
 
 }
 
-[data-theme="dark"] .operacion-highlight h4{
+[data-ganus-theme="oscuro"] .operacion-highlight h4{
 
     color:#f8fafc;
 
 }
 
-[data-theme="dark"] .operacion-highlight p{
+[data-ganus-theme="oscuro"] .operacion-highlight p{
 
     color:#cbd5e1;
 

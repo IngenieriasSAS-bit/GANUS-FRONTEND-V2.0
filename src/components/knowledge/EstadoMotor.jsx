@@ -4,36 +4,51 @@ import {
   Clock3,
 } from "lucide-react";
 
+import {
+  useEffect,
+  useState,
+} from "react";
+
 import "../../styles/knowledge/estadoMotor.css";
 
-const servicios = [
-  {
-    id: 1,
-    nombre: "Knowledge Engine",
-    descripcion: "Modelo empresarial",
-    estado: "activo",
-  },
-  {
-    id: 2,
-    nombre: "Rule Engine",
-    descripcion: "Evaluación de reglas",
-    estado: "activo",
-  },
-  {
-    id: 3,
-    nombre: "Event Engine",
-    descripcion: "Procesamiento de eventos",
-    estado: "activo",
-  },
-  {
-    id: 4,
-    nombre: "Widget Publisher",
-    descripcion: "Publicación de indicadores",
-    estado: "sincronizando",
-  },
-];
+import {
+  obtenerEstadoMotor,
+} from "../../services/knowledgeEngineService";
+
+
+ 
 
 export default function EstadoMotor() {
+
+  const [servicios, setServicios] = useState(
+  obtenerEstadoMotor()
+);
+
+useEffect(() => {
+
+  const cargarEstado = () => {
+
+    setServicios(
+      obtenerEstadoMotor()
+    );
+
+  };
+
+  cargarEstado();
+
+  window.addEventListener(
+    "knowledge-engine-updated",
+    cargarEstado
+  );
+
+  return () =>
+    window.removeEventListener(
+      "knowledge-engine-updated",
+      cargarEstado
+    );
+
+}, []);
+
   return (
     <article className="knowledge-motor">
       <div className="knowledge-motor-header">

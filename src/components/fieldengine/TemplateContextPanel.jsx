@@ -24,11 +24,9 @@ export default function TemplateContextPanel({
       return activityTypes;
     }
 
-    return [
-      { id: "process-general", name: "Proceso general" },
-      { id: "process-control", name: "Control operativo" },
-      { id: "process-inspection", name: "Inspección" },
-    ];
+    return activityTypes.filter(
+  (item) => item.processId === undefined
+);
   };
 
   return (

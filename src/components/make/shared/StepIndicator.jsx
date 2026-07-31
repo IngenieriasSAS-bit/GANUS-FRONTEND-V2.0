@@ -1,14 +1,11 @@
 export default function StepIndicator({
-
-    steps,
-
-    currentStep,
-
+    steps = [],
+    currentStep = 0,
 }) {
 
     return (
 
-        <div className="make-step-indicator">
+        <div className="step-indicator">
 
             {steps.map((step, index) => (
 

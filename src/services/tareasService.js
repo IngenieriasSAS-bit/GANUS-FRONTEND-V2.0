@@ -44,6 +44,14 @@ export const guardarTareas = (
     JSON.stringify(tareas)
   );
 
+  window.dispatchEvent(
+
+    new Event(
+      "tareas-updated"
+    )
+
+  );
+
 };
 
 
@@ -64,7 +72,16 @@ export const crearTarea = (
 
       : 1;
 
-  const tareaCreada = {
+    if (!nuevaTarea.activoId) {
+
+    throw new Error(
+        "Debe seleccionar un activo."
+    );
+
+}
+
+
+    const tareaCreada = {
 
     ...nuevaTarea,
 
@@ -106,9 +123,12 @@ export const actualizarTarea = (
       tarea.id === tareaId
 
         ? {
-            ...tarea,
-            ...datosActualizados,
-          }
+    ...tarea,
+    ...datosActualizados,
+
+    updatedAt:
+        new Date().toISOString(),
+}
 
         : tarea
 

@@ -897,3 +897,119 @@
     font-size: 23px;
   }
 }
+
+/*=====================================================
+
+CONTEXTO DEL REGISTRO
+
+=====================================================*/
+
+.dynamic-capture-context{
+
+    margin-bottom:32px;
+
+    padding:28px;
+
+    border:1px solid #E3EAF4;
+
+    border-radius:18px;
+
+    background:#FFFFFF;
+
+}
+
+.dynamic-capture-context-header{
+
+    margin-bottom:24px;
+
+}
+
+.dynamic-capture-context-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#17375E;
+
+}
+
+.dynamic-capture-context-header p{
+
+    margin-top:8px;
+
+    color:#667085;
+
+    font-size:14px;
+
+}
+
+.dynamic-capture-context-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:22px;
+
+}
+
+.dynamic-capture-field{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.dynamic-capture-field label{
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#344054;
+
+}
+
+.dynamic-capture-field input{
+
+    width:100%;
+
+    height:46px;
+
+    padding:0 16px;
+
+    border:1px solid #D0D5DD;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    transition:.2s;
+
+    outline:none;
+
+}
+
+.dynamic-capture-field input:focus{
+
+    border-color:#79BE24;
+
+    box-shadow:0 0 0 4px rgba(121,190,36,.15);
+
+}
+
+@media(max-width:900px){
+
+.dynamic-capture-context-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}

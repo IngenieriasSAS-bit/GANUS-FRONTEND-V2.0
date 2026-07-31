@@ -104,13 +104,15 @@ export default function FieldEngine() {
     initialState.catalogs
   );
 
-  const [assetTypes] = useState(
-    initialState.assetTypes
-  );
+  const assetTypes = useMemo(
+    () => getFieldEngineAssetTypes(),
+    []
+);
 
-  const [activityTypes] = useState(
-    initialState.activityTypes
-  );
+  const activityTypes = useMemo(
+    () => getFieldEngineActivityTypes(),
+    []
+);
 
   const [
     selectedFieldId,

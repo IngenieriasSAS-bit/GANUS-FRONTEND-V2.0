@@ -22,6 +22,7 @@ export default function RegistroAlertas({
   const [prioridad, setPrioridad] =
     useState("");
 
+
   const alertasFiltradas =
     useMemo(() => {
 

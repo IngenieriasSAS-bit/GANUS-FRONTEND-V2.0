@@ -1,7 +1,5 @@
 import {
 
-    Eye,
-
     Clock3,
 
     CheckCircle2,
@@ -15,6 +13,8 @@ import {
 export default function TrackOrdersTable({
 
     orders = [],
+
+    onView,
 
 }) {
 
@@ -48,159 +48,112 @@ export default function TrackOrdersTable({
 
     return (
 
-        <section className="track-table-container">
+        <section className="track-orders-grid">
 
-            <div className="track-table-header">
+    {
 
-                <h2>
+        orders.length === 0 && (
 
-                    Seguimiento Operativo
+            <div className="track-empty-card">
 
-                </h2>
-
-                <span>
-
-                    {orders.length} órdenes registradas
-
-                </span>
+                No existen órdenes para supervisar.
 
             </div>
 
-            <table className="track-table">
+        )
 
-                <thead>
+    }
 
-                    <tr>
+    {
 
-                        <th>Orden</th>
+        orders.map(order => (
 
-                        <th>Rutina</th>
+            <article
+                key={order.id}
+                className="track-order-card"
+            >
 
-                        <th>Estado</th>
+                <div className="track-order-top">
 
-                        <th>Prioridad</th>
+                    <div>
 
-                        <th>Operadores</th>
+                        <small>
 
-                        <th>Programada</th>
+                            ORDEN DE TRABAJO
 
-                        <th>Acción</th>
+                        </small>
 
-                    </tr>
+                        <h3>
 
-                </thead>
+                            {order.routineName}
 
-                <tbody>
+                        </h3>
 
-                    {
+                    </div>
 
-                        orders.length === 0 && (
+                    <span
+                        className={`track-status ${order.status}`}
+                    >
 
-                            <tr>
+                        {getStatusIcon(order.status)}
 
-                                <td
+                        {
+    order.status === "pending"
+        ? "Pendiente"
+        : order.status === "in_progress"
+        ? "En ejecución"
+        : order.status === "paused"
+        ? "Pausada"
+        : order.status === "completed"
+        ? "Finalizada"
+        : order.status
+}
 
-                                    colSpan="7"
+                    </span>
 
-                                    className="track-empty"
+                </div>
 
-                                >
+                <div className="track-order-info">
 
-                                    No existen órdenes para supervisar.
+                    <span>
 
-                                </td>
+                        📅 {order.plannedDate}
 
-                            </tr>
+                    </span>
 
-                        )
+                    <span>
 
-                    }
+                        👥 {order.assignedOperators?.length || 0} operadores
 
-                    {
+                    </span>
 
-                        orders.map(order => (
+                    <span>
 
-                            <tr key={order.id}>
+                        ⚑ {order.priority}
 
-                                <td>
+                    </span>
 
-                                    {order.id.slice(0,8)}
+                </div>
 
-                                </td>
+                <button
 
-                                <td>
+                    className="track-detail-button"
 
-                                    {order.routineName}
+                    onClick={() => onView(order)}
 
-                                </td>
+                >
 
-                                <td>
+                    Ver seguimiento
 
-                                    <span
+                </button>
 
-                                        className={`track-status ${order.status}`}
+            </article>
 
-                                    >
+        ))
 
-                                        {getStatusIcon(order.status)}
+    }
 
-                                        {order.status}
-
-                                    </span>
-
-                                </td>
-
-                                <td>
-
-                                    {order.priority}
-
-                                </td>
-
-                                <td>
-
-                                    {
-
-                                        order.assignedOperators?.length || 0
-
-                                    }
-
-                                </td>
-
-                                <td>
-
-                                    {
-
-                                        order.plannedDate || "-"
-
-                                    }
-
-                                </td>
-
-                                <td>
-
-                                    <button
-
-                                        className="track-view-button"
-
-                                    >
-
-                                        <Eye size={17}/>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-                        ))
-
-                    }
-
-                </tbody>
-
-            </table>
-
-        </section>
+</section>
 
     );
 

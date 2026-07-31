@@ -2,15 +2,33 @@ import {
     ClipboardCheck,
     Clock3,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 
 import useFieldEngineDashboard from "../../../hooks/useFieldEngineDashboard";
+
+import { formatRelativeTime } from "../../../utils/dateUtils";
+import { getModuleInfo } from "../../../utils/moduleUtils";
+
 
 
 export default function FieldEngineRecentResponses() {
 
     const dashboard = useFieldEngineDashboard();
+    const navigate = useNavigate();
+    const responses = dashboard.recentResponses;
+    
+    const responseItems = responses.map(response => ({
 
-const responses = dashboard.recentResponses;
+    ...response,
+
+    module: getModuleInfo(
+
+        response.consumerModule
+
+    )
+
+}));
 
     return (
 
@@ -18,23 +36,25 @@ const responses = dashboard.recentResponses;
 
             <div className="fe-home-list-header">
 
-                <h3>
+    <h3>
 
-                    Registros recientes
+        Registros recientes
 
-                </h3>
+    </h3>
 
-                <span>
+    <span>
 
-                    {responses.length}
+        {responses.length}
 
-                </span>
+    </span>
 
-            </div>
+</div>
 
-            {
+<div className="fe-home-list-scroll">
 
-                responses.length === 0 ? (
+{
+
+    responses.length === 0 ? (
 
                     <div className="fe-home-empty-mini">
 
@@ -44,15 +64,17 @@ const responses = dashboard.recentResponses;
 
                 ) : (
 
-                    responses.map((response) => (
+                    responseItems.map((response, index) => (
 
                         <article
-
-                            key={response.id}
-
-                            className="fe-home-list-item"
-
-                        >
+    key={response.id}
+    className="fe-home-list-item fe-home-clickable"
+    onClick={() =>
+        navigate(
+    `${response.module.route}?responseId=${response.id}`
+)
+    }
+>
 
                             <div className="fe-home-list-icon">
 
@@ -62,44 +84,67 @@ const responses = dashboard.recentResponses;
 
                             <div className="fe-home-list-content">
 
-                                <strong>
+    <strong>
 
-                                    {
-                                        response.context?.recordCode ||
-                                        "SIN-CÓDIGO"
-                                    }
+        {
 
-                                </strong>
+            response.context?.recordCode ||
 
-                                <span>
+            `REG-${String(index + 1).padStart(6, "0")}`
 
-                                    {response.templateName}
+        }
 
-                                </span>
+    </strong>
 
-                            </div>
+    <span className="fe-home-list-title">
 
-                            <div className="fe-home-list-date">
+        {response.templateName}
 
-                                <Clock3 size={15} />
+    </span>
 
-                                {
+    <span
 
-                                    new Date(
-                                        response.createdAt
-                                    ).toLocaleDateString("es-CO")
+        className={`fe-module-badge ${response.module.badgeClass}`}
 
-                                }
+    >
 
-                            </div>
+        {response.module.name}
+
+    </span>
+
+
+</div>
+
+<div className="fe-home-list-date">
+
+    <Clock3 size={15} />
+
+    {
+
+        formatRelativeTime(
+
+            response.createdAt
+
+        )
+
+    }
+
+    <ChevronRight
+        size={18}
+        className="fe-open-icon"
+    />
+
+</div>
 
                         </article>
 
-                    ))
+                                        ))
 
                 )
 
             }
+
+</div>
 
         </section>
 

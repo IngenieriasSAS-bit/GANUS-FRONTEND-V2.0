@@ -50,34 +50,41 @@ export default function FieldEngineResponsesTable({
             label: "Responsable",
             render: (row) => {
 
-                const initials = row.responsable
-                    ?.split(" ")
-                    ?.map((x) => x[0])
-                    ?.join("")
-                    ?.substring(0, 2)
-                    ?.toUpperCase();
+    const responsableNombre =
+        typeof row.responsable === "string"
+            ? row.responsable
+            : row.responsable?.nombre ||
+              row.responsable?.name ||
+              "Sin responsable";
 
-                return (
+    const initials = responsableNombre
+        .split(" ")
+        .map((x) => x[0])
+        .join("")
+        .substring(0, 2)
+        .toUpperCase();
 
-                    <div className="fe-grid-user">
+    return (
 
-                        <div className="fe-grid-avatar">
+        <div className="fe-grid-user">
 
-                            {initials || "--"}
+            <div className="fe-grid-avatar">
 
-                        </div>
+                {initials || "--"}
 
-                        <span>
+            </div>
 
-                            {row.responsable}
+            <span>
 
-                        </span>
+                {responsableNombre}
 
-                    </div>
+            </span>
 
-                );
+        </div>
 
-            },
+    );
+
+},
         },
 
         {
@@ -136,8 +143,11 @@ export default function FieldEngineResponsesTable({
             response.templateName,
 
         responsable:
-            response.context?.responsible ||
-            "Sin responsable",
+        typeof response.context?.responsible === "string"
+            ? response.context.responsible
+            : response.context?.responsible?.nombre ||
+              response.context?.responsible?.name ||
+              "Sin responsable",
 
         fecha:
             new Date(

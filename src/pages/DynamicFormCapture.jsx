@@ -41,6 +41,17 @@ const assetId = searchParams.get("assetId");
 
   const [savedResponse, setSavedResponse] = useState(null);
   const [saveError, setSaveError] = useState("");
+  const [captureContext, setCaptureContext] = useState({
+
+    responsible: "",
+
+    location: "",
+
+    primaryAsset: assetId || "",
+
+    secondaryAsset: ""
+
+});
 
   const template = useMemo(
     () => getPublishedTemplateById(templateId),
@@ -117,26 +128,44 @@ const assetId = searchParams.get("assetId");
     );
   }, [template]);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (
+    values,
+    status
+) => {
     setSaveError("");
 
     try {
       const response = createFieldEngineResponse({
         template,
         values,
+        status,
         context: {
-  primaryAsset: assetId || null,
-  responsible: "admin",
-  eventDate: new Date().toISOString(),
+
+    primaryAsset:
+
+        captureContext.primaryAsset || null,
+
+    secondaryAsset:
+
+        captureContext.secondaryAsset || null,
+
+    responsible:
+
+        captureContext.responsible || null,
+
+    location:
+
+        captureContext.location || null,
+
+    eventDate:
+
+        new Date().toISOString(),
+
 },
       });
 
       setSavedResponse(response);
 
-      console.log(
-        "Registro dinámico almacenado por Field Engine:",
-        response
-      );
     } catch (error) {
       console.error(
         "No fue posible almacenar la respuesta dinámica:",
@@ -286,6 +315,112 @@ const assetId = searchParams.get("assetId");
                 </p>
               </div>
             </div>
+
+<div className="dynamic-capture-context">
+
+    <h3>Contexto del registro</h3>
+    <p>
+
+            Información que identificará el registro dentro de GANUS.
+
+        </p>
+
+    <div className="dynamic-capture-context-grid">
+      <div className="dynamic-capture-field">
+
+            <label>Responsable</label>
+
+            <input
+                type="text"
+                placeholder="Ingrese el responsable"
+                value={captureContext.responsible}
+                onChange={(e)=>
+
+                    setCaptureContext(prev=>({
+
+                        ...prev,
+
+                        responsible:e.target.value
+
+                    }))
+
+                }
+            />
+
+        </div>
+
+        <div className="dynamic-capture-field">
+
+            <label>Ubicación</label>
+
+            <input
+                type="text"
+                placeholder="Ingrese la ubicación"
+                value={captureContext.location}
+                onChange={(e)=>
+
+                    setCaptureContext(prev=>({
+
+                        ...prev,
+
+                        location:e.target.value
+
+                    }))
+
+                }
+            />
+
+        </div>
+
+          <div className="dynamic-capture-field">
+
+            <label>Activo principal</label>
+
+            <input
+                type="text"
+                placeholder="Activo principal"
+                value={captureContext.primaryAsset}
+                onChange={(e)=>
+
+                    setCaptureContext(prev=>({
+
+                        ...prev,
+
+                        primaryAsset:e.target.value
+
+                    }))
+
+                }
+            />
+
+        </div>
+
+         <div className="dynamic-capture-field">
+
+            <label>Activo secundario</label>
+
+            <input
+                type="text"
+                placeholder="Activo secundario"
+                value={captureContext.secondaryAsset}
+                onChange={(e)=>
+
+                    setCaptureContext(prev=>({
+
+                        ...prev,
+
+                        secondaryAsset:e.target.value
+
+                    }))
+
+                }
+            />
+
+        </div>
+
+    </div>
+
+</div>
 
             {saveError && (
               <div className="dynamic-capture-save-error">

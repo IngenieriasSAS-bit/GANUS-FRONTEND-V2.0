@@ -28,17 +28,29 @@ const FormularioFinca = ({
 
     const [formulario, setFormulario] = useState({
 
-        nombre: "",
+    nombre: "",
 
-        grupoEmpresarial: "",
+    grupoEmpresarial: "",
 
-        municipio: "",
+    direccion: "",
 
-        departamento: "",
+    municipio: "",
 
-        estado: "Activo",
+    departamento: "",
 
-    });
+    latitud: "",
+
+    longitud: "",
+
+    negocio: "",
+
+    sector: "",
+
+    industria: "",
+
+    estado: "Activo",
+
+});
 
     // ======================================================
     // Lista de grupos empresariales
@@ -71,17 +83,29 @@ const FormularioFinca = ({
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setFormulario({
 
-        nombre: finca.nombre,
+    nombre: finca.nombre ?? "",
 
-        grupoEmpresarial: finca.grupoEmpresarial,
+    grupoEmpresarial: finca.grupoEmpresarial ?? "",
 
-        municipio: finca.municipio,
+    direccion: finca.direccion ?? "",
 
-        departamento: finca.departamento,
+    municipio: finca.municipio ?? "",
 
-        estado: finca.estado,
+    departamento: finca.departamento ?? "",
 
-    });
+    latitud: finca.latitud ?? "",
+
+    longitud: finca.longitud ?? "",
+
+    negocio: finca.negocio ?? "",
+
+    sector: finca.sector ?? "",
+
+    industria: finca.industria ?? "",
+
+    estado: finca.estado ?? "Activo",
+
+});
 
 }, [finca]);
 
@@ -194,6 +218,90 @@ const FormularioFinca = ({
                         onChange={manejarCambio}
                         required
                     />
+
+                    <div className="campo">
+
+    <label>Dirección</label>
+
+    <input
+        type="text"
+        name="direccion"
+        value={formulario.direccion}
+        onChange={manejarCambio}
+        placeholder="Dirección principal de la finca"
+    />
+
+</div>
+
+<div className="campo">
+
+    <label>Latitud</label>
+
+    <input
+        type="text"
+        name="latitud"
+        value={formulario.latitud}
+        onChange={manejarCambio}
+        placeholder="Ej: 4.7110"
+    />
+
+</div>
+
+<div className="campo">
+
+    <label>Longitud</label>
+
+    <input
+        type="text"
+        name="longitud"
+        value={formulario.longitud}
+        onChange={manejarCambio}
+        placeholder="Ej: -74.0721"
+    />
+
+</div>
+
+<div className="campo">
+
+    <label>Negocio</label>
+
+    <input
+        type="text"
+        name="negocio"
+        value={formulario.negocio}
+        onChange={manejarCambio}
+        placeholder="Ej: Ganadería de carne"
+    />
+
+</div>
+
+<div className="campo">
+
+    <label>Sector</label>
+
+    <input
+        type="text"
+        name="sector"
+        value={formulario.sector}
+        onChange={manejarCambio}
+        placeholder="Ej: Agropecuario"
+    />
+
+</div>
+
+<div className="campo">
+
+    <label>Industria</label>
+
+    <input
+        type="text"
+        name="industria"
+        value={formulario.industria}
+        onChange={manejarCambio}
+        placeholder="Ej: Producción bovina"
+    />
+
+</div>
 
                 </div>
 

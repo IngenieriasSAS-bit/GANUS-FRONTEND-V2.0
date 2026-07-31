@@ -277,7 +277,6 @@ useEffect(() => {
 
 }, [workOrder]);
 
-console.log(workOrder.execution);
 
     return (
 

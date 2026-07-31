@@ -1,8 +1,18 @@
 /**
  * --------------------------------------------------------
  * Componente: DataTable
- * Descripción:
  * Tabla reutilizable para todos los módulos de GANUS.
+ * Compatible con:
+ *
+ * columns = ["Nombre", "Estado"]
+ *
+ * o
+ *
+ * columns = [
+ *   { key:"name", title:"Nombre" },
+ *   { key:"estado", title:"Estado" },
+ *   { key:"acciones", title:"Acciones", render:(row)=> ... }
+ * ]
  * --------------------------------------------------------
  */
 
@@ -10,11 +20,15 @@ import "./DataTable.css";
 
 export default function DataTable({
 
-    columns,
+    columns = [],
 
-    rows
+    rows = [],
 
 }) {
+
+    const advancedMode =
+        columns.length > 0 &&
+        typeof columns[0] === "object";
 
     return (
 
@@ -26,15 +40,31 @@ export default function DataTable({
 
                     {
 
-                        columns.map((column) => (
+                        advancedMode
 
-                            <th key={column}>
+                            ?
 
-                                {column}
+                            columns.map((column) => (
 
-                            </th>
+                                <th key={column.key}>
 
-                        ))
+                                    {column.title}
+
+                                </th>
+
+                            ))
+
+                            :
+
+                            columns.map((column) => (
+
+                                <th key={column}>
+
+                                    {column}
+
+                                </th>
+
+                            ))
 
                     }
 
@@ -46,42 +76,15 @@ export default function DataTable({
 
                 {
 
-                    rows.length > 0
+                    rows.length === 0
 
                         ?
-
-                        rows.map((row, index) => (
-
-                            <tr key={index}>
-
-                                {
-
-                                    Object.values(row).map((value, i) => (
-
-                                        <td key={i}>
-
-                                            {value}
-
-                                        </td>
-
-                                    ))
-
-                                }
-
-                            </tr>
-
-                        ))
-
-                        :
 
                         <tr>
 
                             <td
-
                                 colSpan={columns.length}
-
                                 className="empty"
-
                             >
 
                                 No existen registros.
@@ -89,6 +92,88 @@ export default function DataTable({
                             </td>
 
                         </tr>
+
+                        :
+
+                        rows.map((row, index) => (
+
+                            <tr key={row.id ?? index}>
+
+                                {
+
+                                    advancedMode
+
+                                        ?
+
+                                        columns.map((column) => (
+
+                                            <td key={column.key}>
+
+                                                {
+
+    column.render
+
+        ?
+
+        column.render(row)
+
+        :
+
+        column.key === "active"
+
+            ? (
+
+                <span
+                    className={
+                        row.active
+
+                            ? "estado estado-activo"
+
+                            : "estado estado-inactivo"
+                    }
+                >
+
+                    {
+
+                        row.active
+
+                            ? "Activo"
+
+                            : "Inactivo"
+
+                    }
+
+                </span>
+
+            )
+
+            :
+
+            row[column.key]
+
+}
+
+                                            </td>
+
+                                        ))
+
+                                        :
+
+                                        Object.values(row).map((value, i) => (
+
+                                            <td key={i}>
+
+                                                {value}
+
+                                            </td>
+
+                                        ))
+
+                                }
+
+                            </tr>
+
+                        ))
 
                 }
 

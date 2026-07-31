@@ -2,7 +2,7 @@ import { Clock3, FileText } from "lucide-react";
 
 import useFieldEngineDashboard from "../../../hooks/useFieldEngineDashboard";
 
-
+import { formatRelativeTime } from "../../../utils/dateUtils";
 
 export default function FieldEngineRecentTemplates() {
 
@@ -66,29 +66,31 @@ const templates = dashboard.recentTemplates;
 
                                 </strong>
 
-                                <span>
+                                <span className="fe-version-badge">
 
-                                    Versión {template.version}
+    v{template.version}
 
-                                </span>
+</span>
 
                             </div>
 
                             <div className="fe-home-list-date">
 
-                                <Clock3 size={15} />
+    <Clock3 size={15} />
 
-                                {
+    {
 
-                                    new Date(
+        formatRelativeTime(
 
-                                        template.updatedAt
+            template.updatedAt ||
 
-                                    ).toLocaleDateString("es-CO")
+            template.createdAt
 
-                                }
+        )
 
-                            </div>
+    }
+
+</div>
 
                         </article>
 

@@ -1,5 +1,19 @@
-import { getFieldEngineTemplates } from "./fieldEngineService";
-import { getFieldEngineResponses } from "./fieldEngineResponseService";
+import {
+    getFieldEngineTemplates,
+} from "./fieldEngineService";
+
+import {
+    getFieldEngineResponses,
+} from "./fieldEngineResponseService";
+
+import {
+    getMakeRoutines,
+    getWorkOrders,
+} from "./makeService";
+
+import {
+    getRecentActivity,
+} from "./recentActivityService";
 
 /* ==========================================================
    FIELD ENGINE DASHBOARD SERVICE
@@ -58,9 +72,9 @@ export const getFieldEngineDashboard = () => {
 
         operation: {
 
-    templates: publishedTemplates.length,
+    templates: getMakeRoutines().length,
 
-    responses: responses.length
+    responses: getWorkOrders().length,
 
 },
 
@@ -110,52 +124,9 @@ recentResponses: [...responses]
     )
     .slice(0, 5),
 
-recentActivity: [
+recentActivity:
 
-    ...templates.map(template => ({
-
-        id: template.id,
-
-        type: "template",
-
-        title: template.name,
-
-        description:
-            template.state === "published"
-                ? "Plantilla publicada"
-                : "Plantilla creada",
-
-        date:
-            template.updatedAt ||
-            template.createdAt,
-
-    })),
-
-    ...responses.map(response => ({
-
-        id: response.id,
-
-        type: "response",
-
-        title:
-            response.context?.recordCode ||
-            response.templateName,
-
-        description:
-            "Nueva captura registrada",
-
-        date:
-            response.createdAt,
-
-    }))
-
-]
-.sort(
-    (a, b) =>
-        new Date(b.date) -
-        new Date(a.date)
-)
-.slice(0, 6)
+    getRecentActivity(),
 
 };
 

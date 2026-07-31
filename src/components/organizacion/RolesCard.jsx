@@ -30,9 +30,15 @@ import FormularioRol from "./FormularioRol";
 import VistaRol from "./VistaRol";
 
 import {
+
     obtenerRoles,
+
     crearRol,
+
     actualizarRol,
+
+    desactivarRol,
+
 } from "../../services/organizationService";
 
 import "./GrupoEmpresarialCard.css";
@@ -227,13 +233,13 @@ const editarRol = (rol) => {
     // Solicitar desactivación
     // ======================================================
 
-    const desactivarRol = (rol) => {
+    const solicitarDesactivacion = (rol) => {
 
-        setRolEliminar(rol);
+    setRolEliminar(rol);
 
-        setMostrarConfirmacion(true);
+    setMostrarConfirmacion(true);
 
-    };
+};
 
     // ======================================================
     // Confirmar desactivación
@@ -241,31 +247,39 @@ const editarRol = (rol) => {
 
     const confirmarDesactivacion = () => {
 
-        const nuevosRoles = roles.map((item) => {
+    try {
 
-            if (item.id === rolEliminar.id) {
+        desactivarRol(
 
-                return {
+            rolEliminar.id
 
-                    ...item,
+        );
 
-                    estado: "Inactivo",
+        setRoles(
 
-                };
+            obtenerRoles()
 
-            }
-
-            return item;
-
-        });
-
-        setRoles(nuevosRoles);
+        );
 
         setMostrarConfirmacion(false);
 
         setRolEliminar(null);
 
-    };
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+
+            error.message
+
+        );
+
+    }
+
+};
 
     // ======================================================
     // Buscar roles
@@ -341,17 +355,19 @@ const editarRol = (rol) => {
 
                         columns={[
 
-                            "Nombre",
+    "Nombre",
 
-                            "Descripción",
+    "Descripción",
 
-                            "Permisos",
+    "Usuarios",
 
-                            "Estado",
+    "Permisos",
 
-                            "Acciones"
+    "Estado",
 
-                        ]}
+    "Acciones"
+
+]}
 
                         rows={
 
@@ -378,8 +394,8 @@ const editarRol = (rol) => {
                                         }
 
                                         onDelete={() =>
-                                            desactivarRol(rol)
-                                        }
+    solicitarDesactivacion(rol)
+}
 
                                     />
 

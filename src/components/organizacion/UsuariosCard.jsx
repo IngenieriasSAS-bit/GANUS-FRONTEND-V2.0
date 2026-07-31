@@ -33,6 +33,7 @@ import {
     obtenerUsuarios,
     crearUsuario,
     actualizarUsuario,
+    desactivarUsuario,
 } from "../../services/organizationService";
 
 import "./GrupoEmpresarialCard.css";
@@ -227,13 +228,13 @@ export default function UsuariosCard() {
     // Solicitar desactivación
     // ======================================================
 
-    const desactivarUsuario = (usuario) => {
+   const solicitarDesactivacion = (usuario) => {
 
-        setUsuarioEliminar(usuario);
+    setUsuarioEliminar(usuario);
 
-        setMostrarConfirmacion(true);
+    setMostrarConfirmacion(true);
 
-    };
+};
 
     // ======================================================
     // Confirmar desactivación
@@ -241,31 +242,31 @@ export default function UsuariosCard() {
 
     const confirmarDesactivacion = () => {
 
-        const nuevosUsuarios = usuarios.map((item) => {
+    try {
 
-            if (item.id === usuarioEliminar.id) {
+        desactivarUsuario(usuarioEliminar.id);
 
-                return {
+        setUsuarios(
 
-                    ...item,
+            obtenerUsuarios()
 
-                    estado: "Inactivo",
-
-                };
-
-            }
-
-            return item;
-
-        });
-
-        setUsuarios(nuevosUsuarios);
+        );
 
         setMostrarConfirmacion(false);
 
         setUsuarioEliminar(null);
 
-    };
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
 
     // ======================================================
     // Filtrar usuarios
@@ -380,8 +381,8 @@ export default function UsuariosCard() {
                                         }
 
                                         onDelete={() =>
-                                            desactivarUsuario(usuario)
-                                        }
+    solicitarDesactivacion(usuario)
+}
 
                                     />
 

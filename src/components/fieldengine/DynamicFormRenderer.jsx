@@ -142,20 +142,38 @@ export default function DynamicFormRenderer({
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (
+    event,
+    status = "completed"
+) => {
+
     event.preventDefault();
 
-    const isValid = validateForm();
+    if (status === "completed") {
 
-    if (!isValid) {
-      setSubmitted(false);
-      return;
+        const isValid = validateForm();
+
+        if (!isValid) {
+
+            setSubmitted(false);
+
+            return;
+
+        }
+
     }
 
-        onSubmit?.(structuredClone(values));
+    onSubmit?.(
+
+        structuredClone(values),
+
+        status
+
+    );
 
     setSubmitted(true);
-  };
+
+};
 
   const handleReset = () => {
     setValues(initialValues);
@@ -253,6 +271,22 @@ export default function DynamicFormRenderer({
           >
             Restablecer
           </button>
+
+          <button
+    type="button"
+    className="dynamic-form__draft"
+    onClick={(event) =>
+        handleSubmit(event, "draft")
+    }
+>
+
+    <Save size={18} />
+
+    <span>
+        Guardar borrador
+    </span>
+
+</button>
 
           <button
             type="submit"

@@ -88,10 +88,6 @@ export default function FieldEngineBuilder() {
 
         setLastResponse(response);
 
-        console.log(
-            "Registro almacenado:",
-            response
-        );
 
     } catch (error) {
 

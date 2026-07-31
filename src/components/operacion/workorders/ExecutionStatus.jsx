@@ -28,7 +28,7 @@ const formatDate = (date) => {
 
 export default function ExecutionStatus({ workOrder }) {
 
-    console.log("WORK ORDER:", JSON.stringify(workOrder, null, 2));
+
 
     const execution = workOrder.execution || {};
 

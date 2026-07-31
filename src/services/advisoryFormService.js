@@ -9,6 +9,10 @@ import {
   saveFieldEngineTemplate,
 } from "./fieldEngineService";
 
+import {
+    addAdvisoryHistory,
+} from "./advisoryHistoryService";
+
 const FORM_INTENT_KEYWORDS = [
   "formulario",
   "formato",
@@ -557,7 +561,27 @@ export const crearBorradorDesdePropuesta = (
     ],
   };
 
-  return saveFieldEngineTemplate(
-    draftTemplate
-  );
+  const savedTemplate =
+    saveFieldEngineTemplate(
+        draftTemplate
+    );
+
+addAdvisoryHistory({
+
+    type: "draft-created",
+
+    templateId: savedTemplate.id,
+
+    templateName: savedTemplate.name,
+
+    consumerModule:
+        savedTemplate.consumerModule,
+
+    version: savedTemplate.version,
+
+});
+
+return savedTemplate;
+
 };
+

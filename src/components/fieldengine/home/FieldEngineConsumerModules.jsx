@@ -13,8 +13,16 @@ import useFieldEngineDashboard from "../../../hooks/useFieldEngineDashboard";
 import {
 
     getWorkOrders,
+    getMakeDashboard,
 
 } from "../../../services/makeService";
+
+import {
+    getAdvisoryDashboard,
+} from "../../../services/advisoryHistoryService";
+import {
+    obtenerActivos,
+} from "../../../services/activosService";
 
 
 
@@ -30,28 +38,40 @@ const responses = dashboard.responses;
 
 const workOrders = getWorkOrders();
 
+const makeDashboard = getMakeDashboard();
+
+const advisoryDashboard =
+    getAdvisoryDashboard();
+    const activos = obtenerActivos();
+
 
     const modules = [
 
     {
-        name: "Inventario",
-        icon: Package,
-        route: "/inventario",
-        consumer: "inventory",
-    },
+    name: "Inventario",
+    icon: Package,
+    route: "/inventario",
+    consumer: "inventory",
+    firstLabel: "Activos",
+    secondLabel: "Registros",
+},
 
     {
-        name: "MAKE Control",
-        icon: ClipboardList,
-        route: "/make",
-        consumer: "make",
-    },
+    name: "MAKE Control",
+    icon: ClipboardList,
+    route: "/make",
+    consumer: "make",
+    firstLabel: "Rutinas",
+    secondLabel: "Órdenes",
+},
 
-    {
+{
     name: "Operativo",
     icon: Settings,
     route: "/operativo",
     consumer: "operation",
+    firstLabel: "Pendientes",
+    secondLabel: "En ejecución",
 },
 
 {
@@ -59,21 +79,26 @@ const workOrders = getWorkOrders();
     icon: ClipboardList,
     route: "/operacion",
     consumer: "operation-dashboard",
+    firstLabel: "Rutinas",
+    secondLabel: "Órdenes",
+},
+    {
+    name: "Track",
+    icon: Activity,
+    route: "/track",
+    consumer: "track",
+    firstLabel: "Total",
+    secondLabel: "En ejecución",
 },
 
     {
-        name: "Track",
-        icon: Activity,
-        route: "/track",
-        consumer: "track",
-    },
-
-    {
-        name: "Advisory",
-        icon: Activity,
-        route: "/advisory",
-        consumer: "advisory",
-    },
+    name: "Advisory",
+    icon: Activity,
+    route: "/advisory",
+    consumer: "advisory",
+    firstLabel: "Orientaciones",
+    secondLabel: "Borradores",
+},
 
 ];
 
@@ -113,15 +138,61 @@ if (module.route === "/operativo") {
 
     totalTemplates = workOrders.filter(
 
-    order => order.status === "pending"
+        order => order.status === "pending"
 
-).length;
+    ).length;
 
-totalResponses = workOrders.filter(
+    totalResponses = workOrders.filter(
 
-    order => order.status === "in_progress"
+        order => order.status === "in_progress"
 
-).length;
+    ).length;
+
+}
+
+else if (module.route === "/operacion") {
+
+    totalTemplates = makeDashboard.totalRoutines;
+
+    totalResponses = makeDashboard.totalOrders;
+
+}
+
+else if (module.route === "/track") {
+
+    totalTemplates = workOrders.length;
+
+    totalResponses = workOrders.filter(
+
+        order => order.status === "in_progress"
+
+    ).length;
+
+}
+
+else if (module.route === "/advisory") {
+
+    totalTemplates =
+        advisoryDashboard.totalOrientations;
+
+    totalResponses =
+        advisoryDashboard.totalDrafts;
+
+}
+
+else if (module.route === "/inventario") {
+
+    totalTemplates =
+        activos.length;
+
+    totalResponses =
+        responses.filter(
+
+            response =>
+
+                response.consumerModule === "inventory"
+
+        ).length;
 
 }
 
@@ -182,18 +253,8 @@ else {
     </strong>
 
     <span>
-
-        {
-
-            module.route === "/operativo"
-
-                ? "Pendientes"
-
-                : "Plantillas"
-
-        }
-
-    </span>
+    {module.firstLabel}
+</span>
 
 </div>
 
@@ -206,18 +267,8 @@ else {
     </strong>
 
     <span>
-
-        {
-
-            module.route === "/operativo"
-
-                ? "En ejecución"
-
-                : "Registros"
-
-        }
-
-    </span>
+    {module.secondLabel}
+</span>
 
 </div>
 

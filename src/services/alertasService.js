@@ -1,4 +1,5 @@
 import alertasIniciales from "../data/alertas";
+import { obtenerTareas } from "./tareasService";
 
 const CLAVE_ALERTAS = "ganus_alertas";
 
@@ -23,6 +24,42 @@ export const obtenerAlertas = () => {
   const alertasGuardadas =
     localStorage.getItem(CLAVE_ALERTAS);
 
+    const tareas = obtenerTareas();
+
+const alertasTareas = tareas
+
+  .filter(
+
+    (tarea) =>
+
+      tarea.estado === "Pendiente" ||
+
+      tarea.estado === "En progreso"
+
+  )
+
+  .map((tarea) => ({
+
+    id: `TASK-${tarea.id}`,
+
+    activoId: tarea.activoId,
+
+    tipoAlerta: "Tarea Operativa",
+
+    prioridad: tarea.prioridad,
+
+    titulo: tarea.titulo,
+
+    descripcion: tarea.descripcion,
+
+    fechaGeneracion: tarea.fechaCreacion,
+
+    estado: "Pendiente",
+
+    archivada: false,
+
+  }));
+
   if (!alertasGuardadas) {
 
     localStorage.setItem(
@@ -36,9 +73,19 @@ export const obtenerAlertas = () => {
 
   }
 
-  return JSON.parse(alertasGuardadas).filter(
-    (alerta) => !alerta.archivada
-  );
+  const alertasLocales = JSON.parse(alertasGuardadas).filter(
+
+  (alerta) => !alerta.archivada
+
+);
+
+return [
+
+  ...alertasLocales,
+
+  ...alertasTareas,
+
+];
 
 };
 
@@ -62,10 +109,14 @@ export const obtenerHistorialAlertas = () => {
 };
 
 export const guardarAlertas = (alertas) => {
+
   localStorage.setItem(
     CLAVE_ALERTAS,
     JSON.stringify(alertas)
   );
+
+  notificarActualizacionAlertas();
+
 };
 
 export const crearAlerta = (nuevaAlerta) => {
@@ -95,8 +146,6 @@ export const crearAlerta = (nuevaAlerta) => {
   ];
 
   guardarAlertas(alertasActualizadas);
-
-notificarActualizacionAlertas();
 
 return alertaCreada;
 };
@@ -154,8 +203,6 @@ export const atenderAlerta = (alertaId) => {
     );
 
   guardarAlertas(alertasActualizadas);
-
-  notificarActualizacionAlertas();
 
   return alertasActualizadas;
 

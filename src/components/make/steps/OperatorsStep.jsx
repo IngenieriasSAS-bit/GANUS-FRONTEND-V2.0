@@ -39,7 +39,7 @@ export default function OperatorsStep({
     item => String(item.id) === String(selectedUser)
 );
 
-    console.log("Usuario seleccionado:", usuario);
+    
 
     if (!usuario) {
 
@@ -62,9 +62,6 @@ export default function OperatorsStep({
     }
 
 
-console.log("Operadores antes:", routine.operators);
-
-console.log("Intentando agregar operador...");
     setRoutine((prev) => ({
 
     ...prev,

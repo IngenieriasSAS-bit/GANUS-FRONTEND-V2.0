@@ -7,6 +7,8 @@ import FincasCard from "../components/organizacion/FincasCard";
 import UsuariosCard from "../components/organizacion/UsuariosCard";
 import RolesCard from "../components/organizacion/RolesCard";
 import PermisosCard from "../components/organizacion/PermisosCard";
+import ProcesosCard from "../components/organizacion/ProcesosCard";
+import TiposActividadCard from "../components/organizacion/TiposActividadCard";
 
 import "../styles/organizacion.css";
 
@@ -59,6 +61,18 @@ export default function Organizacion() {
 <section className="seccion-organizacion">
 
     <PermisosCard /> 
+
+</section>
+
+<section className="seccion-organizacion">
+
+    <ProcesosCard />
+
+</section>
+
+<section className="seccion-organizacion">
+
+    <TiposActividadCard />
 
 </section>
 

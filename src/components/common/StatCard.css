@@ -49,3 +49,35 @@
     font-size:.9rem;
 
 }
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .stat-card{
+
+    background:#162538;
+
+    border:1px solid #2A3B52;
+
+    box-shadow:none;
+
+}
+
+html[data-ganus-theme="oscuro"] .stat-card__title{
+
+    color:#E2E8F0;
+
+}
+
+html[data-ganus-theme="oscuro"] .stat-card__value{
+
+    color:#79BE24;
+
+}
+
+html[data-ganus-theme="oscuro"] .stat-card__subtitle{
+
+    color:#94A3B8;
+
+}

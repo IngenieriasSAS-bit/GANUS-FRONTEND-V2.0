@@ -17,7 +17,6 @@ import {
   Bot,
   Syringe,
   Wrench,
-  Thermometer,
   ArrowRight,
   Send,
   LoaderCircle,
@@ -33,11 +32,15 @@ import {
   detectarIntencionFormulario,
 } from "../services/advisoryFormService";
 
-import { obtenerActivos } from "../services/activosService";
 
-import { obtenerActividades } from "../services/actividadesService/actividadesService";
-
-import { obtenerAlertas } from "../services/alertasService";
+import {
+  obtenerResumenDashboard,
+  obtenerActividadesRecientesDashboard,
+  obtenerAlertasRecientesDashboard,
+  obtenerIndicadoresDashboard,
+  obtenerAdvisoryDashboard,
+  obtenerKnowledgeDashboard,
+} from "../services/dashboardService/dashboardService";
 
 import "../styles/dashboard.css";
 
@@ -46,41 +49,37 @@ export default function Dashboard() {
 
   const obtenerInformacionInicial = () => {
 
-    const activos = obtenerActivos();
+    const resumenDashboard =
+  obtenerResumenDashboard();
 
-    const actividadesLocales = obtenerActividades();
+const actividadesLocales =
+  obtenerActividadesRecientesDashboard();
 
-    const alertas = obtenerAlertas();
 
+const advisoryDashboard =
+  obtenerAdvisoryDashboard();
 
-    return {
-      resumenInicial: {
-        activos: activos.length,
-        actividadesHoy: actividadesLocales.length,
-        alertasActivas: alertas.filter(
+const knowledgeDashboard =
+  obtenerKnowledgeDashboard();
 
-    alerta => !alerta.atendida
+return {
+  resumenInicial: resumenDashboard,
 
-).length,
+  actividadesIniciales: actividadesLocales
+    .reverse()
+    .slice(0, 4),
 
-tareasPendientes: actividadesLocales.filter(
+  advisoryInicial: advisoryDashboard,
 
-    actividad =>
-
-        actividad.estado !== "Completada"
-
-).length,
-      },
-
-      actividadesIniciales: actividadesLocales
-        .reverse()
-        .slice(0, 4),
-    };
+  knowledgeInicial: knowledgeDashboard,
+};
   };
 
   const [informacionInicial] = useState(
     obtenerInformacionInicial
   );
+
+  
 
   const [resumen] = useState(
     informacionInicial.resumenInicial
@@ -90,28 +89,21 @@ tareasPendientes: actividadesLocales.filter(
     informacionInicial.actividadesIniciales
   );
 
+  const indicadoresDashboard =
+  obtenerIndicadoresDashboard();
+
   const [consulta, setConsulta] = useState("");
 
   const [procesandoConsulta, setProcesandoConsulta] =
     useState(false);
 
-  const [mensajesAdvisory, setMensajesAdvisory] = useState([
-    {
-      id: 1,
-      tipo: "asistente",
-      categoria: "resumen",
-      titulo: "Resumen de la operación",
-      texto:
-        "He revisado la información disponible en GANUS. La operación se mantiene estable, aunque existe una alerta crítica que conviene atender con prioridad.",
-      puntos: [
-        "3 alertas activas registradas",
-        "1 evento clasificado como crítico",
-        "6 tareas pendientes de seguimiento",
-      ],
-      recomendacion:
-        "Priorizar la revisión del bajo consumo de alimento en el lote 4.",
-    },
-  ]);
+  const [mensajesAdvisory, setMensajesAdvisory] = useState(
+  informacionInicial.advisoryInicial
+);
+
+const [knowledgeDashboard, setKnowledgeDashboard] = useState(
+    informacionInicial.knowledgeInicial
+);
 
   const advisoryMensajesRef = useRef(null);
 
@@ -124,60 +116,65 @@ tareasPendientes: actividadesLocales.filter(
       advisoryMensajesRef.current.scrollHeight;
   }, [mensajesAdvisory, procesandoConsulta]);
 
-  const indicadores = [
-    {
-      titulo: "Producción de leche",
-      valor: "2.450",
-      unidad: "L",
-      variacion: "+15% vs mes anterior",
-      icono: Milk,
-    },
-    {
-      titulo: "Peso promedio",
-      valor: "412",
-      unidad: "Kg",
-      variacion: "+9% vs mes anterior",
-      icono: Weight,
-    },
-    {
-      titulo: "Tasa de preñez",
-      valor: "68%",
-      unidad: "",
-      variacion: "+6% vs mes anterior",
-      icono: HeartPulse,
-    },
-    {
-      titulo: "Mortalidad",
-      valor: "1,2%",
-      unidad: "",
-      variacion: "-0,5% vs mes anterior",
-      icono: TrendingDown,
-    },
-  ];
+  useEffect(() => {
 
-  const alertasRecientes = [
-    {
-      id: 1,
-      titulo: "Bajo consumo de alimento en lote 4",
-      prioridad: "Crítica",
-      momento: "Hoy 07:15 a. m.",
-      icono: AlertTriangle,
-    },
-    {
-      id: 2,
-      titulo: "Temperatura alta en corral 3",
-      prioridad: "Media",
-      momento: "Hoy 06:40 a. m.",
-      icono: Thermometer,
-    },
-    {
-      id: 3,
-      titulo: "Revisión sanitaria pendiente lote 11",
-      prioridad: "Media",
-      momento: "Ayer 09:30 a. m.",
-      icono: HeartPulse,
-    },
-  ];
+    const actualizarDashboard = () => {
+
+        setKnowledgeDashboard(
+            obtenerKnowledgeDashboard()
+        );
+
+    };
+
+    window.addEventListener(
+        "knowledge-engine-updated",
+        actualizarDashboard
+    );
+
+    return () => {
+
+        window.removeEventListener(
+            "knowledge-engine-updated",
+            actualizarDashboard
+        );
+
+    };
+
+}, []);
+
+  const indicadores = [
+  {
+    titulo: "Producción de leche",
+    valor: indicadoresDashboard.produccion.toLocaleString("es-CO"),
+    unidad: "L",
+    variacion: "+15% vs mes anterior",
+    icono: Milk,
+  },
+  {
+    titulo: "Peso promedio",
+    valor: indicadoresDashboard.peso.toLocaleString("es-CO"),
+    unidad: "Kg",
+    variacion: "+9% vs mes anterior",
+    icono: Weight,
+  },
+  {
+    titulo: "Tasa de preñez",
+    valor: `${indicadoresDashboard.prenez}%`,
+    unidad: "",
+    variacion: "+6% vs mes anterior",
+    icono: HeartPulse,
+  },
+  {
+    titulo: "Mortalidad",
+    valor: `${indicadoresDashboard.mortalidad.toFixed(1).replace(".", ",")}%`,
+    unidad: "",
+    variacion: "-0,5% vs mes anterior",
+    icono: TrendingDown,
+  },
+];
+
+  const alertasRecientes =
+  obtenerAlertasRecientesDashboard();
 
   const normalizarTexto = (texto) =>
     texto
@@ -601,6 +598,20 @@ tareasPendientes: actividadesLocales.filter(
                 <div>
                   <h2>Indicadores Clave</h2>
 
+                <div className="dashboard-engine-info">
+  <span>
+    Eventos: {knowledgeDashboard.eventos}
+  </span>
+
+  <span>
+    Riesgos: {knowledgeDashboard.riesgos}
+  </span>
+
+  <span>
+    Recomendaciones: {knowledgeDashboard.recomendaciones}
+  </span>
+</div>
+
                   <p>
                     Indicadores operativos principales del
                     negocio.
@@ -621,10 +632,12 @@ tareasPendientes: actividadesLocales.filter(
                         <div className="indicador-card-header">
                           <h3>{indicador.titulo}</h3>
 
-                          <Icono
-                            size={24}
-                            aria-hidden="true"
-                          />
+                          <div className="indicador-card-icono">
+  <Icono
+    size={24}
+    aria-hidden="true"
+  />
+</div>
                         </div>
 
                         <div className="indicador-valor">
@@ -743,7 +756,12 @@ tareasPendientes: actividadesLocales.filter(
 
                 <div className="alertas-lista">
                   {alertasRecientes.map((alerta) => {
-                    const Icono = alerta.icono;
+                    const Icono =
+  alerta.prioridad === "Crítica"
+    ? ShieldAlert
+    : alerta.prioridad === "Alta"
+    ? AlertTriangle
+    : CircleAlert;
 
                     return (
                       <div
@@ -760,7 +778,7 @@ tareasPendientes: actividadesLocales.filter(
                           <div>
                             <span>{alerta.prioridad}</span>
 
-                            <small>{alerta.momento}</small>
+                            <small>{alerta.fecha}</small>
                           </div>
                         </div>
                       </div>

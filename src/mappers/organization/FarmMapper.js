@@ -30,13 +30,35 @@ export function toDomain(datosFormulario, grupoId) {
 
         address: {
 
-            municipio: datosFormulario.municipio.trim(),
+    direccion: datosFormulario.direccion?.trim() ?? "",
 
-            departamento: datosFormulario.departamento.trim(),
+    municipio: datosFormulario.municipio.trim(),
 
-        },
+    departamento: datosFormulario.departamento.trim(),
 
-        coordinates: null,
+},
+
+coordinates: {
+
+    latitud: datosFormulario.latitud
+        ? Number(datosFormulario.latitud)
+        : null,
+
+    longitud: datosFormulario.longitud
+        ? Number(datosFormulario.longitud)
+        : null,
+
+},
+
+businessProfile: {
+
+    negocio: datosFormulario.negocio?.trim() ?? "",
+
+    sector: datosFormulario.sector?.trim() ?? "",
+
+    industria: datosFormulario.industria?.trim() ?? "",
+
+},
 
         active:
             datosFormulario.estado === "Activo",
@@ -57,23 +79,41 @@ export function toViewModel(finca, grupoNombre = "") {
 
     return {
 
-        id: finca.id,
+    id: finca.id,
 
-        nombre: finca.name,
+    nombre: finca.name,
 
-        grupoEmpresarial: grupoNombre,
+    grupoEmpresarial: grupoNombre,
 
-        municipio:
-            finca.address?.municipio ?? "",
+    direccion:
+        finca.address?.direccion ?? "",
 
-        departamento:
-            finca.address?.departamento ?? "",
+    municipio:
+        finca.address?.municipio ?? "",
 
-        estado:
-            finca.active
-                ? "Activo"
-                : "Inactivo",
+    departamento:
+        finca.address?.departamento ?? "",
 
-    };
+    latitud:
+        finca.coordinates?.latitud ?? "",
+
+    longitud:
+        finca.coordinates?.longitud ?? "",
+
+    negocio:
+        finca.businessProfile?.negocio ?? "",
+
+    sector:
+        finca.businessProfile?.sector ?? "",
+
+    industria:
+        finca.businessProfile?.industria ?? "",
+
+    estado:
+        finca.active
+            ? "Activo"
+            : "Inactivo",
+
+};
 
 }

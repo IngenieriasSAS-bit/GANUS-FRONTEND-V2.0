@@ -5,6 +5,18 @@ import {
     BellRing,
 } from "lucide-react";
 
+import { useEffect, useState } from "react";
+
+import {
+    obtenerAlertas,
+    EVENTO_ALERTAS_ACTUALIZADAS,
+} from "../../services/alertasService";
+
+
+
+export default function IndicadoresCards() {
+    const [alertasActivas, setAlertasActivas] =
+    useState(() => obtenerAlertas().length);
 const indicadores = [
 
     {
@@ -33,15 +45,40 @@ const indicadores = [
 
     {
         titulo: "Alertas activas",
-        valor: "2",
+        valor: alertasActivas,
         descripcion: "Requieren atención",
         icono: BellRing,
         clase: "warning",
     },
 
-];
+]; 
 
-export default function IndicadoresCards() {
+    
+    useEffect(() => {
+
+    const actualizar = () => {
+
+        setAlertasActivas(
+            obtenerAlertas().length
+        );
+
+    };
+
+    window.addEventListener(
+        EVENTO_ALERTAS_ACTUALIZADAS,
+        actualizar
+    );
+
+    return () => {
+
+        window.removeEventListener(
+            EVENTO_ALERTAS_ACTUALIZADAS,
+            actualizar
+        );
+
+    };
+
+}, []);
 
     return (
 

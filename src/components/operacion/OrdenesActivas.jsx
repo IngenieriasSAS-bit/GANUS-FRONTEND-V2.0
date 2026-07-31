@@ -150,7 +150,7 @@ export default function OrdenesActivas({
                 {
 
                     ordenes.slice(0,6).map((orden) => {
-                        console.log("OPERADORES:", orden.assignedOperators);
+                        
 
                         const estado =
 

@@ -1,5 +1,10 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react";
 import roles from "../../data/roles";
+import {
+    obtenerGrupos,
+    obtenerFincas,
+} from "../../services/organizationService";
 
 import "./FormularioGrupo.css";
 
@@ -27,58 +32,83 @@ const FormularioUsuario = ({
 
     const [formulario, setFormulario] = useState({
 
-        nombre: "",
+    nombre: "",
 
-        correo: "",
+    correo: "",
 
-        rol: "",
+    grupoEmpresarial: "",
 
-        estado: "Activo",
+    finca: "",
 
-    });
+    rol: "",
 
-    // ======================================================
-    // Cargar datos cuando se edita
-    // ======================================================
+    estado: "Activo",
 
-    useEffect(() => {
+});
 
-        if (usuario) {
+const gruposEmpresariales = obtenerGrupos();
 
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setFormulario({
+const fincas = obtenerFincas();
+  // ======================================================
+// Cargar datos cuando se edita
+// ======================================================
 
-                nombre: usuario.nombre,
+useEffect(() => {
 
-                correo: usuario.correo,
+    if (usuario) {
 
-                rol: usuario.rol,
+        setFormulario({
 
-                estado: usuario.estado,
+            nombre: usuario.nombre,
+            correo: usuario.correo,
+            grupoEmpresarial: usuario.grupoEmpresarial ?? "",
+            finca: usuario.finca ?? "",
+            rol: usuario.rol,
+            estado: usuario.estado,
 
-            });
+        });
 
-        }
+    }
 
-    }, [usuario]);
+}, [usuario]);
+
+
 
     // ======================================================
     // Actualizar formulario
     // ======================================================
 
-    const manejarCambio = (e) => {
+   const manejarCambio = (e) => {
 
-        const { name, value } = e.target;
+    const { name, value } = e.target;
 
-        setFormulario((prev) => ({
+    setFormulario((prev) => {
+
+        if (name === "grupoEmpresarial") {
+
+            return {
+
+                ...prev,
+
+                grupoEmpresarial: value,
+
+                finca: "",
+
+            };
+
+        }
+
+        return {
 
             ...prev,
 
             [name]: value,
 
-        }));
+        };
 
-    };
+    });
+
+};
 
     // ======================================================
     // Guardar información
@@ -125,6 +155,89 @@ const FormularioUsuario = ({
                     />
 
                 </div>
+
+<div className="campo">
+
+    <label>Grupo Empresarial</label>
+
+    <select
+        name="grupoEmpresarial"
+        value={formulario.grupoEmpresarial}
+        onChange={manejarCambio}
+        required
+    >
+
+        <option value="">
+            Seleccione un grupo
+        </option>
+
+        {
+
+            gruposEmpresariales.map((grupo) => (
+
+                <option
+                    key={grupo.id}
+                    value={grupo.nombre}
+                >
+
+                    {grupo.nombre}
+
+                </option>
+
+            ))
+
+        }
+
+    </select>
+
+</div>
+
+<div className="campo">
+
+    <label>Finca</label>
+
+    <select
+        name="finca"
+        value={formulario.finca}
+        onChange={manejarCambio}
+        required
+    >
+
+        <option value="">
+            Seleccione una finca
+        </option>
+
+        {
+
+            fincas
+                .filter(
+
+                    (finca) =>
+
+                        !formulario.grupoEmpresarial ||
+
+                        finca.grupoEmpresarial ===
+                        formulario.grupoEmpresarial
+
+                )
+                .map((finca) => (
+
+                    <option
+                        key={finca.id}
+                        value={finca.nombre}
+                    >
+
+                        {finca.nombre}
+
+                    </option>
+
+                ))
+
+        }
+
+    </select>
+
+</div>
 
                 <div className="campo">
 

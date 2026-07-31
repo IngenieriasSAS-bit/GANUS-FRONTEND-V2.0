@@ -1,6 +1,9 @@
 import {
     getPublishedFieldEngineTemplates,
 } from "./fieldEngineService";
+import {
+    createFieldEngineResponse,
+} from "./fieldEngineResponseService";
 
 import {
 
@@ -12,12 +15,10 @@ import {
 } from "../constants/makeConstants";
 
 import {
-    createFieldEngineResponse,
-} from "./fieldEngineResponseService";
-
-import {
     getPublishedTemplateById,
 } from "./fieldEngineService";
+
+import { registrarEvento } from "./knowledgeEngineService";
 
 
 /* ==========================================================
@@ -1032,6 +1033,17 @@ order.history.push({
 
     );
 
+    registrarEvento({
+  tipo: "ORDEN_CREADA",
+  ordenId: order.id,
+  codigo: order.code,
+  rutina: order.routineName,
+  plantilla: order.templateName,
+  activo: order.contextValue,
+  prioridad: order.priority,
+});
+
+
     return order;
 
 };
@@ -1248,15 +1260,28 @@ export const startWorkOrder = (orderId) => {
     ==========================================
     */
 
-    return changeWorkOrderStatus(
+    const updatedOrder = changeWorkOrderStatus(
+    orderId,
+    "in_progress"
+);
 
-        orderId,
+registrarEvento({
+    tipo: "ORDEN_INICIADA",
+    ordenId: updatedOrder.id,
+    codigo: updatedOrder.code,
+    rutina: updatedOrder.routineName,
+    plantilla: updatedOrder.templateName,
+    activo: updatedOrder.contextValue,
+    responsable: updatedOrder.assignedOperators,
+    prioridad: updatedOrder.priority,
+    fecha: new Date().toISOString(),
+});
 
-        "in_progress"
-
-    );
+return updatedOrder;
 
 };
+
+
 
 export const pauseWorkOrder = (orderId) => {
 
@@ -1274,10 +1299,24 @@ export const pauseWorkOrder = (orderId) => {
         return order;
     }
 
-    return changeWorkOrderStatus(
-        orderId,
-        "paused"
-    );
+    const updatedOrder = changeWorkOrderStatus(
+    orderId,
+    "paused"
+);
+
+registrarEvento({
+    tipo: "ORDEN_PAUSADA",
+    ordenId: updatedOrder.id,
+    codigo: updatedOrder.code,
+    rutina: updatedOrder.routineName,
+    plantilla: updatedOrder.templateName,
+    activo: updatedOrder.contextValue,
+    responsable: updatedOrder.assignedOperators,
+    prioridad: updatedOrder.priority,
+    fecha: new Date().toISOString(),
+});
+
+return updatedOrder;
 
 };
 
@@ -1482,9 +1521,25 @@ history: [
 
     saveWorkOrders(updatedOrders);
 
-    return changeWorkOrderStatus(
-        orderId,
-        "completed"
-    );
+const completedOrder = changeWorkOrderStatus(
+    orderId,
+    "completed"
+);
+
+registrarEvento({
+    tipo: "ORDEN_FINALIZADA",
+    ordenId: completedOrder.id,
+    codigo: completedOrder.code,
+    rutina: completedOrder.routineName,
+    plantilla: completedOrder.templateName,
+    activo: completedOrder.contextValue,
+    responsable: completedOrder.assignedOperators,
+    prioridad: completedOrder.priority,
+    fecha: completedOrder.execution?.finishedAt,
+});
+
+
+return completedOrder;
 
 };
+

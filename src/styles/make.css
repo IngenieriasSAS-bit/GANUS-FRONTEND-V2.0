@@ -16,6 +16,7 @@ gap:16px;
 
 flex-wrap:wrap;
 
+
 }
 
 .step-item{
@@ -2169,5 +2170,253 @@ PENDING ORDERS CARD
 .pending-order-date strong{
 
     color:#082B55;
+
+}
+
+html[data-ganus-theme="oscuro"] .template-card,
+html[data-ganus-theme="oscuro"] .make-panel,
+html[data-ganus-theme="oscuro"] .make-summary,
+html[data-ganus-theme="oscuro"] .workorders-hero,
+html[data-ganus-theme="oscuro"] .workorders-stat-card{
+    background:var(--ganus-surface);
+    border:1px solid var(--ganus-border);
+}
+
+html[data-ganus-theme="oscuro"] .make h1,
+html[data-ganus-theme="oscuro"] .make h2,
+html[data-ganus-theme="oscuro"] .make h3,
+html[data-ganus-theme="oscuro"] .make h4{
+    color:#f3f4f5;
+}
+
+
+/* ==========================================================
+   MAKE - PANEL DARK MODE
+========================================================== */
+
+html[data-ganus-theme="oscuro"] .make-panel h3,
+html[data-ganus-theme="oscuro"] .make-panel strong{
+
+    color:#F8FAFC;
+
+}
+
+html[data-ganus-theme="oscuro"] .make-panel p{
+
+    color:#CBD5E1;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-row{
+
+    border-bottom:1px solid #2A3B52;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-actions button{
+
+    background:#223246;
+
+    color:#E2E8F0;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-actions button:hover{
+
+    background:#2E435D;
+
+}
+
+/*=========================================================
+MAKE - ROUTINE TABLE DARK MODE
+=========================================================*/
+
+html[data-ganus-theme="oscuro"] .routine-table th{
+
+    background:#223246;
+
+    color:#F8FAFC;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-table td{
+
+    border-bottom:1px solid #31445E;
+
+    color:#E2E8F0;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-actions button{
+
+    background:#2A3B52;
+
+    color:#F8FAFC;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-actions button:hover{
+
+    background:#3A506F;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-details-grid>div{
+
+    background:#223246;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-details strong{
+
+    color:#F8FAFC;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-details p{
+
+    color:#CBD5E1;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-filters select,
+
+html[data-ganus-theme="oscuro"] .routine-search{
+
+    background:#223246;
+
+    border-color:#31445E;
+
+    color:#F8FAFC;
+
+}
+
+html[data-ganus-theme="oscuro"] .routine-search::placeholder{
+
+    color:#94A3B8;
+
+}
+
+/*=========================================================
+STATUS BADGES - DARK MODE
+=========================================================*/
+
+html[data-ganus-theme="oscuro"] .status-active{
+
+    background:#D9F8D9;
+
+    color:#166534 !important;
+
+}
+
+html[data-ganus-theme="oscuro"] .status-paused{
+
+    background:#FFE5E5;
+
+    color:#B42318 !important;
+
+}
+
+html[data-ganus-theme="oscuro"] .status-draft{
+
+    background:#FFF5D6;
+
+    color:#B45309 !important;
+
+}
+
+html[data-ganus-theme="oscuro"] .status-finished{
+
+    background:#D6F5FF;
+
+    color:#075985 !important;
+
+}
+
+html[data-ganus-theme="oscuro"] .status-cancelled{
+
+    background:#F3F4F6;
+
+    color:#4B5563 !important;
+
+}
+
+/*=========================================================
+STEP INDICATOR
+=========================================================*/
+
+.step-indicator{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:16px;
+
+    margin:30px 0;
+
+    flex-wrap:wrap;
+
+}
+
+.step-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:8px;
+
+    flex:1;
+
+}
+
+.step-circle{
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#D1D5DB;
+
+    color:#374151;
+
+    font-weight:700;
+
+}
+
+.step-item.active .step-circle{
+
+    background:#082B55;
+
+    color:#FFFFFF;
+
+}
+
+.step-item.completed .step-circle{
+
+    background:#79BE24;
+
+    color:#FFFFFF;
+
+}
+
+.step-item span{
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+    text-align:center;
 
 }

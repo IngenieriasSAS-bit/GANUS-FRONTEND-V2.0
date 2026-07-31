@@ -33,6 +33,40 @@ export default function VistaGrupo({ grupo }) {
 
             </div>
 
+            <h3>Perfil Empresarial</h3>
+
+<div className="campo">
+
+    <strong>Sector</strong>
+
+    <p>{grupo.sector || "-"}</p>
+
+</div>
+
+<div className="campo">
+
+    <strong>Industria</strong>
+
+    <p>{grupo.industria || "-"}</p>
+
+</div>
+
+<div className="campo">
+
+    <strong>Tipo de Negocio</strong>
+
+    <p>{grupo.tipoNegocio || "-"}</p>
+
+</div>
+
+<div className="campo">
+
+    <strong>Modelo de Producción</strong>
+
+    <p>{grupo.modeloProduccion || "-"}</p>
+
+</div>
+
             <div className="campo">
 
                 <strong>Estado</strong>

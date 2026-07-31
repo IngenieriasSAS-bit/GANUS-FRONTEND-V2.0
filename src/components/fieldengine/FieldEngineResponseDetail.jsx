@@ -134,11 +134,11 @@ const formatValue = (value) => {
 
                         <label>Código</label>
 
-                        <span>
+<span>
 
-                            {response.context?.recordCode || "-"}
+    {response.context?.recordCode || "-"}
 
-                        </span>
+</span>
 
                     </div>
 
@@ -184,13 +184,32 @@ const formatValue = (value) => {
 
                     <div>
 
-                        <label>Responsable</label>
+                       <label>Responsable</label>
 
-                        <span>
+<span>
+    {(() => {
+        const responsible = response.context?.responsible;
 
-                            {response.context?.responsible || "-"}
+        if (!responsible) return "-";
 
-                        </span>
+        if (typeof responsible === "string") {
+            return responsible;
+        }
+
+        if (typeof responsible === "object") {
+            return (
+                responsible.nombre ||
+                responsible.name ||
+                responsible.codigo ||
+                responsible.label ||
+                responsible.value ||
+                "-"
+            );
+        }
+
+        return "-";
+    })()}
+</span>
 
                     </div>
 
@@ -199,10 +218,12 @@ const formatValue = (value) => {
                         <label>Ubicación</label>
 
                         <span>
-
-                            {response.context?.location || "-"}
-
-                        </span>
+    {typeof response.context?.location === "object"
+        ? response.context?.location?.nombre ||
+          response.context?.location?.name ||
+          JSON.stringify(response.context?.location)
+        : response.context?.location || "-"}
+</span>
 
                     </div>
 
@@ -211,10 +232,13 @@ const formatValue = (value) => {
                         <label>Activo principal</label>
 
                         <span>
-
-                            {response.context?.primaryAsset || "-"}
-
-                        </span>
+    {typeof response.context?.primaryAsset === "object"
+        ? response.context?.primaryAsset?.nombre ||
+          response.context?.primaryAsset?.name ||
+          response.context?.primaryAsset?.codigo ||
+          JSON.stringify(response.context?.primaryAsset)
+        : response.context?.primaryAsset || "-"}
+</span>
 
                     </div>
 
@@ -222,11 +246,16 @@ const formatValue = (value) => {
 
                         <label>Activo secundario</label>
 
-                        <span>
-
-                            {response.context?.secondaryAsset || "-"}
-
-                        </span>
+<span>
+    {typeof response.context?.secondaryAsset === "object"
+        ? response.context.secondaryAsset?.nombre ||
+          response.context.secondaryAsset?.name ||
+          response.context.secondaryAsset?.codigo ||
+          response.context.secondaryAsset?.label ||
+          response.context.secondaryAsset?.value ||
+          "-"
+        : response.context?.secondaryAsset || "-"}
+</span>
 
                     </div>
 

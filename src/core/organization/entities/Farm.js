@@ -12,10 +12,11 @@ export class Farm {
     organizationGroupId,
     address = null,
     coordinates = null,
+    businessProfile = null,
     active = true,
     createdAt = new Date(),
     updatedAt = new Date(),
-  }) {
+}) {
     if (!id) throw new Error("El id de la finca es obligatorio.");
     if (!code) throw new Error("El código de la finca es obligatorio.");
     if (!name) throw new Error("El nombre de la finca es obligatorio.");
@@ -30,9 +31,12 @@ export class Farm {
     this.organizationGroupId = organizationGroupId;
 
     this.address = address;
-    this.coordinates = coordinates;
 
-    this.active = active;
+this.coordinates = coordinates;
+
+this.businessProfile = businessProfile;
+
+this.active = active;
 
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
@@ -57,6 +61,30 @@ export class Farm {
 
     this.touch();
   }
+
+  updateBusinessProfile(profile) {
+
+    if (!profile) {
+
+        throw new Error(
+            "El perfil empresarial es obligatorio."
+        );
+
+    }
+
+    this.businessProfile = {
+
+        negocio: profile.negocio ?? "",
+
+        sector: profile.sector ?? "",
+
+        industria: profile.industria ?? "",
+
+    };
+
+    this.touch();
+
+}
 
   rename(name) {
     if (!name || !name.trim()) {
@@ -84,3 +112,4 @@ export class Farm {
     this.updatedAt = new Date();
   }
 }
+

@@ -34,9 +34,17 @@ export default function Alertas() {
 
 const atender = (id) => {
 
-  resolverAlerta(id);
+  try {
 
-  setAlertaSeleccionada(null);
+    resolverAlerta(id);
+
+    setAlertaSeleccionada(null);
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
 
 };
 

@@ -9,7 +9,7 @@
  * ---------------------------------------------------------
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Sidebar from "../layouts/Sidebar";
 import Navbar from "../layouts/Navbar";
@@ -33,9 +33,61 @@ export default function Tareas() {
     obtenerTareas()
   );
 
-  const [activos] = useState(() =>
+  const [activos, setActivos] = useState(() =>
     obtenerActivos()
-  );
+);
+
+  useEffect(() => {
+
+    const actualizar = () => {
+
+        setTareas(
+            obtenerTareas()
+        );
+
+    };
+
+    window.addEventListener(
+        "tareas-updated",
+        actualizar
+    );
+
+    return () => {
+
+        window.removeEventListener(
+            "tareas-updated",
+            actualizar
+        );
+
+    };
+
+}, []);
+
+useEffect(() => {
+
+    const actualizarActivos = () => {
+
+        setActivos(
+            obtenerActivos()
+        );
+
+    };
+
+    window.addEventListener(
+        "activos-updated",
+        actualizarActivos
+    );
+
+    return () => {
+
+        window.removeEventListener(
+            "activos-updated",
+            actualizarActivos
+        );
+
+    };
+
+}, []);
 
   const registrarTarea = (nuevaTarea) => {
     crearTarea(nuevaTarea);

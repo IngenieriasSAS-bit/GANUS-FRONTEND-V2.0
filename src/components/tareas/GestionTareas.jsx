@@ -64,22 +64,52 @@ export default function GestionTareas({
     );
   };
 
-  const totalTareas = tareas.length;
+  const estadisticas = useMemo(() => {
 
-  const pendientes = tareas.filter(
-    (tarea) =>
-      tarea.estado === "Pendiente"
-  ).length;
+    return tareas.reduce(
 
-  const enProgreso = tareas.filter(
-    (tarea) =>
-      tarea.estado === "En progreso"
-  ).length;
+        (acumulador, tarea) => {
 
-  const completadas = tareas.filter(
-    (tarea) =>
-      tarea.estado === "Completada"
-  ).length;
+            acumulador.total++;
+
+            switch (tarea.estado) {
+
+                case "Pendiente":
+                    acumulador.pendientes++;
+                    break;
+
+                case "En progreso":
+                    acumulador.enProgreso++;
+                    break;
+
+                case "Completada":
+                    acumulador.completadas++;
+                    break;
+
+                default:
+                    break;
+
+            }
+
+            return acumulador;
+
+        },
+
+        {
+
+            total: 0,
+
+            pendientes: 0,
+
+            enProgreso: 0,
+
+            completadas: 0,
+
+        }
+
+    );
+
+}, [tareas]);
 
   const tareasFiltradas = useMemo(() => {
     const termino = busqueda
@@ -174,7 +204,7 @@ export default function GestionTareas({
     {
       id: "total",
       titulo: "Total Tareas",
-      valor: totalTareas,
+      valor: estadisticas.total,
       descripcion: "Acciones planificadas",
       icono: ListTodo,
       clase: "total",
@@ -182,7 +212,7 @@ export default function GestionTareas({
     {
       id: "pendientes",
       titulo: "Pendientes",
-      valor: pendientes,
+      valor: estadisticas.pendientes,
       descripcion: "Requieren ejecución",
       icono: Clock3,
       clase: "pendientes",
@@ -190,7 +220,7 @@ export default function GestionTareas({
     {
       id: "progreso",
       titulo: "En Progreso",
-      valor: enProgreso,
+     valor: estadisticas.enProgreso,
       descripcion: "Actualmente en gestión",
       icono: CircleDot,
       clase: "progreso",
@@ -198,7 +228,7 @@ export default function GestionTareas({
     {
       id: "completadas",
       titulo: "Completadas",
-      valor: completadas,
+      valor: estadisticas.completadas,
       descripcion: "Acciones finalizadas",
       icono: CheckCircle2,
       clase: "completadas",

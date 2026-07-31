@@ -6,7 +6,84 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import {
+  useEffect,
+  useState,
+} from "react";
+
 import "../../styles/knowledge/modeloConocimiento.css";
+
+import {
+  obtenerResumenKnowledge,
+} from "../../services/knowledgeEngineService";
+
+import {
+  obtenerObjetivosEstrategicos,
+  obtenerIndicadoresKnowledge,
+  obtenerPrincipiosNegocio,
+  obtenerReglasKnowledge,
+} from "../../services/knowledgeService";
+
+
+export default function ModeloConocimiento({
+  onGestionar,
+}) {
+
+  const [resumen, setResumen] = useState(
+  obtenerResumenKnowledge()
+);
+
+useEffect(() => {
+
+  const actualizar = () => {
+
+  const resumenMotor =
+    obtenerResumenKnowledge();
+
+  const objetivos =
+    obtenerObjetivosEstrategicos();
+
+  const indicadores =
+    obtenerIndicadoresKnowledge();
+
+  const principios =
+    obtenerPrincipiosNegocio();
+
+  const reglas =
+    obtenerReglasKnowledge();
+
+  setResumen({
+
+    ...resumenMotor,
+
+    objetivos: objetivos.length,
+
+    indicadores: indicadores.length,
+
+    principios: principios.filter(
+      principio => principio.estado === "Vigente"
+    ).length,
+
+    reglas: reglas.length,
+
+  });
+
+};
+
+  actualizar();
+
+  window.addEventListener(
+  "knowledge-engine-updated",
+  actualizar
+);
+
+  return () =>
+    window.removeEventListener(
+  "knowledge-engine-updated",
+  actualizar
+);
+
+}, []);
 
 const modulos = [
   {
@@ -14,46 +91,46 @@ const modulos = [
     titulo: "Objetivos Estratégicos",
     descripcion:
       "Defina los resultados medibles y trazables que orientan la estrategia empresarial.",
-    total: 4,
-    detalle: "3 activos",
+    total: resumen.objetivos,
+    detalle: `${resumen.objetivos} detectados`,
     icono: Target,
     variante: "blue",
   },
+
   {
     id: "indicadores",
     titulo: "Indicadores",
     descripcion:
       "Administre las mediciones que permiten evaluar el cumplimiento de los objetivos.",
-    total: 8,
-    detalle: "7 publicados",
+    total: resumen.indicadores,
+    detalle: `${resumen.indicadores} publicados`,
     icono: ChartNoAxesCombined,
     variante: "green",
   },
+
   {
     id: "principios",
     titulo: "Principios de Negocio",
     descripcion:
       "Estructure los criterios empresariales que representan la forma de administrar GANUS.",
-    total: 6,
-    detalle: "5 vigentes",
+    total: resumen.principios,
+    detalle: `${resumen.principios} vigentes`,
     icono: Scale,
     variante: "orange",
   },
+
   {
     id: "reglas",
     titulo: "Reglas",
     descripcion:
       "Configure las condiciones evaluadas automáticamente ante los eventos del sistema.",
-    total: 12,
-    detalle: "10 activas",
+    total: resumen.reglas,
+    detalle: `${resumen.reglas} ejecutadas`,
     icono: GitBranch,
     variante: "purple",
   },
 ];
 
-export default function ModeloConocimiento({
-  onGestionar,
-}) {
   return (
     <section className="knowledge-model">
       <div className="knowledge-model-header">

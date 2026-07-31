@@ -29,10 +29,11 @@ import ConfirmModal from "../common/ConfirmModal";
 import FormularioFinca from "./FormularioFinca";
 import VistaFinca from "./VistaFinca";
 
-import fincasIniciales from "../../data/fincas";
-
 import {
+    obtenerFincas,
     crearFinca,
+    actualizarFinca,
+    desactivarFinca as desactivarFincaService,
 } from "../../services/organizationService";
 
 import "./GrupoEmpresarialCard.css";
@@ -45,10 +46,9 @@ import "./GrupoEmpresarialCard.css";
 
     const [fincas, setFincas] = useState(() => {
 
-    return [...fincasIniciales];
+    return obtenerFincas();
 
 });
-
     // ======================================================
     // Buscador
     // ======================================================
@@ -127,37 +127,37 @@ const guardarFinca = (fincaFormulario) => {
 
     if (fincaEditando) {
 
-        const nuevasFincas = fincas.map((item) =>
+    try {
 
-            item.id === fincaEditando.id
+        actualizarFinca(
 
-                ? {
+            fincaEditando.id,
 
-                    ...item,
-
-                    nombre: fincaFormulario.nombre,
-
-                    grupoEmpresarial: fincaFormulario.grupoEmpresarial,
-
-                    municipio: fincaFormulario.municipio,
-
-                    departamento: fincaFormulario.departamento,
-
-                    estado: fincaFormulario.estado,
-
-                }
-
-                : item
+            fincaFormulario
 
         );
 
-        setFincas(nuevasFincas);
+        setFincas(
+
+            obtenerFincas()
+
+        );
 
         cerrarFormulario();
 
-        return;
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
 
     }
+
+    return;
+
+}
 
     // ==========================================
     // CREAR
@@ -231,29 +231,23 @@ const desactivarFinca = (finca) => {
 
 const confirmarDesactivacion = () => {
 
-    const nuevasFincas = fincas.map((item) => {
+    try {
 
-        if (item.id === fincaEliminar.id) {
+        desactivarFincaService(fincaEliminar.id);
 
-            return {
+        setFincas(obtenerFincas());
 
-                ...item,
+        setMostrarConfirmacion(false);
 
-                estado: "Inactivo"
+        setFincaEliminar(null);
 
-            };
+    } catch (error) {
 
-        }
+        console.error(error);
 
-        return item;
+        alert(error.message);
 
-    });
-
-    setFincas(nuevasFincas);
-
-    setMostrarConfirmacion(false);
-
-    setFincaEliminar(null);
+    }
 
 };
 
@@ -333,29 +327,31 @@ const fincasFiltradas = fincas.filter((finca) => {
 
 <DataTable
     columns={[
-        "Nombre",
-        "Grupo Empresarial",
-        "Municipio",
-        "Departamento",
-        "Estado",
-        "Acciones"
-    ]}
+    "Nombre",
+    "Grupo Empresarial",
+    "Municipio",
+    "Sector",
+    "Industria",
+    "Estado",
+    "Acciones"
+]}
     rows={
-        fincasFiltradas.map((finca) => ({
-            nombre: finca.nombre,
-            grupoEmpresarial: finca.grupoEmpresarial,
-            municipio: finca.municipio,
-            departamento: finca.departamento,
-            estado: finca.estado,
-            acciones: (
-                <ActionButtons
-                    onView={() => verFinca(finca)}
-                    onEdit={() => editarFinca(finca)}
-                    onDelete={() => desactivarFinca(finca)}
-                />
-            )
-        }))
-    }
+    fincasFiltradas.map((finca) => ({
+        nombre: finca.nombre,
+        grupoEmpresarial: finca.grupoEmpresarial,
+        municipio: finca.municipio,
+        sector: finca.sector || "-",
+        industria: finca.industria || "-",
+        estado: finca.estado,
+        acciones: (
+            <ActionButtons
+                onView={() => verFinca(finca)}
+                onEdit={() => editarFinca(finca)}
+                onDelete={() => desactivarFinca(finca)}
+            />
+        )
+    }))
+}
 />
 
 {

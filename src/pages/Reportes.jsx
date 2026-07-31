@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -16,6 +16,10 @@ import Sidebar from "../layouts/Sidebar";
 import Navbar from "../layouts/Navbar";
 
 import "../styles/reportes/reportes.css";
+
+import {
+  obtenerKnowledgeEngine,
+} from "../services/knowledgeEngineService";
 
 const reportesIniciales = [
   {
@@ -80,22 +84,86 @@ const tiposReporte = [
 ];
 
 function Reportes() {
+  const knowledge =
+  obtenerKnowledgeEngine();
+        
   const [modulo, setModulo] = useState("Todos");
   const [periodo, setPeriodo] = useState("Julio 2026");
   const [busqueda, setBusqueda] = useState("");
+  const reportes = [
 
-  const reportesFiltrados = useMemo(() => {
-    return reportesIniciales.filter((reporte) => {
-      const coincideModulo =
-        modulo === "Todos" || reporte.modulo === modulo;
+  ...reportesIniciales,
 
-      const coincideBusqueda = reporte.nombre
-        .toLowerCase()
-        .includes(busqueda.toLowerCase());
+  {
+    id: 100,
 
-      return coincideModulo && coincideBusqueda;
-    });
-  }, [modulo, busqueda]);
+    nombre: "Knowledge Engine",
+
+    modulo: "Knowledge",
+
+    periodo,
+
+    estado:
+      knowledge.eventos.length
+        ? "Disponible"
+        : "Sin datos",
+
+    fecha:
+      new Date().toLocaleDateString("es-CO"),
+  },
+
+  {
+    id: 101,
+
+    nombre: "Hallazgos empresariales",
+
+    modulo: "Knowledge",
+
+    periodo,
+
+    estado:
+      (knowledge.hallazgos || []).length
+        ? "Disponible"
+        : "Sin datos",
+
+    fecha:
+      new Date().toLocaleDateString("es-CO"),
+  },
+
+  {
+    id: 102,
+
+    nombre: "Riesgos operativos",
+
+    modulo: "Knowledge",
+
+    periodo,
+
+    estado:
+      (knowledge.riesgos || []).length
+        ? "Disponible"
+        : "Sin datos",
+
+    fecha:
+      new Date().toLocaleDateString("es-CO"),
+  },
+
+];
+  const reportesFiltrados = reportes.filter((reporte) => {
+
+  const coincideModulo =
+    modulo === "Todos" ||
+    reporte.modulo === modulo;
+
+  const coincideBusqueda =
+    reporte.nombre
+      .toLowerCase()
+      .includes(busqueda.toLowerCase());
+
+  return coincideModulo && coincideBusqueda;
+
+});
+
 
   const descargarReporte = (reporte) => {
     const contenido = [

@@ -7,9 +7,11 @@
     margin-left:284px;
     margin-top:72px;
     padding:32px;
-    background:#F4F7FB;
+    background:var(--ganus-page-bg);
     min-height:100vh;
 }
+
+
 
 .operativo-dashboard{
     display:flex;
@@ -804,4 +806,29 @@ NAVEGACIÓN
 
     color:#FFFFFF;
 
+}
+
+[data-ganus-theme="oscuro"] .operativo-page{
+    background:var(--ganus-page-bg);
+}
+
+[data-ganus-theme="oscuro"] .ganus-module-header,
+[data-ganus-theme="oscuro"] .execution-metric-card,
+[data-ganus-theme="oscuro"] .execution-filters,
+[data-ganus-theme="oscuro"] .operativo-order-card{
+    background:var(--ganus-surface);
+    border-color:var(--ganus-border);
+}
+
+[data-ganus-theme="oscuro"] .ganus-module-header h1,
+[data-ganus-theme="oscuro"] .execution-metric-content h2,
+[data-ganus-theme="oscuro"] .operativo-order-header-content h3{
+    color:var(--ganus-title);
+}
+
+[data-ganus-theme="oscuro"] .ganus-module-header p,
+[data-ganus-theme="oscuro"] .execution-metric-content p,
+[data-ganus-theme="oscuro"] .operativo-order-header-content p,
+[data-ganus-theme="oscuro"] .operativo-info-row{
+    color:var(--ganus-text);
 }

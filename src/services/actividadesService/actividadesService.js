@@ -22,10 +22,20 @@ export const obtenerActividades = () => {
 export const guardarActividades = (
   actividades
 ) => {
+
   localStorage.setItem(
     CLAVE_ACTIVIDADES,
     JSON.stringify(actividades)
   );
+
+  window.dispatchEvent(
+
+    new Event(
+      "actividades-updated"
+    )
+
+  );
+
 };
 
 export const crearActividad = (
@@ -43,10 +53,36 @@ export const crearActividad = (
         ) + 1
       : 1;
 
+if (!nuevaActividad.activoId) {
+
+    throw new Error(
+        "Debe seleccionar un activo."
+    );
+
+}
+
+if (!nuevaActividad.actividad) {
+
+    throw new Error(
+        "Debe indicar la actividad."
+    );
+
+}
+
+
   const actividadCreada = {
+
     ...nuevaActividad,
+
     id: nuevoId,
-  };
+
+    createdAt:
+        new Date().toISOString(),
+
+    updatedAt:
+        new Date().toISOString(),
+
+};
 
   const actividadesActualizadas = [
     ...actividades,
@@ -55,11 +91,18 @@ export const crearActividad = (
 
   guardarActividades(
     actividadesActualizadas
-  );
+);
 
-  return actividadCreada;
+/*
+=========================================
+PUNTO DE INTEGRACIÓN
+KNOWLEDGE / MAKE
+=========================================
+*/
+// registrarEvento(...)
+
+return actividadCreada; 
 };
-
 export const obtenerActividadesPorActivo = (
   activoId
 ) => {
@@ -75,6 +118,8 @@ export const eliminarActividad = (
   const actividades =
     obtenerActividades();
 
+    
+
   const actividadesActualizadas =
     actividades.filter(
       (actividad) =>
@@ -84,6 +129,28 @@ export const eliminarActividad = (
   guardarActividades(
     actividadesActualizadas
   );
+};
+
+export const actualizarActividad = (actividadActualizada) => {
+
+    const actividades = obtenerActividades();
+
+    const actividadesNuevas = actividades.map((actividad) =>
+
+        actividad.id === actividadActualizada.id
+            ? {
+                  ...actividad,
+                  ...actividadActualizada,
+                  updatedAt: new Date().toISOString(),
+              }
+            : actividad
+
+    );
+
+    guardarActividades(actividadesNuevas);
+
+    return actividadActualizada;
+
 };
 
 export const obtenerActividadesRecientes = (cantidad = 5) => {

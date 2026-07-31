@@ -24,10 +24,11 @@ import DataTable from "../common/DataTable";
 import ActionButtons from "../common/ActionButtons";
 import FormularioGrupo from "./FormularioGrupo";
 import VistaGrupo from "./VistaGrupo";
-import gruposIniciales from "../../data/gruposEmpresariales";
 import {
-  crearGrupoEmpresarial,
-  obtenerDatosOrganizacion,
+    crearGrupoEmpresarial,
+    obtenerDatosOrganizacion,
+    actualizarGrupoEmpresarial,
+    desactivarGrupoEmpresarial,
 } from "../../services/organizationService";
 import Modal from "../common/Modal";
 import ConfirmModal from "../common/ConfirmModal";
@@ -42,12 +43,7 @@ export default function GrupoEmpresarialCard() {
 
     const [grupos, setGrupos] = useState(() => {
 
-    const gruposGuardados =
-        obtenerDatosOrganizacion();
-
-    return gruposGuardados.length > 0
-        ? gruposGuardados
-        : gruposIniciales;
+    return obtenerDatosOrganizacion();
 
 });
 
@@ -143,33 +139,37 @@ const cerrarVista = () => {
 
     if (grupoEditando) {
 
-        const nuevosGrupos = grupos.map((item) =>
+    try {
 
-            item.id === grupoEditando.id
+        actualizarGrupoEmpresarial(
 
-                ? {
+            grupoEditando.id,
 
-                    ...item,
-
-                    nombre: grupoFormulario.nombre,
-
-                    descripcion: grupoFormulario.descripcion,
-
-                    estado: grupoFormulario.estado,
-
-                }
-
-                : item
+            grupoFormulario
 
         );
 
-        setGrupos(nuevosGrupos);
+        setGrupos(
+
+            obtenerDatosOrganizacion()
+
+        );
 
         cerrarFormulario();
 
-        return;
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
 
     }
+
+    return;
+
+}
 
     // ============================================
     // CREAR
@@ -248,29 +248,33 @@ const eliminarGrupo = (grupo) => {
 
 const confirmarDesactivacion = () => {
 
-    const nuevosGrupos = grupos.map((item) => {
+    try {
 
-        if (item.id === grupoEliminar.id) {
+        desactivarGrupoEmpresarial(
 
-            return {
+            grupoEliminar.id
 
-                ...item,
+        );
 
-                estado: "Inactivo"
+        setGrupos(
 
-            };
+            obtenerDatosOrganizacion()
 
-        }
+        );
 
-        return item;
+        setMostrarConfirmacion(false);
 
-    });
+        setGrupoEliminar(null);
 
-    setGrupos(nuevosGrupos);
+    }
 
-    setMostrarConfirmacion(false);
+    catch (error) {
 
-    setGrupoEliminar(null);
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 };
 
@@ -349,27 +353,35 @@ const gruposFiltrados = grupos.filter((grupo) => {
 
             columns={[
 
-                "Nombre",
+    "Nombre",
 
-                "Estado",
+    "Sector",
 
-                "Fincas",
+    "Industria",
 
-                "Acciones"
+    "Estado",
 
-            ]}
+    "Fincas",
+
+    "Acciones"
+
+]}
 
             rows={
 
                 gruposFiltrados.map((grupo) => ({
 
-                    nombre: grupo.nombre,
+    nombre: grupo.nombre,
 
-                    estado: grupo.estado,
+    sector: grupo.sector || "-",
 
-                    fincas: grupo.fincas,
+    industria: grupo.industria || "-",
 
-                    acciones: (
+    estado: grupo.estado,
+
+    fincas: grupo.fincas,
+
+    acciones: (
 
                         <ActionButtons
 

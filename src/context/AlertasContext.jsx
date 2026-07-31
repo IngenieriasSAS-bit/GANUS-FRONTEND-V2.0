@@ -8,6 +8,7 @@ import {
   obtenerAlertas,
   crearAlerta,
   atenderAlerta,
+  EVENTO_ALERTAS_ACTUALIZADAS,
 } from "../services/alertasService";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -27,22 +28,38 @@ export function AlertasProvider({
   };
 
   useEffect(() => {
+
     const actualizar = () => {
-      cargarAlertas();
+
+        cargarAlertas();
+
     };
 
     window.addEventListener(
-      "storage",
-      actualizar
+        "storage",
+        actualizar
+    );
+
+    window.addEventListener(
+        EVENTO_ALERTAS_ACTUALIZADAS,
+        actualizar
     );
 
     return () => {
-      window.removeEventListener(
-        "storage",
-        actualizar
-      );
+
+        window.removeEventListener(
+            "storage",
+            actualizar
+        );
+
+        window.removeEventListener(
+            EVENTO_ALERTAS_ACTUALIZADAS,
+            actualizar
+        );
+
     };
-  }, []);
+
+}, []);
 
   const registrarAlerta = (
     nuevaAlerta

@@ -22,9 +22,9 @@ export function obtenerRol(idRol) {
 
     return organizacion.roles.find(
 
-        (rol) => rol.id === idRol
+    (rol) => String(rol.id) === String(idRol)
 
-    );
+);
 
 }
 
@@ -100,9 +100,9 @@ export function guardarPermisosRol(
 
     const rol = organizacion.roles.find(
 
-        (r) => r.id === idRol
+    (r) => String(r.id) === String(idRol)
 
-    );
+);
 
     if (!rol) {
 

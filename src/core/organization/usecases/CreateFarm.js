@@ -28,13 +28,13 @@ export class CreateFarm {
 
         }
 
-        if (!farm.groupId) {
+        if (!farm.organizationGroupId) {
 
-            throw new Error(
-                "La finca debe pertenecer a un Grupo Empresarial."
-            );
+    throw new Error(
+        "La finca debe pertenecer a un Grupo Empresarial."
+    );
 
-        }
+}
 
         return {
 

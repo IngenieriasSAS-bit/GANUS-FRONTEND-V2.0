@@ -21,6 +21,9 @@ import {
   actualizarReglaKnowledge,
   eliminarReglaKnowledge,
 } from "../../services/knowledgeService";
+import {
+  obtenerKnowledgeEngine,
+} from "../../services/knowledgeEngineService";
 
 import NuevaReglaModal from "./NuevaReglaModal";
 
@@ -48,6 +51,14 @@ export default function ReglasKnowledge({
 
   const [menuAbierto, setMenuAbierto] =
     useState(null);
+
+   const knowledge = obtenerKnowledgeEngine();
+
+const evaluaciones =
+  knowledge.evaluaciones || [];
+
+const snapshots =
+  knowledge.snapshots || []; 
 
   const reglasFiltradas = useMemo(() => {
     const termino = busqueda
@@ -123,14 +134,30 @@ export default function ReglasKnowledge({
         )
       );
     } else {
-      setReglas((reglasActuales) => [
-        ...reglasActuales,
-        crearReglaKnowledge(
-          reglasActuales,
-          datosRegla
-        ),
-      ]);
-    }
+
+  setReglas((reglasActuales) => {
+
+    const nuevaRegla =
+      crearReglaKnowledge(
+        reglasActuales,
+        datosRegla
+      );
+
+    const nuevasReglas = [
+      ...reglasActuales,
+      nuevaRegla,
+    ];
+
+    actualizarReglaKnowledge(
+      nuevasReglas,
+      nuevaRegla
+    );
+
+    return nuevasReglas;
+
+  });
+
+}
 
     cerrarModal();
   };
@@ -238,8 +265,23 @@ export default function ReglasKnowledge({
 
             <div>
               <span>Evaluaciones</span>
-              <strong>248</strong>
-              <small>Procesadas por el motor</small>
+              <strong>{evaluaciones.length}</strong>
+              <small>
+Evaluaciones registradas
+</small>
+<small>
+  {snapshots.length > 0
+    ? `Último snapshot: ${
+        new Intl.DateTimeFormat("es-CO", {
+          day: "2-digit",
+          month: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        }).format(new Date(snapshots[0].fecha))
+      }`
+    : "Sin snapshots"}
+</small>
+
             </div>
           </article>
         </div>
@@ -350,136 +392,237 @@ export default function ReglasKnowledge({
             </div>
           </div>
 
-          <div className="knowledge-reglas-list">
-            {reglasFiltradas.length > 0 ? (
-              reglasFiltradas.map((regla) => (
-                <article
-                  className="knowledge-regla-card"
-                  key={regla.id}
-                >
-                  <div className="knowledge-regla-card-header">
-                    <div className="knowledge-regla-identity">
-                      <div className="knowledge-regla-icon">
-                        <GitBranch size={20} />
-                      </div>
+          
+        <div className="knowledge-reglas-list">
 
-                      <div>
-                        <strong>
-                          {regla.nombre}
-                        </strong>
+  {reglasFiltradas.length > 0 ? (
 
-                        <span>{regla.id}</span>
-                      </div>
-                    </div>
+    reglasFiltradas.map((regla) => {
 
-                    <div className="knowledge-regla-header-actions">
-                      <span
-                        className={`knowledge-regla-status knowledge-regla-status--${regla.estado.toLowerCase()}`}
-                      >
-                        {regla.estado}
-                      </span>
+      const ejecuciones = evaluaciones.filter(
+        (evaluacion) =>
+          evaluacion.regla === regla.id
+      );
 
-                      <div className="knowledge-regla-menu-wrapper">
-                        <button
-                          type="button"
-                          className="knowledge-regla-actions"
-                          onClick={() =>
-                            cambiarMenu(regla.id)
-                          }
-                          aria-label={`Acciones de ${regla.nombre}`}
-                        >
-                          <MoreHorizontal size={19} />
-                        </button>
+      const ultimaEjecucion =
+        ejecuciones.length > 0
+          ? ejecuciones[ejecuciones.length - 1]
+          : null;
 
-                        {menuAbierto === regla.id && (
-                          <div className="knowledge-regla-menu">
-                            <button
-                              type="button"
-                              onClick={() =>
-                                abrirEditarRegla(regla)
-                              }
-                            >
-                              <Pencil size={15} />
+      return (
 
-                              Editar regla
-                            </button>
+        <article
+          key={regla.id}
+          className="knowledge-regla-card"
+        >
 
-                            <button
-                              type="button"
-                              className="knowledge-regla-menu-delete"
-                              onClick={() =>
-                                eliminarRegla(regla.id)
-                              }
-                            >
-                              <Trash2 size={15} />
+          <div className="knowledge-regla-card-header">
 
-                              Eliminar regla
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+            <div className="knowledge-regla-identity">
 
-                  <p className="knowledge-regla-description">
-                    {regla.descripcion}
-                  </p>
+              <div className="knowledge-regla-icon">
+                <GitBranch size={20} />
+              </div>
 
-                  <div className="knowledge-regla-flow">
-                    <div className="knowledge-regla-flow-item">
-                      <span>Evento</span>
-
-                      <strong>
-                        <Zap size={15} />
-
-                        {regla.evento}
-                      </strong>
-                    </div>
-
-                    <GitBranch
-                      className="knowledge-regla-flow-arrow"
-                      size={18}
-                    />
-
-                    <div className="knowledge-regla-flow-item">
-                      <span>Condición</span>
-
-                      <strong>
-                        {regla.condicion}
-                      </strong>
-                    </div>
-
-                    <GitBranch
-                      className="knowledge-regla-flow-arrow"
-                      size={18}
-                    />
-
-                    <div className="knowledge-regla-flow-item">
-                      <span>Acción</span>
-
-                      <strong>
-                        {regla.accion}
-                      </strong>
-                    </div>
-                  </div>
-                </article>
-              ))
-            ) : (
-              <div className="knowledge-reglas-empty">
-                <GitBranch size={25} />
+              <div>
 
                 <strong>
-                  No se encontraron reglas
+                  {regla.nombre}
                 </strong>
 
                 <span>
-                  Ajuste la búsqueda o cambie el filtro
-                  seleccionado.
+                  {regla.id}
                 </span>
+
               </div>
-            )}
+
+            </div>
+
+            <div className="knowledge-regla-header-actions">
+
+              <span
+                className={`knowledge-regla-status knowledge-regla-status--${regla.estado.toLowerCase()}`}
+              >
+                {regla.estado}
+              </span>
+
+              <div className="knowledge-regla-menu-wrapper">
+
+                <button
+                  type="button"
+                  className="knowledge-regla-actions"
+                  onClick={() =>
+                    cambiarMenu(regla.id)
+                  }
+                >
+                  <MoreHorizontal size={19}/>
+                </button>
+
+                {menuAbierto === regla.id && (
+
+                  <div className="knowledge-regla-menu">
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        abrirEditarRegla(regla)
+                      }
+                    >
+                      <Pencil size={15}/>
+                      Editar regla
+                    </button>
+
+                    <button
+                      type="button"
+                      className="knowledge-regla-menu-delete"
+                      onClick={() =>
+                        eliminarRegla(regla.id)
+                      }
+                    >
+                      <Trash2 size={15}/>
+                      Eliminar regla
+                    </button>
+
+                  </div>
+
+                )}
+
+              </div>
+
+            </div>
+
           </div>
-        </div>
+
+          <p className="knowledge-regla-description">
+            {regla.descripcion}
+          </p>
+
+          <div className="knowledge-regla-flow">
+
+            <div className="knowledge-regla-flow-item">
+
+              <span>Evento</span>
+
+              <strong>
+
+                <Zap size={15}/>
+
+                {regla.evento}
+
+              </strong>
+
+            </div>
+
+            <GitBranch
+              className="knowledge-regla-flow-arrow"
+              size={18}
+            />
+
+            <div className="knowledge-regla-flow-item">
+
+              <span>Condición</span>
+
+              <strong>
+                {regla.condicion}
+              </strong>
+
+            </div>
+
+            <GitBranch
+              className="knowledge-regla-flow-arrow"
+              size={18}
+            />
+
+            <div className="knowledge-regla-flow-item">
+
+              <span>Acción</span>
+
+              <strong>
+                {regla.accion}
+              </strong>
+
+            </div>
+
+          </div>
+
+          <div className="knowledge-regla-engine">
+
+            <div>
+
+              <span>Ejecuciones</span>
+
+              <strong>
+                {ejecuciones.length}
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>Resultado</span>
+
+              <strong>
+                {ultimaEjecucion?.resultado || "Sin ejecutar"}
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>Última ejecución</span>
+
+              <strong>
+
+                {ultimaEjecucion
+                  ? new Intl.DateTimeFormat(
+                      "es-CO",
+                      {
+                        day: "2-digit",
+                        month: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      }
+                    ).format(
+                      new Date(
+                        ultimaEjecucion.fecha
+                      )
+                    )
+                  : "-"}
+
+              </strong>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      );
+
+    })
+
+  ) : (
+
+    <div className="knowledge-reglas-empty">
+
+      <GitBranch size={25}/>
+
+      <strong>
+        No se encontraron reglas
+      </strong>
+
+      <span>
+        Ajuste la búsqueda o cambie el filtro seleccionado.
+      </span>
+
+    </div>
+
+  )}
+
+</div>
+
+
+</div>
       </section>
 
       {modalAbierto && (

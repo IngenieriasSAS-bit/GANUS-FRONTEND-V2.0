@@ -1,3 +1,45 @@
+const STORAGE_KEY = "ganus_knowledge_studio";
+
+const estadoInicial = {
+  objetivos: [],
+  indicadores: [],
+  principios: [],
+  reglas: [],
+};
+
+function obtenerEstado() {
+  try {
+    const datos = localStorage.getItem(STORAGE_KEY);
+
+    if (!datos) {
+      return { ...estadoInicial };
+    }
+
+    return {
+      ...estadoInicial,
+      ...JSON.parse(datos),
+    };
+  } catch {
+    return { ...estadoInicial };
+  }
+}
+
+function guardarEstado(estado) {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(estado)
+  );
+
+  window.dispatchEvent(
+    new CustomEvent(
+      "knowledge-studio-updated",
+      {
+        detail: estado,
+      }
+    )
+  );
+}
+
 const objetivosIniciales = [
   {
     id: 1,
@@ -42,9 +84,27 @@ const objetivosIniciales = [
 ];
 
 export function obtenerObjetivosEstrategicos() {
-  return objetivosIniciales.map((objetivo) => ({
-    ...objetivo,
-  }));
+
+  const estado = obtenerEstado();
+
+  if (estado.objetivos.length === 0) {
+
+    estado.objetivos = objetivosIniciales.map(
+      (objetivo) => ({
+        ...objetivo,
+      })
+    );
+
+    guardarEstado(estado);
+
+  }
+
+  return estado.objetivos.map(
+    (objetivo) => ({
+      ...objetivo,
+    })
+  );
+
 }
 
 export function crearObjetivoEstrategico(
@@ -72,14 +132,25 @@ export function actualizarObjetivoEstrategico(
   objetivos,
   objetivoActualizado
 ) {
-  return objetivos.map((objetivo) =>
-    objetivo.id === objetivoActualizado.id
-      ? {
-          ...objetivo,
-          ...objetivoActualizado,
-        }
-      : objetivo
-  );
+
+  const nuevosObjetivos =
+    objetivos.map((objetivo) =>
+      objetivo.id === objetivoActualizado.id
+        ? {
+            ...objetivo,
+            ...objetivoActualizado,
+          }
+        : objetivo
+    );
+
+  const estado = obtenerEstado();
+
+  estado.objetivos = nuevosObjetivos;
+
+  guardarEstado(estado);
+
+  return nuevosObjetivos;
+
 }
 
 export function eliminarObjetivoEstrategico(
@@ -131,11 +202,28 @@ const indicadoresKnowledgeIniciales = [
 ];
 
 export function obtenerIndicadoresKnowledge() {
-  return indicadoresKnowledgeIniciales.map(
+
+  const estado = obtenerEstado();
+
+  if (estado.indicadores.length === 0) {
+
+    estado.indicadores =
+      indicadoresKnowledgeIniciales.map(
+        (indicador) => ({
+          ...indicador,
+        })
+      );
+
+    guardarEstado(estado);
+
+  }
+
+  return estado.indicadores.map(
     (indicador) => ({
       ...indicador,
     })
   );
+
 }
 
 export function crearIndicadorKnowledge(
@@ -163,14 +251,25 @@ export function actualizarIndicadorKnowledge(
   indicadores,
   indicadorActualizado
 ) {
-  return indicadores.map((indicador) =>
-    indicador.id === indicadorActualizado.id
-      ? {
-          ...indicador,
-          ...indicadorActualizado,
-        }
-      : indicador
-  );
+
+  const nuevosIndicadores =
+    indicadores.map((indicador) =>
+      indicador.id === indicadorActualizado.id
+        ? {
+            ...indicador,
+            ...indicadorActualizado,
+          }
+        : indicador
+    );
+
+  const estado = obtenerEstado();
+
+  estado.indicadores = nuevosIndicadores;
+
+  guardarEstado(estado);
+
+  return nuevosIndicadores;
+
 }
 
 export function eliminarIndicadorKnowledge(
@@ -240,11 +339,28 @@ const principiosNegocioIniciales = [
 ];
 
 export function obtenerPrincipiosNegocio() {
-  return principiosNegocioIniciales.map(
+
+  const estado = obtenerEstado();
+
+  if (estado.principios.length === 0) {
+
+    estado.principios =
+      principiosNegocioIniciales.map(
+        (principio) => ({
+          ...principio,
+        })
+      );
+
+    guardarEstado(estado);
+
+  }
+
+  return estado.principios.map(
     (principio) => ({
       ...principio,
     })
   );
+
 }
 
 export function crearPrincipioNegocio(
@@ -281,24 +397,46 @@ export function actualizarPrincipioNegocio(
   principios,
   principioActualizado
 ) {
-  return principios.map((principio) =>
-    principio.id === principioActualizado.id
-      ? {
-          ...principio,
-          ...principioActualizado,
-        }
-      : principio
-  );
+
+  const nuevosPrincipios =
+    principios.map((principio) =>
+      principio.id === principioActualizado.id
+        ? {
+            ...principio,
+            ...principioActualizado,
+          }
+        : principio
+    );
+
+  const estado = obtenerEstado();
+
+  estado.principios = nuevosPrincipios;
+
+  guardarEstado(estado);
+
+  return nuevosPrincipios;
+
 }
 
 export function eliminarPrincipioNegocio(
   principios,
   principioId
 ) {
-  return principios.filter(
-    (principio) =>
-      principio.id !== principioId
-  );
+
+  const nuevosPrincipios =
+    principios.filter(
+      (principio) =>
+        principio.id !== principioId
+    );
+
+  const estado = obtenerEstado();
+
+  estado.principios = nuevosPrincipios;
+
+  guardarEstado(estado);
+
+  return nuevosPrincipios;
+
 }
 
 const reglasKnowledgeIniciales = [
@@ -365,9 +503,28 @@ const reglasKnowledgeIniciales = [
 ];
 
 export function obtenerReglasKnowledge() {
-  return reglasKnowledgeIniciales.map((regla) => ({
-    ...regla,
-  }));
+
+  const estado = obtenerEstado();
+
+  if (estado.reglas.length === 0) {
+
+    estado.reglas =
+      reglasKnowledgeIniciales.map(
+        (regla) => ({
+          ...regla,
+        })
+      );
+
+    guardarEstado(estado);
+
+  }
+
+  return estado.reglas.map(
+    (regla) => ({
+      ...regla,
+    })
+  );
+
 }
 
 export function crearReglaKnowledge(
@@ -395,21 +552,44 @@ export function actualizarReglaKnowledge(
   reglas,
   reglaActualizada
 ) {
-  return reglas.map((regla) =>
-    regla.id === reglaActualizada.id
-      ? {
-          ...regla,
-          ...reglaActualizada,
-        }
-      : regla
-  );
+
+  const nuevasReglas =
+    reglas.map((regla) =>
+      regla.id === reglaActualizada.id
+        ? {
+            ...regla,
+            ...reglaActualizada,
+          }
+        : regla
+    );
+
+  const estado = obtenerEstado();
+
+  estado.reglas = nuevasReglas;
+
+  guardarEstado(estado);
+
+  return nuevasReglas;
+
 }
 
 export function eliminarReglaKnowledge(
   reglas,
   reglaId
 ) {
-  return reglas.filter(
-    (regla) => regla.id !== reglaId
-  );
+
+  const nuevasReglas =
+    reglas.filter(
+      (regla) =>
+        regla.id !== reglaId
+    );
+
+  const estado = obtenerEstado();
+
+  estado.reglas = nuevasReglas;
+
+  guardarEstado(estado);
+
+  return nuevasReglas;
+
 }

@@ -1,3 +1,10 @@
+import {
+    addAdvisoryHistory,
+} from "./advisoryHistoryService";
+import {
+  obtenerKnowledgeEngine,
+} from "./knowledgeEngineService";
+
 const orientacionesAdvisory = {
   estado: {
     categoria: "Estado general",
@@ -274,16 +281,86 @@ const buscarOrientacionLocal = (mensaje) => {
 };
 
 export const obtenerRespuestaAdvisory = async (mensaje) => {
-  await new Promise((resolve) => setTimeout(resolve, 650));
+  const knowledge = obtenerKnowledgeEngine();
 
-  const orientacion = buscarOrientacionLocal(mensaje);
+const riesgos =
+  knowledge.riesgos || [];
 
-  return {
-    categoria: orientacion.categoria,
-    estado: orientacion.estado,
-    titulo: orientacion.titulo,
-    analisis: orientacion.analisis,
-    criterio: orientacion.criterio,
-    recomendacion: orientacion.recomendacion,
-  };
+const oportunidades =
+  knowledge.oportunidades || [];
+
+const recomendaciones =
+  knowledge.recomendaciones || [];
+
+const hallazgos =
+  knowledge.hallazgos || [];
+
+    await new Promise(
+        (resolve) => setTimeout(resolve, 650)
+    );
+
+    const orientacion =
+        buscarOrientacionLocal(mensaje);
+
+        if (riesgos.length > 0) {
+
+    orientacion.estado =
+        "Atención prioritaria";
+
+    orientacion.analisis +=
+        ` Actualmente existen ${riesgos.length} riesgo(s) identificado(s) por Knowledge Engine.`;
+
+}
+
+if (hallazgos.length > 0) {
+
+    orientacion.criterio +=
+        ` Se registran ${hallazgos.length} hallazgo(s) operativo(s).`;
+
+}
+
+if (recomendaciones.length > 0) {
+
+    orientacion.recomendacion +=
+        ` Knowledge recomienda revisar ${recomendaciones.length} acción(es) prioritaria(s).`;
+
+}
+
+if (oportunidades.length > 0) {
+
+    orientacion.analisis +=
+        ` Además existen ${oportunidades.length} oportunidad(es) detectada(s).`;
+
+}
+
+    addAdvisoryHistory({
+
+        type: "orientation",
+
+        query: mensaje,
+
+        category: orientacion.categoria,
+
+        status: orientacion.estado,
+
+        title: orientacion.titulo,
+
+    });
+
+    return {
+
+        categoria: orientacion.categoria,
+
+        estado: orientacion.estado,
+
+        titulo: orientacion.titulo,
+
+        analisis: orientacion.analisis,
+
+        criterio: orientacion.criterio,
+
+        recomendacion: orientacion.recomendacion,
+
+    };
+
 };

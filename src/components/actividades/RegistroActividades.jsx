@@ -1,7 +1,10 @@
+ 
 import { useMemo, useState } from "react";
 
 import {
   Eye,
+  Trash2,
+  Pencil,
   Search,
   SlidersHorizontal,
   X,
@@ -11,7 +14,15 @@ import {
   FileText,
   Box,
   MapPin,
+  Plus,
 } from "lucide-react";
+
+import Modal from "../common/Modal";
+import {
+    crearActividad,
+    actualizarActividad,
+    eliminarActividad,
+} from "../../services/actividadesService/actividadesService";
 
 export default function RegistroActividades({
   actividades = [],
@@ -24,6 +35,197 @@ export default function RegistroActividades({
     useState("");
   const [actividadSeleccionada, setActividadSeleccionada] =
     useState(null);
+    const [mostrarFormulario, setMostrarFormulario] =
+    useState(false);
+
+    const [modoEdicion, setModoEdicion] = useState(false);
+
+    const [actividadEditando, setActividadEditando] = useState(null);
+
+    const [formulario, setFormulario] = useState({
+
+    activoId: "",
+
+    actividad: "",
+
+    resultado: "",
+
+    estado: "Completada",
+
+    fecha: new Date()
+        .toISOString()
+        .split("T")[0],
+
+    observacion: "",
+
+});
+
+const guardarActividad = () => {
+
+
+    if (!formulario.activoId) {
+
+    alert("Seleccione un activo.");
+
+    return;
+
+}
+
+if (!formulario.actividad.trim()) {
+
+    alert("Ingrese el nombre de la actividad.");
+
+    return;
+
+}
+
+if (
+
+    formulario.actividad
+        .trim()
+        .length < 3
+
+) {
+
+    alert(
+
+        "La actividad debe tener al menos 3 caracteres."
+
+    );
+
+    return;
+
+}
+
+if (
+
+    formulario.actividad
+        .trim()
+        .length > 100
+
+) {
+
+    alert(
+
+        "La actividad no puede superar los 100 caracteres."
+
+    );
+
+    return;
+
+}
+
+if (!formulario.resultado.trim()) {
+
+    alert("Ingrese el resultado de la actividad.");
+
+    return;
+
+}
+
+const existeActividad = actividades.some((actividad) => {
+
+    if (
+        modoEdicion &&
+        actividad.id === actividadEditando?.id
+    ) {
+        return false;
+    }
+
+    return (
+        actividad.activoId === formulario.activoId &&
+
+        (
+            actividad.actividad ??
+            actividad.tipoActividad
+        )
+            ?.trim()
+            .toLowerCase() ===
+        formulario.actividad
+            .trim()
+            .toLowerCase() &&
+
+        actividad.fecha === formulario.fecha
+    );
+
+});
+
+if (existeActividad) {
+
+    alert(
+
+        "Ya existe una actividad igual para ese activo en la misma fecha."
+
+    );
+
+    return;
+
+}
+
+    const datosActividad = {
+
+    ...formulario,
+
+    id: actividadEditando?.id,
+
+    tipoActividad: formulario.actividad,
+
+};
+
+if (modoEdicion) {
+
+    actualizarActividad(datosActividad);
+
+} else {
+
+    crearActividad(datosActividad);
+
+}
+
+    setMostrarFormulario(false);
+    setModoEdicion(false);
+
+    setActividadEditando(null);
+
+    setFormulario({
+
+        activoId: "",
+
+        actividad: "",
+
+        resultado: "",
+
+        estado: "Completada",
+
+        fecha: new Date()
+            .toISOString()
+            .split("T")[0],
+
+        observacion: "",
+
+    });
+
+};
+
+const eliminar = (actividadId) => {
+
+    const confirmar = window.confirm(
+
+        "¿Desea eliminar esta actividad?"
+
+    );
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+    eliminarActividad(
+        actividadId
+    );
+
+};
 
   const obtenerActivo = (activoId) => {
     return activos.find(
@@ -157,16 +359,42 @@ export default function RegistroActividades({
             </p>
           </div>
 
-          <div className="registro-actividades-total">
-            <Activity
-              size={18}
-              strokeWidth={1.8}
-            />
+          <div
+  style={{
+    display: "flex",
+    gap: "12px",
+    alignItems: "center",
+  }}
+>
 
-            <span>
-              {actividadesFiltradas.length} registros
-            </span>
-          </div>
+  <div className="registro-actividades-total">
+
+    <Activity
+      size={18}
+      strokeWidth={1.8}
+    />
+
+    <span>
+      {actividadesFiltradas.length} registros
+    </span>
+
+  </div>
+
+  <button
+    type="button"
+    className="primary-button"
+    onClick={() =>
+        setMostrarFormulario(true)
+    }
+>
+
+    <Plus size={18} />
+
+    Nueva actividad
+
+  </button>
+
+</div>
         </div>
 
         <div className="filtros-actividades">
@@ -256,6 +484,7 @@ export default function RegistroActividades({
                 <th>Resultado</th>
                 <th>Estado</th>
                 <th>Acciones</th>
+
               </tr>
             </thead>
 
@@ -337,23 +566,101 @@ export default function RegistroActividades({
                         </td>
 
                         <td>
-                          <button
-                            type="button"
-                            className="accion-ver-actividad"
-                            title="Ver detalle de actividad"
-                            aria-label="Ver detalle de actividad"
-                            onClick={() =>
-                              setActividadSeleccionada(
-                                actividad
-                              )
-                            }
-                          >
-                            <Eye
-                              size={17}
-                              strokeWidth={1.8}
-                            />
-                          </button>
-                        </td>
+
+  <div
+    style={{
+      display: "flex",
+      gap: "8px",
+      justifyContent: "center",
+    }}
+  >
+
+    <button
+      type="button"
+      className="accion-ver-actividad"
+      title="Ver detalle de actividad"
+      aria-label="Ver detalle de actividad"
+      onClick={() =>
+        setActividadSeleccionada(
+          actividad
+        )
+      }
+    >
+
+      <Eye
+        size={17}
+        strokeWidth={1.8}
+      />
+
+    </button>
+
+        <button
+    type="button"
+    className="accion-ver-actividad"
+    title="Editar actividad"
+    aria-label="Editar actividad"
+    onClick={() => {
+
+        setModoEdicion(true);
+
+        setActividadEditando(actividad);
+
+        setFormulario({
+
+            activoId: actividad.activoId,
+
+            actividad:
+                actividad.actividad ??
+                actividad.tipoActividad ??
+                "",
+
+            resultado:
+                actividad.resultado ?? "",
+
+            estado:
+                actividad.estado ??
+                "Completada",
+
+            fecha:
+                actividad.fecha,
+
+            observacion:
+                actividad.observacion ?? "",
+
+        });
+
+        setMostrarFormulario(true);
+
+    }}
+>
+
+    <Pencil
+        size={17}
+        strokeWidth={1.8}
+    />
+
+</button>
+
+    <button
+      type="button"
+      className="accion-ver-actividad"
+      title="Eliminar actividad"
+      aria-label="Eliminar actividad"
+      onClick={() =>
+        eliminar(actividad.id)
+      }
+    >
+
+      <Trash2
+        size={17}
+        strokeWidth={1.8}
+      />
+
+    </button>
+
+  </div>
+
+</td>
                       </tr>
                     );
                   }
@@ -374,6 +681,228 @@ export default function RegistroActividades({
           </table>
         </div>
       </section>
+
+      <Modal
+    isOpen={mostrarFormulario}
+    titulo={
+    modoEdicion
+        ? "Editar Actividad"
+        : "Nueva Actividad"
+}
+    onClose={() => {
+
+    setMostrarFormulario(false);
+
+    setFormulario({
+
+        activoId: "",
+
+        actividad: "",
+
+        resultado: "",
+
+        estado: "Completada",
+
+        fecha: new Date()
+            .toISOString()
+            .split("T")[0],
+
+        observacion: "",
+
+    });
+
+}}
+>
+
+    <form>
+
+    <div className="formulario-actividad">
+
+        <div className="campo-formulario campo-observaciones">
+
+            <label>Activo</label>
+
+            <select
+                value={formulario.activoId}
+                onChange={(e) =>
+                    setFormulario({
+                        ...formulario,
+                        activoId: e.target.value,
+                    })
+                }
+            >
+
+                <option value="">
+                    Seleccione...
+                </option>
+
+                {activos.map((activo) => (
+
+                    <option
+                        key={activo.id}
+                        value={activo.id}
+                    >
+                        {activo.codigo} - {activo.nombre}
+                    </option>
+
+                ))}
+
+            </select>
+
+        </div>
+
+        <div className="campo-formulario">
+
+            <label>Actividad</label>
+
+            <input
+                type="text"
+                placeholder="Ej: Pesaje"
+                value={formulario.actividad}
+                onChange={(e) =>
+                    setFormulario({
+                        ...formulario,
+                        actividad: e.target.value,
+                    })
+                }
+            />
+
+        </div>
+
+        <div className="campo-formulario">
+
+            <label>Resultado</label>
+
+            <input
+                type="text"
+                placeholder="Resultado obtenido"
+                value={formulario.resultado}
+                onChange={(e) =>
+                    setFormulario({
+                        ...formulario,
+                        resultado: e.target.value,
+                    })
+                }
+            />
+
+        </div>
+
+        <div className="campo-formulario">
+
+            <label>Estado</label>
+
+            <select
+                value={formulario.estado}
+                onChange={(e) =>
+                    setFormulario({
+                        ...formulario,
+                        estado: e.target.value,
+                    })
+                }
+            >
+
+                <option value="Completada">
+                    Completada
+                </option>
+
+                <option value="Pendiente">
+                    Pendiente
+                </option>
+
+                <option value="En proceso">
+                    En proceso
+                </option>
+
+            </select>
+
+        </div>
+
+        <div className="campo-formulario">
+
+            <label>Fecha</label>
+
+            <input
+                type="date"
+                value={formulario.fecha}
+                onChange={(e) =>
+                    setFormulario({
+                        ...formulario,
+                        fecha: e.target.value,
+                    })
+                }
+            />
+
+        </div>
+
+        <div className="campo-formulario">
+
+            <label>Observaciones</label>
+
+            <textarea
+                rows={4}
+                placeholder="Ingrese observaciones de la actividad..."
+                value={formulario.observacion}
+                onChange={(e) =>
+                    setFormulario({
+                        ...formulario,
+                        observacion: e.target.value,
+                    })
+                }
+            />
+
+        </div>
+
+        <div className="acciones-formulario">
+
+    <button
+    type="button"
+    className="secondary-button"
+    onClick={() => {
+
+        setMostrarFormulario(false);
+
+        setFormulario({
+
+            activoId: "",
+
+            actividad: "",
+
+            resultado: "",
+
+            estado: "Completada",
+
+            fecha: new Date()
+                .toISOString()
+                .split("T")[0],
+
+            observacion: "",
+
+        });
+
+    }}
+>
+    Cancelar
+</button>
+
+    <button
+        type="button"
+        className="primary-button"
+        onClick={guardarActividad}
+    >
+
+        Guardar
+
+    </button>
+
+</div>
+
+        
+
+    </div>
+
+</form>
+
+</Modal>
 
       {actividadSeleccionada && (
         <div

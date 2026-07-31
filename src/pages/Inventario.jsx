@@ -1,4 +1,8 @@
-import { useMemo, useState } from "react";
+import {
+    useEffect,
+    useMemo,
+    useState,
+} from "react";
 
 import Sidebar from "../layouts/Sidebar";
 import Navbar from "../layouts/Navbar";
@@ -19,11 +23,15 @@ import {
   Filter,
   Database,
 } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 import {
   obtenerActivos,
   desactivarActivo,
 } from "../services/activosService";
+import {
+    getFieldEngineResponseById,
+} from "../services/fieldEngineResponseService";
 
 import "../styles/inventario.css";
 
@@ -46,6 +54,8 @@ export default function Inventario() {
   const [mostrarFormulario, setMostrarFormulario] =
   useState(false);
 
+  const [searchParams] = useSearchParams();
+
   const [activoADesactivar, setActivoADesactivar] =
   useState(null);
 
@@ -58,6 +68,54 @@ const cargarActivos = () => {
 
 };
 
+useEffect(() => {
+
+    const responseId = searchParams.get("responseId");
+
+    if (!responseId) {
+
+        return;
+
+    }
+
+    const response = getFieldEngineResponseById(responseId);
+
+    if (!response) {
+
+        return;
+
+    }
+
+    const activoId =
+        response.context?.primaryAsset;
+
+    if (!activoId) {
+
+        return;
+
+    }
+
+    const activo = obtenerActivos().find(
+
+        item => item.id === activoId
+
+    );
+
+    if (!activo) {
+
+        return;
+
+    }
+
+    queueMicrotask(() => {
+
+    setActivoSeleccionado(activo);
+
+    setModo("ver");
+
+});
+
+}, [searchParams]);
 
   const dominios = useMemo(() => {
 

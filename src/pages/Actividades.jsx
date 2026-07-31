@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Sidebar from "../layouts/Sidebar";
 import Navbar from "../layouts/Navbar";
@@ -17,13 +17,40 @@ import {
 import "../styles/actividades.css";
 
 export default function Actividades() {
-  const [actividades] = useState(() =>
+  const [actividades, setActividades] = useState(() =>
     obtenerActividades()
-  );
+);
 
   const [activos] = useState(() =>
     obtenerActivos()
   );
+
+useEffect(() => {
+
+    const actualizar = () => {
+
+        setActividades(
+            obtenerActividades()
+        );
+
+    };
+
+    window.addEventListener(
+        "actividades-updated",
+        actualizar
+    );
+
+    return () => {
+
+        window.removeEventListener(
+            "actividades-updated",
+            actualizar
+        );
+
+    };
+
+}, []);
+
 
   return (
     <>

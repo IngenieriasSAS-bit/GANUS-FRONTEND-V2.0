@@ -4,6 +4,8 @@ import {
   createTemplate,
 } from "../constants/fieldEngineConstants";
 
+import { obtenerOrganizacion } from "./organizationStorageService";
+
 const STORAGE_KEYS = {
   templates: "ganus_field_engine_templates",
   catalogs: "ganus_field_engine_catalogs",
@@ -59,6 +61,23 @@ const DEFAULT_ACTIVITY_TYPES = [
   },
 ];
 
+const normalizeOrganizationActivityType = (item) => ({
+
+    id: item.id,
+
+    name: item.name,
+
+    code: item.code ?? "",
+
+    description: item.description ?? "",
+
+    processId: item.processId ?? null,
+
+    active:
+        item.active ?? true,
+
+});
+
 const readStorage = (key, fallback) => {
   try {
     const storedValue = localStorage.getItem(key);
@@ -99,8 +118,55 @@ export const getFieldEngineCatalogs = () =>
 export const getFieldEngineAssetTypes = () =>
   readStorage(STORAGE_KEYS.assetTypes, DEFAULT_ASSET_TYPES);
 
-export const getFieldEngineActivityTypes = () =>
-  readStorage(STORAGE_KEYS.activityTypes, DEFAULT_ACTIVITY_TYPES);
+export const getFieldEngineActivityTypes = () => {
+
+    const activityTypes = readStorage(
+        STORAGE_KEYS.activityTypes,
+        DEFAULT_ACTIVITY_TYPES
+    );
+
+    const organization = obtenerOrganizacion();
+
+  
+
+    const organizationProcesses =
+    (organization.processes ?? []).map((process) => ({
+
+        id: process.id,
+
+        name: process.name,
+
+        code: process.code ?? "",
+
+        description:
+            process.description ?? "",
+
+        active:
+            process.active ?? true,
+
+    }));
+
+    const organizationActivityTypes =
+    (organization.activityTypes ?? []).map(
+        normalizeOrganizationActivityType
+    );   
+
+    return [
+
+    ...organizationProcesses,
+
+    ...organizationActivityTypes,
+
+    ...activityTypes.filter(
+        (activity) =>
+            !organizationActivityTypes.some(
+                (item) => item.id === activity.id
+            )
+    ),
+
+];
+
+};
 
 export const createFieldEngineTemplate = () => {
   const templates = getFieldEngineTemplates();

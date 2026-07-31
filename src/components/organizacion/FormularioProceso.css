@@ -1,0 +1,158 @@
+.formulario-proceso {
+    width: 100%;
+}
+
+.formulario-proceso form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.formulario-grid .campo-completo {
+    grid-column: 1 / -1;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #223654;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d9e2ef;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #1f2937;
+    font-size: 14px;
+    transition: .2s;
+    box-sizing: border-box;
+}
+
+.campo textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+    outline: none;
+    border-color: #76B82A;
+    box-shadow: 0 0 0 3px rgba(118,184,42,.18);
+}
+
+.acciones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-cancelar,
+.btn-guardar {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-cancelar {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.btn-cancelar:hover {
+    background: #d1d5db;
+}
+
+.btn-guardar {
+    background: #76B82A;
+    color: white;
+}
+
+.btn-guardar:hover {
+    background: #5f9921;
+}
+
+/* ===========================
+   Dark Mode
+=========================== */
+
+.dark .campo label {
+    color: #e5e7eb;
+}
+
+.dark .campo input,
+.dark .campo textarea,
+.dark .campo select {
+    background: #1f2937;
+    border-color: #374151;
+    color: white;
+}
+
+.dark .btn-cancelar {
+    background: #374151;
+    color: white;
+}
+
+.dark .btn-cancelar:hover {
+    background: #4b5563;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+
+    .formulario-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .acciones-formulario {
+        flex-direction: column;
+    }
+
+    .btn-cancelar,
+    .btn-guardar {
+        width: 100%;
+    }
+
+}
+
+/* ===========================
+   Estados
+=========================== */
+
+.estado-activo {
+
+    color: #2E7D32;
+
+    font-weight: 600;
+
+}
+
+.estado-inactivo {
+
+    color: #C62828;
+
+    font-weight: 600;
+
+}
